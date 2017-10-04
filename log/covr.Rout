@@ -1,5 +1,14 @@
-WARNING: ignoring environment value of R_HOME
-[1] filename  functions line      value    
-<0 rows> (or 0-length row.names)
-fakemake Coverage: 100.00%
+       filename functions line value
+4  R/sink_all.R  sink_all   20     0
+6  R/sink_all.R  sink_all   21     0
+7  R/sink_all.R  sink_all   22     0
+8  R/sink_all.R  sink_all   23     0
+9  R/sink_all.R  sink_all   24     0
+10 R/sink_all.R  sink_all   25     0
+11 R/sink_all.R  sink_all   26     0
+12 R/sink_all.R  sink_all   27     0
+13 R/sink_all.R  sink_all   28     0
+14 R/sink_all.R  sink_all   29     0
+fakemake Coverage: 28.57%
+R/sink_all.R: 0.00%
 R/throw.R: 100.00%
