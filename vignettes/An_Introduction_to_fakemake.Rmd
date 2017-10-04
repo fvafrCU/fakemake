@@ -1,0 +1,16 @@
+---
+title: "An Introduction to *fakemake*"
+author: "Andreas Dominik Cullmann"
+date: 2017-10-04, 11:51:10
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{An Introduction to fakemake }
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+# Teaser
+This is just a template.
+
+# Features
+There are not features.

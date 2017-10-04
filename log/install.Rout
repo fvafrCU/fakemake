@@ -1,0 +1,12 @@
+WARNING: ignoring environment value of R_HOME
+* installing to library ‘/home/nik/svn/R/r-devel/build/library’
+* installing *source* package ‘fakemake’ ...
+** R
+** inst
+** preparing package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded
+* DONE (fakemake)

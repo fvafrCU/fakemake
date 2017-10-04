@@ -1,0 +1,7 @@
+^.*\.tar\.gz$
+^fakemake\.Rcheck$
+^Makefile$
+^devel\.R$
+^README\.Rmd$
+^README-.*\.png$
+^log$

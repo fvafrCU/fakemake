@@ -1,0 +1,7 @@
+WARNING: ignoring environment value of R_HOME
+Loading fakemake
+Loading required package: testthat
+Testing fakemake
+Testing fakemake:::throw(): .
+
+DONE ===========================================================================

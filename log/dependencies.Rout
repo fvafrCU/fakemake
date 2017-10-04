@@ -1,0 +1,23 @@
+WARNING: ignoring environment value of R_HOME
+Loading required package: cleanr
+Loading required package: covr
+Loading required package: methods
+Loading required package: devtools
+Loading required package: knitr
+Loading required package: lintr
+
+Attaching package: ‘lintr’
+
+The following object is masked from ‘package:devtools’:
+
+    lint
+
+Loading required package: packager
+
+Attaching package: ‘packager’
+
+The following object is masked from ‘package:devtools’:
+
+    create
+
+Loading required package: roxygen2

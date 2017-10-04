@@ -1,0 +1,6 @@
+WARNING: ignoring environment value of R_HOME
+
+
+Executing test function test_exception  ... Error in loadNamespace(name) : there is no package called ‘fakemake’
+ done successfully.
+

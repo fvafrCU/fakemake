@@ -1,0 +1,4 @@
+WARNING: ignoring environment value of R_HOME
+NULL
+Warning message:
+In readLines(f) : incomplete final line found on './LICENSE'

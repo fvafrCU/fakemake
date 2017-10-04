@@ -1,0 +1,19 @@
+WARNING: ignoring environment value of R_HOME
+tests/runit.R:11:76: style: Trailing whitespace is superfluous.
+    devtools::load_all(pkg = ".") # needed to use devtools' shim version of 
+                                                                           ^
+tests/runit.R:19:36: style: Put spaces around all infix operators.
+        require("fakemake", quietly=TRUE, character.only=TRUE) || 
+                                  ~^~
+tests/runit.R:19:57: style: Put spaces around all infix operators.
+        require("fakemake", quietly=TRUE, character.only=TRUE) || 
+                                                       ~^~
+tests/runit.R:19:66: style: Trailing whitespace is superfluous.
+        require("fakemake", quietly=TRUE, character.only=TRUE) || 
+                                                                 ^
+tests/runit.R:25:57: style: Trailing whitespace is superfluous.
+    stop("Can not find RUnit test directory ", unit_dir, 
+                                                        ^
+tests/testthat/test-throw.R:4:1: style: lines should not be more than 80 characters.
+                        testthat::expect_error(fakemake:::throw("hello, testthat"),
+^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
