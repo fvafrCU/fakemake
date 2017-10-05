@@ -7,3 +7,4 @@
 ^log$
 ^tmp*$
 ^\.travis\.yml$
+^cran-comments\.md$
