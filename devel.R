@@ -26,7 +26,7 @@ write_makefile <- function(make_list, path,
 }
 make_file <- file.path(tempdir(), "Makefile")
 write_makefile(default_make_list(), path = make_file)
-file.show(make_file)
+file.show(make_file, pager = "cat")
 
 read_makefile <- function(path) {
     lines <- readLines(path)
@@ -45,9 +45,9 @@ read_makefile <- function(path) {
     make_list <- list()
     for (target in targets) {
         parts  <-  trimws(unlist(strsplit(target, split = ":")))
-        #XXX one list per item
+        prerequisites <- unlist(strsplit(parts[2], split = " "))
         make_list[[length(make_list)+1]] <- list(target = parts[1],
-                                                 prerequisites = parts[2],
+                                                 prerequisites = prerequisites,
                                                  code = parts[3])
     }
     return(make_list)
