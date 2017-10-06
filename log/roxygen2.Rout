@@ -1,5 +1,5 @@
 
-R Under development (unstable) (2017-10-01 r73423) -- "Unsuffered Consequences"
+R Under development (unstable) (2017-08-17 r73106) -- "Unsuffered Consequences"
 Copyright (C) 2017 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 
@@ -18,6 +18,8 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 Type 'q()' to quit R.
 
 > roxygen2::roxygenize(".")
-Writing sink_all.Rd
+Loading required package: MakefileR
+Warning: main.R:57: Section title spans multiple lines: 
+@section Warning This function will not read arbitrary Makefiles, just those
 > 
 > 

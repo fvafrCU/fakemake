@@ -1,5 +1,5 @@
 
 
-Executing test function test_exception  ... Error in eval(expr, envir = parent.frame()) : Hello, error!
+Executing test function test_exception  ... Error in loadNamespace(name) : there is no package called ‘fakemake’
  done successfully.
 
