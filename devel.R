@@ -65,12 +65,13 @@ make <- function(target, makelist) {
     for (p in prerequisites) make(p, makelist)
     if (file.exists(target) && 
         ! is.null(prerequisites) && all(file.exists(prerequisites)) && 
-        all(file.mtime(prerequisites) < file.mtime(target))) {
-        # !t | !null(p) & !all(p) | !null(p) & !all(p) & ! all(p<t)
-        # !t | !null(p) & !all(p) & (TRUE | !all(p < t))
-        # !t | !null(p) & !all(p) & all(p < t)
+        all(file.mtime(prerequisites) <= file.mtime(target))) {
         # Skip as the target has no missing or modified prerequisites.
+        # !(!t | !p | p>t)
+        # !!t & !!p & !p>t
+        # t & p & p<=t
     } else {
+        # !t | !p | p>t
         code <- makelist[[index]][["code"]]
         sink_all(path = target, code = eval(parse(text = code)))
     }
