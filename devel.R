@@ -1,6 +1,6 @@
 devtools::load_all(".")
 
-default_make_list <- function(type = "minimal") {
+provide_make_list <- function(type = "minimal") {
     name <- "Makefile"
     if (! is.null(type)) name <- paste0(name, "_", type)
     ml <- read_makefile(system.file("inst", "templates", name, 
@@ -8,7 +8,7 @@ default_make_list <- function(type = "minimal") {
     return(ml)
 
 }
-str(default_make_list("minimal"))
+str(provide_make_list("minimal"))
 
 write_makefile <- function(make_list, path, 
                            R = "Rscript-devel") {
@@ -25,7 +25,7 @@ write_makefile <- function(make_list, path,
     MakefileR::write_makefile(m, path)
 }
 make_file <- file.path(tempdir(), "Makefile")
-write_makefile(default_make_list(), path = make_file)
+write_makefile(provide_make_list(), path = make_file)
 file.show(make_file, pager = "cat")
 
 read_makefile <- function(path) {
@@ -46,6 +46,7 @@ read_makefile <- function(path) {
     for (target in targets) {
         parts  <-  trimws(unlist(strsplit(target, split = ":")))
         prerequisites <- unlist(strsplit(parts[2], split = " "))
+        if (identical(prerequisites, character(0))) prerequisites <- NULL
         make_list[[length(make_list)+1]] <- list(target = parts[1],
                                                  prerequisites = prerequisites,
                                                  code = parts[3])
@@ -53,21 +54,22 @@ read_makefile <- function(path) {
     return(make_list)
 }
 make_file <- file.path(tempdir(), "Makefile")
-write_makefile(default_make_list(), path = make_file)
+write_makefile(provide_make_list(), path = make_file)
 str(makelist <- read_makefile(path = make_file))
 
 make <- function(target, makelist) {
     index <- which(lapply(makelist, "[[", "target") == target)
     prerequisites <- makelist[[index]][["prerequisites"]]
     for (p in prerequisites) make(p, makelist)
+    # TODO: be more precise. When exactly are we skipping?
     if (file.exists(target) && 
         ! is.null(prerequisites) && all(file.exists(prerequisites)) && 
         all(file.mtime(prerequisites) < file.mtime(target))) {
-        # skip
+        # Skip as the target has no missing or modified prerequisites.
     } else {
         code <- makelist[[index]][["code"]]
         sink_all(path = target, code = eval(parse(text = code)))
     }
 }
-makelist <- default_make_list()
+makelist <- provide_make_list()
 make("all.Rout", makelist)
