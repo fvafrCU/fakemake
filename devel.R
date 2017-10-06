@@ -1,6 +1,13 @@
 devtools::load_all(".")
 
+#' Load an Example Makelist Provided by \pkg{fakemake}.
+#'
+#' @param type The type of makelist.
+#' @return A makelist.
+#' @examples
+#' str(provide_make_list("minimal"))
 provide_make_list <- function(type = "minimal") {
+    if (type ! %in% c("minimal")) throw("type ", type, " not known!")
     name <- "Makefile"
     if (! is.null(type)) name <- paste0(name, "_", type)
     ml <- read_makefile(system.file("inst", "templates", name, 
@@ -8,8 +15,17 @@ provide_make_list <- function(type = "minimal") {
     return(ml)
 
 }
-str(provide_make_list("minimal"))
 
+#' Write a Makelist to File
+#'
+#' @param makelist The list to write to file.
+#' @param path The path to the file.
+#' @return See 
+#' \code{\link[MakefileR:write_makefile]{MakefileR::write_makefile}}.
+#' @examples
+#' make_file <- file.path(tempdir(), "Makefile")
+#' write_makefile(provide_make_list(), path = make_file)
+#' file.show(make_file, pager = "cat")
 write_makefile <- function(make_list, path, 
                            R = "Rscript-devel") {
     m <- MakefileR::makefile() + MakefileR::make_def("R_engine", R)
@@ -22,14 +38,20 @@ write_makefile <- function(make_list, path,
                                                      '"', (e[["target"]]), '",', 
                                                      e[["code"]], ")'"))
     }
-    MakefileR::write_makefile(m, path)
+    return(MakefileR::write_makefile(m, path))
 }
-make_file <- file.path(tempdir(), "Makefile")
-write_makefile(provide_make_list(), path = make_file)
-file.show(make_file, pager = "cat")
+
+#' Read a Makefile into a Makelist
+#'
+#' @param path The path to the file.
+#' @return The makelist.
 #' @section Warning This function will not read arbitrary Makefiles, just those
 #' created via \code{\link{write_makefile()}}! If you modify such a Makefile
 #' make sure you only add simple rules like the ones you see in that file.
+#' @examples
+#' make_file <- file.path(tempdir(), "Makefile")
+#' write_makefile(provide_make_list(), path = make_file)
+#' str(makelist <- read_makefile(path = make_file))
 read_makefile <- function(path) {
     lines <- readLines(path)
     lines <- grep("^$", lines, value = TRUE, invert = TRUE)
@@ -55,26 +77,31 @@ read_makefile <- function(path) {
     }
     return(make_list)
 }
-make_file <- file.path(tempdir(), "Makefile")
-write_makefile(provide_make_list(), path = make_file)
-str(makelist <- read_makefile(path = make_file))
 
+#' Mock the Unix Make Utility
+#'
+#' @param makelist The makelist (a listed version of a Makefile).
+#' @param target The make target.
+#' @return \code{\link[base:NULL]{base::NULL}}.
+#' @examples
+#' makelist <- provide_make_list()
+#' make("all.Rout", makelist)
 make <- function(target, makelist) {
     index <- which(lapply(makelist, "[[", "target") == target)
     prerequisites <- makelist[[index]][["prerequisites"]]
     for (p in prerequisites) make(p, makelist)
-    if (file.exists(target) && 
-        ! is.null(prerequisites) && all(file.exists(prerequisites)) && 
-        all(file.mtime(prerequisites) <= file.mtime(target))) {
-        # Skip as the target has no missing or modified prerequisites.
-        # !(!t | !p | p>t)
-        # !!t & !!p & !p>t
-        # t & p & p<=t
-    } else {
-        # !t | !p | p>t
+    make_it <- TRUE
+    # This is for test coverage's sake. 
+    # Shorter is e(t) && ! is.null(p) && all(e(p)) && all(t(p) <= t(t)),
+    # where e() := file.exists() and t() := file.mtime().
+    if (file.exists(target))
+        if (! is.null(prerequisites))
+            if (all(file.exists(prerequisites)))
+                if (all(file.mtime(prerequisites) <= file.mtime(target)))
+                    make_it <- FALSE
+    if (make_it) {
         code <- makelist[[index]][["code"]]
         sink_all(path = target, code = eval(parse(text = code)))
     }
+    return(invisible(NULL))
 }
-makelist <- provide_make_list()
-make("all.Rout", makelist)
