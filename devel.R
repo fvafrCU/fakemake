@@ -1,23 +1,32 @@
 devtools::load_all(".")
-makelist <- list(list(target = "all.Rout", code = 'print("all")', prerequisits = c("a1.Rout", "a2.Rout")),
-                 list(target = "a2.Rout", code = 'print("a2")'),
-                 list(target = "a1.Rout", code = 'print("a1")', prerequisits = c("b1.Rout")),
-                 list(target = "b1.Rout", code = 'print("b1")')
-                 )
-write_makefile <- function(make_list, path = "Makefile", R = "Rscript-devel") {
+
+default_make_list <- function(type = "minimal") {
+    name <- "Makefile"
+    if (! is.null(type)) name <- paste0(name, "_", type)
+    ml <- read_makefile(system.file("inst", "templates", name, 
+                                    package = "fakemake"))
+    return(ml)
+
+}
+str(default_make_list("minimal"))
+
+write_makefile <- function(make_list, path, 
+                           R = "Rscript-devel") {
     m <- MakefileR::makefile() + MakefileR::make_def("R_engine", R)
     R_call <- "$(R_engine) --vanilla -e "
     for (e in make_list) {
-        m <- m + MakefileR::make_rule(e[["target"]], deps = e[["prerequisits"]], 
+        m <- m + MakefileR::make_rule(e[["target"]], 
+                                      deps = e[["prerequisites"]], 
                                       script = paste0(R_call, 
                                                      "'fakemake::sink_all(", 
                                                      '"', (e[["target"]]), '",', 
-                                                     e[["code"]],
-                                                     ")'"))
+                                                     e[["code"]], ")'"))
     }
     MakefileR::write_makefile(m, path)
 }
-write_makefile(makelist)
+make_file <- file.path(tempdir(), "Makefile")
+write_makefile(default_make_list(), path = make_file)
+file.show(make_file)
 
 read_makefile <- function(path) {
     lines <- readLines(path)
@@ -38,25 +47,27 @@ read_makefile <- function(path) {
         parts  <-  trimws(unlist(strsplit(target, split = ":")))
         #XXX one list per item
         make_list[[length(make_list)+1]] <- list(target = parts[1],
-                                                 prerequisits = parts[2],
+                                                 prerequisites = parts[2],
                                                  code = parts[3])
     }
     return(make_list)
 }
-nomakelist <- read_makefile("Makefile")
-write_makefile(nomakelist, path = "nomakefile")
+make_file <- file.path(tempdir(), "Makefile")
+write_makefile(default_make_list(), path = make_file)
+str(makelist <- read_makefile(path = make_file))
 
 make <- function(target, makelist) {
     index <- which(lapply(makelist, "[[", "target") == target)
-    prerequisits <- makelist[[index]][["prerequisits"]]
-    for (p in prerequisits) make(p, makelist)
+    prerequisites <- makelist[[index]][["prerequisites"]]
+    for (p in prerequisites) make(p, makelist)
     if (file.exists(target) && 
-        ! is.null(prerequisits) && all(file.exists(prerequisits)) && 
-        all(file.mtime(prerequisits) < file.mtime(target))) {
+        ! is.null(prerequisites) && all(file.exists(prerequisites)) && 
+        all(file.mtime(prerequisites) < file.mtime(target))) {
         # skip
     } else {
         code <- makelist[[index]][["code"]]
         sink_all(path = target, code = eval(parse(text = code)))
     }
 }
+makelist <- default_make_list()
 make("all.Rout", makelist)
