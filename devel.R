@@ -27,7 +27,9 @@ write_makefile <- function(make_list, path,
 make_file <- file.path(tempdir(), "Makefile")
 write_makefile(provide_make_list(), path = make_file)
 file.show(make_file, pager = "cat")
-
+#' @section Warning This function will not read arbitrary Makefiles, just those
+#' created via \code{\link{write_makefile()}}! If you modify such a Makefile
+#' make sure you only add simple rules like the ones you see in that file.
 read_makefile <- function(path) {
     lines <- readLines(path)
     lines <- grep("^$", lines, value = TRUE, invert = TRUE)
@@ -61,10 +63,12 @@ make <- function(target, makelist) {
     index <- which(lapply(makelist, "[[", "target") == target)
     prerequisites <- makelist[[index]][["prerequisites"]]
     for (p in prerequisites) make(p, makelist)
-    # TODO: be more precise. When exactly are we skipping?
     if (file.exists(target) && 
         ! is.null(prerequisites) && all(file.exists(prerequisites)) && 
         all(file.mtime(prerequisites) < file.mtime(target))) {
+        # !t | !null(p) & !all(p) | !null(p) & !all(p) & ! all(p<t)
+        # !t | !null(p) & !all(p) & (TRUE | !all(p < t))
+        # !t | !null(p) & !all(p) & all(p < t)
         # Skip as the target has no missing or modified prerequisites.
     } else {
         code <- makelist[[index]][["code"]]
