@@ -1,5 +1,5 @@
 
-R Under development (unstable) (2017-08-17 r73106) -- "Unsuffered Consequences"
+R Under development (unstable) (2017-08-15 r73096) -- "Unsuffered Consequences"
 Copyright (C) 2017 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 
@@ -19,7 +19,11 @@ Type 'q()' to quit R.
 
 > roxygen2::roxygenize(".")
 Loading required package: MakefileR
-Warning: main.R:57: Section title spans multiple lines: 
+Warning: main.R:56: Section title spans multiple lines: 
 @section Warning This function will not read arbitrary Makefiles, just those
+Writing provide_make_list.Rd
+Writing write_makefile.Rd
+Writing read_makefile.Rd
+Writing make.Rd
 > 
 > 

@@ -12,11 +12,8 @@ The following object is masked from ‘package:devtools’:
     lint
 
 Loading required package: packager
-
-Attaching package: ‘packager’
-
-The following object is masked from ‘package:devtools’:
-
-    create
-
 Loading required package: roxygen2
+Warning messages:
+1: In library(package, lib.loc = lib.loc, character.only = TRUE, logical.return = TRUE,  :
+  there is no package called ‘packager’
+2: package ‘packager’ is not available (for R Under development) 

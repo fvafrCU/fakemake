@@ -9,8 +9,7 @@ provide_make_list <- function(type = "minimal") {
     if (! type %in% c("minimal")) throw("type ", type, " not known!")
     name <- "Makefile"
     if (! is.null(type)) name <- paste0(name, "_", type)
-    ml <- read_makefile(system.file("inst", "templates", name, 
-                                    package = "fakemake"))
+    ml <- read_makefile(system.file("templates", name, package = "fakemake"))
     return(ml)
 
 }
@@ -91,20 +90,20 @@ read_makefile <- function(path) {
 #' make("all.Rout", make_list)
 make <- function(target, make_list) {
     index <- which(lapply(make_list, "[[", "target") == target)
-#    prerequisites <- make_list[[index]][["prerequisites"]]
-#    for (p in prerequisites) make(p, make_list)
-#    if (file.exists(target) && 
-#        ! is.null(prerequisites) && all(file.exists(prerequisites)) && 
-#        all(file.mtime(prerequisites) <= file.mtime(target))) {
-#        # Skip as the target has no missing or modified prerequisites.
-#        # !(!t | !p | p>t)
-#        # !!t & !!p & !p>t
-#        # t & p & p<=t
-#    } else {
-#        # !t | !p | p>t
-#        code <- make_list[[index]][["code"]]
-#        sink_all(path = target, code = eval(parse(text = code)))
-#    }
+   prerequisites <- make_list[[index]][["prerequisites"]]
+    for (p in prerequisites) make(p, make_list)
+    if (file.exists(target) && 
+        ! is.null(prerequisites) && all(file.exists(prerequisites)) && 
+        all(file.mtime(prerequisites) <= file.mtime(target))) {
+        # Skip as the target has no missing or modified prerequisites.
+        # !(!t | !p | p>t)
+        # !!t & !!p & !p>t
+        # t & p & p<=t
+    } else {
+        # !t | !p | p>t
+        code <- make_list[[index]][["code"]]
+        sink_all(path = target, code = eval(parse(text = code)))
+    }
     #    make_it <- TRUE
     #    # This is for test coverage's sake. 
     #    # Shorter is e(t) && ! is.null(p) && all(e(p)) && all(t(p) <= t(t)),
