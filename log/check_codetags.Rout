@@ -1,3 +1,2 @@
-Error in loadNamespace(name) : there is no package called ‘packager’
-Calls: :: ... tryCatch -> tryCatchList -> tryCatchOne -> <Anonymous>
-Execution halted
+NULL
+There were 50 or more warnings (use warnings() to see the first 50)

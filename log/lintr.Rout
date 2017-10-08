@@ -1,9 +1,3 @@
-R/main.R:9:35: warning: no visible global function definition for ‘throw’, Did you mean 'nrow'?
-    if (! type %in% c("minimal")) throw("type ", type, " not known!")
-                                  ^~~~~
-R/main.R:12:11: warning: no visible global function definition for ‘read_makefile’
-    ml <- read_makefile(system.file("templates", name, package = "fakemake"))
-          ^~~~~~~~~~~~~
 R/main.R:29:44: style: Trailing whitespace is superfluous.
 write_makefile <- function(make_list, path, 
                                            ^
@@ -19,12 +13,9 @@ R/main.R:36:62: style: Trailing whitespace is superfluous.
 R/main.R:37:78: style: Trailing whitespace is superfluous.
                                                       "'fakemake::sink_all(", 
                                                                              ^
-R/main.R:38:1: style: lines should not be more than 80 characters.
-                                                      '"', (e[["target"]]), '",', 
-^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-R/main.R:38:82: style: Trailing whitespace is superfluous.
-                                                      '"', (e[["target"]]), '",', 
-                                                                                 ^
+R/main.R:38:76: style: Trailing whitespace is superfluous.
+                                                      '"', (e[["target"]]), 
+                                                                           ^
 R/main.R:65:5: warning: local variable ‘seperator2’ assigned but may not be used
     seperator2 <- "###"
     ^~~~~~~~~~
@@ -55,9 +46,6 @@ R/main.R:101:11: style: Commented code should be removed.
 R/main.R:103:11: style: Commented code should be removed.
         # !t | !p | p>t
           ^~~~~~~~~~~~~
-R/main.R:105:9: warning: no visible global function definition for ‘sink_all’
-        sink_all(path = target, code = eval(parse(text = code)))
-        ^~~~~~~~
 R/main.R:107:10: style: Commented code should be removed.
     #    make_it <- TRUE
          ^~~~~~~~~~~~~~~
