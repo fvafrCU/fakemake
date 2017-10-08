@@ -8,3 +8,4 @@
 ^tmp*$
 ^\.travis\.yml$
 ^cran-comments\.md$
+^TODO\.md$
