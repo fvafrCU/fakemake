@@ -1,2 +1,0 @@
-<cleanr in cleanr::check_directory("R/", check_return = FALSE): R/   /home/qwer/git/cyclops/fvafrcu/fakemake/R/main.R: line 39 counts 82 characters.
- /home/qwer/git/cyclops/fvafrcu/fakemake/R/main.R  write_makefile  line 8: found width 82 max_line_width was 80>

@@ -35,8 +35,8 @@ write_makefile <- function(make_list, path,
                                       deps = e[["prerequisites"]], 
                                       script = paste0(R_call, 
                                                       "'fakemake::sink_all(", 
-                                                      '"', (e[["target"]]), '",', 
-                                                      e[["code"]], ")'"))
+                                                      '"', (e[["target"]]), 
+                                                      '",', e[["code"]], ")'"))
     }
     return(MakefileR::write_makefile(m, path))
 }

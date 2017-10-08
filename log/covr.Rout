@@ -4,7 +4,7 @@
 3      R/main.R provide_make_list   11     0
 4      R/main.R provide_make_list   12     0
 5      R/main.R provide_make_list   13     0
-6      R/main.R provide_make_list   14     0
+20     R/main.R    write_makefile   31     0
 21     R/main.R    write_makefile   32     0
 22     R/main.R    write_makefile   33     0
 23     R/main.R    write_makefile   34     0
@@ -15,7 +15,7 @@
 28     R/main.R    write_makefile   39     0
 29     R/main.R    write_makefile   40     0
 30     R/main.R    write_makefile   41     0
-31     R/main.R    write_makefile   42     0
+31     R/main.R     read_makefile   57     0
 32     R/main.R     read_makefile   58     0
 33     R/main.R     read_makefile   59     0
 34     R/main.R     read_makefile   60     0
@@ -38,7 +38,7 @@
 51     R/main.R     read_makefile   77     0
 52     R/main.R     read_makefile   78     0
 53     R/main.R     read_makefile   79     0
-54     R/main.R     read_makefile   80     0
+54     R/main.R              make   92     0
 55     R/main.R              make   93     0
 56     R/main.R              make   94     0
 57     R/main.R              make   95     0
@@ -53,19 +53,18 @@
 66     R/main.R              make  104     0
 67     R/main.R              make  105     0
 68     R/main.R              make  106     0
-69     R/main.R              make  107     0
-70     R/main.R              make  121     0
-10 R/sink_all.R          sink_all   20     0
-12 R/sink_all.R          sink_all   21     0
-13 R/sink_all.R          sink_all   22     0
-14 R/sink_all.R          sink_all   23     0
-15 R/sink_all.R          sink_all   24     0
-16 R/sink_all.R          sink_all   25     0
-17 R/sink_all.R          sink_all   26     0
-18 R/sink_all.R          sink_all   27     0
-19 R/sink_all.R          sink_all   28     0
-20 R/sink_all.R          sink_all   29     0
-fakemake Coverage: 5.71%
+69     R/main.R              make  120     0
+9  R/sink_all.R          sink_all   20     0
+11 R/sink_all.R          sink_all   21     0
+12 R/sink_all.R          sink_all   22     0
+13 R/sink_all.R          sink_all   23     0
+14 R/sink_all.R          sink_all   24     0
+15 R/sink_all.R          sink_all   25     0
+16 R/sink_all.R          sink_all   26     0
+17 R/sink_all.R          sink_all   27     0
+18 R/sink_all.R          sink_all   28     0
+19 R/sink_all.R          sink_all   29     0
+fakemake Coverage: 5.80%
 R/main.R: 0.00%
 R/sink_all.R: 0.00%
 R/throw.R: 100.00%

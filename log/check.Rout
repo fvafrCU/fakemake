@@ -1,5 +1,5 @@
-* using log directory ‘/home/qwer/git/cyclops/fvafrcu/fakemake/fakemake.Rcheck’
-* using R Under development (unstable) (2017-08-17 r73106)
+* using log directory ‘/home/nik/git/cyclops/fvafrcu/fakemake/fakemake.Rcheck’
+* using R Under development (unstable) (2017-08-15 r73096)
 * using platform: x86_64-pc-linux-gnu (64-bit)
 * using session charset: UTF-8
 * using options ‘--run-donttest --as-cran’
@@ -30,8 +30,8 @@ The Title field should be in title case, current version then in title case:
 * checking ‘build’ directory ... OK
 * checking DESCRIPTION meta-information ... OK
 * checking top-level files ... NOTE
-Non-standard files/directories found at top level:
-  ‘TODO.md’ ‘a1.Rout’ ‘a2.Rout’ ‘all.Rout’ ‘b1.Rout’
+Non-standard file/directory found at top level:
+  ‘TODO.md’
 * checking for left-over files ... OK
 * checking index information ... OK
 * checking package subdirectories ... OK
