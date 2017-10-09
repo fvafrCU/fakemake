@@ -89,10 +89,12 @@ read_makefile <- function(path) {
 #' str(make_list <- provide_make_list())
 #' make("all.Rout", make_list)
 make <- function(target, make_list) {
+    print(paste("#", target))
+    res <- NULL
     index <- which(lapply(make_list, "[[", "target") == target)
     prerequisites <- make_list[[index]][["prerequisites"]]
     if (! is.null(prerequisites)) {
-        for (p in sort(prerequisites)) make(p, make_list)
+        for (p in sort(prerequisites)) res <- c(res, make(p, make_list))
     }
     if (file.exists(target) && 
         ! is.null(prerequisites) && all(file.exists(prerequisites)) && 
@@ -101,10 +103,13 @@ make <- function(target, make_list) {
         # !(!t | !p | p>t)
         # !!t & !!p & !p>t
         # t & p & p<=t
+        res <- NULL
     } else {
         # !t | !p | p>t
         code <- make_list[[index]][["code"]]
         sink_all(path = target, code = eval(parse(text = code)))
+        res <- c(res, target)
+        print(paste("##", res))
     }
     #    make_it <- TRUE
     #    # This is for test coverage's sake. 
@@ -119,6 +124,7 @@ make <- function(target, make_list) {
     #        code <- make_list[[index]][["code"]]
     #        sink_all(path = target, code = eval(parse(text = code)))
     #    }
-    return(invisible(NULL))
+        print(paste("###", res))
+    return(invisible(res))
 }
 
