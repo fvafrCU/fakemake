@@ -96,21 +96,43 @@ make <- function(target, make_list) {
     if (! is.null(prerequisites)) {
         for (p in sort(prerequisites)) res <- c(res, make(p, make_list))
     }
-    if (file.exists(target) && 
-        ! is.null(prerequisites) && all(file.exists(prerequisites)) && 
-        all(file.mtime(prerequisites) <= file.mtime(target))) {
-        # Skip as the target has no missing or modified prerequisites.
-        # !(!t | !p | p>t)
-        # !!t & !!p & !p>t
-        # t & p & p<=t
-        res <- NULL
+    if (! file.exists(target)) {
+        print("#target")
+        is_to_be_made <- TRUE 
     } else {
-        # !t | !p | p>t
+        if (is.null(prerequisites)) {
+        print("#null pre")
+            is_to_be_made <- TRUE 
+        } else {
+            if (any(file.mtime(prerequisites) > file.mtime(target))) {
+                print("#mod pre")
+                is_to_be_made <- TRUE 
+            } else {
+                is_to_be_made <- FALSE
+            }
+        }
+    }
+    if (is_to_be_made) {
         code <- make_list[[index]][["code"]]
         sink_all(path = target, code = eval(parse(text = code)))
         res <- c(res, target)
         print(paste("##", res))
     }
+    ##    if (file.exists(target) && 
+    ##        ! is.null(prerequisites) && all(file.exists(prerequisites)) && 
+    ##        all(file.mtime(prerequisites) <= file.mtime(target))) {
+    ##        # Skip as the target has no missing or modified prerequisites.
+    ##        # !(!t | !p | p>t)
+    ##        # !!t & !!p & !p>t
+    ##        # t & p & p<=t
+    ##        res <- NULL
+    ##    } else {
+    ##        # !t | !p | p>t
+    ##        code <- make_list[[index]][["code"]]
+    ##        sink_all(path = target, code = eval(parse(text = code)))
+    ##        res <- c(res, target)
+    ##        print(paste("##", res))
+    ##    }
     #    make_it <- TRUE
     #    # This is for test coverage's sake. 
     #    # Shorter is e(t) && ! is.null(p) && all(e(p)) && all(t(p) <= t(t)),
@@ -124,7 +146,7 @@ make <- function(target, make_list) {
     #        code <- make_list[[index]][["code"]]
     #        sink_all(path = target, code = eval(parse(text = code)))
     #    }
-        print(paste("###", res))
+    print(paste("###", res))
     return(invisible(res))
 }
 
