@@ -90,8 +90,10 @@ read_makefile <- function(path) {
 #' make("all.Rout", make_list)
 make <- function(target, make_list) {
     index <- which(lapply(make_list, "[[", "target") == target)
-   prerequisites <- make_list[[index]][["prerequisites"]]
-    for (p in prerequisites) make(p, make_list)
+    prerequisites <- make_list[[index]][["prerequisites"]]
+    if (! is.null(prerequisites)) {
+        for (p in sort(prerequisites)) make(p, make_list)
+    }
     if (file.exists(target) && 
         ! is.null(prerequisites) && all(file.exists(prerequisites)) && 
         all(file.mtime(prerequisites) <= file.mtime(target))) {
