@@ -13,11 +13,11 @@ if (interactive()) {
     unit_dir <- system.file("inst", "runit_tests", package = "fakemake")
 } else {
     r_call <- commandArgs(trailingOnly = FALSE)
+    require("fakemake", quietly=TRUE, character.only=TRUE) || 
+    stop("package '", pkgname, "' not found")
     if (any(grepl("--file", r_call))) {
         unit_dir <- file.path("inst", "runit_tests")
     } else {
-        require("fakemake", quietly=TRUE, character.only=TRUE) || 
-            stop("package '", pkgname, "' not found")
         unit_dir <- system.file("runit_tests", package = "fakemake")
     }
 }

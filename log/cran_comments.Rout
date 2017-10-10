@@ -1,13 +1,18 @@
 checking CRAN incoming feasibility ... NOTE
 Maintainer: ‘First Last <first.last@example.com>’
 
-New submission
-
 Version contains large components (0.0.0.9000)
 
-checking top-level files ... NOTE
-Non-standard files/directories found at top level:
-  ‘a1.Rout’ ‘a2.Rout’ ‘all.Rout’ ‘b1.Rout’ ‘nomakefile’
-Warning message:
-In readLines("/etc/os-release") :
-  incomplete final line found on '/etc/os-release'
+Found the following (possibly) invalid URLs:
+  URL: https://codecov.io/github/fvafrCU/fakemake?branch=master
+    From: README.md
+    Status: Error
+    Message: internet routines cannot be loaded
+  URL: https://htmlpreview.github.io/?https://github.com/fvafrCU/fakemake/blob/master/inst/doc/An_Introduction_to_fakemake.html
+    From: README.md
+    Status: Error
+    Message: internet routines cannot be loaded
+  URL: https://travis-ci.org/fvafrCU/fakemake
+    From: README.md
+    Status: Error
+    Message: internet routines cannot be loaded

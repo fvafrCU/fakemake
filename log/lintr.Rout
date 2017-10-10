@@ -1,3 +1,39 @@
+inst/runit_tests/runit-makefile.R:3:50: style: Trailing whitespace is superfluous.
+    expectation <- list(list(target = "all.Rout", 
+                                                 ^
+inst/runit_tests/runit-makefile.R:5:76: style: Trailing whitespace is superfluous.
+                                               ), code = "print(\"all\")"), 
+                                                                           ^
+inst/runit_tests/runit-makefile.R:6:71: style: Trailing whitespace is superfluous.
+                        list(target = "a2.Rout", prerequisites = NULL, 
+                                                                      ^
+inst/runit_tests/runit-makefile.R:7:54: style: Trailing whitespace is superfluous.
+                             code = "print(\"a2\")"), 
+                                                     ^
+inst/runit_tests/runit-makefile.R:8:76: style: Trailing whitespace is superfluous.
+                        list(target = "a1.Rout", prerequisites = "b1.Rout", 
+                                                                           ^
+inst/runit_tests/runit-makefile.R:9:54: style: Trailing whitespace is superfluous.
+                             code = "print(\"a1\")"), 
+                                                     ^
+inst/runit_tests/runit-makefile.R:10:71: style: Trailing whitespace is superfluous.
+                        list(target = "b1.Rout", prerequisites = NULL, 
+                                                                      ^
+inst/runit_tests/runit-makefile.R:20:74: style: Trailing whitespace is superfluous.
+    expectation <- readLines(system.file("templates", "Makefile_minimal", 
+                                                                         ^
+inst/runit_tests/runit-makefile.R:32:1: style: Trailing blank lines are superfluous.
+
+^
+inst/runit_tests/runit-makefile.R:33:1: style: Trailing blank lines are superfluous.
+
+^
+inst/runit_tests/runit-makefile.R:34:1: style: Trailing blank lines are superfluous.
+
+^
+R/internals.R:3:3: style: Commented code should be removed.
+# 26539441/r-remove-null-elements-from-list-of-lists
+  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 R/main.R:29:44: style: Trailing whitespace is superfluous.
 write_makefile <- function(make_list, path, 
                                            ^
@@ -61,15 +97,15 @@ R/main.R:148:1: style: Trailing blank lines are superfluous.
 tests/runit.R:11:76: style: Trailing whitespace is superfluous.
     devtools::load_all(pkg = ".") # needed to use devtools' shim version of 
                                                                            ^
-tests/runit.R:19:36: style: Put spaces around all infix operators.
-        require("fakemake", quietly=TRUE, character.only=TRUE) || 
-                                  ~^~
-tests/runit.R:19:57: style: Put spaces around all infix operators.
-        require("fakemake", quietly=TRUE, character.only=TRUE) || 
-                                                       ~^~
-tests/runit.R:19:66: style: Trailing whitespace is superfluous.
-        require("fakemake", quietly=TRUE, character.only=TRUE) || 
-                                                                 ^
+tests/runit.R:16:32: style: Put spaces around all infix operators.
+    require("fakemake", quietly=TRUE, character.only=TRUE) || 
+                              ~^~
+tests/runit.R:16:53: style: Put spaces around all infix operators.
+    require("fakemake", quietly=TRUE, character.only=TRUE) || 
+                                                   ~^~
+tests/runit.R:16:62: style: Trailing whitespace is superfluous.
+    require("fakemake", quietly=TRUE, character.only=TRUE) || 
+                                                             ^
 tests/runit.R:25:57: style: Trailing whitespace is superfluous.
     stop("Can not find RUnit test directory ", unit_dir, 
                                                         ^

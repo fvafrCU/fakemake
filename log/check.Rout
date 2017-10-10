@@ -1,5 +1,5 @@
-* using log directory ‘/home/qwer/git/cyclops/fvafrcu/fakemake/fakemake.Rcheck’
-* using R Under development (unstable) (2017-08-17 r73106)
+* using log directory ‘/home/nik/git/cyclops/fvafrcu/fakemake/fakemake.Rcheck’
+* using R Under development (unstable) (2017-08-15 r73096)
 * using platform: x86_64-pc-linux-gnu (64-bit)
 * using session charset: UTF-8
 * using options ‘--run-donttest --as-cran’
@@ -9,9 +9,21 @@
 * checking CRAN incoming feasibility ... NOTE
 Maintainer: ‘First Last <first.last@example.com>’
 
-New submission
-
 Version contains large components (0.0.0.9000)
+
+Found the following (possibly) invalid URLs:
+  URL: https://codecov.io/github/fvafrCU/fakemake?branch=master
+    From: README.md
+    Status: Error
+    Message: internet routines cannot be loaded
+  URL: https://htmlpreview.github.io/?https://github.com/fvafrCU/fakemake/blob/master/inst/doc/An_Introduction_to_fakemake.html
+    From: README.md
+    Status: Error
+    Message: internet routines cannot be loaded
+  URL: https://travis-ci.org/fvafrCU/fakemake
+    From: README.md
+    Status: Error
+    Message: internet routines cannot be loaded
 * checking package namespace information ... OK
 * checking package dependencies ... OK
 * checking if this is a source package ... OK
@@ -25,9 +37,7 @@ Version contains large components (0.0.0.9000)
 * checking package directory ... OK
 * checking ‘build’ directory ... OK
 * checking DESCRIPTION meta-information ... OK
-* checking top-level files ... NOTE
-Non-standard files/directories found at top level:
-  ‘a1.Rout’ ‘a2.Rout’ ‘all.Rout’ ‘b1.Rout’ ‘nomakefile’
+* checking top-level files ... OK
 * checking for left-over files ... OK
 * checking index information ... OK
 * checking package subdirectories ... OK
@@ -65,4 +75,4 @@ Non-standard files/directories found at top level:
 * checking re-building of vignette outputs ... OK
 * checking PDF version of manual ... OK
 * DONE
-Status: 2 NOTEs
+Status: 1 NOTE

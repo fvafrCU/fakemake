@@ -1,2 +1,3 @@
-NULL
+[1] "./log/lintr.Rout:     # TODO: consider to shorten to "
+[2] "./R/main.R:     # TODO: consider to shorten to "      
 There were 50 or more warnings (use warnings() to see the first 50)
