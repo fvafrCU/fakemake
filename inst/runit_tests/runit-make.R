@@ -1,4 +1,4 @@
-test_make_minimal <- function() {
+test_make_full_tree <- function() {
     ml <- fakemake:::prune_list(provide_make_list(type = "minimal"))
     for (i in seq(along = ml)) {
         ml[[i]][["target"]] <- file.path(tempdir(), ml[[i]][["target"]])
@@ -17,6 +17,16 @@ test_make_minimal <- function() {
     result <- make(file.path(tempdir(), "all.Rout"), ml)
     expectation <- NULL
     RUnit::checkIdentical(result, expectation)
+}
+
+test_make_missing <- function() {
+    ml <- fakemake:::prune_list(provide_make_list(type = "minimal"))
+    for (i in seq(along = ml)) {
+        ml[[i]][["target"]] <- file.path(tempdir(), ml[[i]][["target"]])
+        if (!is.null(ml[[i]][["prerequisites"]]))
+            ml[[i]][["prerequisites"]] <- file.path(tempdir(),
+                                                    ml[[i]][["prerequisites"]])
+    }
 
     # target missing
     unlink(file.path(tempdir(), "all.Rout"))
@@ -24,6 +34,16 @@ test_make_minimal <- function() {
     make_tree <- c("all.Rout")
     expectation <- file.path(tempdir(), make_tree)
     RUnit::checkIdentical(result, expectation)
+}
+
+test_make_newer <- function() {
+    ml <- fakemake:::prune_list(provide_make_list(type = "minimal"))
+    for (i in seq(along = ml)) {
+        ml[[i]][["target"]] <- file.path(tempdir(), ml[[i]][["target"]])
+        if (!is.null(ml[[i]][["prerequisites"]]))
+            ml[[i]][["prerequisites"]] <- file.path(tempdir(),
+                                                    ml[[i]][["prerequisites"]])
+    }
 
     # prerequisite newer
     cat("touched", file = file.path(tempdir(), "b1.Rout"))
@@ -31,6 +51,17 @@ test_make_minimal <- function() {
     make_tree <- c("a1.Rout", "all.Rout")
     expectation <- file.path(tempdir(), make_tree)
     RUnit::checkIdentical(result, expectation)
+
+}
+
+test_make_phony <- function() {
+    ml <- fakemake:::prune_list(provide_make_list(type = "minimal"))
+    for (i in seq(along = ml)) {
+        ml[[i]][["target"]] <- file.path(tempdir(), ml[[i]][["target"]])
+        if (!is.null(ml[[i]][["prerequisites"]]))
+            ml[[i]][["prerequisites"]] <- file.path(tempdir(),
+                                                    ml[[i]][["prerequisites"]])
+    }
 
     # phony target
     ml[[2]][".PHONY"] <- TRUE
@@ -42,7 +73,16 @@ test_make_minimal <- function() {
     # rerun
     result <- make(file.path(tempdir(), "all.Rout"), ml)
     RUnit::checkIdentical(result, expectation)
+}
 
+test_make_prerequisite <- function() {
+    ml <- fakemake:::prune_list(provide_make_list(type = "minimal"))
+    for (i in seq(along = ml)) {
+        ml[[i]][["target"]] <- file.path(tempdir(), ml[[i]][["target"]])
+        if (!is.null(ml[[i]][["prerequisites"]]))
+            ml[[i]][["prerequisites"]] <- file.path(tempdir(),
+                                                    ml[[i]][["prerequisites"]])
+    }
     # prerequisite missing
     ml[[4]]["prerequisites"] <- file.path(tempdir(), "c1.Rout")
     RUnit::checkException(make(file.path(tempdir(), "all.Rout"), ml))
