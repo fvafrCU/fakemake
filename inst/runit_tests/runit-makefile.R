@@ -28,6 +28,10 @@ test_read_makefile <- function() {
     write_makefile(expectation, path = path)
     result <- read_makefile(path)
     RUnit::checkIdentical(result, expectation)
+    expectation[[2]][".PHONY"] <- TRUE
+    write_makefile(expectation, path = path)
+    result <- read_makefile(path)
+    RUnit::checkIdentical(result, expectation)
 }
 
 
