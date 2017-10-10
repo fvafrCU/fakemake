@@ -6,6 +6,7 @@ test_make_full_tree <- function() {
             ml[[i]][["prerequisites"]] <- file.path(tempdir(),
                                                     ml[[i]][["prerequisites"]])
     }
+    unlink(list.files(tempdir(), pattern = ".*\\.Rout", full.names = TRUE))
 
     # initial full tree
     result <- make(file.path(tempdir(), "all.Rout"), ml)
@@ -27,6 +28,13 @@ test_make_missing <- function() {
             ml[[i]][["prerequisites"]] <- file.path(tempdir(),
                                                     ml[[i]][["prerequisites"]])
     }
+    unlink(list.files(tempdir(), pattern = ".*\\.Rout", full.names = TRUE))
+
+    # initial full tree
+    result <- make(file.path(tempdir(), "all.Rout"), ml)
+    make_tree <- c("b1.Rout", "a1.Rout", "a2.Rout", "all.Rout")
+    expectation <- file.path(tempdir(), make_tree)
+    RUnit::checkIdentical(result, expectation)
 
     # target missing
     unlink(file.path(tempdir(), "all.Rout"))
@@ -44,6 +52,14 @@ test_make_newer <- function() {
             ml[[i]][["prerequisites"]] <- file.path(tempdir(),
                                                     ml[[i]][["prerequisites"]])
     }
+    unlink(list.files(tempdir(), pattern = ".*\\.Rout", full.names = TRUE))
+
+    # initial full tree
+    result <- make(file.path(tempdir(), "all.Rout"), ml)
+    make_tree <- c("b1.Rout", "a1.Rout", "a2.Rout", "all.Rout")
+    expectation <- file.path(tempdir(), make_tree)
+    RUnit::checkIdentical(result, expectation)
+
 
     # prerequisite newer
     cat("touched", file = file.path(tempdir(), "b1.Rout"))
@@ -62,6 +78,13 @@ test_make_phony <- function() {
             ml[[i]][["prerequisites"]] <- file.path(tempdir(),
                                                     ml[[i]][["prerequisites"]])
     }
+    unlink(list.files(tempdir(), pattern = ".*\\.Rout", full.names = TRUE))
+
+    # initial full tree
+    result <- make(file.path(tempdir(), "all.Rout"), ml)
+    make_tree <- c("b1.Rout", "a1.Rout", "a2.Rout", "all.Rout")
+    expectation <- file.path(tempdir(), make_tree)
+    RUnit::checkIdentical(result, expectation)
 
     # phony target
     ml[[2]][".PHONY"] <- TRUE
@@ -83,8 +106,15 @@ test_make_prerequisite <- function() {
             ml[[i]][["prerequisites"]] <- file.path(tempdir(),
                                                     ml[[i]][["prerequisites"]])
     }
+    unlink(list.files(tempdir(), pattern = ".*\\.Rout", full.names = TRUE))
+
+    # initial full tree
+    result <- make(file.path(tempdir(), "all.Rout"), ml)
+    make_tree <- c("b1.Rout", "a1.Rout", "a2.Rout", "all.Rout")
+    expectation <- file.path(tempdir(), make_tree)
+    RUnit::checkIdentical(result, expectation)
+
     # prerequisite missing
     ml[[4]]["prerequisites"] <- file.path(tempdir(), "c1.Rout")
     RUnit::checkException(make(file.path(tempdir(), "all.Rout"), ml))
-
 }
