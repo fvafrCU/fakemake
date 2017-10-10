@@ -6,7 +6,7 @@
 #' @examples
 #' str(provide_make_list("minimal"))
 provide_make_list <- function(type = "minimal") {
-    if (! type %in% c("minimal")) throw("type ", type, " not known!")
+    if (! type %in% c("minimal")) throw(paste0("type ", type, " not known!"))
     name <- "Makefile"
     if (! is.null(type)) name <- paste0(name, "_", type)
     ml <- read_makefile(system.file("templates", name, package = "fakemake"))
@@ -19,29 +19,29 @@ provide_make_list <- function(type = "minimal") {
 #' @param make_list The list to write to file.
 #' @param path The path to the file.
 #' @param Rbin The R binary to use in the Makefile.
-#' @return See 
+#' @return See
 #' \code{\link[MakefileR:write_makefile]{MakefileR::write_makefile}}.
 #' @export
 #' @examples
 #' make_file <- file.path(tempdir(), "my_Makefile")
 #' write_makefile(provide_make_list(), path = make_file)
 #' file.show(make_file, pager = "cat")
-write_makefile <- function(make_list, path, 
+write_makefile <- function(make_list, path,
                            Rbin = "Rscript-devel") {
-    m <- MakefileR::makefile() +  
+    m <- MakefileR::makefile() +
         MakefileR::make_group(MakefileR::make_comment("Ensure POSIX"),
                               MakefileR::make_rule(".POSIX")
-                              ) 
+                              )
     m <- m + MakefileR::make_def("R_engine", Rbin)
     R_call <- "$(R_engine) --vanilla -e "
     for (e in make_list) {
         if (isTRUE(e[[".PHONY"]]))
             m <- m + MakefileR::make_rule(".PHONY", e[["target"]])
-        m <- m + MakefileR::make_rule(e[["target"]], 
-                                      deps = e[["prerequisites"]], 
-                                      script = paste0(R_call, 
-                                                      "'fakemake::sink_all(", 
-                                                      '"', (e[["target"]]), 
+        m <- m + MakefileR::make_rule(e[["target"]],
+                                      deps = e[["prerequisites"]],
+                                      script = paste0(R_call,
+                                                      "'fakemake::sink_all(",
+                                                      '"', (e[["target"]]),
                                                       '",', e[["code"]], ")'"))
     }
     return(MakefileR::write_makefile(m, path))
@@ -70,11 +70,10 @@ read_makefile <- function(path) {
     pattern <- paste0("\\$\\(R_engine\\) --vanilla -e ",
                       "'fakemake::sink_all\\((.*),(.*)\\)'")
     lines <- sub(pattern, "\\2", lines)
-    seperator1 <- "@@@"
-    seperator2 <- "###"
-    targets <- strsplit(gsub(paste0(seperator1, "\t"), ":", 
-                             paste(lines, collapse = seperator1)), 
-                        split = seperator1)
+    seperator <- "@@@"
+    targets <- strsplit(gsub(paste0(seperator, "\t"), ":",
+                             paste(lines, collapse = seperator)),
+                        split = seperator)
     targets <- unlist(targets)
     res <- list()
     for (target in targets) {
@@ -89,7 +88,7 @@ read_makefile <- function(path) {
     phony_targets <- sapply(strsplit(phony_lines, split = ": "), "[[", 2)
     for (target in phony_targets) {
         for (i in seq(along = res)) {
-            if (res[[i]][["target"]] == target) 
+            if (res[[i]][["target"]] == target)
                 res[[i]][[".PHONY"]] <- TRUE
         }
     }
@@ -108,32 +107,31 @@ read_makefile <- function(path) {
 make <- function(target, make_list) {
     res <- NULL
     index <- which(lapply(make_list, "[[", "target") == target)
+    if (identical(index, integer(0)))
+        throw(paste0("There is no rule to make ", target, "."))
     prerequisites <- make_list[[index]][["prerequisites"]]
     is_phony <- isTRUE(make_list[[index]][[".PHONY"]])
     if (! is.null(prerequisites)) {
         for (p in sort(prerequisites)) res <- c(res, make(p, make_list))
     }
-    # TODO: consider to shorten to 
-    # is_phony || !f(target) || !null(prerequisites! &
-    # (a(f(prerequisites)) || any(t(prerequisites) > t(target))
-    # _after_ establishing testing for each branch.
+    # This is a nesting depth of 4. But the shorter
+    # is_phony || !f(target) ||
+    # !null(prerequisites! & any(t(prerequisites) > t(target)
+    # will fail with testing coverage. covr doesn't test for all combinations of
+    # composite conditions. So I stick with it.
     if (is_phony) {
-        is_to_be_made <- TRUE 
+        is_to_be_made <- TRUE
     } else {
         if (! file.exists(target)) {
-            is_to_be_made <- TRUE 
+            is_to_be_made <- TRUE
         } else {
             if (is.null(prerequisites)) {
-                is_to_be_made <- FALSE 
+                is_to_be_made <- FALSE
             } else {
-                if (! all((file.exists(prerequisites)))) {
-                    is_to_be_made <- TRUE 
+                if (any(file.mtime(prerequisites) > file.mtime(target))) {
+                    is_to_be_made <- TRUE
                 } else {
-                    if (any(file.mtime(prerequisites) > file.mtime(target))) {
-                        is_to_be_made <- TRUE 
-                    } else {
-                        is_to_be_made <- FALSE
-                    }
+                    is_to_be_made <- FALSE
                 }
             }
         }
@@ -145,4 +143,3 @@ make <- function(target, make_list) {
     }
     return(invisible(res))
 }
-

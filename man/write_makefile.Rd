@@ -14,7 +14,7 @@ write_makefile(make_list, path, Rbin = "Rscript-devel")
 \item{Rbin}{The R binary to use in the Makefile.}
 }
 \value{
-See 
+See
 \code{\link[MakefileR:write_makefile]{MakefileR::write_makefile}}.
 }
 \description{

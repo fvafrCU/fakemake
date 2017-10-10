@@ -8,12 +8,12 @@ is_failure <- function(result) {
 }
 
 if (interactive()) {
-    devtools::load_all(pkg = ".") # needed to use devtools' shim version of 
+    devtools::load_all(pkg = ".") # needed to use devtools' shim version of
     # base's system.file
     unit_dir <- system.file("inst", "runit_tests", package = "fakemake")
 } else {
     r_call <- commandArgs(trailingOnly = FALSE)
-    require("fakemake", quietly=TRUE, character.only=TRUE) || 
+    require("fakemake", quietly = TRUE, character.only = TRUE) ||
     stop("package '", pkgname, "' not found")
     if (any(grepl("--file", r_call))) {
         unit_dir <- file.path("inst", "runit_tests")
@@ -22,7 +22,7 @@ if (interactive()) {
     }
 }
 if (! dir.exists(unit_dir)) {
-    stop("Can not find RUnit test directory ", unit_dir, 
+    stop("Can not find RUnit test directory ", unit_dir,
          ". Try to (re)install the package first.")
 }
 package_suite <- RUnit::defineTestSuite("fakemake_unit_test",

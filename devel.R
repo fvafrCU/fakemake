@@ -1,3 +1,4 @@
+unlink(list.files(tempdir(), pattern = ".*\\.Rout", full.names = TRUE))
 devtools::load_all(".")
 make_list <- provide_make_list()
 write_makefile(make_list, path = "nomakefile")

@@ -1,11 +1,11 @@
 #' Divert Message And Output Stream to File
-#' 
-#' All output and messages up to the first error, for example thrown by 
+#'
+#' All output and messages up to the first error, for example thrown by
 #' \code{\link{stop}}.
 #'
 #' @param path The path of the file to divert to.
 #' @param code The code to be executed.
-#' @return \code{\link[base:invisible]{Invisibly}} \code{\link{NULL}}. 
+#' @return \code{\link[base:invisible]{Invisibly}} \code{\link{NULL}}.
 #' @export
 #' @examples
 #' sink_path  <- file.path(tempdir(), "sink_all.txt")

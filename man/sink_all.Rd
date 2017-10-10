@@ -15,7 +15,7 @@ sink_all(path, code)
 \code{\link[base:invisible]{Invisibly}} \code{\link{NULL}}.
 }
 \description{
-All output and messages up to the first error, for example thrown by 
+All output and messages up to the first error, for example thrown by
 \code{\link{stop}}.
 }
 \examples{
