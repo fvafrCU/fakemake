@@ -23,14 +23,20 @@ provide_make_list <- function(type = "minimal") {
 #' \code{\link[MakefileR:write_makefile]{MakefileR::write_makefile}}.
 #' @export
 #' @examples
-#' make_file <- file.path(tempdir(), "Makefile")
+#' make_file <- file.path(tempdir(), "my_Makefile")
 #' write_makefile(provide_make_list(), path = make_file)
 #' file.show(make_file, pager = "cat")
 write_makefile <- function(make_list, path, 
                            Rbin = "Rscript-devel") {
-    m <- MakefileR::makefile() + MakefileR::make_def("R_engine", Rbin)
+    m <- MakefileR::makefile() +  
+        MakefileR::make_group(MakefileR::make_comment("Ensure POSIX"),
+                              MakefileR::make_rule(".POSIX")
+                              ) 
+    m <- m + MakefileR::make_def("R_engine", Rbin)
     R_call <- "$(R_engine) --vanilla -e "
     for (e in make_list) {
+        if (isTRUE(e[[".PHONY"]]))
+            m <- m + MakefileR::make_rule(".PHONY", e[["target"]])
         m <- m + MakefileR::make_rule(e[["target"]], 
                                       deps = e[["prerequisites"]], 
                                       script = paste0(R_call, 
@@ -57,7 +63,10 @@ read_makefile <- function(path) {
     lines <- readLines(path)
     lines <- grep("^$", lines, value = TRUE, invert = TRUE)
     lines <- grep("^#.*$", lines, value = TRUE, invert = TRUE)
+    lines <- grep("^\\.POSIX:$", lines, value = TRUE, invert = TRUE)
     lines <- grep("^R_engine.*$", lines, value = TRUE, invert = TRUE)
+    phony_lines <- grep("^\\.PHONY:", lines, value = TRUE)
+    lines <- grep("^\\.PHONY:", lines, value = TRUE, invert = TRUE)
     pattern <- paste0("\\$\\(R_engine\\) --vanilla -e ",
                       "'fakemake::sink_all\\((.*),(.*)\\)'")
     lines <- sub(pattern, "\\2", lines)
@@ -67,16 +76,24 @@ read_makefile <- function(path) {
                              paste(lines, collapse = seperator1)), 
                         split = seperator1)
     targets <- unlist(targets)
-    make_list <- list()
+    res <- list()
     for (target in targets) {
         parts  <-  trimws(unlist(strsplit(target, split = ":")))
         prerequisites <- unlist(strsplit(parts[2], split = " "))
         if (identical(prerequisites, character(0))) prerequisites <- NULL
-        make_list[[length(make_list)+1]] <- list(target = parts[1],
-                                                 prerequisites = prerequisites,
-                                                 code = parts[3])
+        res[[length(res) + 1]] <- list(target = parts[1],
+                                       prerequisites = prerequisites,
+                                       code = parts[3])
     }
-    return(make_list)
+    # add phonicity to .PHONY targets. This is quite a mess.
+    phony_targets <- sapply(strsplit(phony_lines, split = ": "), "[[", 2)
+    for (target in phony_targets) {
+        for (i in seq(along = res)) {
+            if (res[[i]][["target"]] == target) 
+                res[[i]][[".PHONY"]] <- TRUE
+        }
+    }
+    return(res)
 }
 
 #' Mock the Unix Make Utility
@@ -89,26 +106,35 @@ read_makefile <- function(path) {
 #' str(make_list <- provide_make_list())
 #' make("all.Rout", make_list)
 make <- function(target, make_list) {
-    print(paste("#", target))
     res <- NULL
     index <- which(lapply(make_list, "[[", "target") == target)
     prerequisites <- make_list[[index]][["prerequisites"]]
+    is_phony <- isTRUE(make_list[[index]][[".PHONY"]])
     if (! is.null(prerequisites)) {
         for (p in sort(prerequisites)) res <- c(res, make(p, make_list))
     }
-    if (! file.exists(target)) {
-        print("#target")
+    # TODO: consider to shorten to 
+    # is_phony || !f(target) || !null(prerequisites! &
+    # (a(f(prerequisites)) || any(t(prerequisites) > t(target))
+    # _after_ establishing testing for each branch.
+    if (is_phony) {
         is_to_be_made <- TRUE 
     } else {
-        if (is.null(prerequisites)) {
-        print("#null pre")
+        if (! file.exists(target)) {
             is_to_be_made <- TRUE 
         } else {
-            if (any(file.mtime(prerequisites) > file.mtime(target))) {
-                print("#mod pre")
-                is_to_be_made <- TRUE 
+            if (is.null(prerequisites)) {
+                is_to_be_made <- FALSE 
             } else {
-                is_to_be_made <- FALSE
+                if (! all((file.exists(prerequisites)))) {
+                    is_to_be_made <- TRUE 
+                } else {
+                    if (any(file.mtime(prerequisites) > file.mtime(target))) {
+                        is_to_be_made <- TRUE 
+                    } else {
+                        is_to_be_made <- FALSE
+                    }
+                }
             }
         }
     }
@@ -116,37 +142,7 @@ make <- function(target, make_list) {
         code <- make_list[[index]][["code"]]
         sink_all(path = target, code = eval(parse(text = code)))
         res <- c(res, target)
-        print(paste("##", res))
     }
-    ##    if (file.exists(target) && 
-    ##        ! is.null(prerequisites) && all(file.exists(prerequisites)) && 
-    ##        all(file.mtime(prerequisites) <= file.mtime(target))) {
-    ##        # Skip as the target has no missing or modified prerequisites.
-    ##        # !(!t | !p | p>t)
-    ##        # !!t & !!p & !p>t
-    ##        # t & p & p<=t
-    ##        res <- NULL
-    ##    } else {
-    ##        # !t | !p | p>t
-    ##        code <- make_list[[index]][["code"]]
-    ##        sink_all(path = target, code = eval(parse(text = code)))
-    ##        res <- c(res, target)
-    ##        print(paste("##", res))
-    ##    }
-    #    make_it <- TRUE
-    #    # This is for test coverage's sake. 
-    #    # Shorter is e(t) && ! is.null(p) && all(e(p)) && all(t(p) <= t(t)),
-    #    # where e() := file.exists() and t() := file.mtime().
-    #    if (file.exists(target))
-    #        if (! is.null(prerequisites))
-    #            if (all(file.exists(prerequisites)))
-    #                if (all(file.mtime(prerequisites) <= file.mtime(target)))
-    #                    make_it <- FALSE
-    #    if (make_it) {
-    #        code <- make_list[[index]][["code"]]
-    #        sink_all(path = target, code = eval(parse(text = code)))
-    #    }
-    print(paste("###", res))
     return(invisible(res))
 }
 

@@ -4,6 +4,10 @@ Maintainer: ‘First Last <first.last@example.com>’
 New submission
 
 Version contains large components (0.0.0.9000)
+
+checking top-level files ... NOTE
+Non-standard files/directories found at top level:
+  ‘a1.Rout’ ‘a2.Rout’ ‘all.Rout’ ‘b1.Rout’ ‘nomakefile’
 Warning message:
 In readLines("/etc/os-release") :
   incomplete final line found on '/etc/os-release'

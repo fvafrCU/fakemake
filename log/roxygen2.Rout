@@ -19,7 +19,8 @@ Type 'q()' to quit R.
 
 > roxygen2::roxygenize(".")
 Loading required package: MakefileR
-Warning: main.R:56: Section title spans multiple lines: 
+Warning: main.R:62: Section title spans multiple lines: 
 @section Warning This function will not read arbitrary Makefiles, just those
+Writing write_makefile.Rd
 > 
 > 

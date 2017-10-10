@@ -21,7 +21,7 @@ See
 Write a Makelist to File
 }
 \examples{
-make_file <- file.path(tempdir(), "Makefile")
+make_file <- file.path(tempdir(), "my_Makefile")
 write_makefile(provide_make_list(), path = make_file)
 file.show(make_file, pager = "cat")
 }

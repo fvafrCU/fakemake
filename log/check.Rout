@@ -25,7 +25,9 @@ Version contains large components (0.0.0.9000)
 * checking package directory ... OK
 * checking ‘build’ directory ... OK
 * checking DESCRIPTION meta-information ... OK
-* checking top-level files ... OK
+* checking top-level files ... NOTE
+Non-standard files/directories found at top level:
+  ‘a1.Rout’ ‘a2.Rout’ ‘all.Rout’ ‘b1.Rout’ ‘nomakefile’
 * checking for left-over files ... OK
 * checking index information ... OK
 * checking package subdirectories ... OK
@@ -63,4 +65,4 @@ Version contains large components (0.0.0.9000)
 * checking re-building of vignette outputs ... OK
 * checking PDF version of manual ... OK
 * DONE
-Status: 1 NOTE
+Status: 2 NOTEs

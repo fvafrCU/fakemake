@@ -1,73 +1,61 @@
 R/main.R:29:44: style: Trailing whitespace is superfluous.
 write_makefile <- function(make_list, path, 
                                            ^
-R/main.R:34:53: style: Trailing whitespace is superfluous.
+R/main.R:31:33: style: Trailing whitespace is superfluous.
+    m <- MakefileR::makefile() +  
+                                ^~
+R/main.R:34:32: style: Trailing whitespace is superfluous.
+                              ) 
+                               ^
+R/main.R:40:53: style: Trailing whitespace is superfluous.
         m <- m + MakefileR::make_rule(e[["target"]], 
                                                     ^
-R/main.R:35:67: style: Trailing whitespace is superfluous.
+R/main.R:41:67: style: Trailing whitespace is superfluous.
                                       deps = e[["prerequisites"]], 
                                                                   ^
-R/main.R:36:62: style: Trailing whitespace is superfluous.
+R/main.R:42:62: style: Trailing whitespace is superfluous.
                                       script = paste0(R_call, 
                                                              ^
-R/main.R:37:78: style: Trailing whitespace is superfluous.
+R/main.R:43:78: style: Trailing whitespace is superfluous.
                                                       "'fakemake::sink_all(", 
                                                                              ^
-R/main.R:38:76: style: Trailing whitespace is superfluous.
+R/main.R:44:76: style: Trailing whitespace is superfluous.
                                                       '"', (e[["target"]]), 
                                                                            ^
-R/main.R:65:5: warning: local variable ‘seperator2’ assigned but may not be used
+R/main.R:74:5: warning: local variable ‘seperator2’ assigned but may not be used
     seperator2 <- "###"
     ^~~~~~~~~~
-R/main.R:66:60: style: Trailing whitespace is superfluous.
+R/main.R:75:60: style: Trailing whitespace is superfluous.
     targets <- strsplit(gsub(paste0(seperator1, "\t"), ":", 
                                                            ^
-R/main.R:67:67: style: Trailing whitespace is superfluous.
+R/main.R:76:67: style: Trailing whitespace is superfluous.
                              paste(lines, collapse = seperator1)), 
                                                                   ^
-R/main.R:75:37: style: Put spaces around all infix operators.
-        make_list[[length(make_list)+1]] <- list(target = parts[1],
-                                   ~^~
-R/main.R:95:31: style: Trailing whitespace is superfluous.
-    if (file.exists(target) && 
-                              ^
-R/main.R:96:71: style: Trailing whitespace is superfluous.
-        ! is.null(prerequisites) && all(file.exists(prerequisites)) && 
-                                                                      ^
-R/main.R:99:11: style: Commented code should be removed.
-        # !(!t | !p | p>t)
-          ^~~~~~~~~~~~~~~~
-R/main.R:100:11: style: Commented code should be removed.
-        # !!t & !!p & !p>t
-          ^~~~~~~~~~~~~~~~
-R/main.R:101:11: style: Commented code should be removed.
-        # t & p & p<=t
-          ^~~~~~~~~~~~
-R/main.R:103:11: style: Commented code should be removed.
-        # !t | !p | p>t
-          ^~~~~~~~~~~~~
-R/main.R:107:10: style: Commented code should be removed.
-    #    make_it <- TRUE
-         ^~~~~~~~~~~~~~~
-R/main.R:108:45: style: Trailing whitespace is superfluous.
-    #    # This is for test coverage's sake. 
-                                            ^
-R/main.R:109:10: style: Commented code should be removed.
-    #    # Shorter is e(t) && ! is.null(p) && all(e(p)) && all(t(p) <= t(t)),
-         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-R/main.R:110:10: style: Commented code should be removed.
-    #    # where e() := file.exists() and t() := file.mtime().
-         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-R/main.R:115:26: style: Commented code should be removed.
-    #                    make_it <- FALSE
-                         ^~~~~~~~~~~~~~~~
-R/main.R:117:14: style: Commented code should be removed.
-    #        code <- make_list[[index]][["code"]]
-             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-R/main.R:118:14: style: Commented code should be removed.
-    #        sink_all(path = target, code = eval(parse(text = code)))
-             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-R/main.R:122:1: style: Trailing blank lines are superfluous.
+R/main.R:92:48: style: Trailing whitespace is superfluous.
+            if (res[[i]][["target"]] == target) 
+                                               ^
+R/main.R:116:35: style: Trailing whitespace is superfluous.
+    # TODO: consider to shorten to 
+                                  ^
+R/main.R:121:30: style: Trailing whitespace is superfluous.
+        is_to_be_made <- TRUE 
+                             ^
+R/main.R:124:34: style: Trailing whitespace is superfluous.
+            is_to_be_made <- TRUE 
+                                 ^
+R/main.R:127:39: style: Trailing whitespace is superfluous.
+                is_to_be_made <- FALSE 
+                                      ^
+R/main.R:129:27: style: Place a space before left parenthesis, except in a function call.
+                if (! all((file.exists(prerequisites)))) {
+                          ^
+R/main.R:130:42: style: Trailing whitespace is superfluous.
+                    is_to_be_made <- TRUE 
+                                         ^
+R/main.R:133:46: style: Trailing whitespace is superfluous.
+                        is_to_be_made <- TRUE 
+                                             ^
+R/main.R:148:1: style: Trailing blank lines are superfluous.
 
 ^
 tests/runit.R:11:76: style: Trailing whitespace is superfluous.
