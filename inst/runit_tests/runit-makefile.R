@@ -27,7 +27,7 @@ test_read_makefile <- function() {
     expectation <- provide_make_list(type = "minimal")
     write_makefile(expectation, path = path)
     result <- read_makefile(path)
-    prune_list(result)
+    result <- fakemake:::prune_list(result)
     RUnit::checkIdentical(result, expectation)
 }
 
