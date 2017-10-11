@@ -1,2 +1,3 @@
+- FIX test\_make\_phony() to work with "all.Rout" in the rerun section!
 - make uses eval(parse(text = )). Isn't there a better way?
 - remove/add standard root and path for target output?

@@ -1,5 +1,5 @@
-* using log directory ‘/home/nik/git/cyclops/fvafrcu/fakemake/fakemake.Rcheck’
-* using R Under development (unstable) (2017-08-15 r73096)
+* using log directory ‘/home/nik/git/cs/fvafrcu/fakemake/fakemake.Rcheck’
+* using R Under development (unstable) (2017-10-01 r73423)
 * using platform: x86_64-pc-linux-gnu (64-bit)
 * using session charset: UTF-8
 * using options ‘--run-donttest --as-cran’
@@ -10,20 +10,6 @@
 Maintainer: ‘First Last <first.last@example.com>’
 
 Version contains large components (0.0.0.9000)
-
-Found the following (possibly) invalid URLs:
-  URL: https://codecov.io/github/fvafrCU/fakemake?branch=master
-    From: README.md
-    Status: Error
-    Message: internet routines cannot be loaded
-  URL: https://htmlpreview.github.io/?https://github.com/fvafrCU/fakemake/blob/master/inst/doc/An_Introduction_to_fakemake.html
-    From: README.md
-    Status: Error
-    Message: internet routines cannot be loaded
-  URL: https://travis-ci.org/fvafrCU/fakemake
-    From: README.md
-    Status: Error
-    Message: internet routines cannot be loaded
 * checking package namespace information ... OK
 * checking package dependencies ... OK
 * checking if this is a source package ... OK
@@ -37,7 +23,12 @@ Found the following (possibly) invalid URLs:
 * checking package directory ... OK
 * checking ‘build’ directory ... OK
 * checking DESCRIPTION meta-information ... OK
-* checking top-level files ... OK
+* checking top-level files ... WARNING
+Conversion of ‘README.md’ failed:
+pandoc: Could not fetch https://travis-ci.org/fvafrCU/fakemake.svg?branch=master
+InvalidProxyEnvironmentVariable "https_proxy" "https://10.127.255.17:8080"
+Non-standard file/directory found at top level:
+  ‘tmp_makefile’
 * checking for left-over files ... OK
 * checking index information ... OK
 * checking package subdirectories ... OK
@@ -75,4 +66,4 @@ Found the following (possibly) invalid URLs:
 * checking re-building of vignette outputs ... OK
 * checking PDF version of manual ... OK
 * DONE
-Status: 1 NOTE
+Status: 1 WARNING, 1 NOTE
