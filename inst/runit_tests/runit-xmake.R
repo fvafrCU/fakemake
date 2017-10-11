@@ -74,10 +74,10 @@ test_make_phony <- function() {
     RUnit::checkTrue(identical(result, expectation))
 
     #% rerun
-    # FIXME: This fails with all.Rout!
-    result <- make(file.path(tempdir(), "a2.Rout"), ml)
-    make_tree <- c("a2.Rout")
-    expectation <- file.path(tempdir(), make_tree)
+    # need to sleep on fast machine as the file modification times are identical
+    # otherwise.
+    Sys.sleep(1)
+    result <- make(file.path(tempdir(), "all.Rout"), ml)
     RUnit::checkTrue(identical(result, expectation))
 }
 

@@ -1,4 +1,4 @@
-RUNIT TEST PROTOCOL -- Wed Oct 11 09:19:43 2017 
+RUNIT TEST PROTOCOL -- Wed Oct 11 10:26:07 2017 
 *********************************************** 
 Number of test functions: 9 
 Number of errors: 0 
@@ -27,8 +27,8 @@ Test file: /home/nik/git/cs/fvafrcu/fakemake/fakemake.Rcheck/fakemake/runit_test
 test_exception: (1 checks) ... OK (0 seconds)
 --------------------------- 
 Test file: /home/nik/git/cs/fvafrcu/fakemake/fakemake.Rcheck/fakemake/runit_tests/runit-xmake.R 
-test_make_full_tree: (2 checks) ... OK (0.02 seconds)
-test_make_missing: (2 checks) ... OK (0.01 seconds)
+test_make_full_tree: (2 checks) ... OK (0.05 seconds)
+test_make_missing: (2 checks) ... OK (0 seconds)
 test_make_newer: (2 checks) ... OK (1.01 seconds)
-test_make_phony: (3 checks) ... OK (1.01 seconds)
-test_make_prerequisite: (2 checks) ... OK (0 seconds)
+test_make_phony: (3 checks) ... OK (2.01 seconds)
+test_make_prerequisite: (2 checks) ... OK (0.01 seconds)
