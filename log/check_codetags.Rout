@@ -1,7 +1,4 @@
 [1] "./fakemake.Rcheck/00_pkg_src/fakemake/inst/runit_tests/runit-xmake.R:     # TODO: somehow RUnit::checkIdentical(result, expectation) fails?!"
-[2] "./fakemake.Rcheck/00_pkg_src/fakemake/inst/runit_tests/runit-xmake.R:     # FIXME: This fails with all.Rout!"                                
-[3] "./fakemake.Rcheck/fakemake/runit_tests/runit-xmake.R:     # TODO: somehow RUnit::checkIdentical(result, expectation) fails?!"                
-[4] "./fakemake.Rcheck/fakemake/runit_tests/runit-xmake.R:     # FIXME: This fails with all.Rout!"                                                
-[5] "./inst/runit_tests/runit-xmake.R:     # TODO: somehow RUnit::checkIdentical(result, expectation) fails?!"                                    
-[6] "./inst/runit_tests/runit-xmake.R:     # FIXME: This fails with all.Rout!"                                                                    
+[2] "./fakemake.Rcheck/fakemake/runit_tests/runit-xmake.R:     # TODO: somehow RUnit::checkIdentical(result, expectation) fails?!"                
+[3] "./inst/runit_tests/runit-xmake.R:     # TODO: somehow RUnit::checkIdentical(result, expectation) fails?!"                                    
 There were 50 or more warnings (use warnings() to see the first 50)
