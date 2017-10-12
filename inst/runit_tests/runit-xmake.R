@@ -88,4 +88,14 @@ test_make_prerequisite <- function() {
     #% prerequisite missing
     ml[[4]]["prerequisites"] <- file.path(tempdir(), "c1.Rout")
     RUnit::checkException(make(file.path(tempdir(), "all.Rout"), ml))
+    #% file as prerequisite 
+    cat("touched", file =  ml[[4]][["prerequisites"]])
+    # need to sleep on fast machine as the file modification times are identical
+    # otherwise.
+    Sys.sleep(1)
+    target <- file.path(tempdir(), "all.Rout")
+    result <- make(target, ml)
+    make_tree <- c("b1.Rout", "a1.Rout", "all.Rout")
+    expectation <- file.path(tempdir(), make_tree)
+    RUnit::checkIdentical(result, expectation)
 }

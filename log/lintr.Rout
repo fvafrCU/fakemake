@@ -31,6 +31,9 @@ inst/runit_tests/runit-xmake.R:85:11: warning: no visible global function defini
 inst/runit_tests/runit-xmake.R:86:5: warning: no visible global function definition for ‘make_initial’
     make_initial()
     ^~~~~~~~~~~~
+inst/runit_tests/runit-xmake.R:91:28: style: Trailing whitespace is superfluous.
+    #% file as prerequisite 
+                           ^
 R/internals.R:3:3: style: Commented code should be removed.
 # r-remove-null-elements-from-list-of-lists
   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -107,39 +107,45 @@ read_makefile <- function(path) {
 make <- function(target, make_list) {
     res <- NULL
     index <- which(lapply(make_list, "[[", "target") == target)
-    if (identical(index, integer(0)))
-        throw(paste0("There is no rule to make ", target, "."))
-    prerequisites <- make_list[[index]][["prerequisites"]]
-    is_phony <- isTRUE(make_list[[index]][[".PHONY"]])
-    if (! is.null(prerequisites)) {
-        for (p in sort(prerequisites)) res <- c(res, make(p, make_list))
-    }
-    # This is a nesting depth of 4. But the shorter
-    # is_phony || !f(target) ||
-    # !null(prerequisites! & any(t(prerequisites) > t(target)
-    # will fail with testing coverage. covr doesn't test for all combinations of
-    # composite conditions. So I stick with it.
-    if (is_phony) {
-        is_to_be_made <- TRUE
-    } else {
+    if (identical(index, integer(0))) {
         if (! file.exists(target)) {
+            throw(paste0("There is no rule to make ", target, "."))
+        } else {
+            message("Prerequisite ", target, " found.")
+        }
+    } else {
+        prerequisites <- make_list[[index]][["prerequisites"]]
+        is_phony <- isTRUE(make_list[[index]][[".PHONY"]])
+        if (! is.null(prerequisites)) {
+            for (p in sort(prerequisites)) res <- c(res, make(p, make_list))
+        }
+        # This is a nesting depth of 4. But the shorter
+        # is_phony || !f(target) ||
+        # !null(prerequisites! & any(t(prerequisites) > t(target)
+        # will fail with testing coverage. covr doesn't test for all
+        # combinations of composite conditions. So I stick with it.
+        if (is_phony) {
             is_to_be_made <- TRUE
         } else {
-            if (is.null(prerequisites)) {
-                is_to_be_made <- FALSE
+            if (! file.exists(target)) {
+                is_to_be_made <- TRUE
             } else {
-                if (any(file.mtime(prerequisites) > file.mtime(target))) {
-                    is_to_be_made <- TRUE
-                } else {
+                if (is.null(prerequisites)) {
                     is_to_be_made <- FALSE
+                } else {
+                    if (any(file.mtime(prerequisites) > file.mtime(target))) {
+                        is_to_be_made <- TRUE
+                    } else {
+                        is_to_be_made <- FALSE
+                    }
                 }
             }
         }
-    }
-    if (is_to_be_made) {
-        code <- make_list[[index]][["code"]]
-        sink_all(path = target, code = eval(parse(text = code)))
-        res <- c(res, target)
+        if (is_to_be_made) {
+            code <- make_list[[index]][["code"]]
+            sink_all(path = target, code = eval(parse(text = code)))
+            res <- c(res, target)
+        }
     }
     return(invisible(res))
 }
