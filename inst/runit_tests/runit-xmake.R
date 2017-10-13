@@ -78,6 +78,7 @@ test_make_phony <- function() {
     # otherwise.
     Sys.sleep(1)
     result <- make(file.path(tempdir(), "all.Rout"), ml)
+    # TODO: somehow RUnit::checkIdentical(result, expectation) fails?!
     RUnit::checkTrue(identical(result, expectation))
 }
 
@@ -97,5 +98,6 @@ test_make_prerequisite <- function() {
     result <- make(target, ml)
     make_tree <- c("b1.Rout", "a1.Rout", "all.Rout")
     expectation <- file.path(tempdir(), make_tree)
-    RUnit::checkIdentical(result, expectation)
+    # TODO: somehow RUnit::checkIdentical(result, expectation) fails?!
+    RUnit::checkTrue(identical(result, expectation))
 }
