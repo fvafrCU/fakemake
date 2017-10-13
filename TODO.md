@@ -1,4 +1,3 @@
-- travis fails after last commit
 - write a test for tryCatch
 - make uses eval(parse(text = )). Isn't there a better way?
 - remove/add standard root and path for target output?
