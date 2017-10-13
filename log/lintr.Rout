@@ -37,3 +37,6 @@ inst/runit_tests/runit-xmake.R:91:28: style: Trailing whitespace is superfluous.
 R/internals.R:3:3: style: Commented code should be removed.
 # r-remove-null-elements-from-list-of-lists
   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+R/main.R:122:53: style: Trailing whitespace is superfluous.
+                p <- tryCatch(eval(parse(text = p)), 
+                                                    ^

@@ -117,7 +117,12 @@ make <- function(target, make_list) {
         prerequisites <- make_list[[index]][["prerequisites"]]
         is_phony <- isTRUE(make_list[[index]][[".PHONY"]])
         if (! is.null(prerequisites)) {
-            for (p in sort(prerequisites)) res <- c(res, make(p, make_list))
+            for (p in sort(prerequisites)) {
+                # If p is a valid R expression, evaluate it. Else return it:
+                p <- tryCatch(eval(parse(text = p)),
+                              error = function(e) return(p))
+                res <- c(res, make(p, make_list))
+            }
         }
         # This is a nesting depth of 4. But the shorter
         # is_phony || !f(target) ||
