@@ -37,7 +37,10 @@ Version contains large components (0.0.0.9000)
 * checking whether the namespace can be loaded with stated dependencies ... OK
 * checking whether the namespace can be unloaded cleanly ... OK
 * checking use of S3 registration ... OK
-* checking dependencies in R code ... OK
+* checking dependencies in R code ... NOTE
+There are ::: calls to the package's namespace in its code. A package
+  almost never needs to use ::: for its own objects:
+  ‘get_ml’ ‘prune_list’
 * checking S3 generic/method consistency ... OK
 * checking replacement functions ... OK
 * checking foreign function calls ... OK
@@ -63,4 +66,4 @@ Version contains large components (0.0.0.9000)
 * checking re-building of vignette outputs ... OK
 * checking PDF version of manual ... OK
 * DONE
-Status: 1 NOTE
+Status: 2 NOTEs

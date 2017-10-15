@@ -1,4 +1,10 @@
 [1] "./fakemake.Rcheck/00_pkg_src/fakemake/inst/runit_tests/runit-xmake.R:     # TODO: somehow RUnit::checkIdentical(result, expectation) fails?!"
-[2] "./fakemake.Rcheck/fakemake/runit_tests/runit-xmake.R:     # TODO: somehow RUnit::checkIdentical(result, expectation) fails?!"                
-[3] "./inst/runit_tests/runit-xmake.R:     # TODO: somehow RUnit::checkIdentical(result, expectation) fails?!"                                    
+[2] "./fakemake.Rcheck/00_pkg_src/fakemake/inst/runit_tests/runit-xmake.R:     # TODO: somehow RUnit::checkIdentical(result, expectation) fails?!"
+[3] "./fakemake.Rcheck/00_pkg_src/fakemake/inst/runit_tests/runit-xmake.R:     # TODO: somehow RUnit::checkIdentical(result, expectation) fails?!"
+[4] "./fakemake.Rcheck/fakemake/runit_tests/runit-xmake.R:     # TODO: somehow RUnit::checkIdentical(result, expectation) fails?!"                
+[5] "./fakemake.Rcheck/fakemake/runit_tests/runit-xmake.R:     # TODO: somehow RUnit::checkIdentical(result, expectation) fails?!"                
+[6] "./fakemake.Rcheck/fakemake/runit_tests/runit-xmake.R:     # TODO: somehow RUnit::checkIdentical(result, expectation) fails?!"                
+[7] "./inst/runit_tests/runit-xmake.R:     # TODO: somehow RUnit::checkIdentical(result, expectation) fails?!"                                    
+[8] "./inst/runit_tests/runit-xmake.R:     # TODO: somehow RUnit::checkIdentical(result, expectation) fails?!"                                    
+[9] "./inst/runit_tests/runit-xmake.R:     # TODO: somehow RUnit::checkIdentical(result, expectation) fails?!"                                    
 There were 50 or more warnings (use warnings() to see the first 50)
