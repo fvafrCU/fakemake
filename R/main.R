@@ -106,6 +106,7 @@ read_makefile <- function(path) {
 #' make("all.Rout", make_list)
 make <- function(target, make_list) {
     res <- NULL
+    warning(target)
     index <- which(lapply(make_list, "[[", "target") == target)
     if (identical(index, integer(0))) {
         if (! file.exists(target)) {
@@ -122,6 +123,7 @@ make <- function(target, make_list) {
             prerequisites <- tryCatch(eval(parse(text = prerequisites)),
                           error = function(e) return(prerequisites))
             for (p in sort(prerequisites)) {
+                warning("prereq ", p)
                 res <- c(res, make(p, make_list))
             }
         }
