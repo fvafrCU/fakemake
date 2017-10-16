@@ -12,7 +12,8 @@ make(target, make_list)
 \item{make_list}{The makelist (a listed version of a Makefile).}
 }
 \value{
-\code{\link[base:NULL]{base::NULL}}.
+A character vector containing the targets made during the current
+run.
 }
 \description{
 Mock the Unix Make Utility

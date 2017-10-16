@@ -15,6 +15,11 @@ The makelist.
 \description{
 Read a Makefile into a Makelist
 }
+\note{
+This function will not read arbitrary Makefiles, just those
+created via \code{\link{write_makefile()}}! If you modify such a Makefile
+make sure you only add simple rules like the ones you see in that file.
+}
 \examples{
 make_file <- file.path(tempdir(), "Makefile")
 write_makefile(provide_make_list(), path = make_file)

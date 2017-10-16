@@ -73,7 +73,7 @@ write_makefile <- function(make_list, path,
 #'
 #' @param path The path to the file.
 #' @return The makelist.
-#' @section Warning This function will not read arbitrary Makefiles, just those
+#' @note This function will not read arbitrary Makefiles, just those
 #' created via \code{\link{write_makefile()}}! If you modify such a Makefile
 #' make sure you only add simple rules like the ones you see in that file.
 #' @export

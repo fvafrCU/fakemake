@@ -83,32 +83,8 @@ test_make_prerequisite <- function() {
 }
 
 notest_make_source_files <- function() {
-    ml <- fakemake:::get_ml()
     fakemake:::make_initial()
-    #% add source files
-    src <- file.path(tempdir(), "src")
-    dir.create(src)
-    cat('print("foo")', file = file.path(src, "foo.R"))
-    cat('print("bar")', file = file.path(src, "bar.R"))
-    ml[[4]]["code"] <- "lapply(list.files(src, full.names = TRUE), source)"
-    ml[[4]]["prerequisites"] <- "list.files(src, full.names = TRUE)"
-
-    #% make with updated source files
-    expectation <- ml[[4]][["target"]]
-    result <- make(ml[[4]][["target"]], ml)
-    RUnit::checkTrue(identical(result, expectation))
-
-    #% rerun
-    # need to sleep on fast machine as the file modification times are identical
-    # otherwise.
-    Sys.sleep(1)
-    expectation <- NULL
-    result <- make(ml[[4]][["target"]], ml)
-    RUnit::checkTrue(identical(result, expectation))
-
-    #% touch source file and rerun
-    fakemake:::touch(file.path(src, "bar.R"))
-    expectation <- ml[[4]][["target"]]
-    result <- make(ml[[4]][["target"]], ml)
-    RUnit::checkTrue(identical(result, expectation))
+    warning("FIXME: The remaining code is in dontshow() in the examples ",
+            "section of make()! ",
+            "I haven't understood yet why is does not work in formal testing.")
 }
