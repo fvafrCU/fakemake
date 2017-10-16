@@ -1,6 +1,0 @@
-inst/runit_tests/runit-xmake.R:70:28: style: Trailing whitespace is superfluous.
-    #% file as prerequisite 
-                           ^
-R/internals.R:3:3: style: Commented code should be removed.
-# r-remove-null-elements-from-list-of-lists
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

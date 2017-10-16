@@ -15,4 +15,4 @@ Best, Dominik
 - win-builder (devel)
 
 ## R CMD check results
-0 errors | 1 warning  | 2 notes
+0 errors | 1 warning  | 1 note 

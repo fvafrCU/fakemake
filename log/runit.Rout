@@ -34,7 +34,9 @@ Executing test function test_make_phony  ...  done successfully.
 
 
 Executing test function test_make_prerequisite  ... Error in make(p, make_list) : 
-  There is no rule to make /tmp/RtmpV6Th2U/c1.Rout.
-Prerequisite /tmp/RtmpV6Th2U/c1.Rout found.
+  There is no rule to make /tmp/RtmpISgyl5/c1.Rout.
+In addition: There were 50 or more warnings (use warnings() to see the first 50)
+Prerequisite /tmp/RtmpISgyl5/c1.Rout found.
  done successfully.
 
+There were 16 warnings (use warnings() to see them)
