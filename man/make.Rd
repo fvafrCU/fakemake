@@ -22,6 +22,7 @@ Mock the Unix Make Utility
 str(make_list <- add_tempdir(provide_make_list(type = "minimal")))
 make(make_list[[1]][["target"]], make_list)
 
+\dontshow{
 src <- file.path(tempdir(), "src")
 dir.create(src)
 cat('print("foo")', file = file.path(src, "foo.R"))
@@ -30,6 +31,23 @@ make_list[[4]]["code"] <- "lapply(list.files(src, full.names = TRUE),
                                   source)"
 make_list[[4]]["prerequisites"] <- "list.files(src, full.names = TRUE)"
 
-# make with updated source files
-print(make(make_list[[4]][["target"]], make_list))
+#\% make with updated source files
+expectation <- make_list[[4]][["target"]]
+result <- make(make_list[[4]][["target"]], make_list)
+RUnit::checkTrue(identical(result, expectation))
+
+#\% rerun
+# need to sleep on fast machine as the file modification times are identical
+# otherwise.
+Sys.sleep(1)
+expectation <- NULL
+result <- make(make_list[[4]][["target"]], make_list)
+RUnit::checkTrue(identical(result, expectation))
+
+#\% touch source file and rerun
+fakemake:::touch(file.path(src, "bar.R"))
+expectation <- make_list[[4]][["target"]]
+result <- make(make_list[[4]][["target"]], make_list)
+RUnit::checkTrue(identical(result, expectation))
+}
 }

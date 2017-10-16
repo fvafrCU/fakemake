@@ -19,6 +19,7 @@ Type 'q()' to quit R.
 
 > roxygen2::roxygenize(".")
 Loading required package: MakefileR
-Writing read_makefile.Rd
+Writing add_tempdir.Rd
+Writing make.Rd
 > 
 > 

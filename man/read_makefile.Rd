@@ -17,7 +17,7 @@ Read a Makefile into a Makelist
 }
 \note{
 This function will not read arbitrary Makefiles, just those
-created via \code{\link{write_makefile()}}! If you modify such a Makefile
+created via \code{\link{write_makefile}}! If you modify such a Makefile
 make sure you only add simple rules like the ones you see in that file.
 }
 \examples{

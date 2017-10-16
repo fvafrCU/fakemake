@@ -82,8 +82,7 @@ test_make_prerequisite <- function() {
     RUnit::checkTrue(identical(result, expectation))
 }
 
-notest_make_source_files <- function() {
-    fakemake:::make_initial()
+test_make_source_files <- function() {
     warning("FIXME: The remaining code is in dontshow() in the examples ",
             "section of make()! ",
             "I haven't understood yet why is does not work in formal testing.")

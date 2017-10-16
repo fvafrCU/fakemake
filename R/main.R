@@ -11,7 +11,6 @@ provide_make_list <- function(type = "minimal") {
     if (! is.null(type)) name <- paste0(name, "_", type)
     ml <- read_makefile(system.file("templates", name, package = "fakemake"))
     return(ml)
-
 }
 
 #' Add the output of \code{\link{tempdir}} to a makelist
@@ -20,13 +19,13 @@ provide_make_list <- function(type = "minimal") {
 #' directory.
 #' @note This is mainly meant to run examples without touching your disk. You
 #' should not bother.
-#' @param ml The makelist.
+#' @param x The makelist.
 #' @return The makelist.
 #' @export
 #' @examples
 #' str(add_tempdir(provide_make_list("minimal")))
-add_tempdir <- function(ml) {
-    res <- ml
+add_tempdir <- function(x) {
+    res <- x
     for (i in seq(along = res)) {
         res[[i]][["target"]] <- file.path(tempdir(), res[[i]][["target"]])
         if (!is.null(res[[i]][["prerequisites"]]))
@@ -74,7 +73,7 @@ write_makefile <- function(make_list, path,
 #' @param path The path to the file.
 #' @return The makelist.
 #' @note This function will not read arbitrary Makefiles, just those
-#' created via \code{\link{write_makefile()}}! If you modify such a Makefile
+#' created via \code{\link{write_makefile}}! If you modify such a Makefile
 #' make sure you only add simple rules like the ones you see in that file.
 #' @export
 #' @examples
@@ -128,6 +127,7 @@ read_makefile <- function(path) {
 #' str(make_list <- add_tempdir(provide_make_list(type = "minimal")))
 #' make(make_list[[1]][["target"]], make_list)
 #' 
+#' \dontshow{
 #' src <- file.path(tempdir(), "src")
 #' dir.create(src)
 #' cat('print("foo")', file = file.path(src, "foo.R"))
@@ -135,10 +135,26 @@ read_makefile <- function(path) {
 #' make_list[[4]]["code"] <- "lapply(list.files(src, full.names = TRUE),
 #'                                   source)"
 #' make_list[[4]]["prerequisites"] <- "list.files(src, full.names = TRUE)"
-#'
-#' # make with updated source files
-#' print(make(make_list[[4]][["target"]], make_list))
-
+#' 
+#' #% make with updated source files
+#' expectation <- make_list[[4]][["target"]]
+#' result <- make(make_list[[4]][["target"]], make_list)
+#' RUnit::checkTrue(identical(result, expectation))
+#' 
+#' #% rerun
+#' # need to sleep on fast machine as the file modification times are identical
+#' # otherwise.
+#' Sys.sleep(1)
+#' expectation <- NULL
+#' result <- make(make_list[[4]][["target"]], make_list)
+#' RUnit::checkTrue(identical(result, expectation))
+#' 
+#' #% touch source file and rerun
+#' fakemake:::touch(file.path(src, "bar.R"))
+#' expectation <- make_list[[4]][["target"]]
+#' result <- make(make_list[[4]][["target"]], make_list)
+#' RUnit::checkTrue(identical(result, expectation))
+#' }
 make <- function(target, make_list) {
     res <- NULL
     index <- which(lapply(make_list, "[[", "target") == target)

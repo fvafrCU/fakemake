@@ -4,10 +4,10 @@
 \alias{add_tempdir}
 \title{Add the output of \code{\link{tempdir}} to a makelist}
 \usage{
-add_tempdir(ml)
+add_tempdir(x)
 }
 \arguments{
-\item{ml}{The makelist.}
+\item{x}{The makelist.}
 }
 \value{
 The makelist.
