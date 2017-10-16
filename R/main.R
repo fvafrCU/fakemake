@@ -14,6 +14,28 @@ provide_make_list <- function(type = "minimal") {
 
 }
 
+#' Add the output of \code{\link{tempdir}} to a makelist
+#'
+#' You do not want to litter your working directory? Use \R's temporary
+#' directory.
+#' @note This is mainly meant to run examples without touching your disk. You
+#' should not bother.
+#' @param ml The makelist.
+#' @return The makelist.
+#' @export
+#' @examples
+#' str(add_tempdir(provide_make_list("minimal")))
+add_tempdir <- function(ml) {
+    res <- ml
+    for (i in seq(along = res)) {
+        res[[i]][["target"]] <- file.path(tempdir(), res[[i]][["target"]])
+        if (!is.null(res[[i]][["prerequisites"]]))
+            res[[i]][["prerequisites"]] <- file.path(tempdir(),
+                                                    res[[i]][["prerequisites"]])
+    }
+    return(res)
+}
+
 #' Write a Makelist to File
 #'
 #' @param make_list The list to write to file.
@@ -99,11 +121,24 @@ read_makefile <- function(path) {
 #'
 #' @param make_list The makelist (a listed version of a Makefile).
 #' @param target The make target.
-#' @return \code{\link[base:NULL]{base::NULL}}.
+#' @return A character vector containing the targets made during the current
+#' run.
 #' @export
 #' @examples
-#' str(make_list <- provide_make_list())
-#' make("all.Rout", make_list)
+#' str(make_list <- add_tempdir(provide_make_list(type = "minimal")))
+#' make(make_list[[1]][["target"]], make_list)
+#' 
+#' src <- file.path(tempdir(), "src")
+#' dir.create(src)
+#' cat('print("foo")', file = file.path(src, "foo.R"))
+#' cat('print("bar")', file = file.path(src, "bar.R"))
+#' make_list[[4]]["code"] <- "lapply(list.files(src, full.names = TRUE),
+#'                                   source)"
+#' make_list[[4]]["prerequisites"] <- "list.files(src, full.names = TRUE)"
+#'
+#' # make with updated source files
+#' print(make(make_list[[4]][["target"]], make_list))
+
 make <- function(target, make_list) {
     res <- NULL
     index <- which(lapply(make_list, "[[", "target") == target)

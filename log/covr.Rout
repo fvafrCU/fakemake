@@ -1,12 +1,20 @@
-                  filename functions line value
-31 R/unit_test_internals.R     touch   24     0
-33 R/unit_test_internals.R     touch   25     0
-35 R/unit_test_internals.R     touch   26     0
-37 R/unit_test_internals.R     touch   27     0
-39 R/unit_test_internals.R     touch   28     0
-fakemake Coverage: 96.48%
+                  filename   functions line value
+40                R/main.R add_tempdir   29     0
+42                R/main.R add_tempdir   30     0
+43                R/main.R add_tempdir   31     0
+44                R/main.R add_tempdir   32     0
+45                R/main.R add_tempdir   33     0
+46                R/main.R add_tempdir   34     0
+47                R/main.R add_tempdir   35     0
+48                R/main.R add_tempdir   36     0
+31 R/unit_test_internals.R       touch   24     0
+33 R/unit_test_internals.R       touch   25     0
+35 R/unit_test_internals.R       touch   26     0
+37 R/unit_test_internals.R       touch   27     0
+39 R/unit_test_internals.R       touch   28     0
+fakemake Coverage: 91.10%
 R/unit_test_internals.R: 72.22%
+R/main.R: 92.79%
 R/internals.R: 100.00%
-R/main.R: 100.00%
 R/sink_all.R: 100.00%
 R/throw.R: 100.00%

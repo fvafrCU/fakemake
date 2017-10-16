@@ -1,11 +1,5 @@
 get_ml <- function() {
-    res <- prune_list(provide_make_list(type = "minimal"))
-    for (i in seq(along = res)) {
-        res[[i]][["target"]] <- file.path(tempdir(), res[[i]][["target"]])
-        if (!is.null(res[[i]][["prerequisites"]]))
-            res[[i]][["prerequisites"]] <- file.path(tempdir(),
-                                                    res[[i]][["prerequisites"]])
-    }
+    res <- prune_list(add_tempdir(provide_make_list(type = "minimal")))
     return(res)
 }
 

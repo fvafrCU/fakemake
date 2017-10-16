@@ -18,6 +18,17 @@ make(target, make_list)
 Mock the Unix Make Utility
 }
 \examples{
-str(make_list <- provide_make_list())
-make("all.Rout", make_list)
+str(make_list <- add_tempdir(provide_make_list(type = "minimal")))
+make(make_list[[1]][["target"]], make_list)
+
+src <- file.path(tempdir(), "src")
+dir.create(src)
+cat('print("foo")', file = file.path(src, "foo.R"))
+cat('print("bar")', file = file.path(src, "bar.R"))
+make_list[[4]]["code"] <- "lapply(list.files(src, full.names = TRUE),
+                                  source)"
+make_list[[4]]["prerequisites"] <- "list.files(src, full.names = TRUE)"
+
+# make with updated source files
+print(make(make_list[[4]][["target"]], make_list))
 }

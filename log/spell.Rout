@@ -1,5 +1,5 @@
   WORD       FOUND IN
-makelist   make.Rd:12, provide_make_list.Rd:10,13, read_makefile.Rd:13
+makelist   add_tempdir.Rd:5,10,13, make.Rd:12, provide_make_list.Rd:10,13, read_makefile.Rd:13
 Makelist   provide_make_list.Rd:5,16, read_makefile.Rd:5,16, write_makefile.Rd:5,21
 Warning message:
 spell check failed 
