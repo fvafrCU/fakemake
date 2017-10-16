@@ -1,5 +1,5 @@
 get_ml <- function() {
-    res <- fakemake:::prune_list(provide_make_list(type = "minimal"))
+    res <- prune_list(provide_make_list(type = "minimal"))
     for (i in seq(along = res)) {
         res[[i]][["target"]] <- file.path(tempdir(), res[[i]][["target"]])
         if (!is.null(res[[i]][["prerequisites"]]))
@@ -10,7 +10,7 @@ get_ml <- function() {
 }
 
 make_initial <- function() {
-    ml <- fakemake:::get_ml()
+    ml <- get_ml()
     unlink(list.files(tempdir(), pattern = ".*\\.Rout", full.names = TRUE))
 
     #% initial full tree
