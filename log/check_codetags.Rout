@@ -1,14 +1,17 @@
- [1] "./fakemake.Rcheck/00_pkg_src/fakemake/inst/runit_tests/runit-xmake.R:     # TODO: somehow RUnit::checkIdentical(result, expectation) fails?!"             
- [2] "./fakemake.Rcheck/00_pkg_src/fakemake/inst/runit_tests/runit-xmake.R:     # TODO: somehow RUnit::checkIdentical(result, expectation) fails?!"             
- [3] "./fakemake.Rcheck/00_pkg_src/fakemake/inst/runit_tests/runit-xmake.R:     # TODO: somehow RUnit::checkIdentical(result, expectation) fails?!"             
- [4] "./fakemake.Rcheck/00_pkg_src/fakemake/inst/runit_tests/runit-xmake.R:     warning(\"FIXME: The remaining code is in dontshow() in examples section of\", "
- [5] "./fakemake.Rcheck/fakemake/runit_tests/runit-xmake.R:     # TODO: somehow RUnit::checkIdentical(result, expectation) fails?!"                             
- [6] "./fakemake.Rcheck/fakemake/runit_tests/runit-xmake.R:     # TODO: somehow RUnit::checkIdentical(result, expectation) fails?!"                             
- [7] "./fakemake.Rcheck/fakemake/runit_tests/runit-xmake.R:     # TODO: somehow RUnit::checkIdentical(result, expectation) fails?!"                             
- [8] "./fakemake.Rcheck/fakemake/runit_tests/runit-xmake.R:     warning(\"FIXME: The remaining code is in dontshow() in examples section of\", "                
- [9] "./inst/runit_tests/runit-xmake.R:     # TODO: somehow RUnit::checkIdentical(result, expectation) fails?!"                                                 
-[10] "./inst/runit_tests/runit-xmake.R:     # TODO: somehow RUnit::checkIdentical(result, expectation) fails?!"                                                 
-[11] "./inst/runit_tests/runit-xmake.R:     # TODO: somehow RUnit::checkIdentical(result, expectation) fails?!"                                                 
-[12] "./inst/runit_tests/runit-xmake.R:     warning(\"FIXME: The remaining code is in dontshow() in the examples \","                                           
-[13] "./log/lintr.Rout:     warning(\"FIXME: The remaining code is in dontshow() in the examples \", "                                                          
-There were 50 or more warnings (use warnings() to see the first 50)
+[1] "./fakemake.Rcheck/00_pkg_src/fakemake/inst/runit_tests/runit-xmake.R:     # TODO: somehow RUnit::checkIdentical(result, expectation) fails?!"      
+[2] "./fakemake.Rcheck/00_pkg_src/fakemake/inst/runit_tests/runit-xmake.R:     # TODO: somehow RUnit::checkIdentical(result, expectation) fails?!"      
+[3] "./fakemake.Rcheck/00_pkg_src/fakemake/inst/runit_tests/runit-xmake.R:     # TODO: somehow RUnit::checkIdentical(result, expectation) fails?!"      
+[4] "./fakemake.Rcheck/00_pkg_src/fakemake/inst/runit_tests/runit-xmake.R:     warning(\"FIXME: The remaining code is in dontshow() in the examples \","
+[5] "./inst/runit_tests/runit-xmake.R:     # TODO: somehow RUnit::checkIdentical(result, expectation) fails?!"                                          
+[6] "./inst/runit_tests/runit-xmake.R:     # TODO: somehow RUnit::checkIdentical(result, expectation) fails?!"                                          
+[7] "./inst/runit_tests/runit-xmake.R:     # TODO: somehow RUnit::checkIdentical(result, expectation) fails?!"                                          
+[8] "./inst/runit_tests/runit-xmake.R:     warning(\"FIXME: The remaining code is in dontshow() in the examples \","                                    
+Warning messages:
+1: In readLines(f) : line 2 appears to contain an embedded nul
+2: In readLines(f) : line 3 appears to contain an embedded nul
+3: In readLines(f) : line 4 appears to contain an embedded nul
+4: In readLines(f) :
+  incomplete final line found on './fakemake.Rcheck/00_pkg_src/fakemake/build/vignette.rds'
+5: In readLines(f) :
+  incomplete final line found on './fakemake.Rcheck/00_pkg_src/fakemake/LICENSE'
+6: In readLines(f) : incomplete final line found on './LICENSE'
