@@ -1,0 +1,30 @@
+tests/testthat/notest-source_files.R:2:27: style: Trailing whitespace is superfluous.
+testthat::test_that("foo", 
+                          ^
+tests/testthat/notest-source_files.R:3:21: style: Opening curly braces should never go on their own line and should always be followed by a new line.
+                    {
+                    ^
+tests/testthat/notest-source_files.R:4:1: style: lines should not be more than 80 characters.
+                        make_list <- add_tempdir(provide_make_list(type = "minimal"))
+^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+tests/testthat/notest-source_files.R:11:1: style: lines should not be more than 80 characters.
+                        make_list[[4]]["code"] <- "lapply(list.files(src, full.names = TRUE), source)"
+^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+tests/testthat/notest-source_files.R:12:1: style: lines should not be more than 80 characters.
+                        make_list[[4]]["prerequisites"] <- "list.files(src, full.names = TRUE)"
+^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+tests/testthat/notest-source_files.R:14:1: style: lines should not be more than 80 characters.
+                        prerequisites <- tryCatch(eval(parse(text = prerequisites)),
+^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+tests/testthat/notest-source_files.R:15:1: style: lines should not be more than 80 characters.
+                                                  error = function(e) return(prerequisites))
+^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+tests/testthat/notest-source_files.R:17:1: style: lines should not be more than 80 characters.
+                            index <- which(lapply(make_list, "[[", "target") == target)
+^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+tests/testthat/notest-source_files.R:20:1: style: lines should not be more than 80 characters.
+                                    throw(paste0("There is no rule to make ", target, "."))
+^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+tests/testthat/notest-source_files.R:30:26: style: Commented code should be removed.
+                        #testthat::expect_identical(result, expectation)
+                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
