@@ -1,9 +1,9 @@
-checking top-level files ... WARNING
-Conversion of ‘README.md’ failed:
-pandoc: Could not fetch https://travis-ci.org/fvafrCU/fakemake.svg?branch=master
-InvalidProxyEnvironmentVariable "https_proxy" "https://10.127.255.17:8080"
-
 checking CRAN incoming feasibility ... NOTE
 Maintainer: ‘First Last <first.last@example.com>’
 
+New submission
+
 Version contains large components (0.0.0.9000)
+Warning message:
+In readLines("/etc/os-release") :
+  incomplete final line found on '/etc/os-release'
