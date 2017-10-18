@@ -23,6 +23,9 @@ str(make_list <- add_tempdir(provide_make_list(type = "minimal")))
 make(make_list[[1]][["target"]], make_list)
 
 \dontshow{
+make_list <- add_tempdir(provide_make_list(type = "minimal"))
+make(make_list[[1]][["target"]], make_list)
+
 src <- file.path(tempdir(), "src")
 dir.create(src)
 cat('print("foo")', file = file.path(src, "foo.R"))
