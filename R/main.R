@@ -171,10 +171,14 @@ make <- function(target, make_list) {
         prerequisites <- make_list[[index]][["prerequisites"]]
         is_phony <- isTRUE(make_list[[index]][[".PHONY"]])
         if (! is.null(prerequisites)) {
-            # If prerequisites is a valid R expression, evaluate it.
+            # If any prerequisite is a valid R expression, evaluate it.
             # Else use as is:
-            prerequisites <- tryCatch(eval(parse(text = prerequisites)),
-                          error = function(e) return(prerequisites))
+            evaluated <- NULL
+            for (p in prerequisites)
+                evaluated <- c(evaluated,
+                               tryCatch(eval(parse(text = p)),
+                                        error = function(e) return(p)))
+            prerequisites <- evaluated
             for (p in sort(prerequisites)) {
                 res <- c(res, make(p, make_list))
             }

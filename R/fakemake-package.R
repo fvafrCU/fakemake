@@ -1,4 +1,4 @@
-#' Here Goes the Title
+#' Mock the Unix Make Utility
 #'
 #' A description is a paragraph consisting of one or more sentences.
 #' You may add another paragraph for a 'Details' section.

@@ -25,7 +25,7 @@ help("fakemake-package", package = "fakemake")
 ```
 
 ```
-#> Here Goes the Title
+#> Mock the Unix Make Utility
 #> 
 #> Description:
 #> 

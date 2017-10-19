@@ -4,7 +4,7 @@
 24 R/unit_test_internals.R     touch   20     0
 26 R/unit_test_internals.R     touch   21     0
 28 R/unit_test_internals.R     touch   22     0
-fakemake Coverage: 96.45%
+fakemake Coverage: 96.55%
 R/unit_test_internals.R: 61.54%
 R/internals.R: 100.00%
 R/main.R: 100.00%
