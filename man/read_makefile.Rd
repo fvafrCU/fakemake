@@ -2,7 +2,7 @@
 % Please edit documentation in R/main.R
 \name{read_makefile}
 \alias{read_makefile}
-\title{Read a Makefile into a Makelist}
+\title{Read a Makefile Into a Makelist}
 \usage{
 read_makefile(path)
 }
@@ -13,7 +13,7 @@ read_makefile(path)
 The makelist.
 }
 \description{
-Read a Makefile into a Makelist
+Read a Makefile Into a Makelist
 }
 \note{
 This function will not read arbitrary Makefiles, just those

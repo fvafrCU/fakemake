@@ -1,25 +1,8 @@
 unlink(list.files(tempdir(), pattern = ".*\\.Rout", full.names = TRUE))
 devtools::load_all(".")
-make_list <- provide_make_list()
-write_makefile(make_list, path = "nomakefile")
+ml <- list(list(target = file.path("log", "roxygen2.Rout"),
+                code = 'roxygen2::roxygenize(".")',
+                prerequisites = 'list.files("R/", full.names = TRUE)'))
 
-names(make_list) <- sapply(make_list, "[[", "target")
+print(make("log/roxygen2.Rout", ml))
 
-
-write_makefile(make_list, path = "nomakefile")
-file.show("nomakefile", pager = "cat")
-nm <- read_makefile("nomakefile")
-unlink(list.files(pattern = ".*\\.Rout"))
-print(make("all.Rout", nm))
-
-unlink("a2.Rout")
-print(make("all.Rout", make_list))
-
-unlink("a1.Rout")
-print(make("all.Rout", make_list))
-
-unlink("b1.Rout")
-print(make("all.Rout", make_list))
-
-make_list[["a2.Rout"]][".PHONY"] <- TRUE
-print(make("all.Rout", make_list))

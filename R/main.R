@@ -13,7 +13,7 @@ provide_make_list <- function(type = "minimal") {
     return(ml)
 }
 
-#' Add the output of \code{\link{tempdir}} to a makelist
+#' Add the Output of \code{\link{tempdir}} to a Makelist
 #'
 #' You do not want to litter your working directory? Use \R's temporary
 #' directory.
@@ -68,7 +68,7 @@ write_makefile <- function(make_list, path,
     return(MakefileR::write_makefile(m, path))
 }
 
-#' Read a Makefile into a Makelist
+#' Read a Makefile Into a Makelist
 #'
 #' @param path The path to the file.
 #' @return The makelist.

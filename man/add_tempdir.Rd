@@ -2,7 +2,7 @@
 % Please edit documentation in R/main.R
 \name{add_tempdir}
 \alias{add_tempdir}
-\title{Add the output of \code{\link{tempdir}} to a makelist}
+\title{Add the Output of \code{\link{tempdir}} to a Makelist}
 \usage{
 add_tempdir(x)
 }
