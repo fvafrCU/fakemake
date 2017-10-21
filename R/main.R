@@ -119,7 +119,7 @@ read_makefile <- function(path) {
 #' Mock the Unix Make Utility
 #'
 #' @param make_list The makelist (a listed version of a Makefile).
-#' @param target The make target.
+#' @param name The name or alias of a make target.
 #' @return A character vector containing the targets made during the current
 #' run.
 #' @export
@@ -158,16 +158,18 @@ read_makefile <- function(path) {
 #' result <- make(make_list[[4]][["target"]], make_list)
 #' RUnit::checkTrue(identical(result, expectation))
 #' }
-make <- function(target, make_list) {
+make <- function(name, make_list) {
     res <- NULL
-    index <- which(lapply(make_list, "[[", "target") == target)
+    index <- which(lapply(make_list, "[[", "alias") == name)
+    index <- which(lapply(make_list, "[[", "target") == name)
     if (identical(index, integer(0))) {
-        if (! file.exists(target)) {
-            throw(paste0("There is no rule to make ", target, "."))
+        if (! file.exists(name)) {
+            throw(paste0("There is no rule to make ", name, "."))
         } else {
-            message("Prerequisite ", target, " found.")
+            message("Prerequisite ", name, " found.")
         }
     } else {
+        target <- make_list[[index]][["target"]]
         # If  target is a valid R expression, evaluate it.
         # Else use as is:
         target <- tryCatch(eval(parse(text = target)),
