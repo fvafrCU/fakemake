@@ -4,10 +4,10 @@
 \alias{make}
 \title{Mock the Unix Make Utility}
 \usage{
-make(target, make_list)
+make(name, make_list)
 }
 \arguments{
-\item{target}{The make target.}
+\item{name}{The name or alias of a make target.}
 
 \item{make_list}{The makelist (a listed version of a Makefile).}
 }
