@@ -1,12 +1,14 @@
-                  filename functions line value
-19 R/unit_test_internals.R     touch   18     0
-21 R/unit_test_internals.R     touch   19     0
-24 R/unit_test_internals.R     touch   20     0
-26 R/unit_test_internals.R     touch   21     0
-28 R/unit_test_internals.R     touch   22     0
-fakemake Coverage: 96.55%
+                   filename functions line value
+129                R/main.R      make  198     0
+130                R/main.R      make  199     0
+19  R/unit_test_internals.R     touch   18     0
+21  R/unit_test_internals.R     touch   19     0
+24  R/unit_test_internals.R     touch   20     0
+26  R/unit_test_internals.R     touch   21     0
+28  R/unit_test_internals.R     touch   22     0
+fakemake Coverage: 95.48%
 R/unit_test_internals.R: 61.54%
+R/main.R: 98.40%
 R/internals.R: 100.00%
-R/main.R: 100.00%
 R/sink_all.R: 100.00%
 R/throw.R: 100.00%

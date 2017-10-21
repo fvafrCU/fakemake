@@ -126,11 +126,11 @@ read_makefile <- function(path) {
 #' @examples
 #' str(make_list <- add_tempdir(provide_make_list(type = "minimal")))
 #' make(make_list[[1]][["target"]], make_list)
-#' 
+#'
 #' \dontshow{
 #' make_list <- add_tempdir(provide_make_list(type = "minimal"))
 #' make(make_list[[1]][["target"]], make_list)
-#' 
+#'
 #' src <- file.path(tempdir(), "src")
 #' dir.create(src)
 #' cat('print("foo")', file = file.path(src, "foo.R"))
@@ -138,12 +138,12 @@ read_makefile <- function(path) {
 #' make_list[[4]]["code"] <- "lapply(list.files(src, full.names = TRUE),
 #'                                   source)"
 #' make_list[[4]]["prerequisites"] <- "list.files(src, full.names = TRUE)"
-#' 
+#'
 #' #% make with updated source files
 #' expectation <- make_list[[4]][["target"]]
 #' result <- make(make_list[[4]][["target"]], make_list)
 #' RUnit::checkTrue(identical(result, expectation))
-#' 
+#'
 #' #% rerun
 #' # need to sleep on fast machine as the file modification times are identical
 #' # otherwise.
@@ -151,7 +151,7 @@ read_makefile <- function(path) {
 #' expectation <- NULL
 #' result <- make(make_list[[4]][["target"]], make_list)
 #' RUnit::checkTrue(identical(result, expectation))
-#' 
+#'
 #' #% touch source file and rerun
 #' fakemake:::touch(file.path(src, "bar.R"))
 #' expectation <- make_list[[4]][["target"]]
@@ -168,8 +168,11 @@ make <- function(target, make_list) {
             message("Prerequisite ", target, " found.")
         }
     } else {
+        # If  target is a valid R expression, evaluate it.
+        # Else use as is:
+        target <- tryCatch(eval(parse(text = target)),
+                         error = function(e) return(target))
         prerequisites <- make_list[[index]][["prerequisites"]]
-        is_phony <- isTRUE(make_list[[index]][[".PHONY"]])
         if (! is.null(prerequisites)) {
             # If any prerequisite is a valid R expression, evaluate it.
             # Else use as is:
@@ -183,33 +186,48 @@ make <- function(target, make_list) {
                 res <- c(res, make(p, make_list))
             }
         }
-        # This is a nesting depth of 4. But the shorter
-        # is_phony || !f(target) ||
-        # !null(prerequisites! & any(t(prerequisites) > t(target)
-        # will fail with testing coverage. covr doesn't test for all
-        # combinations of composite conditions. So I stick with it.
-        if (is_phony) {
-            is_to_be_made <- TRUE
-        } else {
-            if (! file.exists(target)) {
-                is_to_be_made <- TRUE
-            } else {
-                if (is.null(prerequisites)) {
-                    is_to_be_made <- FALSE
-                } else {
-                    if (any(file.mtime(prerequisites) > file.mtime(target))) {
-                        is_to_be_made <- TRUE
-                    } else {
-                        is_to_be_made <- FALSE
-                    }
-                }
-            }
-        }
+        is_phony <- isTRUE(make_list[[index]][[".PHONY"]])
+        is_to_be_made <- is_to_be_made(target = target, is_phony = is_phony,
+                                       prerequisites = prerequisites)
         if (is_to_be_made) {
             code <- make_list[[index]][["code"]]
-            sink_all(path = target, code = eval(parse(text = code)))
+            sink <- make_list[[index]][["sink"]]
+            if (is.null(sink)) {
+                sink <- target
+            } else {
+                sink <- tryCatch(eval(parse(text = sink)),
+                                 error = function(e) return(sink))
+
+            }
+            sink_all(path = sink, code = eval(parse(text = code)))
             res <- c(res, target)
         }
     }
     return(invisible(res))
+}
+
+is_to_be_made <- function(target, prerequisites, is_phony) {
+    # This is a nesting depth of 4. But the shorter
+    # is_phony || !f(target) ||
+    # !null(prerequisites! & any(t(prerequisites) > t(target)
+    # will fail with testing coverage. covr doesn't test for all
+    # combinations of composite conditions. So I stick with it.
+    if (is_phony) {
+        is_to_be_made <- TRUE
+    } else {
+        if (! file.exists(target)) {
+            is_to_be_made <- TRUE
+        } else {
+            if (is.null(prerequisites)) {
+                is_to_be_made <- FALSE
+            } else {
+                if (any(file.mtime(prerequisites) > file.mtime(target))) {
+                    is_to_be_made <- TRUE
+                } else {
+                    is_to_be_made <- FALSE
+                }
+            }
+        }
+    }
+    return(is_to_be_made)
 }
