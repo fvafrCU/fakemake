@@ -160,8 +160,10 @@ read_makefile <- function(path) {
 #' }
 make <- function(name, make_list) {
     res <- NULL
-    index <- which(lapply(make_list, "[[", "alias") == name)
     index <- which(lapply(make_list, "[[", "target") == name)
+    if (identical(index, integer(0))) {
+        index <- which(lapply(make_list, "[[", "alias") == name)
+    }
     if (identical(index, integer(0))) {
         if (! file.exists(name)) {
             throw(paste0("There is no rule to make ", name, "."))
