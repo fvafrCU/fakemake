@@ -1,4 +1,4 @@
-'/home/qwer/svn/R/r-devel/build/bin/R' --no-site-file --no-environ --no-save  \
-  --no-restore --quiet CMD build '/home/qwer/git/cyclops/fvafrcu/fakemake'  \
+'/home/nik/svn/R/r-devel/build/bin/R' --no-site-file --no-environ --no-save  \
+  --no-restore --quiet CMD build '/home/nik/git/cyclops/fvafrcu/fakemake'  \
   --no-resave-data --no-manual 
 

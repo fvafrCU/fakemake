@@ -18,6 +18,26 @@ cleanr_code <- paste('tryCatch(cleanr::check_directory("R/",',
 
 R_codes <- "list.files(\"R\", full.names = TRUE)"
 
+pkg_tgz <- function() {
+    pkg <- devtools::as.package(".") 
+    tgz <- file.path(pkg$path, 
+                     paste0(pkg$package, "_", pkg$version, ".tar.gz"))
+    return(tgz)
+}
+
+check_tgz <- function(path, cmdargs = NULL) {
+    # heavily borrowing from rcmdcheck::rcmdcheck()
+    withr::with_dir(dirname(path),
+                    out <- callr::rcmd_safe("check", 
+                                            cmdargs = c(basename(path), 
+                                                        cmdargs),
+                                            libpath = .libPaths(), 
+                                            callback =  writeLines))
+    invisible(out)
+}
+check_tgz_as_cran <- function(path) {
+    return(check_tgz(path, cmdargs = "--as-cran")) 
+}
 
 
 ml <- list(list(target = file.path("log", "dependencies.Rout"),
@@ -30,22 +50,19 @@ ml <- list(list(target = file.path("log", "dependencies.Rout"),
                 prerequisites = c("list.files(\"R\", full.names = TRUE)", 
                                   "log/dependencies.Rout")),
            list(alias = "build",
-                target = "pkg <- devtools::as.package(\".\"); 
-                          paste0(pkg$package, \"_\", pkg$version, \".tar.gz\")",
+                target = "pkg_tgz()",
                 code = "devtools::build(pkg = \".\", path = \".\")",
                 sink = "log/build.Rout",
-                prerequisites = c("log/dependencies.Rout", "log/roxygen2.Rout")),
+                prerequisites = c("log/dependencies.Rout", "log/roxygen2.Rout", 
+                                  "DESCRIPTION")),
            list(alias = "check",
                 target = "log/check.Rout",
-                code = "pkg <- devtools::as.package(\".\"); 
-                        tgz <- paste0(pkg$package, \"_\", pkg$version, \".tar.gz\");
-                        rcmdcheck::rcmdcheck(tgz, args = \"--as-cran\")",
-                prerequisites = "pkg <- devtools::as.package(\".\"); 
-                          paste0(pkg$package, \"_\", pkg$version, \".tar.gz\")"
-                                 )
+                code = "check_tgz_as_cran(pkg_tgz())",
+                prerequisites = "pkg_tgz()")
 )
 
 
+print(fakemake::make("build", ml))
 print(fakemake::make("check", ml))
 
 
