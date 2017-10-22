@@ -21,8 +21,7 @@ R_codes <- "list.files(\"R\", full.names = TRUE)"
 
 
 ml <- list(list(target = file.path("log", "dependencies.Rout"),
-                code = dep_code,
-                .PHONY = TRUE),
+                code = dep_code),
            list(target = file.path("log", "roxygen2.Rout"),
                 code = "roxygen2::roxygenize(\".\")",
                 prerequisites = "list.files(\"R\", full.names = TRUE)"),
@@ -35,11 +34,19 @@ ml <- list(list(target = file.path("log", "dependencies.Rout"),
                           paste0(pkg$package, \"_\", pkg$version, \".tar.gz\")",
                 code = "devtools::build(pkg = \".\", path = \".\")",
                 sink = "log/build.Rout",
-                prerequisites = c("log/dependencies.Rout", "log/roxygen2.Rout"))
+                prerequisites = c("log/dependencies.Rout", "log/roxygen2.Rout")),
+           list(alias = "check",
+                target = "log/check.Rout",
+                code = "pkg <- devtools::as.package(\".\"); 
+                        tgz <- paste0(pkg$package, \"_\", pkg$version, \".tar.gz\");
+                        rcmdcheck::rcmdcheck(tgz, args = \"--as-cran\")",
+                prerequisites = "pkg <- devtools::as.package(\".\"); 
+                          paste0(pkg$package, \"_\", pkg$version, \".tar.gz\")"
+                                 )
 )
 
 
-print(fakemake::make("build", ml))
+print(fakemake::make("check", ml))
 
 
 

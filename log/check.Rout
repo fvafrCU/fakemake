@@ -1,66 +1,65 @@
-* using log directory ‘/home/qwer/git/cyclops/fvafrcu/fakemake/fakemake.Rcheck’
-* using R Under development (unstable) (2017-10-10 r73520)
-* using platform: x86_64-pc-linux-gnu (64-bit)
-* using session charset: UTF-8
-* using options ‘--run-donttest --as-cran’
-* checking for file ‘fakemake/DESCRIPTION’ ... OK
-* this is package ‘fakemake’ version ‘0.0.0.9001’
-* package encoding: UTF-8
-* checking CRAN incoming feasibility ... NOTE
-Maintainer: ‘First Last <first.last@example.com>’
+────────────────────────────────────────────────────────────────────────────────
+─  using log directory ‘/tmp/RtmpE2tqGo/file56135f463e30/fakemake.Rcheck’
+─  using R Under development (unstable) (2017-10-10 r73520)
+─  using platform: x86_64-pc-linux-gnu (64-bit)
+─  using session charset: UTF-8
+─  using option ‘--as-cran’
+✔  checking for file ‘fakemake/DESCRIPTION’
+─  this is package ‘fakemake’ version ‘0.0.0.9001’
+─  package encoding: UTF-8
+N  checking CRAN incoming feasibility
+   Maintainer: ‘First Last <first.last@example.com>’
+   
+   New submission
+   
+   Version contains large components (0.0.0.9001)
+✔  checking package namespace information
+✔  checking package dependencies
+✔  checking if this is a source package
+✔  checking if there is a namespace
+✔  checking for executable files
+✔  checking for hidden files and directories
+✔  checking for portable file names
+✔  checking for sufficient/correct file permissions
+✔  checking whether package ‘fakemake’ can be installed
+✔  checking installed package size
+✔  checking package directory
+✔  checking ‘build’ directory
+✔  checking DESCRIPTION meta-information
+✔  checking top-level files
+✔  checking for left-over files
+✔  checking index information
+✔  checking package subdirectories
+✔  checking R files for non-ASCII characters
+✔  checking R files for syntax errors
+✔  checking whether the package can be loaded
+✔  checking whether the package can be loaded with stated dependencies
+✔  checking whether the package can be unloaded cleanly
+✔  checking whether the namespace can be loaded with stated dependencies
+✔  checking whether the namespace can be unloaded cleanly
+✔  checking use of S3 registration
+✔  checking dependencies in R code
+✔  checking S3 generic/method consistency
+✔  checking replacement functions
+✔  checking foreign function calls
+✔  checking R code for possible problems
+✔  checking Rd files
+✔  checking Rd metadata
+✔  checking Rd line widths
+✔  checking Rd cross-references
+✔  checking for missing documentation entries
+✔  checking for code/documentation mismatches
+✔  checking Rd \usage sections
+✔  checking Rd contents
+✔  checking for unstated dependencies in examples
+✔  checking installed files from ‘inst/doc’
+✔  checking files in ‘vignettes’
+✔  checking examples
+✔  checking for unstated dependencies in ‘tests’
+✔  checking tests
+✔  checking for unstated dependencies in vignettes
+✔  checking package vignettes in ‘inst/doc’
+✔  checking re-building of vignette outputs
+✔  checking PDF version of manual
 
-New submission
-
-Version contains large components (0.0.0.9001)
-* checking package namespace information ... OK
-* checking package dependencies ... OK
-* checking if this is a source package ... OK
-* checking if there is a namespace ... OK
-* checking for executable files ... OK
-* checking for hidden files and directories ... OK
-* checking for portable file names ... OK
-* checking for sufficient/correct file permissions ... OK
-* checking whether package ‘fakemake’ can be installed ... OK
-* checking installed package size ... OK
-* checking package directory ... OK
-* checking ‘build’ directory ... OK
-* checking DESCRIPTION meta-information ... OK
-* checking top-level files ... OK
-* checking for left-over files ... OK
-* checking index information ... OK
-* checking package subdirectories ... OK
-* checking R files for non-ASCII characters ... OK
-* checking R files for syntax errors ... OK
-* checking whether the package can be loaded ... OK
-* checking whether the package can be loaded with stated dependencies ... OK
-* checking whether the package can be unloaded cleanly ... OK
-* checking whether the namespace can be loaded with stated dependencies ... OK
-* checking whether the namespace can be unloaded cleanly ... OK
-* checking use of S3 registration ... OK
-* checking dependencies in R code ... OK
-* checking S3 generic/method consistency ... OK
-* checking replacement functions ... OK
-* checking foreign function calls ... OK
-* checking R code for possible problems ... OK
-* checking Rd files ... OK
-* checking Rd metadata ... OK
-* checking Rd line widths ... OK
-* checking Rd cross-references ... OK
-* checking for missing documentation entries ... OK
-* checking for code/documentation mismatches ... OK
-* checking Rd \usage sections ... OK
-* checking Rd contents ... OK
-* checking for unstated dependencies in examples ... OK
-* checking installed files from ‘inst/doc’ ... OK
-* checking files in ‘vignettes’ ... OK
-* checking examples ... OK
-* checking for unstated dependencies in ‘tests’ ... OK
-* checking tests ... OK
-  Running ‘runit.R’
-  Running ‘testthat.R’
-* checking for unstated dependencies in vignettes ... OK
-* checking package vignettes in ‘inst/doc’ ... OK
-* checking re-building of vignette outputs ... OK
-* checking PDF version of manual ... OK
-* DONE
-Status: 1 NOTE
+── 0 errors ✔ | 0 warnings ✔ | 1 note ✖
