@@ -2,9 +2,11 @@
 
 export(add_tempdir)
 export(check_archive)
+export(check_archive_as_cran)
 export(get_pkg_archive_path)
 export(make)
 export(provide_make_list)
 export(read_makefile)
 export(sink_all)
+export(touch)
 export(write_makefile)

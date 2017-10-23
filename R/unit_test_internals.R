@@ -13,11 +13,3 @@ make_initial <- function() {
     expectation <- file.path(tempdir(), make_tree)
     RUnit::checkIdentical(result, expectation)
 }
-
-touch <- function(path) {
-    tmp <- tempfile()
-    file.copy(path, tmp)
-    if (file.mtime(tmp) <= file.mtime(path)) Sys.sleep(1)
-    res <- file.copy(tmp, path, overwrite = TRUE)
-    return(res)
-}

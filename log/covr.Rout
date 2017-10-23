@@ -1,27 +1,9 @@
-                   filename             functions line value
-145                R/main.R                  make  204     0
-146                R/main.R                  make  205     0
-16                R/tools.R  get_pkg_archive_path   14     0
-18                R/tools.R  get_pkg_archive_path   15     0
-19                R/tools.R  get_pkg_archive_path   16     0
-20                R/tools.R  get_pkg_archive_path   17     0
-48                R/tools.R         check_archive   51     0
-49                R/tools.R         check_archive   52     0
-51                R/tools.R         check_archive   53     0
-53                R/tools.R         check_archive   54     0
-55                R/tools.R         check_archive   55     0
-57                R/tools.R         check_archive   56     0
-59                R/tools.R         check_archive   57     0
-68                R/tools.R check_archive_as_cran   65     0
-23  R/unit_test_internals.R                 touch   18     0
-25  R/unit_test_internals.R                 touch   19     0
-28  R/unit_test_internals.R                 touch   20     0
-30  R/unit_test_internals.R                 touch   21     0
-32  R/unit_test_internals.R                 touch   22     0
-fakemake Coverage: 88.89%
-R/tools.R: 0.00%
-R/unit_test_internals.R: 61.54%
-R/main.R: 98.45%
+[1] filename  functions line      value    
+<0 rows> (or 0-length row.names)
+fakemake Coverage: 100.00%
 R/internals.R: 100.00%
+R/main.R: 100.00%
 R/sink_all.R: 100.00%
 R/throw.R: 100.00%
+R/tools.R: 100.00%
+R/unit_test_internals.R: 100.00%

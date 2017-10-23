@@ -87,3 +87,16 @@ test_make_source_files <- function() {
             "section of make()! ",
             "I haven't understood yet why is does not work in formal testing.")
 }
+
+test_make_sink <- function() {
+    ml <- fakemake:::get_ml()
+    unlink(list.files(tempdir(), pattern = ".*\\.Rout", full.names = TRUE))
+    ml[[1]][["sink"]] <- "file.path(tempdir(), \"all.txt\")"
+    #% using a sink
+    unlink(file.path(tempdir(), "all.Rout"))
+    result <- make(file.path(tempdir(), "all.Rout"), ml)
+    make_tree <- c("b1.Rout", "a1.Rout", "a2.Rout", "all.Rout")
+    expectation <- file.path(tempdir(), make_tree)
+    RUnit::checkIdentical(result, expectation)
+    RUnit::checkTrue(file.exists(file.path(tempdir(), "all.txt")))
+}

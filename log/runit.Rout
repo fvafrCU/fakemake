@@ -12,6 +12,176 @@ Executing test function test_write_makefile  ...  done successfully.
 
 
 
+Executing test function test_check_archive  ... Creating package 'fakepack' in '/tmp/RtmpwIpa4D'
+No DESCRIPTION found. Creating with values:
+
+
+Package: fakepack
+Title: What the Package Does (one line, title case)
+Version: 0.0.0.9000
+Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
+Description: What the package does (one paragraph).
+Depends: R (>= 3.5.0)
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
+* Creating `fakepack.Rproj` from template.
+* Adding `.Rproj.user`, `.Rhistory`, `.RData` to ./.gitignore
+Updating roxygen version in /tmp/RtmpwIpa4D/fakepack/DESCRIPTION
+Writing NAMESPACE
+Writing throw.Rd
+'/home/nik/svn/R/r-devel/build/bin/R' --no-site-file --no-environ --no-save  \
+  --no-restore --quiet CMD build '/tmp/RtmpwIpa4D/fakepack' --no-resave-data  \
+  --no-manual 
+
+* checking for file ‘/tmp/RtmpwIpa4D/fakepack/DESCRIPTION’ ... OK
+* preparing ‘fakepack’:
+* checking DESCRIPTION meta-information ... OK
+* checking for LF line-endings in source and make files and shell scripts
+* checking for empty or unneeded directories
+* building ‘fakepack_0.0.0.9000.tar.gz’
+
+* using log directory ‘/tmp/RtmpwIpa4D/fakepack/fakepack.Rcheck’
+* using R Under development (unstable) (2017-10-01 r73423)
+* using platform: x86_64-pc-linux-gnu (64-bit)
+* using session charset: UTF-8
+* checking for file ‘fakepack/DESCRIPTION’ ... OK
+* this is package ‘fakepack’ version ‘0.0.0.9000’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for executable files ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘fakepack’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking DESCRIPTION meta-information ... WARNING
+Non-standard license specification:
+  What license is it under?
+Standardizable: FALSE
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd line widths ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking examples ... OK
+* checking PDF version of manual ... OK
+* DONE
+Status: 1 WARNING
+* using log directory ‘/tmp/RtmpwIpa4D/fakepack/fakepack.Rcheck’
+* using R Under development (unstable) (2017-10-01 r73423)
+* using platform: x86_64-pc-linux-gnu (64-bit)
+* using session charset: UTF-8
+* using option ‘--as-cran’
+* checking for file ‘fakepack/DESCRIPTION’ ... OK
+* this is package ‘fakepack’ version ‘0.0.0.9000’
+* package encoding: UTF-8
+* checking CRAN incoming feasibility ... NOTE
+Maintainer: ‘First Last <first.last@example.com>’
+
+Version contains large components (0.0.0.9000)
+
+The Title field should be in title case, current version then in title case:
+‘What the Package Does (one line, title case)’
+‘What the Package Does (One Line, Title Case)’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for executable files ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘fakepack’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking DESCRIPTION meta-information ... WARNING
+Non-standard license specification:
+  What license is it under?
+Standardizable: FALSE
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking use of S3 registration ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd line widths ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking examples ... OK
+* checking PDF version of manual ... OK
+* DONE
+Status: 1 WARNING, 1 NOTE
+ done successfully.
+
+
+
+Executing test function test_package_path  ... Creating package 'anRpackage' in '/tmp/RtmpwIpa4D'
+No DESCRIPTION found. Creating with values:
+
+
+Package: anRpackage
+Title: What the Package Does (one line, title case)
+Version: 0.0.0.9000
+Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
+Description: What the package does (one paragraph).
+Depends: R (>= 3.5.0)
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
+* Creating `anRpackage.Rproj` from template.
+* Adding `.Rproj.user`, `.Rhistory`, `.RData` to ./.gitignore
+ done successfully.
+
+
+
+Executing test function test_touch  ...  done successfully.
+
+
+
 Executing test function test_exception  ... Error in eval(expr, envir = parent.frame()) : Hello, error
  done successfully.
 
@@ -34,9 +204,13 @@ Executing test function test_make_phony  ...  done successfully.
 
 
 Executing test function test_make_prerequisite  ... Error in make(p, make_list) : 
-  There is no rule to make /tmp/RtmpBitCJU/c1.Rout.
-Prerequisite /tmp/RtmpBitCJU/c1.Rout found.
+  There is no rule to make /tmp/RtmpwIpa4D/c1.Rout.
+Prerequisite /tmp/RtmpwIpa4D/c1.Rout found.
  done successfully.
+
+
+
+Executing test function test_make_sink  ...  done successfully.
 
 
 
