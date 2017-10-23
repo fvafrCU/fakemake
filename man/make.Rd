@@ -9,7 +9,7 @@ make(name, make_list)
 \arguments{
 \item{name}{The name or alias of a make target.}
 
-\item{make_list}{The makelist (a listed version of a Makefile).}
+\item{make_list}{The \code{makelist} (a listed version of a Makefile).}
 }
 \value{
 A character vector containing the targets made during the current

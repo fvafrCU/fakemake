@@ -2,15 +2,15 @@
 % Please edit documentation in R/main.R
 \name{add_tempdir}
 \alias{add_tempdir}
-\title{Add the Output of \code{\link{tempdir}} to a Makelist}
+\title{Add the Output of \code{\link{tempdir}} to a \code{Makelist}}
 \usage{
 add_tempdir(x)
 }
 \arguments{
-\item{x}{The makelist.}
+\item{x}{The \code{makelist}.}
 }
 \value{
-The makelist.
+The \code{makelist}.
 }
 \description{
 You do not want to litter your working directory? Use \R's temporary

@@ -1,22 +1,19 @@
 unlink(list.files(tempdir(), pattern = ".*\\.Rout", full.names = TRUE))
 devtools::load_all(".")
 
-ml <- list(list(target = file.path("log", "roxygen2.Rout"),
-                code = "roxygen2::roxygenize(\".\")",
-                prerequisites = "list.files(\"R\", full.names = TRUE)"),
-           list(alias = "build",
-                target = "get_pkg_archive_path()",
+ml <- list(list(alias = "build", target = "get_pkg_archive_path()",
                 code = "devtools::build(pkg = \".\", path = \".\")",
                 sink = "log/build.Rout",
-                prerequisites = c("log/dependencies.Rout", "log/roxygen2.Rout", 
+                prerequisites = c("list.files(\"R\", full.names = TRUE)",
+                                  "list.files(\"man\", full.names = TRUE)",
                                   "DESCRIPTION")),
-           list(alias = "check",
-                target = "log/check.Rout",
+           list(alias = "check", target = "log/check.Rout",
                 code = "check_archive_as_cran(get_pkg_archive_path())",
                 prerequisites = "get_pkg_archive_path()")
 )
 
 print(fakemake::make("build", ml))
+print(fakemake::make("check", ml))
 touch("DESCRIPTION")
 print(fakemake::make("check", ml))
 
@@ -34,6 +31,7 @@ dep_code <- paste("for (dep in ", dependencies, ")",
                   "\"https://cran.uni-muenster.de/\")")
 cleanr_code <- paste('tryCatch(cleanr::check_directory("R/",', 
                      'check_return = FALSE), cleanr = function(e) print(e))')
+
 ml <- list(list(target = file.path("log", "dependencies.Rout"),
                 code = dep_code),
            list(target = file.path("log", "roxygen2.Rout"),

@@ -2,18 +2,18 @@
 % Please edit documentation in R/main.R
 \name{provide_make_list}
 \alias{provide_make_list}
-\title{Load an Example Makelist Provided by \pkg{fakemake}.}
+\title{Load an Example \code{Makelist} Provided by \pkg{fakemake}.}
 \usage{
 provide_make_list(type = "minimal")
 }
 \arguments{
-\item{type}{The type of makelist.}
+\item{type}{The type of \code{makelist}.}
 }
 \value{
-A makelist.
+A \code{makelist}.
 }
 \description{
-Load an Example Makelist Provided by \pkg{fakemake}.
+Load an Example \code{Makelist} Provided by \pkg{fakemake}.
 }
 \examples{
 str(provide_make_list("minimal"))

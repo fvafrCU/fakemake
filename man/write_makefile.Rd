@@ -2,7 +2,7 @@
 % Please edit documentation in R/main.R
 \name{write_makefile}
 \alias{write_makefile}
-\title{Write a Makelist to File}
+\title{Write a \code{Makelist} to File}
 \usage{
 write_makefile(make_list, path, Rbin = "Rscript-devel")
 }
@@ -18,7 +18,7 @@ See
 \code{\link[MakefileR:write_makefile]{MakefileR::write_makefile}}.
 }
 \description{
-Write a Makelist to File
+Write a \code{Makelist} to File
 }
 \examples{
 make_file <- file.path(tempdir(), "my_Makefile")

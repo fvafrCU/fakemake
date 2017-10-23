@@ -1,7 +1,7 @@
-#' Load an Example Makelist Provided by \pkg{fakemake}.
+#' Load an Example \code{Makelist} Provided by \pkg{fakemake}.
 #'
-#' @param type The type of makelist.
-#' @return A makelist.
+#' @param type The type of \code{makelist}.
+#' @return A \code{makelist}.
 #' @export
 #' @examples
 #' str(provide_make_list("minimal"))
@@ -13,14 +13,14 @@ provide_make_list <- function(type = "minimal") {
     return(ml)
 }
 
-#' Add the Output of \code{\link{tempdir}} to a Makelist
+#' Add the Output of \code{\link{tempdir}} to a \code{Makelist}
 #'
 #' You do not want to litter your working directory? Use \R's temporary
 #' directory.
 #' @note This is mainly meant to run examples without touching your disk. You
 #' should not bother.
-#' @param x The makelist.
-#' @return The makelist.
+#' @param x The \code{makelist}.
+#' @return The \code{makelist}.
 #' @export
 #' @examples
 #' str(add_tempdir(provide_make_list("minimal")))
@@ -35,7 +35,7 @@ add_tempdir <- function(x) {
     return(res)
 }
 
-#' Write a Makelist to File
+#' Write a \code{Makelist} to File
 #'
 #' @param make_list The list to write to file.
 #' @param path The path to the file.
@@ -68,10 +68,10 @@ write_makefile <- function(make_list, path,
     return(MakefileR::write_makefile(m, path))
 }
 
-#' Read a Makefile Into a Makelist
+#' Read a Makefile Into a \code{Makelist}
 #'
 #' @param path The path to the file.
-#' @return The makelist.
+#' @return The \code{makelist}.
 #' @note This function will not read arbitrary Makefiles, just those
 #' created via \code{\link{write_makefile}}! If you modify such a Makefile
 #' make sure you only add simple rules like the ones you see in that file.
@@ -118,7 +118,7 @@ read_makefile <- function(path) {
 
 #' Mock the Unix Make Utility
 #'
-#' @param make_list The makelist (a listed version of a Makefile).
+#' @param make_list The \code{makelist} (a listed version of a Makefile).
 #' @param name The name or alias of a make target.
 #' @return A character vector containing the targets made during the current
 #' run.

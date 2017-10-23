@@ -17,7 +17,7 @@ Get a Package's Archive Path From the Package's DESCRIPTION
 }
 \note{
 The archive file does not have to exist. Use
-\code{file.exists(get_pkg_archive_path())} to test existance.
+\code{file.exists(get_pkg_archive_path())} to test existence.
 }
 \examples{
 package_path <- file.path(tempdir(), "anRpackage")

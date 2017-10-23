@@ -2,7 +2,7 @@
 % Please edit documentation in R/tools.R
 \name{check_archive}
 \alias{check_archive}
-\title{Programmatically Check a Package Archive}
+\title{Check a Package Archive}
 \usage{
 check_archive(path, cmdargs = NULL)
 }
@@ -13,8 +13,8 @@ check_archive(path, cmdargs = NULL)
 \code{\link[callr:rcmd]{callr::rcmd}})}
 }
 \value{
-A list with the standard output (‘$stdout’), standard error
-(‘stderr’) and exit status (‘$status’) of the check.
+A list with the standard output, standard error
+and exit status of the check.
 (see \code{\link[callr:rcmd]{callr::rcmd}}).
 }
 \description{
@@ -25,7 +25,7 @@ similar to, but leaner than
 the latter parses the output of \code{rcmd_safe} and uses
 \pkg{clisymbols} in the callback, we here just return bare output and use
 \code{\link{writeLines}} as callback. This should result in a screen display
-that should be identical to the output of `R CMD check`.
+that should be identical to the output of \command{R CMD check}.
 }
 \examples{
 \dontrun{ 

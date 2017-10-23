@@ -1,7 +1,7 @@
 #' Get a Package's Archive Path From the Package's DESCRIPTION
 #'
 #' @note The archive file does not have to exist. Use
-#' \code{file.exists(get_pkg_archive_path())} to test existance.
+#' \code{file.exists(get_pkg_archive_path())} to test existence.
 #' @param path Path to the package.
 #' @return Path to the package's archive file.
 #' @export
@@ -17,7 +17,7 @@ get_pkg_archive_path <- function(path = ".") {
     return(tgz)
 }
 
-#' Programmatically Check a Package Archive
+#' Check a Package Archive 
 #'
 #' This is a wrapper to
 #' \code{\link[callr:rcmd_safe]{callr::rcmd_safe}("check")},
@@ -26,13 +26,13 @@ get_pkg_archive_path <- function(path = ".") {
 #' the latter parses the output of \code{rcmd_safe} and uses
 #' \pkg{clisymbols} in the callback, we here just return bare output and use
 #' \code{\link{writeLines}} as callback. This should result in a screen display
-#' that should be identical to the output of `R CMD check`.
+#' that should be identical to the output of \command{R CMD check}.
 #'
 #' @param path Path to the package archive.
 #' @param cmdargs Command line arguments (see
 #' \code{\link[callr:rcmd]{callr::rcmd}})
-#' @return A list with the standard output (‘$stdout’), standard error
-#' (‘stderr’) and exit status (‘$status’) of the check.
+#' @return A list with the standard output, standard error
+#' and exit status of the check.
 #' (see \code{\link[callr:rcmd]{callr::rcmd}}).
 #' @export
 #' @examples
