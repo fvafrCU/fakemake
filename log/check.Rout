@@ -2,7 +2,7 @@
 * using R Under development (unstable) (2017-08-15 r73096)
 * using platform: x86_64-pc-linux-gnu (64-bit)
 * using session charset: UTF-8
-* using option ‘--as-cran’
+* using options ‘--run-donttest --as-cran’
 * checking for file ‘fakemake/DESCRIPTION’ ... OK
 * this is package ‘fakemake’ version ‘0.0.0.9001’
 * package encoding: UTF-8
@@ -55,8 +55,9 @@ Version contains large components (0.0.0.9001)
 * checking files in ‘vignettes’ ... OK
 * checking examples ... OK
 * checking for unstated dependencies in ‘tests’ ... OK
-* checking tests ...
- OK
+* checking tests ... OK
+  Running ‘runit.R’ [89s/107s]
+  Running ‘testthat.R’
 * checking for unstated dependencies in vignettes ... OK
 * checking package vignettes in ‘inst/doc’ ... OK
 * checking re-building of vignette outputs ... OK

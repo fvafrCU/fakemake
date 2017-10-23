@@ -1,3 +1,19 @@
+parse_make_list <- function(ml) {
+    for (i in seq(along = ml)) {
+        for (type in setdiff(names(ml[[i]]), "code")) {
+            x <- ml[[i]][[type]]
+            res <- NULL
+            for (j in seq(along = x)) {
+                y <- ml[[i]][[type]][[j]]
+                res <- c(res, tryCatch(eval(parse(text = y)),
+                                       error = function(e) return(y)))
+            }
+            ml[[i]][[type]] <- res
+        }
+    }
+    return(ml)
+}
+
 # Thanks to Gabor Grothendieck and Josh O'Brien on
 # https://stackoverflow.com/questions/26539441
 # /r-remove-null-elements-from-list-of-lists

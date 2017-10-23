@@ -53,22 +53,6 @@ ml <- list(list(target = file.path("log", "dependencies.Rout"),
                 prerequisites = "get_pkg_archive_path()")
 )
 
-# parse a makelist
-parse_make_list <- function(ml) {
-    for (i in seq(along = ml)) {
-        for (type in setdiff(names(ml[[i]]), "code")) {
-            x <- ml[[i]][[type]]
-            res <- NULL
-            for (j in seq(along = x)) {
-                y <- ml[[i]][[type]][[j]] 
-                res <- c(res, tryCatch(eval(parse(text = y)),
-                                       error = function(e) return(y)))
-            }
-            ml[[i]][[type]] <- res
-        }
-    }
-    return(ml)
-}
 parse_make_list(ml)
 
 

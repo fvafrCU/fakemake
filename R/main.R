@@ -160,11 +160,8 @@ read_makefile <- function(path) {
 #' }
 make <- function(name, make_list) {
     res <- NULL
-    # If target is a valid R expression, evaluate it.
-    # Else use as is:
-    targets <- sapply(lapply(make_list, "[[", "target"),
-                      function(x) tryCatch(eval(parse(text = x)),
-                                           error = function(e) return(x)))
+    make_list <- parse_make_list(make_list)
+    targets <- sapply(make_list, "[[", "target")
     index <- which(targets == name)
     if (identical(index, integer(0))) {
         # If name doesn't match any target, see if it matches an alias.
@@ -180,14 +177,6 @@ make <- function(name, make_list) {
         target <- targets[index]
         prerequisites <- make_list[[index]][["prerequisites"]]
         if (! is.null(prerequisites)) {
-            # If any prerequisite is a valid R expression, evaluate it.
-            # Else use as is:
-            evaluated <- NULL
-            for (p in prerequisites)
-                evaluated <- c(evaluated,
-                               tryCatch(eval(parse(text = p)),
-                                        error = function(e) return(p)))
-            prerequisites <- evaluated
             for (p in sort(prerequisites)) {
                 res <- c(res, make(p, make_list))
             }

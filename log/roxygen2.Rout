@@ -1,5 +1,5 @@
 
-R Under development (unstable) (2017-10-01 r73423) -- "Unsuffered Consequences"
+R Under development (unstable) (2017-08-15 r73096) -- "Unsuffered Consequences"
 Copyright (C) 2017 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 
@@ -21,6 +21,5 @@ Type 'q()' to quit R.
 Loading required package: MakefileR
 Loading required package: callr
 Loading required package: withr
-Writing check_archive.Rd
 > 
 > 
