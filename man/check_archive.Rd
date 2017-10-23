@@ -28,7 +28,7 @@ the latter parses the output of \code{rcmd_safe} and uses
 that should be identical to the output of \command{R CMD check}.
 }
 \examples{
-\dontrun{ 
+\dontrun{
 package_path <- file.path(tempdir(), "fakepack")
 devtools::create(path = package_path)
 file.copy(system.file("templates", "throw.R", package = "fakemake"),
