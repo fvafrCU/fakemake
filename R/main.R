@@ -160,8 +160,14 @@ read_makefile <- function(path) {
 #' }
 make <- function(name, make_list) {
     res <- NULL
-    index <- which(lapply(make_list, "[[", "target") == name)
+    # If target is a valid R expression, evaluate it.
+    # Else use as is:
+    targets <- sapply(lapply(make_list, "[[", "target"), 
+                      function(x) tryCatch(eval(parse(text = x)),
+                                           error = function(e) return(x)))
+    index <- which(targets == name)
     if (identical(index, integer(0))) {
+        # If name doesn't match any target, see if it matches an alias.
         index <- which(lapply(make_list, "[[", "alias") == name)
     }
     if (identical(index, integer(0))) {
@@ -171,11 +177,7 @@ make <- function(name, make_list) {
             message("Prerequisite ", name, " found.")
         }
     } else {
-        target <- make_list[[index]][["target"]]
-        # If  target is a valid R expression, evaluate it.
-        # Else use as is:
-        target <- tryCatch(eval(parse(text = target)),
-                         error = function(e) return(target))
+        target <- targets[index]
         prerequisites <- make_list[[index]][["prerequisites"]]
         if (! is.null(prerequisites)) {
             # If any prerequisite is a valid R expression, evaluate it.
