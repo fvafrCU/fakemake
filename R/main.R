@@ -162,7 +162,7 @@ make <- function(name, make_list) {
     res <- NULL
     # If target is a valid R expression, evaluate it.
     # Else use as is:
-    targets <- sapply(lapply(make_list, "[[", "target"), 
+    targets <- sapply(lapply(make_list, "[[", "target"),
                       function(x) tryCatch(eval(parse(text = x)),
                                            error = function(e) return(x)))
     index <- which(targets == name)

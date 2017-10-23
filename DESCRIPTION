@@ -8,7 +8,7 @@ Depends: R (>= 3.3.3)
 License: BSD_2_clause + file LICENSE
 Encoding: UTF-8
 LazyData: true
-Suggests: knitr, rmarkdown, testthat, RUnit, devtools, rprojroot
+Suggests: knitr, rmarkdown, testthat, RUnit, devtools, rprojroot, roxygen2
 Imports: MakefileR, callr, withr
 VignetteBuilder: knitr
 RoxygenNote: 6.0.1

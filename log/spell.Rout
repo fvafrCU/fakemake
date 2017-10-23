@@ -1,5 +1,10 @@
-  WORD       FOUND IN
-makelist   add_tempdir.Rd:10,13, make.Rd:12, provide_make_list.Rd:10,13, read_makefile.Rd:13
-Makelist   add_tempdir.Rd:5, provide_make_list.Rd:5,16, read_makefile.Rd:5,16, write_makefile.Rd:5,21
+  WORD               FOUND IN
+CMD                check_archive.Rd:28
+existance          get_pkg_archive_path.Rd:20
+makelist           add_tempdir.Rd:10,13, make.Rd:12, provide_make_list.Rd:10,13, read_makefile.Rd:13
+Makelist           add_tempdir.Rd:5, provide_make_list.Rd:5,16, read_makefile.Rd:5,16, write_makefile.Rd:5,21
+Programmatically   check_archive.Rd:5
+stderr             check_archive.Rd:17
+stdout             check_archive.Rd:16
 Warning message:
 spell check failed 

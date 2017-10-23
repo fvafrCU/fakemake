@@ -1,23 +1,66 @@
+#' Get a Package's Archive Path From the Package's DESCRIPTION
+#'
+#' @note The archive file does not have to exist. Use
+#' \code{file.exists(get_pkg_archive_path())} to test existance.
+#' @param path Path to the package.
+#' @return Path to the package's archive file.
+#' @export
+#' @examples
+#' package_path <- file.path(tempdir(), "anRpackage")
+#' devtools::create(path = package_path)
+#' print(tarball <- get_pkg_archive_path(package_path))
+#' file.exists(tarball)
 get_pkg_archive_path <- function(path = ".") {
-    # return the tarball path according to the DESCRIPTION file. It doesn't have
-    # to exists!
-    pkg <- devtools::as.package(path) 
-    tgz <- file.path(pkg$path, 
+    pkg <- devtools::as.package(path)
+    tgz <- file.path(pkg$path,
                      paste0(pkg$package, "_", pkg$version, ".tar.gz"))
     return(tgz)
 }
 
+#' Programmatically Check a Package Archive
+#'
+#' This is a wrapper to
+#' \code{\link[callr:rcmd_safe]{callr::rcmd_safe}("check")},
+#' similar to, but leaner than
+#' \code{\link[rcmdcheck:rcmdcheck]{rcmdcheck::rcmdcheck}}. While
+#' the latter parses the output of \code{rcmd_safe} and uses
+#' \pkg{clisymbols} in the callback, we here just return bare output and use
+#' \code{\link{writeLines}} as callback. This should result in a screen display
+#' that should be identical to the output of `R CMD check`.
+#'
+#' @param path Path to the package archive.
+#' @param cmdargs Command line arguments (see
+#' \code{\link[callr:rcmd]{callr::rcmd}})
+#' @return A list with the standard output (‘$stdout’), standard error
+#' (‘stderr’) and exit status (‘$status’) of the check.
+#' (see \code{\link[callr:rcmd]{callr::rcmd}}).
+#' @export
+#' @examples
+#' \dontrun{ 
+#' package_path <- file.path(tempdir(), "fakepack")
+#' devtools::create(path = package_path)
+#' file.copy(system.file("templates", "throw.R", package = "fakemake"),
+#'           file.path(package_path, "R"))
+#' roxygen2::roxygenize(package_path)
+#' print(tarball <- get_pkg_archive_path(package_path))
+#' devtools::build(pkg = package_path, path = package_path)
+#' print(check_archive(tarball))
+#' }
 check_archive <- function(path, cmdargs = NULL) {
     # heavily borrowing from rcmdcheck::rcmdcheck()
     withr::with_dir(dirname(path),
-                    out <- callr::rcmd_safe("check", 
-                                            cmdargs = c(basename(path), 
+                    out <- callr::rcmd_safe("check",
+                                            cmdargs = c(basename(path),
                                                         cmdargs),
-                                            libpath = .libPaths(), 
+                                            libpath = .libPaths(),
                                             callback =  writeLines))
     invisible(out)
 }
 
+
+#' A Convenience Wrapper to \code{\link{check_archive}}
+#'
+#' @inheritParams check_archive
 check_archive_as_cran <- function(path) {
-    return(check_archive(path, cmdargs = "--as-cran")) 
+    return(check_archive(path, cmdargs = "--as-cran"))
 }
