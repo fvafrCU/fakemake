@@ -185,16 +185,8 @@ make <- function(name, make_list) {
         is_to_be_made <- is_to_be_made(target = target, is_phony = is_phony,
                                        prerequisites = prerequisites)
         if (is_to_be_made) {
-            code <- make_list[[index]][["code"]]
-            sink <- make_list[[index]][["sink"]]
-            if (is.null(sink)) {
-                sink <- target
-            } else {
-                sink <- tryCatch(eval(parse(text = sink)),
-                                 error = function(e) return(sink))
-
-            }
-            sink_all(path = sink, code = eval(parse(text = code)))
+            sink_all(path = make_list[[index]][["sink"]],
+                     code = eval(parse(text = make_list[[index]][["code"]])))
             res <- c(res, target)
         }
     }

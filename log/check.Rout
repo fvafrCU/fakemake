@@ -56,7 +56,7 @@ Version contains large components (0.0.0.9001)
 * checking examples ... OK
 * checking for unstated dependencies in ‘tests’ ... OK
 * checking tests ... OK
-  Running ‘runit.R’ [21s/33s]
+  Running ‘runit.R’ [24s/41s]
   Running ‘testthat.R’
 * checking for unstated dependencies in vignettes ... OK
 * checking package vignettes in ‘inst/doc’ ... OK
