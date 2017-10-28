@@ -50,9 +50,11 @@ add_tempdir <- function(x) {
 write_makefile <- function(make_list, path,
                            Rbin = "Rscript-devel") {
     m <- MakefileR::makefile() +
-        MakefileR::make_group(MakefileR::make_comment("Ensure POSIX"),
-                              MakefileR::make_rule(".POSIX")
-                              )
+        MakefileR::make_comment(paste0("Modified by fakemake ",  
+                                       packageVersion("fakemake"), 
+                                       ", do not edit by hand.")) 
+    m <- m + MakefileR::make_group(MakefileR::make_comment("Ensure POSIX"),
+                                   MakefileR::make_rule(".POSIX")) 
     m <- m + MakefileR::make_def("R_engine", Rbin)
     R_call <- "$(R_engine) --vanilla -e "
     for (e in make_list) {
