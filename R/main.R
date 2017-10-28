@@ -49,9 +49,10 @@ add_tempdir <- function(x) {
 #' file.show(make_file, pager = "cat")
 write_makefile <- function(make_list, path,
                            Rbin = "Rscript-devel") {
+    make_list <- parse_make_list(make_list)
     m <- MakefileR::makefile() +
         MakefileR::make_comment(paste0("Modified by fakemake ",  
-                                       packageVersion("fakemake"), 
+                                       utils::packageVersion("fakemake"), 
                                        ", do not edit by hand.")) 
     m <- m + MakefileR::make_group(MakefileR::make_comment("Ensure POSIX"),
                                    MakefileR::make_rule(".POSIX")) 
@@ -64,7 +65,7 @@ write_makefile <- function(make_list, path,
                                       deps = e[["prerequisites"]],
                                       script = paste0(R_call,
                                                       "'fakemake::sink_all(",
-                                                      '"', (e[["target"]]),
+                                                      '"', (e[["sink"]]),
                                                       '",', e[["code"]], ")'"))
     }
     return(MakefileR::write_makefile(m, path))

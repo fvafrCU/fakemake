@@ -2,7 +2,7 @@ unlink(list.files(tempdir(), pattern = ".*\\.Rout", full.names = TRUE))
 devtools::load_all(".")
 
 ml <- provide_make_list()
-write_makefile(parse_make_list(ml), "foo")
+write_makefile(parse_make_list(ml), "makefile")
 
 
 ml <- list(list(alias = "build", target = "get_pkg_archive_path()",

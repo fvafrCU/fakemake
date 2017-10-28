@@ -1,0 +1,12 @@
+R/main.R:54:64: style: Trailing whitespace is superfluous.
+        MakefileR::make_comment(paste0("Modified by fakemake ",  
+                                                               ^~
+R/main.R:55:67: style: Trailing whitespace is superfluous.
+                                       packageVersion("fakemake"), 
+                                                                  ^
+R/main.R:56:66: style: Trailing whitespace is superfluous.
+                                       ", do not edit by hand.")) 
+                                                                 ^
+R/main.R:58:67: style: Trailing whitespace is superfluous.
+                                   MakefileR::make_rule(".POSIX")) 
+                                                                  ^
