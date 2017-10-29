@@ -19,6 +19,15 @@ ml <- list(list(alias = "lint",
                 prerequisites = "get_pkg_archive_path()")
 )
 ml <- provide_make_list("package")
+ml <- add_tempdir(ml)
+pkg_path <- file.path(tempdir(), "fakepack") 
+devtools::create(pkg_path)
+file.copy(system.file("templates", "throw.R", package = "fakemake"), 
+          file.path(pkg_path, "R"))
+
+sub <- paste0("\"", pkg_path, "\"")
+lapply(ml, function(x) lapply(x, function (x) gsub("\"\\.\"", sub, x)))
+
 print(fakemake::make("build", ml))
 print(fakemake::make("lint", ml))
 print(fakemake::make("check", ml))

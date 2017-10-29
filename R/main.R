@@ -51,10 +51,18 @@ provide_make_list <- function(type = "minimal", prune = TRUE) {
 add_tempdir <- function(x) {
     res <- x
     for (i in seq(along = res)) {
-        res[[i]][["target"]] <- file.path(tempdir(), res[[i]][["target"]])
-        if (! is.null(res[[i]][["sink"]]))
-            res[[i]][["sink"]] <- file.path(tempdir(), res[[i]][["sink"]])
+        tmp <- res[[i]][["target"]]
+        if (tmp == tryCatch(eval(parse(text = tmp)), 
+                             error = function(e) return(tmp)))
+            res[[i]][["target"]] <- file.path(tempdir(), tmp)
+        if (! is.null(res[[i]][["sink"]])) {
+            tmp <- res[[i]][["sink"]]
+            if (tmp == tryCatch(eval(parse(text = tmp)), 
+                                error = function(e) return(tmp)))
+                res[[i]][["sink"]] <- file.path(tempdir(), tmp)
+        }
         if (! is.null(res[[i]][["prerequisites"]]))
+            # loop over prerequisites! 
             res[[i]][["prerequisites"]] <- file.path(tempdir(),
                                                     res[[i]][["prerequisites"]])
     }
