@@ -1,27 +1,32 @@
 unlink(list.files(tempdir(), pattern = ".*\\.Rout", full.names = TRUE))
 devtools::load_all(".")
 
-ml <- provide_make_list()
-write_makefile(parse_make_list(ml), "foo")
-read_makefile("foo")
 
-ml <- list(list(alias = "build", target = "get_pkg_archive_path()",
+#% This goes into vignette
+ml <- list(list(alias = "lint",
+                target = file.path("log", "lintr.Rout"),
+                code = "lintr::lint_package(path = \".\")",
+                prerequisites = "list.files(\"R\", full.names = TRUE)"),
+           list(alias = "build", target = "get_pkg_archive_path()",
                 code = "devtools::build(pkg = \".\", path = \".\")",
                 sink = "log/build.Rout",
                 prerequisites = c("list.files(\"R\", full.names = TRUE)",
                                   "list.files(\"man\", full.names = TRUE)",
-                                  "DESCRIPTION")),
+                                  "DESCRIPTION",
+                                  "file.path(\"log\", \"lintr.Rout\")")),
            list(alias = "check", target = "log/check.Rout",
                 code = "check_archive_as_cran(get_pkg_archive_path())",
                 prerequisites = "get_pkg_archive_path()")
 )
-
+ml <- provide_make_list("package")
 print(fakemake::make("build", ml))
+print(fakemake::make("lint", ml))
 print(fakemake::make("check", ml))
 touch("DESCRIPTION")
 print(fakemake::make("check", ml))
 
 
+#% This goes into packager
 dependencies <- "c(\"cleanr\", \"roxygen2\")"
 ## # using packman unloads fakemake as well
 ## dep_code <- paste("suppressmessages(pacman::p_unload(\"all\"));",

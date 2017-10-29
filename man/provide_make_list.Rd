@@ -4,10 +4,12 @@
 \alias{provide_make_list}
 \title{Load an Example \code{Makelist} Provided by \pkg{fakemake}.}
 \usage{
-provide_make_list(type = "minimal")
+provide_make_list(type = "minimal", prune = TRUE)
 }
 \arguments{
 \item{type}{The type of \code{makelist}.}
+
+\item{prune}{Prune the \code{makelist} of \code{NULL} items?}
 }
 \value{
 A \code{makelist}.

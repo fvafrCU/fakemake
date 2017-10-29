@@ -1,15 +1,17 @@
 #' Load an Example \code{Makelist} Provided by \pkg{fakemake}.
 #'
 #' @param type The type of \code{makelist}.
+#' @param prune Prune the \code{makelist} of \code{NULL} items?
 #' @return A \code{makelist}.
 #' @export
 #' @examples
 #' str(provide_make_list("minimal"))
-provide_make_list <- function(type = "minimal") {
+provide_make_list <- function(type = "minimal", prune = TRUE) {
     if (! type %in% c("minimal")) throw(paste0("type ", type, " not known!"))
     name <- "Makefile"
     if (! is.null(type)) name <- paste0(name, "_", type)
     ml <- read_makefile(system.file("templates", name, package = "fakemake"))
+    if (isTRUE(prune)) ml <- prune_list(ml)
     return(ml)
 }
 
@@ -28,7 +30,9 @@ add_tempdir <- function(x) {
     res <- x
     for (i in seq(along = res)) {
         res[[i]][["target"]] <- file.path(tempdir(), res[[i]][["target"]])
-        if (!is.null(res[[i]][["prerequisites"]]))
+        if (! is.null(res[[i]][["sink"]]))
+            res[[i]][["sink"]] <- file.path(tempdir(), res[[i]][["sink"]])
+        if (! is.null(res[[i]][["prerequisites"]]))
             res[[i]][["prerequisites"]] <- file.path(tempdir(),
                                                     res[[i]][["prerequisites"]])
     }
@@ -37,10 +41,10 @@ add_tempdir <- function(x) {
 
 #' Write a \code{Makelist} to File
 #'
-#' The makelist is parsed before writing, so all \R code which is not in a
-#' "code" item will be evaluated. 
+#' The \code{makelist} is parsed before writing, so all \R code which is not in
+#' a "code" item will be evaluated.
 #' So if any other item's string contains code allowing for a dynamic rule,
-#' for example with some "dependencies" reading 
+#' for example with some "dependencies" reading
 #' \code{"list.files(\"R\", full.names = TRUE)"}, the Makefile will have the
 #' evaluated code, a list static list of files in the above case.
 #' @param make_list The list to write to file.
@@ -57,11 +61,11 @@ write_makefile <- function(make_list, path,
                            Rbin = "Rscript-devel") {
     make_list <- parse_make_list(make_list)
     m <- MakefileR::makefile() +
-        MakefileR::make_comment(paste0("Modified by fakemake ",  
-                                       utils::packageVersion("fakemake"), 
-                                       ", do not edit by hand.")) 
+        MakefileR::make_comment(paste0("Modified by fakemake ",
+                                       utils::packageVersion("fakemake"),
+                                       ", do not edit by hand."))
     m <- m + MakefileR::make_group(MakefileR::make_comment("Ensure POSIX"),
-                                   MakefileR::make_rule(".POSIX")) 
+                                   MakefileR::make_rule(".POSIX"))
     m <- m + MakefileR::make_def("R_engine", Rbin)
     R_call <- "$(R_engine) --vanilla -e "
     for (e in make_list) {
@@ -110,10 +114,12 @@ read_makefile <- function(path) {
         parts  <-  trimws(unlist(strsplit(target, split = ":")))
         prerequisites <- unlist(strsplit(parts[2], split = " "))
         if (identical(prerequisites, character(0))) prerequisites <- NULL
+        # Sink needs to go last as is it may be added by parse_make_list. Unit
+        # testing may fail otherwise...
         res[[length(res) + 1]] <- list(target = parts[1],
                                        prerequisites = prerequisites,
-                                       sink = gsub("\"", "", parts[3]),
-                                       code = parts[4])
+                                       code = parts[4],
+                                       sink = gsub("\"", "", parts[3]))
     }
     # add phonicity to .PHONY targets. This is quite a mess.
     phony_targets <- sapply(strsplit(phony_lines, split = ": "), "[[", 2)

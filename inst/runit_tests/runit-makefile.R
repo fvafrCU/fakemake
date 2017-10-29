@@ -9,6 +9,7 @@ test_provide_makefile <- function() {
                              code = "print(\"a1\")"),
                         list(target = "b1.Rout", prerequisites = NULL,
                              code = "print(\"b1\")"))
+    expectation <- fakemake:::parse_make_list(expectation)
     RUnit::checkIdentical(result, expectation)
 }
 
@@ -30,10 +31,10 @@ test_read_makefile <- function() {
     path <- tempfile()
     expectation <- provide_make_list(type = "minimal")
     write_makefile(expectation, path = path)
-    result <- read_makefile(path)
+    result <- fakemake:::prune_list(read_makefile(path))
     RUnit::checkIdentical(result, expectation)
     expectation[[2]][".PHONY"] <- TRUE
     write_makefile(expectation, path = path)
-    result <- read_makefile(path)
+    result <- fakemake:::prune_list(read_makefile(path))
     RUnit::checkIdentical(result, expectation)
 }

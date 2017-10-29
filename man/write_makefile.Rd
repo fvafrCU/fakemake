@@ -18,7 +18,12 @@ See
 \code{\link[MakefileR:write_makefile]{MakefileR::write_makefile}}.
 }
 \description{
-Write a \code{Makelist} to File
+The makelist is parsed before writing, so all \R code which is not in a
+"code" item will be evaluated. 
+So if any other item's string contains code allowing for a dynamic rule,
+for example with some "dependencies" reading 
+\code{"list.files(\"R\", full.names = TRUE)"}, the Makefile will have the
+evaluated code, a list static list of files in the above case.
 }
 \examples{
 make_file <- file.path(tempdir(), "my_Makefile")

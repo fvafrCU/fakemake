@@ -25,7 +25,9 @@ Version contains large components (0.0.0.9001)
 * checking package directory ... OK
 * checking ‘build’ directory ... OK
 * checking DESCRIPTION meta-information ... OK
-* checking top-level files ... OK
+* checking top-level files ... NOTE
+Non-standard files/directories found at top level:
+  ‘a1.Rout’ ‘a2.Rout’ ‘all.Rout’ ‘b1.Rout’
 * checking for left-over files ... OK
 * checking index information ... OK
 * checking package subdirectories ... OK
@@ -41,14 +43,7 @@ Version contains large components (0.0.0.9001)
 * checking S3 generic/method consistency ... OK
 * checking replacement functions ... OK
 * checking foreign function calls ... OK
-* checking R code for possible problems ... NOTE
-write_makefile: no visible global function definition for
-  ‘packageVersion’
-Undefined global functions or variables:
-  packageVersion
-Consider adding
-  importFrom("utils", "packageVersion")
-to your NAMESPACE file.
+* checking R code for possible problems ... OK
 * checking Rd files ... OK
 * checking Rd metadata ... OK
 * checking Rd line widths ... OK
@@ -63,7 +58,7 @@ to your NAMESPACE file.
 * checking examples ... OK
 * checking for unstated dependencies in ‘tests’ ... OK
 * checking tests ... OK
-  Running ‘runit.R’ [20s/31s]
+  Running ‘runit.R’ [21s/32s]
   Running ‘testthat.R’
 * checking for unstated dependencies in vignettes ... OK
 * checking package vignettes in ‘inst/doc’ ... OK
