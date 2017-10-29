@@ -1,12 +1,27 @@
-R/main.R:64:64: style: Trailing whitespace is superfluous.
-        MakefileR::make_comment(paste0("Modified by fakemake ",  
-                                                               ^~
-R/main.R:65:74: style: Trailing whitespace is superfluous.
-                                       utils::packageVersion("fakemake"), 
-                                                                         ^
-R/main.R:66:66: style: Trailing whitespace is superfluous.
-                                       ", do not edit by hand.")) 
+R/main.R:10:45: style: Trailing whitespace is superfluous.
+    if (! type %in% c("minimal", "package")) 
+                                            ^
+R/main.R:16:66: style: Trailing whitespace is superfluous.
+                     read_makefile(system.file("templates", name, 
                                                                  ^
-R/main.R:68:67: style: Trailing whitespace is superfluous.
-                                   MakefileR::make_rule(".POSIX")) 
-                                                                  ^
+R/main.R:23:1: style: lines should not be more than 80 characters.
+                               prerequisites = "list.files(\"R\", full.names = TRUE)"),
+^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+R/main.R:24:1: style: lines should not be more than 80 characters.
+                          list(alias = "build", target = "get_pkg_archive_path()",
+^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+R/main.R:25:1: style: lines should not be more than 80 characters.
+                               code = "devtools::build(pkg = \".\", path = \".\")",
+^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+R/main.R:27:1: style: lines should not be more than 80 characters.
+                               prerequisites = c("list.files(\"R\", full.names = TRUE)",
+^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+R/main.R:28:1: style: lines should not be more than 80 characters.
+                                                 "list.files(\"man\", full.names = TRUE)",
+^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+R/main.R:30:1: style: lines should not be more than 80 characters.
+                                                 "file.path(\"log\", \"lintr.Rout\")")),
+^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+R/main.R:32:1: style: lines should not be more than 80 characters.
+                               code = "check_archive_as_cran(get_pkg_archive_path())",
+^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

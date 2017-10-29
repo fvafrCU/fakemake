@@ -7,10 +7,32 @@
 #' @examples
 #' str(provide_make_list("minimal"))
 provide_make_list <- function(type = "minimal", prune = TRUE) {
-    if (! type %in% c("minimal")) throw(paste0("type ", type, " not known!"))
-    name <- "Makefile"
-    if (! is.null(type)) name <- paste0(name, "_", type)
-    ml <- read_makefile(system.file("templates", name, package = "fakemake"))
+    if (! type %in% c("minimal", "package")) 
+        throw(paste0("type ", type, " not known!"))
+    ml <- switch(type,
+                 "minimal" =  {
+                     name <- "Makefile"
+                     if (! is.null(type)) name <- paste0(name, "_", type)
+                     read_makefile(system.file("templates", name, 
+                                               package = "fakemake"))
+                 },
+                 "package" = {
+                     list(list(alias = "lint",
+                               target = file.path("log", "lintr.Rout"),
+                               code = "lintr::lint_package(path = \".\")",
+                               prerequisites = "list.files(\"R\", full.names = TRUE)"),
+                          list(alias = "build", target = "get_pkg_archive_path()",
+                               code = "devtools::build(pkg = \".\", path = \".\")",
+                               sink = "log/build.Rout",
+                               prerequisites = c("list.files(\"R\", full.names = TRUE)",
+                                                 "list.files(\"man\", full.names = TRUE)",
+                                                 "DESCRIPTION",
+                                                 "file.path(\"log\", \"lintr.Rout\")")),
+                          list(alias = "check", target = "log/check.Rout",
+                               code = "check_archive_as_cran(get_pkg_archive_path())",
+                               prerequisites = "get_pkg_archive_path()"))
+                 }
+                 )
     if (isTRUE(prune)) ml <- prune_list(ml)
     return(ml)
 }

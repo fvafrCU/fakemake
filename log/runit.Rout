@@ -12,7 +12,7 @@ Executing test function test_write_makefile  ...  done successfully.
 
 
 
-Executing test function test_check_archive  ... Creating package 'fakepack' in '/tmp/RtmpqYnc49'
+Executing test function test_check_archive  ... Creating package 'fakepack' in '/tmp/RtmpD3wJST'
 No DESCRIPTION found. Creating with values:
 
 
@@ -27,21 +27,21 @@ Encoding: UTF-8
 LazyData: true
 * Creating `fakepack.Rproj` from template.
 * Adding `.Rproj.user`, `.Rhistory`, `.RData` to ./.gitignore
-Updating roxygen version in /tmp/RtmpqYnc49/fakepack/DESCRIPTION
+Updating roxygen version in /tmp/RtmpD3wJST/fakepack/DESCRIPTION
 Writing NAMESPACE
 Writing throw.Rd
 '/home/qwer/svn/R/r-devel/build/bin/R' --no-site-file --no-environ --no-save  \
-  --no-restore --quiet CMD build '/tmp/RtmpqYnc49/fakepack' --no-resave-data  \
+  --no-restore --quiet CMD build '/tmp/RtmpD3wJST/fakepack' --no-resave-data  \
   --no-manual 
 
-* checking for file ‘/tmp/RtmpqYnc49/fakepack/DESCRIPTION’ ... OK
+* checking for file ‘/tmp/RtmpD3wJST/fakepack/DESCRIPTION’ ... OK
 * preparing ‘fakepack’:
 * checking DESCRIPTION meta-information ... OK
 * checking for LF line-endings in source and make files and shell scripts
 * checking for empty or unneeded directories
 * building ‘fakepack_0.0.0.9000.tar.gz’
 
-* using log directory ‘/tmp/RtmpqYnc49/fakepack/fakepack.Rcheck’
+* using log directory ‘/tmp/RtmpD3wJST/fakepack/fakepack.Rcheck’
 * using R Under development (unstable) (2017-10-10 r73520)
 * using platform: x86_64-pc-linux-gnu (64-bit)
 * using session charset: UTF-8
@@ -93,7 +93,7 @@ Standardizable: FALSE
 * checking PDF version of manual ... OK
 * DONE
 Status: 1 WARNING
-* using log directory ‘/tmp/RtmpqYnc49/fakepack/fakepack.Rcheck’
+* using log directory ‘/tmp/RtmpD3wJST/fakepack/fakepack.Rcheck’
 * using R Under development (unstable) (2017-10-10 r73520)
 * using platform: x86_64-pc-linux-gnu (64-bit)
 * using session charset: UTF-8
@@ -163,7 +163,7 @@ Status: 1 WARNING, 1 NOTE
 
 
 
-Executing test function test_package_path  ... Creating package 'anRpackage' in '/tmp/RtmpqYnc49'
+Executing test function test_package_path  ... Creating package 'anRpackage' in '/tmp/RtmpD3wJST'
 No DESCRIPTION found. Creating with values:
 
 
@@ -208,8 +208,8 @@ Executing test function test_make_phony  ...  done successfully.
 
 
 Executing test function test_make_prerequisite  ... Error in make(p, make_list) : 
-  There is no rule to make /tmp/RtmpqYnc49/c1.Rout.
-Prerequisite /tmp/RtmpqYnc49/c1.Rout found.
+  There is no rule to make /tmp/RtmpD3wJST/c1.Rout.
+Prerequisite /tmp/RtmpD3wJST/c1.Rout found.
  done successfully.
 
 

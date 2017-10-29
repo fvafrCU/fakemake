@@ -1,0 +1,14 @@
+<cleanr in cleanr::check_directory("R/", check_return = FALSE): R/   /home/qwer/git/cyclops/fvafrcu/fakemake/R/main.R: line 23 counts 87 characters.
+/home/qwer/git/cyclops/fvafrcu/fakemake/R/main.R: line 24 counts 82 characters.
+/home/qwer/git/cyclops/fvafrcu/fakemake/R/main.R: line 25 counts 83 characters.
+/home/qwer/git/cyclops/fvafrcu/fakemake/R/main.R: line 27 counts 88 characters.
+/home/qwer/git/cyclops/fvafrcu/fakemake/R/main.R: line 28 counts 90 characters.
+/home/qwer/git/cyclops/fvafrcu/fakemake/R/main.R: line 30 counts 88 characters.
+/home/qwer/git/cyclops/fvafrcu/fakemake/R/main.R: line 32 counts 86 characters.
+ /home/qwer/git/cyclops/fvafrcu/fakemake/R/main.R  provide_make_list  line 14: found width 87 max_line_width was 80
+line 15: found width 82 max_line_width was 80
+line 16: found width 83 max_line_width was 80
+line 18: found width 88 max_line_width was 80
+line 19: found width 90 max_line_width was 80
+line 21: found width 88 max_line_width was 80
+line 23: found width 86 max_line_width was 80>
