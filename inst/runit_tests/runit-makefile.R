@@ -19,6 +19,10 @@ test_write_makefile <- function() {
     result <- readLines(path)
     expectation <- readLines(system.file("templates", "Makefile_minimal",
                                package = "fakemake"))
+    # There's version info in comments due to change, so get rid of the
+    # comments:
+    expectation <- grep("^#.*$", expectation, invert = TRUE, value = TRUE)
+    result <- grep("^#.*$", result, invert = TRUE, value = TRUE)
     RUnit::checkIdentical(result, expectation)
 }
 

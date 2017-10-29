@@ -37,6 +37,12 @@ add_tempdir <- function(x) {
 
 #' Write a \code{Makelist} to File
 #'
+#' The makelist is parsed before writing, so all \R code which is not in a
+#' "code" item will be evaluated. 
+#' So if any other item's string contains code allowing for a dynamic rule,
+#' for example with some "dependencies" reading 
+#' \code{"list.files(\"R\", full.names = TRUE)"}, the Makefile will have the
+#' evaluated code, a list static list of files in the above case.
 #' @param make_list The list to write to file.
 #' @param path The path to the file.
 #' @param Rbin The R binary to use in the Makefile.
@@ -93,11 +99,11 @@ read_makefile <- function(path) {
     lines <- grep("^\\.PHONY:", lines, value = TRUE, invert = TRUE)
     pattern <- paste0("\\$\\(R_engine\\) --vanilla -e ",
                       "'fakemake::sink_all\\((.*),(.*)\\)'")
-    lines <- sub(pattern, "\\2", lines)
-    seperator <- "@@@"
-    targets <- strsplit(gsub(paste0(seperator, "\t"), ":",
-                             paste(lines, collapse = seperator)),
-                        split = seperator)
+    lines <- sub(pattern, "\\1:\\2", lines)
+    separator <- "@@@"
+    targets <- strsplit(gsub(paste0(separator, "\t"), ":",
+                             paste(lines, collapse = separator)),
+                        split = separator)
     targets <- unlist(targets)
     res <- list()
     for (target in targets) {
@@ -106,7 +112,8 @@ read_makefile <- function(path) {
         if (identical(prerequisites, character(0))) prerequisites <- NULL
         res[[length(res) + 1]] <- list(target = parts[1],
                                        prerequisites = prerequisites,
-                                       code = parts[3])
+                                       sink = gsub("\"", "", parts[3]),
+                                       code = parts[4])
     }
     # add phonicity to .PHONY targets. This is quite a mess.
     phony_targets <- sapply(strsplit(phony_lines, split = ": "), "[[", 2)
