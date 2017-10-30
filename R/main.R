@@ -37,38 +37,6 @@ provide_make_list <- function(type = "minimal", prune = TRUE) {
     return(ml)
 }
 
-#' Add the Output of \code{\link{tempdir}} to a \code{Makelist}
-#'
-#' You do not want to litter your working directory? Use \R's temporary
-#' directory.
-#' @note This is mainly meant to run examples without touching your disk. You
-#' should not bother.
-#' @param x The \code{makelist}.
-#' @return The \code{makelist}.
-#' @export
-#' @examples
-#' str(add_tempdir(provide_make_list("minimal")))
-add_tempdir <- function(x) {
-    res <- x
-    for (i in seq(along = res)) {
-        tmp <- res[[i]][["target"]]
-        if (tmp == tryCatch(eval(parse(text = tmp)), 
-                             error = function(e) return(tmp)))
-            res[[i]][["target"]] <- file.path(tempdir(), tmp)
-        if (! is.null(res[[i]][["sink"]])) {
-            tmp <- res[[i]][["sink"]]
-            if (tmp == tryCatch(eval(parse(text = tmp)), 
-                                error = function(e) return(tmp)))
-                res[[i]][["sink"]] <- file.path(tempdir(), tmp)
-        }
-        if (! is.null(res[[i]][["prerequisites"]]))
-            # loop over prerequisites! 
-            res[[i]][["prerequisites"]] <- file.path(tempdir(),
-                                                    res[[i]][["prerequisites"]])
-    }
-    return(res)
-}
-
 #' Write a \code{Makelist} to File
 #'
 #' The \code{makelist} is parsed before writing, so all \R code which is not in
@@ -170,12 +138,16 @@ read_makefile <- function(path) {
 #' run.
 #' @export
 #' @examples
-#' str(make_list <- add_tempdir(provide_make_list(type = "minimal")))
-#' make(make_list[[1]][["target"]], make_list)
+#' withr::with_dir(tempdir(), {
+#'                 str(make_list <- provide_make_list(type = "minimal"))
+#'                 make(make_list[[1]][["target"]], make_list)
+#'                                        }
+#' )
 #'
 #' \dontshow{
-#' make_list <- add_tempdir(provide_make_list(type = "minimal"))
-#' make(make_list[[1]][["target"]], make_list)
+#' withr::with_dir(tempdir(), {
+#'                 str(make_list <- provide_make_list(type = "minimal"))
+#'                 make(make_list[[1]][["target"]], make_list)
 #'
 #' src <- file.path(tempdir(), "src")
 #' dir.create(src)
@@ -204,6 +176,9 @@ read_makefile <- function(path) {
 #' result <- make(make_list[[4]][["target"]], make_list)
 #' RUnit::checkTrue(identical(result, expectation))
 #' }
+#' }
+#' )
+
 make <- function(name, make_list) {
     res <- NULL
     make_list <- parse_make_list(make_list)

@@ -19,12 +19,16 @@ run.
 Mock the Unix Make Utility
 }
 \examples{
-str(make_list <- add_tempdir(provide_make_list(type = "minimal")))
-make(make_list[[1]][["target"]], make_list)
+withr::with_dir(tempdir(), {
+                str(make_list <- provide_make_list(type = "minimal"))
+                make(make_list[[1]][["target"]], make_list)
+                                       }
+)
 
 \dontshow{
-make_list <- add_tempdir(provide_make_list(type = "minimal"))
-make(make_list[[1]][["target"]], make_list)
+withr::with_dir(tempdir(), {
+                str(make_list <- provide_make_list(type = "minimal"))
+                make(make_list[[1]][["target"]], make_list)
 
 src <- file.path(tempdir(), "src")
 dir.create(src)
@@ -53,4 +57,6 @@ expectation <- make_list[[4]][["target"]]
 result <- make(make_list[[4]][["target"]], make_list)
 RUnit::checkTrue(identical(result, expectation))
 }
+}
+)
 }

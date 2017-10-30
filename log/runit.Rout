@@ -12,7 +12,7 @@ Executing test function test_write_makefile  ...  done successfully.
 
 
 
-Executing test function test_check_archive  ... Creating package 'fakepack' in '/tmp/RtmpCp6G00'
+Executing test function test_check_archive  ... Creating package 'fakepack' in '/tmp/RtmpcgHlr0'
 No DESCRIPTION found. Creating with values:
 
 
@@ -27,21 +27,21 @@ Encoding: UTF-8
 LazyData: true
 * Creating `fakepack.Rproj` from template.
 * Adding `.Rproj.user`, `.Rhistory`, `.RData` to ./.gitignore
-Updating roxygen version in /tmp/RtmpCp6G00/fakepack/DESCRIPTION
+Updating roxygen version in /tmp/RtmpcgHlr0/fakepack/DESCRIPTION
 Writing NAMESPACE
 Writing throw.Rd
 '/home/nik/svn/R/r-devel/build/bin/R' --no-site-file --no-environ --no-save  \
-  --no-restore --quiet CMD build '/tmp/RtmpCp6G00/fakepack' --no-resave-data  \
+  --no-restore --quiet CMD build '/tmp/RtmpcgHlr0/fakepack' --no-resave-data  \
   --no-manual 
 
-* checking for file ‘/tmp/RtmpCp6G00/fakepack/DESCRIPTION’ ... OK
+* checking for file ‘/tmp/RtmpcgHlr0/fakepack/DESCRIPTION’ ... OK
 * preparing ‘fakepack’:
 * checking DESCRIPTION meta-information ... OK
 * checking for LF line-endings in source and make files and shell scripts
 * checking for empty or unneeded directories
 * building ‘fakepack_0.0.0.9000.tar.gz’
 
-* using log directory ‘/tmp/RtmpCp6G00/fakepack/fakepack.Rcheck’
+* using log directory ‘/tmp/RtmpcgHlr0/fakepack/fakepack.Rcheck’
 * using R Under development (unstable) (2017-08-15 r73096)
 * using platform: x86_64-pc-linux-gnu (64-bit)
 * using session charset: UTF-8
@@ -93,7 +93,7 @@ Standardizable: FALSE
 * checking PDF version of manual ... OK
 * DONE
 Status: 1 WARNING
-* using log directory ‘/tmp/RtmpCp6G00/fakepack/fakepack.Rcheck’
+* using log directory ‘/tmp/RtmpcgHlr0/fakepack/fakepack.Rcheck’
 * using R Under development (unstable) (2017-08-15 r73096)
 * using platform: x86_64-pc-linux-gnu (64-bit)
 * using session charset: UTF-8
@@ -104,11 +104,7 @@ Status: 1 WARNING
 * checking CRAN incoming feasibility ... NOTE
 Maintainer: ‘First Last <first.last@example.com>’
 
-New submission
-
 Version contains large components (0.0.0.9000)
-
-Non-FOSS package license (What license is it under?)
 
 The Title field should be in title case, current version then in title case:
 ‘What the Package Does (one line, title case)’
@@ -163,7 +159,7 @@ Status: 1 WARNING, 1 NOTE
 
 
 
-Executing test function test_package_path  ... Creating package 'anRpackage' in '/tmp/RtmpCp6G00'
+Executing test function test_package_path  ... Creating package 'anRpackage' in '/tmp/RtmpcgHlr0'
 No DESCRIPTION found. Creating with values:
 
 
@@ -208,8 +204,8 @@ Executing test function test_make_phony  ...  done successfully.
 
 
 Executing test function test_make_prerequisite  ... Error in make(p, make_list) : 
-  There is no rule to make /tmp/RtmpCp6G00/c1.Rout.
-Prerequisite /tmp/RtmpCp6G00/c1.Rout found.
+  There is no rule to make /tmp/RtmpcgHlr0/c1.Rout.
+Prerequisite /tmp/RtmpcgHlr0/c1.Rout found.
  done successfully.
 
 
