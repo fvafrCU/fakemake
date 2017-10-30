@@ -1,5 +1,5 @@
-* using log directory ‘/home/nik/git/cyclops/fvafrcu/fakemake/fakemake.Rcheck’
-* using R Under development (unstable) (2017-08-15 r73096)
+* using log directory ‘/home/qwer/git/cyclops/fvafrcu/fakemake/fakemake.Rcheck’
+* using R Under development (unstable) (2017-10-10 r73520)
 * using platform: x86_64-pc-linux-gnu (64-bit)
 * using session charset: UTF-8
 * using options ‘--run-donttest --as-cran’
@@ -8,6 +8,8 @@
 * package encoding: UTF-8
 * checking CRAN incoming feasibility ... NOTE
 Maintainer: ‘First Last <first.last@example.com>’
+
+New submission
 
 Version contains large components (0.0.0.9001)
 * checking package namespace information ... OK
@@ -23,10 +25,7 @@ Version contains large components (0.0.0.9001)
 * checking package directory ... OK
 * checking ‘build’ directory ... OK
 * checking DESCRIPTION meta-information ... OK
-* checking top-level files ... WARNING
-Conversion of ‘README.md’ failed:
-pandoc: Could not fetch https://travis-ci.org/fvafrCU/fakemake.svg?branch=master
-FailedConnectionException2 "travis-ci.org" 443 True getAddrInfo: does not exist (Name or service not known)
+* checking top-level files ... OK
 * checking for left-over files ... OK
 * checking index information ... OK
 * checking package subdirectories ... OK
@@ -57,11 +56,11 @@ FailedConnectionException2 "travis-ci.org" 443 True getAddrInfo: does not exist 
 * checking examples ... OK
 * checking for unstated dependencies in ‘tests’ ... OK
 * checking tests ... OK
-  Running ‘runit.R’ [78s/87s]
+  Running ‘runit.R’ [20s/31s]
   Running ‘testthat.R’
 * checking for unstated dependencies in vignettes ... OK
 * checking package vignettes in ‘inst/doc’ ... OK
 * checking re-building of vignette outputs ... OK
 * checking PDF version of manual ... OK
 * DONE
-Status: 1 WARNING, 1 NOTE
+Status: 1 NOTE
