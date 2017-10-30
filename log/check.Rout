@@ -1,5 +1,5 @@
-* using log directory ‘/home/qwer/git/cyclops/fvafrcu/fakemake/fakemake.Rcheck’
-* using R Under development (unstable) (2017-10-10 r73520)
+* using log directory ‘/home/nik/git/cyclops/fvafrcu/fakemake/fakemake.Rcheck’
+* using R Under development (unstable) (2017-08-15 r73096)
 * using platform: x86_64-pc-linux-gnu (64-bit)
 * using session charset: UTF-8
 * using options ‘--run-donttest --as-cran’
@@ -56,7 +56,7 @@ Version contains large components (0.0.0.9001)
 * checking examples ... OK
 * checking for unstated dependencies in ‘tests’ ... OK
 * checking tests ... OK
-  Running ‘runit.R’ [20s/31s]
+  Running ‘runit.R’ [90s/110s]
   Running ‘testthat.R’
 * checking for unstated dependencies in vignettes ... OK
 * checking package vignettes in ‘inst/doc’ ... OK

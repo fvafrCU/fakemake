@@ -1,3 +1,9 @@
+    a  <- sub("(email)", "\n\t\\1",
+               packager::author_at_r("Andreas Dominik", "Cullmann", "fvafrcu@arcor.de"))
+
+set_package_info(".", author_at_r = NULL,
+       title = "What it Does (One Line, Title Case)", description = NULL,
+       details = NULL)
 unlink(list.files(tempdir(), pattern = ".*\\.Rout", full.names = TRUE))
 devtools::load_all(".")
 

@@ -1,21 +1,8 @@
-   filename         functions line value
-39 R/main.R provide_make_list   20     0
-44 R/main.R provide_make_list   21     0
-47 R/main.R provide_make_list   22     0
-50 R/main.R provide_make_list   23     0
-53 R/main.R provide_make_list   24     0
-57 R/main.R provide_make_list   25     0
-61 R/main.R provide_make_list   26     0
-64 R/main.R provide_make_list   27     0
-66 R/main.R provide_make_list   28     0
-68 R/main.R provide_make_list   29     0
-70 R/main.R provide_make_list   30     0
-71 R/main.R provide_make_list   31     0
-72 R/main.R provide_make_list   32     0
-73 R/main.R provide_make_list   33     0
-fakemake Coverage: 92.78%
-R/main.R: 89.47%
+[1] filename  functions line      value    
+<0 rows> (or 0-length row.names)
+fakemake Coverage: 100.00%
 R/internals.R: 100.00%
+R/main.R: 100.00%
 R/sink_all.R: 100.00%
 R/throw.R: 100.00%
 R/tools.R: 100.00%
