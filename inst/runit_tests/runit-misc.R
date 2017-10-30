@@ -1,6 +1,8 @@
 if (interactive()) devtools::load_all()
 
 test_package_path <- function() {
+    old <- setwd(tempdir())
+    on.exit(setwd(old))
     package_path <- file.path(tempdir(), "anRpackage")
     devtools::create(path = package_path)
     result <- get_pkg_archive_path(package_path)
@@ -10,6 +12,8 @@ test_package_path <- function() {
 }
 
 test_check_archive <- function() {
+    old <- setwd(tempdir())
+    on.exit(setwd(old))
     package_path <- file.path(tempdir(), "fakepack")
     devtools::create(path = package_path)
     file.copy(system.file("templates", "throw.R", package = "fakemake"),

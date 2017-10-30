@@ -1,4 +1,6 @@
 test_provide_makefile <- function() {
+    old <- setwd(tempdir())
+    on.exit(setwd(old))
     result <- provide_make_list(type = "minimal")
     expectation <- list(list(target = "all.Rout",
                              prerequisites = c("a1.Rout", "a2.Rout"
@@ -14,6 +16,8 @@ test_provide_makefile <- function() {
 }
 
 test_write_makefile <- function() {
+    old <- setwd(tempdir())
+    on.exit(setwd(old))
     path <- tempfile()
     makefile <- provide_make_list(type = "minimal")
     write_makefile(makefile, path = path)
@@ -28,6 +32,8 @@ test_write_makefile <- function() {
 }
 
 test_read_makefile <- function() {
+    old <- setwd(tempdir())
+    on.exit(setwd(old))
     path <- tempfile()
     expectation <- provide_make_list(type = "minimal")
     write_makefile(expectation, path = path)

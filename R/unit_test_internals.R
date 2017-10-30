@@ -1,5 +1,5 @@
 get_ml <- function() {
-    res <- prune_list(add_tempdir(provide_make_list(type = "minimal")))
+    res <- prune_list(provide_make_list(type = "minimal"))
     return(res)
 }
 
@@ -8,8 +8,7 @@ make_initial <- function() {
     unlink(list.files(tempdir(), pattern = ".*\\.Rout", full.names = TRUE))
 
     #% initial full tree
-    result <- make(file.path(tempdir(), "all.Rout"), ml)
-    make_tree <- c("b1.Rout", "a1.Rout", "a2.Rout", "all.Rout")
-    expectation <- file.path(tempdir(), make_tree)
+    result <- make("all.Rout", ml)
+    expectation <- c("b1.Rout", "a1.Rout", "a2.Rout", "all.Rout")
     RUnit::checkIdentical(result, expectation)
 }

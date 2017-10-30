@@ -1,6 +1,8 @@
 testthat::context("Testing source files")
 testthat::test_that("foo", {
-                        ml <- add_tempdir(provide_make_list(type = "minimal"))
+                    old <- setwd(tempdir())
+                    on.exit(setwd(old))
+                        ml <- provide_make_list(type = "minimal")
                         make(ml[[1]][["target"]], ml)
 
                         src <- file.path(tempdir(), "src")
