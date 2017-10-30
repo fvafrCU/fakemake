@@ -1,8 +1,9 @@
-    a  <- sub("(email)", "\n\t\\1",
-               packager::author_at_r("Andreas Dominik", "Cullmann", "fvafrcu@arcor.de"))
+a  <- sub("(email)", "\n\t\\1",
+          packager::author_at_r("Andreas Dominik", "Cullmann", "fvafrcu@arcor.de"))
 
-set_package_info(".", author_at_r = NULL,
-       title = "What it Does (One Line, Title Case)", description = NULL,
+packager::set_package_info(".", author_at_r = a,
+       title = "Mock the Unix Make Utility", 
+       description = "Use R as a minimal build system. This might come in handy if you are developing R packages and can not use a proper build system.",
        details = NULL)
 unlink(list.files(tempdir(), pattern = ".*\\.Rout", full.names = TRUE))
 devtools::load_all(".")
