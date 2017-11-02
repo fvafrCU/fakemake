@@ -55,6 +55,7 @@ provide_make_list <- function(type = "minimal", prune = TRUE) {
 #' file.show(make_file, pager = "cat")
 write_makefile <- function(make_list, path,
                            Rbin = "Rscript-devel") {
+    check_makelist(make_list)
     make_list <- parse_make_list(make_list)
     m <- MakefileR::makefile() +
         MakefileR::make_comment(paste0("Modified by fakemake ",
@@ -178,6 +179,7 @@ read_makefile <- function(path) {
 #' )
 
 make <- function(name, make_list) {
+    check_makelist(make_list)
     res <- NULL
     make_list <- parse_make_list(make_list)
     targets <- sapply(make_list, "[[", "target")

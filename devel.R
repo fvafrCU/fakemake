@@ -23,6 +23,9 @@ withr::with_dir(pkg_path, print(fakemake::make("check", ml)))
 touch("DESCRIPTION")
 withr::with_dir(pkg_path, print(fakemake::make("check", ml)))
 
+check_makelist(3)
+check_makelist(makelist)
+check_makelist(ml)
 
 #% This goes into packager
 dependencies <- "c(\"cleanr\", \"roxygen2\")"

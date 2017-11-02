@@ -31,12 +31,12 @@
 
 <h1 class="title toc-ignore">An Introduction to <em>fakemake</em></h1>
 <h4 class="author"><em>Andreas Dominik Cullmann</em></h4>
-<h4 class="date"><em>2017-11-02, 09:38:18</em></h4>
+<h4 class="date"><em>2017-11-02, 09:39:33</em></h4>
 
 
 
-<div id="introduction" class="section level1">
-<h1>Introduction</h1>
+<div id="mock-the-unix-make-utility" class="section level1">
+<h1>Mock the Unix Make Utility</h1>
 <p>There are <a href="https://en.wikipedia.org/wiki/List_of_build_automation_software">many</a> <a href="https://en.wikipedia.org/wiki/Build_automation">build systems</a>, and more uses for build systems <span class="citation">(see Powers et al. 2002, sec. 11.10 and 11.11)</span>.</p>
 <p>I have been using the <a href="https://en.wikipedia.org/wiki/Make_(software)">unix make utility</a> when developing R packages since 2012. But sometimes I get caught on a machine where <em>make</em> is not available and where I am not entitled to install it. This is why I wrote <em>fakemake</em>: to build an R package conditionally on the modification times of (file) dependencies without having to rely on external software. If you have any proper build system at hand: stick to it, do not use <em>fakemake</em>.</p>
 </div>

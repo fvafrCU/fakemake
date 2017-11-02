@@ -1,10 +1,7 @@
 Dear CRAN Team,
 this is a resubmission of package 'fakemake'. I have added the following changes:
 
-* Added a `NEWS.md` file to track changes to the package.
-
-
-Please upload to CRAN.
+* Finish the API.Please upload to CRAN.
 Best, Dominik
 
 # Package fakemake 0.1.0

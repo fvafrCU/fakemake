@@ -1,2 +1,2 @@
-#! /home/qwer/bin/Rscript-devel --vanilla
+#! /usr/bin/Rscript --vanilla
 devtools::install(".")
