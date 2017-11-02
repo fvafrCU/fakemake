@@ -19,11 +19,8 @@ run.
 Mock the Unix Make Utility
 }
 \examples{
-withr::with_dir(tempdir(), {
-                str(make_list <- provide_make_list(type = "minimal"))
-                make(make_list[[1]][["target"]], make_list)
-                                       }
-)
+str(make_list <- provide_make_list(type = "minimal"))
+withr::with_dir(tempdir(), make(make_list[[1]][["target"]], make_list))
 
 \dontshow{
 withr::with_dir(tempdir(), {

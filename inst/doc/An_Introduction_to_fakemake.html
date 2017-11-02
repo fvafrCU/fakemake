@@ -17,6 +17,26 @@
 
 
 
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
+</style>
 
 
 
@@ -31,7 +51,7 @@
 
 <h1 class="title toc-ignore">An Introduction to <em>fakemake</em></h1>
 <h4 class="author"><em>Andreas Dominik Cullmann</em></h4>
-<h4 class="date"><em>2017-11-02, 09:39:33</em></h4>
+<h4 class="date"><em>2017-11-02, 12:11:26</em></h4>
 
 
 
@@ -40,9 +60,67 @@
 <p>There are <a href="https://en.wikipedia.org/wiki/List_of_build_automation_software">many</a> <a href="https://en.wikipedia.org/wiki/Build_automation">build systems</a>, and more uses for build systems <span class="citation">(see Powers et al. 2002, sec. 11.10 and 11.11)</span>.</p>
 <p>I have been using the <a href="https://en.wikipedia.org/wiki/Make_(software)">unix make utility</a> when developing R packages since 2012. But sometimes I get caught on a machine where <em>make</em> is not available and where I am not entitled to install it. This is why I wrote <em>fakemake</em>: to build an R package conditionally on the modification times of (file) dependencies without having to rely on external software. If you have any proper build system at hand: stick to it, do not use <em>fakemake</em>.</p>
 </div>
-<div id="features" class="section level1">
-<h1>Features</h1>
-<p>There are not features.</p>
+<div id="makelists" class="section level1">
+<h1>Makelists</h1>
+<p>A makelist is the <em>fakemake</em>`s representation of a Makefile. It’s just a list of lists. Look at the</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(fakemake::<span class="kw">provide_make_list</span>(<span class="st">&quot;minimal&quot;</span>))</code></pre>
+<pre><code>## List of 4
+##  $ :List of 4
+##   ..$ target       : chr &quot;all.Rout&quot;
+##   ..$ prerequisites: chr [1:2] &quot;a1.Rout&quot; &quot;a2.Rout&quot;
+##   ..$ code         : chr &quot;print(\&quot;all\&quot;)&quot;
+##   ..$ sink         : chr &quot;all.Rout&quot;
+##  $ :List of 3
+##   ..$ target: chr &quot;a2.Rout&quot;
+##   ..$ code  : chr &quot;print(\&quot;a2\&quot;)&quot;
+##   ..$ sink  : chr &quot;a2.Rout&quot;
+##  $ :List of 4
+##   ..$ target       : chr &quot;a1.Rout&quot;
+##   ..$ prerequisites: chr &quot;b1.Rout&quot;
+##   ..$ code         : chr &quot;print(\&quot;a1\&quot;)&quot;
+##   ..$ sink         : chr &quot;a1.Rout&quot;
+##  $ :List of 3
+##   ..$ target: chr &quot;b1.Rout&quot;
+##   ..$ code  : chr &quot;print(\&quot;b1\&quot;)&quot;
+##   ..$ sink  : chr &quot;b1.Rout&quot;</code></pre>
+<p>Describe names, mention phony and alias.</p>
+</div>
+<div id="a-minimal-example" class="section level1">
+<h1>A Minimal Example</h1>
+<p>Suppose we would have a minimal makelist:</p>
+<pre class="sourceCode r"><code class="sourceCode r">ml &lt;-<span class="st"> </span>fakemake::<span class="kw">provide_make_list</span>(<span class="st">&quot;minimal&quot;</span>)</code></pre>
+<p>Now we would use <strong>R</strong>`s temporary directory to build the first target in this makelist:</p>
+<pre class="sourceCode r"><code class="sourceCode r">withr::<span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span class="kw">print</span>(fakemake::<span class="kw">make</span>(ml[[<span class="dv">1</span>]][[<span class="st">&quot;target&quot;</span>]], ml)))</code></pre>
+<pre><code>## [1] &quot;b1.Rout&quot;  &quot;a1.Rout&quot;  &quot;a2.Rout&quot;  &quot;all.Rout&quot;</code></pre>
+<p>We can see the files created:</p>
+<pre class="sourceCode r"><code class="sourceCode r">file_time &lt;-<span class="st"> </span>function(<span class="dt">files =</span> <span class="kw">list.files</span>(<span class="kw">tempdir</span>(), <span class="dt">full.names =</span> <span class="ot">TRUE</span>)) {
+    <span class="kw">return</span>(<span class="kw">data.frame</span>(<span class="dt">path =</span> files, <span class="dt">modification_time =</span> <span class="kw">file.mtime</span>(files)))
+}
+<span class="kw">file_time</span>(<span class="kw">list.files</span>(<span class="kw">tempdir</span>(), <span class="dt">full.names =</span> <span class="ot">TRUE</span>, <span class="dt">pattern =</span> <span class="st">&quot;^.*</span><span class="ch">\\</span><span class="st">.Rout&quot;</span>))</code></pre>
+<pre><code>##                       path   modification_time
+## 1  /tmp/RtmpNggEO8/a1.Rout 2017-11-02 12:11:53
+## 2  /tmp/RtmpNggEO8/a2.Rout 2017-11-02 12:11:53
+## 3 /tmp/RtmpNggEO8/all.Rout 2017-11-02 12:11:53
+## 4  /tmp/RtmpNggEO8/b1.Rout 2017-11-02 12:11:53</code></pre>
+<p>If we rerun the build process, we get:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ensure the modification time would change if the files were recreated</span>
+<span class="kw">Sys.sleep</span>(<span class="dv">1</span>)
+<span class="kw">file_time</span>(<span class="kw">list.files</span>(<span class="kw">tempdir</span>(), <span class="dt">full.names =</span> <span class="ot">TRUE</span>, <span class="dt">pattern =</span> <span class="st">&quot;^.*</span><span class="ch">\\</span><span class="st">.Rout&quot;</span>))</code></pre>
+<pre><code>##                       path   modification_time
+## 1  /tmp/RtmpNggEO8/a1.Rout 2017-11-02 12:11:53
+## 2  /tmp/RtmpNggEO8/a2.Rout 2017-11-02 12:11:53
+## 3 /tmp/RtmpNggEO8/all.Rout 2017-11-02 12:11:53
+## 4  /tmp/RtmpNggEO8/b1.Rout 2017-11-02 12:11:53</code></pre>
+<p>Nothing changed. Good. Now, we change one file down the build path:</p>
+<pre class="sourceCode r"><code class="sourceCode r">fakemake::<span class="kw">touch</span>(<span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;b1.Rout&quot;</span>))
+withr::<span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span class="kw">print</span>(fakemake::<span class="kw">make</span>(ml[[<span class="dv">1</span>]][[<span class="st">&quot;target&quot;</span>]], ml)))</code></pre>
+<pre><code>## [1] &quot;a1.Rout&quot;  &quot;all.Rout&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">file_time</span>(<span class="kw">list.files</span>(<span class="kw">tempdir</span>(), <span class="dt">full.names =</span> <span class="ot">TRUE</span>, <span class="dt">pattern =</span> <span class="st">&quot;^.*</span><span class="ch">\\</span><span class="st">.Rout&quot;</span>))</code></pre>
+<pre><code>##                       path   modification_time
+## 1  /tmp/RtmpNggEO8/a1.Rout 2017-11-02 12:11:54
+## 2  /tmp/RtmpNggEO8/a2.Rout 2017-11-02 12:11:53
+## 3 /tmp/RtmpNggEO8/all.Rout 2017-11-02 12:11:54
+## 4  /tmp/RtmpNggEO8/b1.Rout 2017-11-02 12:11:54</code></pre>
 <div class="references">
 <h1>References</h1>
 <p>Powers, Shelley, Jerry Peek, Tim O’Reilly, and Mike Loudikes. 2002. <em>Unix Power Tools</em>. O’Reilly &amp; Associates.</p>
