@@ -21,7 +21,7 @@ Executing test function test_write_makefile  ...  done successfully.
 
 
 
-Executing test function test_check_archive  ... Creating package 'fakepack' in '/tmp/RtmpMWrrsT'
+Executing test function test_check_archive  ... Creating package 'fakepack' in '/tmp/RtmpJtDjRL'
 No DESCRIPTION found. Creating with values:
 
 
@@ -36,21 +36,21 @@ Encoding: UTF-8
 LazyData: true
 * Creating `fakepack.Rproj` from template.
 * Adding `.Rproj.user`, `.Rhistory`, `.RData` to ./.gitignore
-Updating roxygen version in /tmp/RtmpMWrrsT/fakepack/DESCRIPTION
+Updating roxygen version in /tmp/RtmpJtDjRL/fakepack/DESCRIPTION
 Writing NAMESPACE
 Writing throw.Rd
 '/home/qwer/svn/R/r-devel/build/bin/R' --no-site-file --no-environ --no-save  \
-  --no-restore --quiet CMD build '/tmp/RtmpMWrrsT/fakepack' --no-resave-data  \
+  --no-restore --quiet CMD build '/tmp/RtmpJtDjRL/fakepack' --no-resave-data  \
   --no-manual 
 
-* checking for file ‘/tmp/RtmpMWrrsT/fakepack/DESCRIPTION’ ... OK
+* checking for file ‘/tmp/RtmpJtDjRL/fakepack/DESCRIPTION’ ... OK
 * preparing ‘fakepack’:
 * checking DESCRIPTION meta-information ... OK
 * checking for LF line-endings in source and make files and shell scripts
 * checking for empty or unneeded directories
 * building ‘fakepack_0.0.0.9000.tar.gz’
 
-* using log directory ‘/tmp/RtmpMWrrsT/fakepack/fakepack.Rcheck’
+* using log directory ‘/tmp/RtmpJtDjRL/fakepack/fakepack.Rcheck’
 * using R Under development (unstable) (2017-11-02 r73652)
 * using platform: x86_64-pc-linux-gnu (64-bit)
 * using session charset: UTF-8
@@ -102,7 +102,7 @@ Standardizable: FALSE
 * checking PDF version of manual ... OK
 * DONE
 Status: 1 WARNING
-* using log directory ‘/tmp/RtmpMWrrsT/fakepack/fakepack.Rcheck’
+* using log directory ‘/tmp/RtmpJtDjRL/fakepack/fakepack.Rcheck’
 * using R Under development (unstable) (2017-11-02 r73652)
 * using platform: x86_64-pc-linux-gnu (64-bit)
 * using session charset: UTF-8
@@ -172,7 +172,7 @@ Status: 1 WARNING, 1 NOTE
 
 
 
-Executing test function test_package_path  ... Creating package 'anRpackage' in '/tmp/RtmpMWrrsT'
+Executing test function test_package_path  ... Creating package 'anRpackage' in '/tmp/RtmpJtDjRL'
 No DESCRIPTION found. Creating with values:
 
 
@@ -191,10 +191,7 @@ LazyData: true
 
 
 
-Executing test function test_touch  ... Timing stopped at: 0 0 1.003
-Error in RUnit::checkTrue(t1 < t2) : Test not TRUE
-
- done successfully.
+Executing test function test_touch  ...  done successfully.
 
 
 
@@ -220,8 +217,8 @@ Executing test function test_make_phony  ...  done successfully.
 
 
 Executing test function test_make_prerequisite  ... Error in make(p, make_list) : 
-  There is no rule to make /tmp/RtmpMWrrsT/c1.Rout.
-Prerequisite /tmp/RtmpMWrrsT/c1.Rout found.
+  There is no rule to make /tmp/RtmpJtDjRL/c1.Rout.
+Prerequisite /tmp/RtmpJtDjRL/c1.Rout found.
  done successfully.
 
 
@@ -235,8 +232,3 @@ Executing test function test_make_source_files  ...  done successfully.
 Warning message:
 In func() :
   FIXME: The remaining code is in dontshow() in the examples section of make()! I haven't understood yet why is does not work in formal testing.
-Number of test functions: 15 
-Number of errors: 0 
-Number of failures: 1 
-Error: RUnit failed. 
-Execution halted

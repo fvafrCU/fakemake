@@ -1,0 +1,9 @@
+[1] filename  functions line      value    
+<0 rows> (or 0-length row.names)
+fakemake Coverage: 100.00%
+R/internals.R: 100.00%
+R/main.R: 100.00%
+R/sink_all.R: 100.00%
+R/throw.R: 100.00%
+R/tools.R: 100.00%
+R/unit_test_internals.R: 100.00%

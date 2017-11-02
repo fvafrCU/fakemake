@@ -1,0 +1,6 @@
+Loading fakemake
+Loading required package: testthat
+Testing fakemake
+Testing fakemake:::throw(): .
+
+DONE ===========================================================================
