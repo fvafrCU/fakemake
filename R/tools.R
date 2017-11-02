@@ -19,7 +19,7 @@ touch <- function(path) {
     } else {
         tmp <- tempfile()
         file.copy(path, tmp)
-        if (file.mtime(tmp) <= file.mtime(path)) Sys.sleep(1)
+        if (file.mtime(tmp) <= file.mtime(path)) Sys.sleep(2)
         file.rename(tmp, path)
         res <- NULL
     }
