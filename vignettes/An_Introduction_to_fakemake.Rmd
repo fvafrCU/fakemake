@@ -1,7 +1,7 @@
 ---
 title: "An Introduction to *fakemake*"
 author: "Andreas Dominik Cullmann"
-date: 2017-11-02, 12:13:00
+date: 2017-11-02, 13:02:08
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{An Introduction to fakemake }
@@ -78,11 +78,13 @@ file_time(list.files(tempdir(), full.names = TRUE, pattern = "^.*\\.Rout"))
 ```
 Nothing changed. Good.
 Now, we change one file down the build path:
+
 ```{r}
 fakemake::touch(file.path(tempdir(), "b1.Rout"))
 withr::with_dir(tempdir(), print(fakemake::make(ml[[1]][["target"]], ml)))
 file_time(list.files(tempdir(), full.names = TRUE, pattern = "^.*\\.Rout"))
 ```
+
 Since a1.Rout depends on b1.Rout and all.Rout depends on a1.Rout, these targets
 get rebuilt while a2.Rout stays untouched.
 # References
