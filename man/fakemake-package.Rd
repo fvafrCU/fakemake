@@ -5,7 +5,7 @@
 \alias{fakemake-package}
 \title{Mock the Unix Make Utility}
 \description{
-A description is a paragraph consisting of one or more sentences.
-You may add another paragraph for a 'Details' section.
+Use R as a minimal build system. This might come in handy if you are
+developing R packages and can not use a proper build system.
 }
 \keyword{package}
