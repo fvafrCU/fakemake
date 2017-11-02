@@ -1,7 +1,7 @@
 ---
 title: "An Introduction to *fakemake*"
 author: "Andreas Dominik Cullmann"
-date: 2017-11-02, 09:39:33
+date: 2017-11-02, 09:38:18
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{An Introduction to fakemake }
@@ -26,7 +26,7 @@ references:
     year: 2002
 ---
 
-# Mock the Unix Make Utility
+# Introduction
 There are 
 [many](https://en.wikipedia.org/wiki/List_of_build_automation_software)
 [build systems](https://en.wikipedia.org/wiki/Build_automation), 
@@ -35,10 +35,9 @@ and more uses for build systems [see @powers2002, sections 11.10 and 11.11].
 I have been using the 
 [unix make utility](https://en.wikipedia.org/wiki/Make_(software)) when 
 developing R packages since 2012. But sometimes I get caught on a machine where 
-*make* is not available and where I am not entitled to install it. 
-This is why I wrote *fakemake*: to build an R package conditionally on the 
-modification times of (file) dependencies without having to rely on external 
-software. 
+*make* is not available and where I am not entitled to install it. This is why I 
+wrote *fakemake*: to build an R package conditionally on the modification times
+of (file) dependencies without having to rely on external software. 
 If you have any proper build system at hand: stick to it, do not use *fakemake*.
 
 
