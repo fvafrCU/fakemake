@@ -8,6 +8,7 @@ packager::set_package_info(".", author_at_r = a,
 unlink(list.files(tempdir(), pattern = ".*\\.Rout", full.names = TRUE))
 devtools::load_all(".")
 
+
 #% code does not create target: infill
 str(ml <- provide_make_list("package"))
 ml[[1]]$sink <- "log/foo.Rout"

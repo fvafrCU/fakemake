@@ -21,5 +21,17 @@ Type 'q()' to quit R.
 Loading required package: MakefileR
 Loading required package: callr
 Loading required package: withr
+Loading required package: igraph
+
+Attaching package: ‘igraph’
+
+The following objects are masked from ‘package:stats’:
+
+    decompose, spectrum
+
+The following object is masked from ‘package:base’:
+
+    union
+
 > 
 > 

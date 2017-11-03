@@ -47,11 +47,19 @@ unlink(pkg_path, force = TRUE, recursive = TRUE)
 devtools::create(pkg_path)
 file.copy(system.file("templates", "throw.R", package = "fakemake"),
           file.path(pkg_path, "R"))
-str(ml <- fakemake::provide_make_list("package"))
 dir.create(file.path(pkg_path, "log"))
-withr::with_dir(pkg_path, print(fakemake::make("lint", ml)))
-withr::with_dir(pkg_path, print(fakemake::make("build", ml)))
+str(ml <- fakemake::provide_make_list("package"))
+withr::with_dir(pkg_path, plot(fakemake::makelist2igraph(ml)))
 withr::with_dir(pkg_path, print(fakemake::make("check", ml)))
-suppressMessages(withr::with_dir(pkg_path, print(fakemake::make("check", ml))))
-withr::with_dir(pkg_path, fakemake::touch(file.path("R", "throw.R")))
-withr::with_dir(pkg_path, print(fakemake::make("check", ml)))
+list.files(file.path(pkg_path, "log"))
+system.time(suppressMessages(withr::with_dir(pkg_path, 
+                                             print(fakemake::make("check", 
+                                                                  ml)))))
+file.show(file.path(pkg_path, "log", "covr.Rout"), pager = "cat")
+dir.create(file.path(pkg_path, "tests", "testthat"), recursive = TRUE)
+file.copy(system.file("templates", "testthat.R", package = "fakemake"),
+          file.path(pkg_path, "tests"))
+file.copy(system.file("templates", "test-throw.R", package = "fakemake"),
+          file.path(pkg_path, "tests", "testthat"))
+withr::with_dir(pkg_path, print(fakemake::make("covr", ml)))
+file.show(file.path(pkg_path, "log", "covr.Rout"), pager = "cat")

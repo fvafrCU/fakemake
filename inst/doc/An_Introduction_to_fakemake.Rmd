@@ -1,7 +1,7 @@
 ---
 title: "An Introduction to *fakemake*"
 author: "Andreas Dominik Cullmann"
-date: 2017-11-03, 17:40:54
+date: 2017-11-03, 23:47:15
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{An Introduction to fakemake }
@@ -191,21 +191,52 @@ withr::with_dir(tempdir(), print(fakemake::make("a1.Rout", ml)))
 
 # Building **R** Packages
 
-
+First, we create a package skeleton:
 ``` {r}
 pkg_path <- file.path(tempdir(), "fakepack")
 unlink(pkg_path, force = TRUE, recursive = TRUE)
 devtools::create(pkg_path)
 file.copy(system.file("templates", "throw.R", package = "fakemake"),
           file.path(pkg_path, "R"))
-str(ml <- fakemake::provide_make_list("package"))
 dir.create(file.path(pkg_path, "log"))
-withr::with_dir(pkg_path, print(fakemake::make("lint", ml)))
-withr::with_dir(pkg_path, print(fakemake::make("build", ml)))
+```
+Then we get a package makelist:
+``` {r}
+str(ml <- fakemake::provide_make_list("package"))
+```
+This is a more complex thing, we can take a glimpse:
+``` {r,fig.width = 7, fig.height = 7}
+withr::with_dir(pkg_path, plot(fakemake::makelist2igraph(ml)))
+```
+
+Now we build and check the package in one go:
+
+``` {r}
 withr::with_dir(pkg_path, print(fakemake::make("check", ml)))
-suppressMessages(withr::with_dir(pkg_path, print(fakemake::make("check", ml))))
-withr::with_dir(pkg_path, fakemake::touch(file.path("R", "throw.R")))
-withr::with_dir(pkg_path, print(fakemake::make("check", ml)))
+list.files(file.path(pkg_path, "log"))
+```
+Rebuilding the package does not consume CPU time:
+``` {r}
+system.time(suppressMessages(withr::with_dir(pkg_path, 
+                                             print(fakemake::make("check", 
+                                                                  ml)))))
+```
+Let us take a look at our testing coverage:
+``` {r}
+file.show(file.path(pkg_path, "log", "covr.Rout"), pager = "cat")
+```
+Well, poor. So now we add test files:
+``` {r}
+dir.create(file.path(pkg_path, "tests", "testthat"), recursive = TRUE)
+file.copy(system.file("templates", "testthat.R", package = "fakemake"),
+          file.path(pkg_path, "tests"))
+file.copy(system.file("templates", "test-throw.R", package = "fakemake"),
+          file.path(pkg_path, "tests", "testthat"))
+withr::with_dir(pkg_path, print(fakemake::make("covr", ml)))
+```
+This looks better:
+``` {r}
+file.show(file.path(pkg_path, "log", "covr.Rout"), pager = "cat")
 ```
 
 # References

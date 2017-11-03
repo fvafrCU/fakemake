@@ -1,13 +1,12 @@
 Dear CRAN Team,
 this is a resubmission of package 'fakemake'. I have added the following changes:
 
-* add internal *check\_makelist()* for minimal checks on the structure of a
-  makelist.
+* add visulaisation.
 
 Please upload to CRAN.
 Best, Dominik
 
-# Package fakemake 0.2.0
+# Package fakemake 0.3.0
 ## Test  environments 
 - R Under development (unstable) (2017-11-02 r73652)
   Platform: x86_64-pc-linux-gnu (64-bit)

@@ -9,9 +9,44 @@
 #' str(provide_make_list("minimal"))
 provide_make_list <- function(type = "minimal", prune = TRUE,
                               clean_sink = FALSE) {
+    cleanr_code <- paste("tryCatch(cleanr::check_directory(\"R/\",",
+                         "check_return = FALSE),",
+                         "cleanr = function(e) print(e))")
+    spell_code <- paste("spell <- devtools::spell_check();",
+                        "if (length(spell) > 0) {print(spell);",
+                        "warning(\"spell check failed\")}")
+    covr_code <- paste("co <- covr::package_coverage(path = \".\");",
+                       "print(covr::zero_coverage(co)); print(co)")
+    testthat_code <- paste("tryCatch(testthat::test_package(\".\"),",
+                           "error = function(e) print(e))")
     pl <- list(list(alias = "lint",
                     target = file.path("log", "lintr.Rout"),
                     code = "lintr::lint_package(path = \".\")",
+                    prerequisites = "list.files(\"R\", full.names = TRUE)"),
+               list(alias = "spell",
+                    target = file.path("log", "spell.Rout"),
+                    code = spell_code,
+                    prerequisites = c("DESCRIPTION",
+                                      file.path("log", "roxygen2.Rout"))),
+               list(alias = "covr",
+                    target = file.path("log", "covr.Rout"),
+                    code = covr_code,
+                    prerequisites = c("list.files(\"R\", full.names = TRUE)",
+                                      "list.files(\"tests\", full.names = T)",
+                                      "list.files(\"inst\", full.names = T)")),
+               list(alias = "testthat",
+                    target = file.path("log", "testthat.Rout"),
+                    code = testthat_code,
+                    prerequisites = c("list.files(\"R\", full.names = TRUE)",
+                                      "list.files(\"tests\", full.names = T)",
+                                      "list.files(\"inst\", full.names = T)")),
+               list(alias = "cleanr",
+                    target = file.path("log", "cleanr.Rout"),
+                    code = cleanr_code,
+                    prerequisites = "list.files(\"R\", full.names = TRUE)"),
+               list(alias = "roxygen2",
+                    target = file.path("log", "roxygen2.Rout"),
+                    code = "roxygen2::roxygenize(\".\")",
                     prerequisites = "list.files(\"R\", full.names = TRUE)"),
                list(alias = "build", target = "get_pkg_archive_path()",
                     code = "devtools::build(pkg = \".\", path = \".\")",
@@ -19,7 +54,12 @@ provide_make_list <- function(type = "minimal", prune = TRUE,
                     prerequisites = c("list.files(\"R\", full.names = TRUE)",
                                       "list.files(\"man\", full.names = TRUE)",
                                       "DESCRIPTION",
-                                      "file.path(\"log\", \"lintr.Rout\")")),
+                                      "file.path(\"log\", \"lintr.Rout\")",
+                                      "file.path(\"log\", \"cleanr.Rout\")",
+                                      "file.path(\"log\", \"spell.Rout\")",
+                                      "file.path(\"log\", \"covr.Rout\")",
+                                      "file.path(\"log\", \"testthat.Rout\")",
+                                      "file.path(\"log\", \"roxygen2.Rout\")")),
                list(alias = "check", target = "log/check.Rout",
                     code = "check_archive_as_cran(get_pkg_archive_path())",
                     prerequisites = "get_pkg_archive_path()"))
@@ -252,3 +292,22 @@ is_to_be_made <- function(target, prerequisites, is_phony) {
     }
     return(is_to_be_made)
 }
+
+#' Parse a \code{Makelist} and Convert it Into an \code{Igraph}
+#'
+#' @param make_list The \code{makelist}.
+#' @return An \pkg{igraph} representation of the \code{makelist}.
+#' run.
+#' @export
+#' @examples
+#' str(ml <- provide_make_list("package"))
+#' plot(makelist2igraph(ml))
+makelist2igraph <- function(make_list){
+    ml <- parse_make_list(make_list)
+    names(ml) <- sapply(ml, "[[", "target")
+    ml  <-  lapply(ml, "[[", "prerequisites")
+    st <- utils::stack(ml)
+    g <- igraph::graph.data.frame(st)
+    return(g)
+}
+

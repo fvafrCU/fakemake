@@ -1,0 +1,9 @@
+inst/doc/An_Introduction_to_fakemake.R:55:55: style: Trailing whitespace is superfluous.
+system.time(suppressMessages(withr::with_dir(pkg_path, 
+                                                      ^
+inst/doc/An_Introduction_to_fakemake.R:56:75: style: Trailing whitespace is superfluous.
+                                             print(fakemake::make("check", 
+                                                                          ^
+R/main.R:313:1: style: Trailing blank lines are superfluous.
+
+^

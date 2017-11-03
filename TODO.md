@@ -2,3 +2,4 @@
   well) crashes...!
 - make uses eval(parse(text = )). Isn't there a better way?
 - enhance vignette
+  * testthat output is not caught to sink? Hadley, ...

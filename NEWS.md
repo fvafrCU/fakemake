@@ -1,3 +1,7 @@
+# fakemake 0.3.0
+
+* add visulaisation.
+
 # fakemake 0.2.0
 
 * add internal *check\_makelist()* for minimal checks on the structure of a
