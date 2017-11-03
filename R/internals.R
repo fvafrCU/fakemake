@@ -50,7 +50,7 @@ check_makelist <- function(makelist) {
 
 parse_make_list <- function(ml) {
     for (i in seq(along = ml)) {
-        for (type in setdiff(names(ml[[i]]), "code")) {
+        for (type in setdiff(names(ml[[i]]), c("code", "alias"))) {
             x <- ml[[i]][[type]]
             res <- NULL
             for (j in seq(along = x)) {

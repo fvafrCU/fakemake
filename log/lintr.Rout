@@ -31,3 +31,6 @@ R/internals.R:37:64: style: Trailing whitespace is superfluous.
 R/internals.R:41:47: style: Trailing whitespace is superfluous.
                                    " in list", 
                                               ^
+R/internals.R:65:64: style: Trailing whitespace is superfluous.
+        if (is.null(ml[[i]][["code"]])) ml[[i]][["code"]] <- "" 
+                                                               ^

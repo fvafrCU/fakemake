@@ -1,0 +1,11 @@
+        filename      functions line value
+39 R/internals.R check_makelist   21     0
+43 R/internals.R check_makelist   22     0
+47 R/internals.R check_makelist   23     0
+fakemake Coverage: 98.75%
+R/internals.R: 94.74%
+R/main.R: 100.00%
+R/sink_all.R: 100.00%
+R/throw.R: 100.00%
+R/tools.R: 100.00%
+R/unit_test_internals.R: 100.00%

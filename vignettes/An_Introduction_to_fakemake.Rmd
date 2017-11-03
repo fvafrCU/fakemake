@@ -1,7 +1,7 @@
 ---
 title: "An Introduction to *fakemake*"
 author: "Andreas Dominik Cullmann"
-date: 2017-11-03, 15:02:11
+date: 2017-11-03, 16:12:12
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{An Introduction to fakemake }
@@ -48,22 +48,35 @@ Look at the minimal makelist provided with *fakemake*:
 ```{r}
 str(fakemake::provide_make_list("minimal", clean_sink = TRUE))
 ```
-Each sublist has several items: as least a *target* and either *code* or 
-*prerequisites*, possibly both.
-Describe names, mention sink, phony and alias.
-Minimum: a target and either code or prerequisites.
+Each sublist represents a Makefile's target rule and has several items: 
+at least a *target* and either *code* or *prerequisites*, possibly both. 
+This makelist would still be a Makefile's valid representation if target rule #3
+with target "a1.Rout" had no (or an empty) *code* entry.
+
+Other possible target rule entries are:
+
+- *alias*: An alias to target that would be easier to remember and/or type.
+- *sink*: By default, all output of the *code* entry is dumped (well, with 
+                                                                **R**'s 
+                                                                *sink* function)
+  into a file with the mame given by *target*. If *target* should be created by 
+  the *code* you will want to redirect the output into *sink*.
+- *.PHONY*: If set to TRUE, the target is rebuilt unconditionally every time the 
+  target is hit (trying to mock GNU make's .PHONY-extension.
 
 
 # A Minimal Example
 Suppose we would have a minimal makelist:
 ```{r}
-ml <- fakemake::provide_make_list("minimal")
+ml <- fakemake::provide_make_list("minimal", clean_sink = TRUE)
 ```
-Now we would use **R**`s temporary directory to build the first target in this 
+
+## Building and Rebuilding
+Now we would use **R**'s temporary directory to build the "all" *target* in this
 makelist:
 
 ```{r}
-withr::with_dir(tempdir(), print(fakemake::make(ml[[1]][["target"]], ml)))
+withr::with_dir(tempdir(), print(fakemake::make("all.Rout", ml)))
 ```
 We can see the files created:
 ```{r}
@@ -78,18 +91,62 @@ If we wait for a second and rerun the build process, we get:
 ```{r}
 # ensure the modification time would change if the files were recreated
 Sys.sleep(1)
-withr::with_dir(tempdir(), print(fakemake::make(ml[[1]][["target"]], ml)))
+withr::with_dir(tempdir(), print(fakemake::make("all.Rout", ml)))
 show_file_mtime()
 ```
 Nothing changed. Good.
-Now, we change one file down the build path:
+Now, we change one file down the build chain:
 
 ```{r}
 fakemake::touch(file.path(tempdir(), "b1.Rout"))
-withr::with_dir(tempdir(), print(fakemake::make(ml[[1]][["target"]], ml)))
+withr::with_dir(tempdir(), print(fakemake::make("all.Rout", ml)))
 show_file_mtime()
 ```
 
 Since a1.Rout depends on b1.Rout and all.Rout depends on a1.Rout, these targets
 get rebuilt while a2.Rout stays untouched.
+
+Had we touched a1.Rout, b1.Rout would not have been rebuilt:
+```{r, echo = FALSE}
+# touch should do the job...
+Sys.sleep(1)
+```
+
+``` {r}
+fakemake::touch(file.path(tempdir(), "a1.Rout"))
+withr::with_dir(tempdir(), print(fakemake::make("all.Rout", ml)))
+show_file_mtime()
+```
+
+## Using aliases
+If you find a target rule's *target* too hard to type, you can use an alias:
+``` {r}
+i <- which(sapply(ml, "[[", "target") == "all.Rout")
+ml[[i]]["alias"] <- "all"
+withr::with_dir(tempdir(), print(fakemake::make("all", ml)))
+```
+
+## No Code Targets
+Rule a1 has *code*
+``` {r}
+i <- which(sapply(ml, "[[", "target") == "a1.Rout")
+ml[[i]]["code"]
+```
+that prints "a1" into "a1.Rout":
+``` {r}
+file.show(file.path(tempdir(), "a1.Rout"), pager = "cat")
+```
+
+If we remove that code and its output file and rerun
+``` {r}
+ml[[i]]["code"]  <- NULL
+file.remove(file.path(tempdir(), "a1.Rout"))
+withr::with_dir(tempdir(), print(fakemake::make("all.Rout", ml)))
+```
+the file is still created but empty:
+``` {r}
+file.size(file.path(tempdir(), "a1.Rout"))
+```
+
+
 # References
