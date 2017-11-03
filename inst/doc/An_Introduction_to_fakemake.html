@@ -69,7 +69,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <h1 class="title toc-ignore">An Introduction to <em>fakemake</em></h1>
 <h4 class="author"><em>Andreas Dominik Cullmann</em></h4>
-<h4 class="date"><em>2017-11-03, 16:02:31</em></h4>
+<h4 class="date"><em>2017-11-03, 16:38:06</em></h4>
 
 
 
@@ -109,9 +109,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h1>A Minimal Example</h1>
 <p>Suppose we would have a minimal makelist:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ml &lt;-<span class="st"> </span>fakemake::<span class="kw">provide_make_list</span>(<span class="st">&quot;minimal&quot;</span>, <span class="dt">clean_sink =</span> <span class="ot">TRUE</span>)</code></pre></div>
-</div>
-<div id="building-and-rebuilding" class="section level1">
-<h1>Building and Rebuilding</h1>
+<div id="building-and-rebuilding" class="section level2">
+<h2>Building and Rebuilding</h2>
 <p>Now we would use <strong>R</strong>’s temporary directory to build the “all” <em>target</em> in this makelist:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">withr::<span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span class="kw">print</span>(fakemake::<span class="kw">make</span>(<span class="st">&quot;all.Rout&quot;</span>, ml)))</code></pre></div>
 <pre><code>## [1] &quot;b1.Rout&quot;  &quot;a1.Rout&quot;  &quot;a2.Rout&quot;  &quot;all.Rout&quot;</code></pre>
@@ -122,10 +121,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 }
 <span class="kw">show_file_mtime</span>()</code></pre></div>
 <pre><code>##                                        mtime
-## /tmp/RtmpPADyCq/a1.Rout  2017-11-03 16:11:59
-## /tmp/RtmpPADyCq/a2.Rout  2017-11-03 16:11:59
-## /tmp/RtmpPADyCq/all.Rout 2017-11-03 16:11:59
-## /tmp/RtmpPADyCq/b1.Rout  2017-11-03 16:11:59</code></pre>
+## /tmp/RtmpcUtWis/a1.Rout  2017-11-03 16:38:13
+## /tmp/RtmpcUtWis/a2.Rout  2017-11-03 16:38:13
+## /tmp/RtmpcUtWis/all.Rout 2017-11-03 16:38:13
+## /tmp/RtmpcUtWis/b1.Rout  2017-11-03 16:38:13</code></pre>
 <p>If we wait for a second and rerun the build process, we get:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ensure the modification time would change if the files were recreated</span>
 <span class="kw">Sys.sleep</span>(<span class="dv">1</span>)
@@ -133,20 +132,20 @@ withr::<span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span
 <pre><code>## NULL</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">show_file_mtime</span>()</code></pre></div>
 <pre><code>##                                        mtime
-## /tmp/RtmpPADyCq/a1.Rout  2017-11-03 16:11:59
-## /tmp/RtmpPADyCq/a2.Rout  2017-11-03 16:11:59
-## /tmp/RtmpPADyCq/all.Rout 2017-11-03 16:11:59
-## /tmp/RtmpPADyCq/b1.Rout  2017-11-03 16:11:59</code></pre>
+## /tmp/RtmpcUtWis/a1.Rout  2017-11-03 16:38:13
+## /tmp/RtmpcUtWis/a2.Rout  2017-11-03 16:38:13
+## /tmp/RtmpcUtWis/all.Rout 2017-11-03 16:38:13
+## /tmp/RtmpcUtWis/b1.Rout  2017-11-03 16:38:13</code></pre>
 <p>Nothing changed. Good. Now, we change one file down the build chain:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fakemake::<span class="kw">touch</span>(<span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;b1.Rout&quot;</span>))
 withr::<span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span class="kw">print</span>(fakemake::<span class="kw">make</span>(<span class="st">&quot;all.Rout&quot;</span>, ml)))</code></pre></div>
 <pre><code>## [1] &quot;a1.Rout&quot;  &quot;all.Rout&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">show_file_mtime</span>()</code></pre></div>
 <pre><code>##                                        mtime
-## /tmp/RtmpPADyCq/a1.Rout  2017-11-03 16:12:00
-## /tmp/RtmpPADyCq/a2.Rout  2017-11-03 16:11:59
-## /tmp/RtmpPADyCq/all.Rout 2017-11-03 16:12:00
-## /tmp/RtmpPADyCq/b1.Rout  2017-11-03 16:12:00</code></pre>
+## /tmp/RtmpcUtWis/a1.Rout  2017-11-03 16:38:14
+## /tmp/RtmpcUtWis/a2.Rout  2017-11-03 16:38:13
+## /tmp/RtmpcUtWis/all.Rout 2017-11-03 16:38:14
+## /tmp/RtmpcUtWis/b1.Rout  2017-11-03 16:38:14</code></pre>
 <p>Since a1.Rout depends on b1.Rout and all.Rout depends on a1.Rout, these targets get rebuilt while a2.Rout stays untouched.</p>
 <p>Had we touched a1.Rout, b1.Rout would not have been rebuilt:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fakemake::<span class="kw">touch</span>(<span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;a1.Rout&quot;</span>))
@@ -154,10 +153,45 @@ withr::<span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span
 <pre><code>## [1] &quot;all.Rout&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">show_file_mtime</span>()</code></pre></div>
 <pre><code>##                                        mtime
-## /tmp/RtmpPADyCq/a1.Rout  2017-11-03 16:12:01
-## /tmp/RtmpPADyCq/a2.Rout  2017-11-03 16:11:59
-## /tmp/RtmpPADyCq/all.Rout 2017-11-03 16:12:01
-## /tmp/RtmpPADyCq/b1.Rout  2017-11-03 16:12:00</code></pre>
+## /tmp/RtmpcUtWis/a1.Rout  2017-11-03 16:38:15
+## /tmp/RtmpcUtWis/a2.Rout  2017-11-03 16:38:13
+## /tmp/RtmpcUtWis/all.Rout 2017-11-03 16:38:15
+## /tmp/RtmpcUtWis/b1.Rout  2017-11-03 16:38:14</code></pre>
+</div>
+<div id="using-aliases" class="section level2">
+<h2>Using aliases</h2>
+<p>If you find a target rule’s <em>target</em> too hard to type, you can use an alias:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">i &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="kw">sapply</span>(ml, <span class="st">&quot;[[&quot;</span>, <span class="st">&quot;target&quot;</span>) ==<span class="st"> &quot;all.Rout&quot;</span>)
+ml[[i]][<span class="st">&quot;alias&quot;</span>] &lt;-<span class="st"> &quot;all&quot;</span>
+fakemake::<span class="kw">touch</span>(<span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;b1.Rout&quot;</span>))
+withr::<span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span class="kw">print</span>(fakemake::<span class="kw">make</span>(<span class="st">&quot;all&quot;</span>, ml)))</code></pre></div>
+<pre><code>## [1] &quot;a1.Rout&quot;  &quot;all.Rout&quot;</code></pre>
+<p>I’ll give you that this is pointless here, but <em>target</em>s might be files down a directory tree like ‘log/testthat.Rout’ when building <strong>R</strong> packages.</p>
+</div>
+<div id="diverting-output" class="section level2">
+<h2>Diverting Output</h2>
+<p>Target rule b1 dumps its output to b1.Rout:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">file.show</span>(<span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;b1.Rout&quot;</span>), <span class="dt">pager =</span> <span class="st">&quot;cat&quot;</span>)</code></pre></div>
+<p>Suppose it would programmatically create the target:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">i &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="kw">sapply</span>(ml, <span class="st">&quot;[[&quot;</span>, <span class="st">&quot;target&quot;</span>) ==<span class="st"> &quot;b1.Rout&quot;</span>)
+ml[[i]][<span class="st">&quot;code&quot;</span>]  &lt;-<span class="st"> </span><span class="kw">paste</span>(ml[[i]][<span class="st">&quot;code&quot;</span>], 
+                      <span class="st">&quot;cat('hello, world', file = </span><span class="ch">\&quot;</span><span class="st">b1.Rout</span><span class="ch">\&quot;</span><span class="st">)&quot;</span>, 
+                      <span class="st">&quot;print(</span><span class="ch">\&quot;</span><span class="st">foobar</span><span class="ch">\&quot;</span><span class="st">)&quot;</span>,
+                      <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>)
+<span class="kw">file.remove</span>(<span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;b1.Rout&quot;</span>))</code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">withr::<span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span class="kw">print</span>(fakemake::<span class="kw">make</span>(<span class="st">&quot;all.Rout&quot;</span>, ml)))</code></pre></div>
+<pre><code>## [1] &quot;b1.Rout&quot;  &quot;a1.Rout&quot;  &quot;all.Rout&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">file.show</span>(<span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;b1.Rout&quot;</span>), <span class="dt">pager =</span> <span class="st">&quot;cat&quot;</span>)</code></pre></div>
+<p>You end up with a broken target file, so you need to add a <em>sink</em>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ml[[i]][<span class="st">&quot;sink&quot;</span>] &lt;-<span class="st"> &quot;b1.txt&quot;</span>
+<span class="kw">file.remove</span>(<span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;b1.Rout&quot;</span>))</code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">withr::<span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span class="kw">print</span>(fakemake::<span class="kw">make</span>(<span class="st">&quot;all.Rout&quot;</span>, ml)))</code></pre></div>
+<pre><code>## [1] &quot;b1.Rout&quot;  &quot;a1.Rout&quot;  &quot;all.Rout&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">file.show</span>(<span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;b1.Rout&quot;</span>), <span class="dt">pager =</span> <span class="st">&quot;cat&quot;</span>)
+<span class="kw">file.show</span>(<span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;b1.txt&quot;</span>), <span class="dt">pager =</span> <span class="st">&quot;cat&quot;</span>)</code></pre></div>
+</div>
 <div id="no-code-targets" class="section level2">
 <h2>No Code Targets</h2>
 <p>Rule a1 has <em>code</em></p>
@@ -177,6 +211,14 @@ ml[[i]][<span class="st">&quot;code&quot;</span>]</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">file.size</span>(<span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;a1.Rout&quot;</span>))</code></pre></div>
 <pre><code>## [1] 0</code></pre>
 </div>
+<div id="phony-targets" class="section level2">
+<h2>Phony Targets</h2>
+<p>XXX</p>
+</div>
+</div>
+<div id="a-more-complex-example" class="section level1">
+<h1>A More Complex Example</h1>
+<p>XXX insert from devel.R</p>
 </div>
 <div id="references" class="section level1 unnumbered">
 <h1>References</h1>
