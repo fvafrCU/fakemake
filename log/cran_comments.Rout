@@ -17,7 +17,7 @@ Found the following (possibly) invalid URLs:
     Status: Error
     Message: libcurl error code 35:
       	gnutls_handshake() failed: An unexpected TLS packet was received.
-  URL: https://en.wikipedia.org/wiki/Make_(software
+  URL: https://en.wikipedia.org/wiki/Make_(software)
     From: inst/doc/An_Introduction_to_fakemake.html
     Status: Error
     Message: libcurl error code 35:

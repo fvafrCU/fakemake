@@ -20,7 +20,7 @@ Found the following (possibly) invalid URLs:
     Status: Error
     Message: libcurl error code 35:
       	gnutls_handshake() failed: An unexpected TLS packet was received.
-  URL: https://en.wikipedia.org/wiki/Make_(software
+  URL: https://en.wikipedia.org/wiki/Make_(software)
     From: inst/doc/An_Introduction_to_fakemake.html
     Status: Error
     Message: libcurl error code 35:
@@ -72,7 +72,7 @@ InvalidProxyEnvironmentVariable "https_proxy" "https://10.127.255.17:8080"
 * checking examples ... OK
 * checking for unstated dependencies in ‘tests’ ... OK
 * checking tests ... OK
-  Running ‘runit.R’ [16s/27s]
+  Running ‘runit.R’ [13s/23s]
   Running ‘testthat.R’
 * checking for unstated dependencies in vignettes ... OK
 * checking package vignettes in ‘inst/doc’ ... OK
