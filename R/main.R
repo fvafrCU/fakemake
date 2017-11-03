@@ -196,10 +196,10 @@ make <- function(name, make_list) {
         index <- which(lapply(make_list, "[[", "alias") == name)
     }
     if (identical(index, integer(0))) {
-        if (! file.exists(name)) {
-            throw(paste0("There is no rule to make ", name, "."))
-        } else {
+        if (file.exists(name)) {
             message("Prerequisite ", name, " found.")
+        } else {
+            throw(paste0("There is no rule to make ", name, "."))
         }
     } else {
         target <- targets[index]
