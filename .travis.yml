@@ -6,6 +6,7 @@ cache: packages
 r_packages:
     - testthat
     - RUnit
+    - lintr
 r_github_packages:
     - jimhester/covr
 after_success:
