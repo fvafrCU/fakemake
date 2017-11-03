@@ -35,6 +35,7 @@ provide_make_list <- function(type = "minimal", prune = TRUE,
                  throw(paste0("type ", type, " not known!"))
                  )
     if (isTRUE(prune)) ml <- prune_list(ml)
+    check_makelist(ml)
     return(ml)
 }
 
