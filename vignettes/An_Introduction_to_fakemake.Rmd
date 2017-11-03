@@ -1,7 +1,7 @@
 ---
 title: "An Introduction to *fakemake*"
 author: "Andreas Dominik Cullmann"
-date: 2017-11-03, 14:30:08
+date: 2017-11-03, 14:41:03
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{An Introduction to fakemake }
@@ -48,7 +48,8 @@ It's just a list of lists. Look at the
 str(fakemake::provide_make_list("minimal", clean_sink = TRUE))
 ```
 
-Describe names, mention phony and alias.
+Describe names, mention sink, phony and alias.
+Minimum: a target and either code or prerequisites.
 
 
 # A Minimal Example

@@ -1,13 +1,15 @@
-str(fakemake::provide_make_list("minimal"))
+str(fakemake::provide_make_list("minimal", clean_sink = TRUE))
 ml <- fakemake::provide_make_list("minimal")
 withr::with_dir(tempdir(), print(fakemake::make(ml[[1]][["target"]], ml)))
-file_time <- function(files = list.files(tempdir(), full.names = TRUE)) {
-    return(data.frame(path = files, modification_time = file.mtime(files)))
+show_file_mtime <- function(files = list.files(tempdir(), full.names = TRUE, 
+                                               pattern = "^.*\\.Rout")) {
+    return(file.info(files)["mtime"])
 }
-file_time(list.files(tempdir(), full.names = TRUE, pattern = "^.*\\.Rout"))
+show_file_mtime()
 # ensure the modification time would change if the files were recreated
 Sys.sleep(1)
-file_time(list.files(tempdir(), full.names = TRUE, pattern = "^.*\\.Rout"))
+withr::with_dir(tempdir(), print(fakemake::make(ml[[1]][["target"]], ml)))
+show_file_mtime()
 fakemake::touch(file.path(tempdir(), "b1.Rout"))
 withr::with_dir(tempdir(), print(fakemake::make(ml[[1]][["target"]], ml)))
-file_time(list.files(tempdir(), full.names = TRUE, pattern = "^.*\\.Rout"))
+show_file_mtime()

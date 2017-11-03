@@ -222,7 +222,7 @@ If you have any proper build system at hand: stick to it, do not use <em>fakemak
 <p>A makelist is the <em>fakemake</em>s representation of a Makefile. 
 It&#39;s just a list of lists. Look at the </p>
 
-<pre><code class="r">str(fakemake::provide_make_list(&quot;minimal&quot;))
+<pre><code class="r">str(fakemake::provide_make_list(&quot;minimal&quot;, clean_sink = TRUE))
 </code></pre>
 
 <pre><code>## List of 4
@@ -230,21 +230,19 @@ It&#39;s just a list of lists. Look at the </p>
 ##   ..$ target       : chr &quot;all.Rout&quot;
 ##   ..$ prerequisites: chr [1:2] &quot;a1.Rout&quot; &quot;a2.Rout&quot;
 ##   ..$ code         : chr &quot;print(\&quot;all\&quot;)&quot;
-##  $ :List of 3
-##   ..$ target       : chr &quot;a2.Rout&quot;
-##   ..$ prerequisites: NULL
-##   ..$ code         : chr &quot;print(\&quot;a2\&quot;)&quot;
+##  $ :List of 2
+##   ..$ target: chr &quot;a2.Rout&quot;
+##   ..$ code  : chr &quot;print(\&quot;a2\&quot;)&quot;
 ##  $ :List of 3
 ##   ..$ target       : chr &quot;a1.Rout&quot;
 ##   ..$ prerequisites: chr &quot;b1.Rout&quot;
 ##   ..$ code         : chr &quot;print(\&quot;a1\&quot;)&quot;
-##  $ :List of 3
-##   ..$ target       : chr &quot;b1.Rout&quot;
-##   ..$ prerequisites: NULL
-##   ..$ code         : chr &quot;print(\&quot;b1\&quot;)&quot;
+##  $ :List of 2
+##   ..$ target: chr &quot;b1.Rout&quot;
+##   ..$ code  : chr &quot;print(\&quot;b1\&quot;)&quot;
 </code></pre>
 
-<p>Describe names, mention phony and alias.</p>
+<p>Describe names, mention sink, phony and alias.</p>
 
 <h1>A Minimal Example</h1>
 
@@ -264,31 +262,38 @@ makelist:</p>
 
 <p>We can see the files created:</p>
 
-<pre><code class="r">file_time &lt;- function(files = list.files(tempdir(), full.names = TRUE)) {
-    return(data.frame(path = files, modification_time = file.mtime(files)))
+<pre><code class="r">show_file_mtime &lt;- function(files = list.files(tempdir(), full.names = TRUE, 
+                                               pattern = &quot;^.*\\.Rout&quot;)) {
+    return(file.info(files)[&quot;mtime&quot;])
 }
-file_time(list.files(tempdir(), full.names = TRUE, pattern = &quot;^.*\\.Rout&quot;))
+show_file_mtime()
 </code></pre>
 
-<pre><code>##                       path   modification_time
-## 1  /tmp/Rtmpuhm3ro/a1.Rout 2017-11-03 13:40:35
-## 2  /tmp/Rtmpuhm3ro/a2.Rout 2017-11-03 13:40:35
-## 3 /tmp/Rtmpuhm3ro/all.Rout 2017-11-03 13:40:35
-## 4  /tmp/Rtmpuhm3ro/b1.Rout 2017-11-03 13:40:35
+<pre><code>##                                        mtime
+## /tmp/Rtmp89VcYo/a1.Rout  2017-11-03 14:40:02
+## /tmp/Rtmp89VcYo/a2.Rout  2017-11-03 14:40:02
+## /tmp/Rtmp89VcYo/all.Rout 2017-11-03 14:40:02
+## /tmp/Rtmp89VcYo/b1.Rout  2017-11-03 14:40:02
 </code></pre>
 
-<p>If we rerun the build process, we get:</p>
+<p>If we wait for a second and rerun the build process, we get:</p>
 
 <pre><code class="r"># ensure the modification time would change if the files were recreated
 Sys.sleep(1)
-file_time(list.files(tempdir(), full.names = TRUE, pattern = &quot;^.*\\.Rout&quot;))
+withr::with_dir(tempdir(), print(fakemake::make(ml[[1]][[&quot;target&quot;]], ml)))
 </code></pre>
 
-<pre><code>##                       path   modification_time
-## 1  /tmp/Rtmpuhm3ro/a1.Rout 2017-11-03 13:40:35
-## 2  /tmp/Rtmpuhm3ro/a2.Rout 2017-11-03 13:40:35
-## 3 /tmp/Rtmpuhm3ro/all.Rout 2017-11-03 13:40:35
-## 4  /tmp/Rtmpuhm3ro/b1.Rout 2017-11-03 13:40:35
+<pre><code>## NULL
+</code></pre>
+
+<pre><code class="r">show_file_mtime()
+</code></pre>
+
+<pre><code>##                                        mtime
+## /tmp/Rtmp89VcYo/a1.Rout  2017-11-03 14:40:02
+## /tmp/Rtmp89VcYo/a2.Rout  2017-11-03 14:40:02
+## /tmp/Rtmp89VcYo/all.Rout 2017-11-03 14:40:02
+## /tmp/Rtmp89VcYo/b1.Rout  2017-11-03 14:40:02
 </code></pre>
 
 <p>Nothing changed. Good.
@@ -301,14 +306,14 @@ withr::with_dir(tempdir(), print(fakemake::make(ml[[1]][[&quot;target&quot;]], m
 <pre><code>## [1] &quot;a1.Rout&quot;  &quot;all.Rout&quot;
 </code></pre>
 
-<pre><code class="r">file_time(list.files(tempdir(), full.names = TRUE, pattern = &quot;^.*\\.Rout&quot;))
+<pre><code class="r">show_file_mtime()
 </code></pre>
 
-<pre><code>##                       path   modification_time
-## 1  /tmp/Rtmpuhm3ro/a1.Rout 2017-11-03 13:40:36
-## 2  /tmp/Rtmpuhm3ro/a2.Rout 2017-11-03 13:40:35
-## 3 /tmp/Rtmpuhm3ro/all.Rout 2017-11-03 13:40:36
-## 4  /tmp/Rtmpuhm3ro/b1.Rout 2017-11-03 13:40:36
+<pre><code>##                                        mtime
+## /tmp/Rtmp89VcYo/a1.Rout  2017-11-03 14:40:03
+## /tmp/Rtmp89VcYo/a2.Rout  2017-11-03 14:40:02
+## /tmp/Rtmp89VcYo/all.Rout 2017-11-03 14:40:03
+## /tmp/Rtmp89VcYo/b1.Rout  2017-11-03 14:40:03
 </code></pre>
 
 <p>Since a1.Rout depends on b1.Rout and all.Rout depends on a1.Rout, these targets

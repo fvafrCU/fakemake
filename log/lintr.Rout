@@ -1,3 +1,6 @@
+inst/doc/An_Introduction_to_fakemake.R:4:77: style: Trailing whitespace is superfluous.
+show_file_mtime <- function(files = list.files(tempdir(), full.names = TRUE, 
+                                                                            ^
 inst/runit_tests/runit-check_makelist.R:14:1: style: Trailing blank lines are superfluous.
 
 ^
@@ -7,21 +10,24 @@ inst/runit_tests/runit-check_makelist.R:15:1: style: Trailing blank lines are su
 inst/runit_tests/runit-check_makelist.R:16:1: style: Trailing blank lines are superfluous.
 
 ^
-R/internals.R:7:78: style: Trailing whitespace is superfluous.
-    has_target <- sapply(lapply(makelist, function(x)  names(x) == "target"), 
-                                                                             ^
-R/internals.R:11:70: style: Trailing whitespace is superfluous.
+R/internals.R:2:57: style: Trailing whitespace is superfluous.
+    i <- sapply(lapply(l, function(x) names(x) == item), 
+                                                        ^
+R/internals.R:15:70: style: Trailing whitespace is superfluous.
                     "of list", dQuote(deparse(substitute(makelist))), 
                                                                      ^
-R/internals.R:16:73: style: Trailing whitespace is superfluous.
+R/internals.R:22:70: style: Trailing whitespace is superfluous.
+                    "of list", dQuote(deparse(substitute(makelist))), 
+                                                                     ^
+R/internals.R:27:73: style: Trailing whitespace is superfluous.
     valid_names <- c("alias", "target", "code", "sink", "prerequisites", 
                                                                         ^
-R/internals.R:25:34: style: Trailing whitespace is superfluous.
+R/internals.R:36:34: style: Trailing whitespace is superfluous.
                 msg <- paste(msg, 
                                  ^
-R/internals.R:26:64: style: Trailing whitespace is superfluous.
+R/internals.R:37:64: style: Trailing whitespace is superfluous.
                              paste(paste(dQuote(invalid_names), 
                                                                ^
-R/internals.R:30:47: style: Trailing whitespace is superfluous.
+R/internals.R:41:47: style: Trailing whitespace is superfluous.
                                    " in list", 
                                               ^
