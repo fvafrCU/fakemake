@@ -61,6 +61,8 @@ parse_make_list <- function(ml) {
             ml[[i]][[type]] <- res
         }
         if (is.null(ml[[i]][["sink"]])) ml[[i]][["sink"]] <- ml[[i]][["target"]]
+        # eval()uating NULL is no good.
+        if (is.null(ml[[i]][["code"]])) ml[[i]][["code"]] <- "" 
     }
     return(ml)
 }

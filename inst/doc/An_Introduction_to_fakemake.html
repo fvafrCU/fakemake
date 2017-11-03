@@ -220,7 +220,8 @@ If you have any proper build system at hand: stick to it, do not use <em>fakemak
 <h1>Makelists</h1>
 
 <p>A makelist is the <em>fakemake</em>s representation of a Makefile. 
-It&#39;s just a list of lists. Look at the </p>
+It&#39;s just a list of lists. 
+Look at the minimal makelist provided with <em>fakemake</em>: </p>
 
 <pre><code class="r">str(fakemake::provide_make_list(&quot;minimal&quot;, clean_sink = TRUE))
 </code></pre>
@@ -242,7 +243,8 @@ It&#39;s just a list of lists. Look at the </p>
 ##   ..$ code  : chr &quot;print(\&quot;b1\&quot;)&quot;
 </code></pre>
 
-<p>Describe names, mention sink, phony and alias.</p>
+<p>Describe names, mention sink, phony and alias.
+Minimum: a target and either code or prerequisites.</p>
 
 <h1>A Minimal Example</h1>
 
@@ -270,10 +272,10 @@ show_file_mtime()
 </code></pre>
 
 <pre><code>##                                        mtime
-## /tmp/Rtmp89VcYo/a1.Rout  2017-11-03 14:40:02
-## /tmp/Rtmp89VcYo/a2.Rout  2017-11-03 14:40:02
-## /tmp/Rtmp89VcYo/all.Rout 2017-11-03 14:40:02
-## /tmp/Rtmp89VcYo/b1.Rout  2017-11-03 14:40:02
+## /tmp/RtmpkPoQso/a1.Rout  2017-11-03 15:00:30
+## /tmp/RtmpkPoQso/a2.Rout  2017-11-03 15:00:30
+## /tmp/RtmpkPoQso/all.Rout 2017-11-03 15:00:30
+## /tmp/RtmpkPoQso/b1.Rout  2017-11-03 15:00:30
 </code></pre>
 
 <p>If we wait for a second and rerun the build process, we get:</p>
@@ -290,10 +292,10 @@ withr::with_dir(tempdir(), print(fakemake::make(ml[[1]][[&quot;target&quot;]], m
 </code></pre>
 
 <pre><code>##                                        mtime
-## /tmp/Rtmp89VcYo/a1.Rout  2017-11-03 14:40:02
-## /tmp/Rtmp89VcYo/a2.Rout  2017-11-03 14:40:02
-## /tmp/Rtmp89VcYo/all.Rout 2017-11-03 14:40:02
-## /tmp/Rtmp89VcYo/b1.Rout  2017-11-03 14:40:02
+## /tmp/RtmpkPoQso/a1.Rout  2017-11-03 15:00:30
+## /tmp/RtmpkPoQso/a2.Rout  2017-11-03 15:00:30
+## /tmp/RtmpkPoQso/all.Rout 2017-11-03 15:00:30
+## /tmp/RtmpkPoQso/b1.Rout  2017-11-03 15:00:30
 </code></pre>
 
 <p>Nothing changed. Good.
@@ -310,10 +312,10 @@ withr::with_dir(tempdir(), print(fakemake::make(ml[[1]][[&quot;target&quot;]], m
 </code></pre>
 
 <pre><code>##                                        mtime
-## /tmp/Rtmp89VcYo/a1.Rout  2017-11-03 14:40:03
-## /tmp/Rtmp89VcYo/a2.Rout  2017-11-03 14:40:02
-## /tmp/Rtmp89VcYo/all.Rout 2017-11-03 14:40:03
-## /tmp/Rtmp89VcYo/b1.Rout  2017-11-03 14:40:03
+## /tmp/RtmpkPoQso/a1.Rout  2017-11-03 15:00:31
+## /tmp/RtmpkPoQso/a2.Rout  2017-11-03 15:00:30
+## /tmp/RtmpkPoQso/all.Rout 2017-11-03 15:00:31
+## /tmp/RtmpkPoQso/b1.Rout  2017-11-03 15:00:31
 </code></pre>
 
 <p>Since a1.Rout depends on b1.Rout and all.Rout depends on a1.Rout, these targets
