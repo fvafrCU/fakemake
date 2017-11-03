@@ -207,7 +207,8 @@ make <- function(name, make_list, force = FALSE) {
         prerequisites <- make_list[[index]][["prerequisites"]]
         if (! is.null(prerequisites)) {
             for (p in sort(prerequisites)) {
-                res <- c(res, make(p, make_list))
+                res <- c(res, make(name = p, make_list = make_list,
+                                   force = force))
             }
         }
         is_phony <- isTRUE(make_list[[index]][[".PHONY"]]) || isTRUE(force)

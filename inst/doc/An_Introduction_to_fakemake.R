@@ -1,7 +1,7 @@
 str(fakemake::provide_make_list("minimal", clean_sink = TRUE))
 ml <- fakemake::provide_make_list("minimal", clean_sink = TRUE)
 withr::with_dir(tempdir(), print(fakemake::make("all.Rout", ml)))
-show_file_mtime <- function(files = list.files(tempdir(), full.names = TRUE, 
+show_file_mtime <- function(files = list.files(tempdir(), full.names = TRUE,
                                                pattern = "^.*\\.Rout")) {
     return(file.info(files)["mtime"])
 }
@@ -18,28 +18,40 @@ Sys.sleep(1)
 fakemake::touch(file.path(tempdir(), "a1.Rout"))
 withr::with_dir(tempdir(), print(fakemake::make("all.Rout", ml)))
 show_file_mtime()
+withr::with_dir(tempdir(), print(fakemake::make("all.Rout", ml, force = TRUE)))
 i <- which(sapply(ml, "[[", "target") == "all.Rout")
 ml[[i]]["alias"] <- "all"
-fakemake::touch(file.path(tempdir(), "b1.Rout"))
-withr::with_dir(tempdir(), print(fakemake::make("all", ml)))
+withr::with_dir(tempdir(), print(fakemake::make("all", ml, force = TRUE)))
 file.show(file.path(tempdir(), "b1.Rout"), pager = "cat")
 i <- which(sapply(ml, "[[", "target") == "b1.Rout")
-ml[[i]]["code"]  <- paste(ml[[i]]["code"], 
-                      "cat('hello, world', file = \"b1.Rout\")", 
+ml[[i]]["code"]  <- paste(ml[[i]]["code"],
+                      "cat('hello, world', file = \"b1.Rout\")",
                       "print(\"foobar\")",
                       sep = ";")
-file.remove(file.path(tempdir(), "b1.Rout"))
-withr::with_dir(tempdir(), print(fakemake::make("all.Rout", ml)))
+withr::with_dir(tempdir(), print(fakemake::make("b1.Rout", ml, force = TRUE)))
 file.show(file.path(tempdir(), "b1.Rout"), pager = "cat")
 ml[[i]]["sink"] <- "b1.txt"
-file.remove(file.path(tempdir(), "b1.Rout"))
-withr::with_dir(tempdir(), print(fakemake::make("all.Rout", ml)))
+withr::with_dir(tempdir(), print(fakemake::make("b1.Rout", ml, force = TRUE)))
 file.show(file.path(tempdir(), "b1.Rout"), pager = "cat")
 file.show(file.path(tempdir(), "b1.txt"), pager = "cat")
 i <- which(sapply(ml, "[[", "target") == "a1.Rout")
 ml[[i]]["code"]
 file.show(file.path(tempdir(), "a1.Rout"), pager = "cat")
 ml[[i]]["code"]  <- NULL
-file.remove(file.path(tempdir(), "a1.Rout"))
-withr::with_dir(tempdir(), print(fakemake::make("all.Rout", ml)))
+withr::with_dir(tempdir(), print(fakemake::make("a1.Rout", ml, force = TRUE)))
 file.size(file.path(tempdir(), "a1.Rout"))
+ml[[i]][".PHONY"]  <- TRUE
+withr::with_dir(tempdir(), print(fakemake::make("a1.Rout", ml)))
+pkg_path <- file.path(tempdir(), "fakepack")
+unlink(pkg_path, force = TRUE, recursive = TRUE)
+devtools::create(pkg_path)
+file.copy(system.file("templates", "throw.R", package = "fakemake"),
+          file.path(pkg_path, "R"))
+str(ml <- fakemake::provide_make_list("package"))
+dir.create(file.path(pkg_path, "log"))
+withr::with_dir(pkg_path, print(fakemake::make("lint", ml)))
+withr::with_dir(pkg_path, print(fakemake::make("build", ml)))
+withr::with_dir(pkg_path, print(fakemake::make("check", ml)))
+suppressMessages(withr::with_dir(pkg_path, print(fakemake::make("check", ml))))
+withr::with_dir(pkg_path, fakemake::touch(file.path("R", "throw.R")))
+withr::with_dir(pkg_path, print(fakemake::make("check", ml)))

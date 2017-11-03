@@ -2,7 +2,7 @@
 39 R/internals.R check_makelist   21     0
 43 R/internals.R check_makelist   22     0
 47 R/internals.R check_makelist   23     0
-fakemake Coverage: 98.75%
+fakemake Coverage: 98.76%
 R/internals.R: 94.74%
 R/main.R: 100.00%
 R/sink_all.R: 100.00%

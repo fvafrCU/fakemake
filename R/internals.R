@@ -1,5 +1,5 @@
 has_item <- function(l, item) {
-    i <- sapply(lapply(l, function(x) names(x) == item), 
+    i <- sapply(lapply(l, function(x) names(x) == item),
                 function(x) any(x))
     return(i)
 }
@@ -12,19 +12,19 @@ check_makelist <- function(makelist) {
     has_target <- has_item(makelist, "target")
     if (! all(has_target)) {
         throw(paste("Items", paste(which(! has_target), collapse = ", "),
-                    "of list", dQuote(deparse(substitute(makelist))), 
+                    "of list", dQuote(deparse(substitute(makelist))),
                     "have no target entries."))
     }
     #% all entries have code or prerequisites
     pass <- has_item(makelist, "code") | has_item(makelist, "prerequisites")
     if (! all(pass)) {
         throw(paste("Items", paste(which(! pass), collapse = ", "),
-                    "of list", dQuote(deparse(substitute(makelist))), 
+                    "of list", dQuote(deparse(substitute(makelist))),
                     "have neither code entries nor prerequisites entries."))
     }
 
     #% all entries have valid names only
-    valid_names <- c("alias", "target", "code", "sink", "prerequisites", 
+    valid_names <- c("alias", "target", "code", "sink", "prerequisites",
                      ".PHONY")
     is_valid_name <- lapply(makelist, function(x) names(x) %in% valid_names)
     if (! all(unlist(is_valid_name))) {
@@ -33,12 +33,12 @@ check_makelist <- function(makelist) {
         for (i in seq(along = makelist)) {
             if (! all_valid_names[i]) {
                 invalid_names <- names(makelist[[i]][! is_valid_name[[i]]])
-                msg <- paste(msg, 
-                             paste(paste(dQuote(invalid_names), 
+                msg <- paste(msg,
+                             paste(paste(dQuote(invalid_names),
                                          collapse = ", "),
                                    "for make target", makelist[[i]]["target"],
                                    "(item number", i,
-                                   " in list", 
+                                   " in list",
                                    dQuote(deparse(substitute(makelist))),
                                    ") are no valid names."), sep = "\n")
             }
@@ -62,7 +62,7 @@ parse_make_list <- function(ml) {
         }
         if (is.null(ml[[i]][["sink"]])) ml[[i]][["sink"]] <- ml[[i]][["target"]]
         # eval()uating NULL is no good.
-        if (is.null(ml[[i]][["code"]])) ml[[i]][["code"]] <- "" 
+        if (is.null(ml[[i]][["code"]])) ml[[i]][["code"]] <- ""
     }
     return(ml)
 }

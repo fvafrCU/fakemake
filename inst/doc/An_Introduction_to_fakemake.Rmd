@@ -1,7 +1,7 @@
 ---
 title: "An Introduction to *fakemake*"
 author: "Andreas Dominik Cullmann"
-date: 2017-11-03, 16:38:06
+date: 2017-11-03, 17:40:54
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{An Introduction to fakemake }
@@ -27,41 +27,41 @@ references:
 ---
 
 # Mock the Unix Make Utility
-There are 
+There are
 [many](https://en.wikipedia.org/wiki/List_of_build_automation_software)
-[build systems](https://en.wikipedia.org/wiki/Build_automation), 
+[build systems](https://en.wikipedia.org/wiki/Build_automation),
 and more uses for build systems [see @powers2002, sections 11.10 and 11.11].
 
-I have been using the 
-[unix make utility](https://en.wikipedia.org/wiki/Make_(software)) when 
-developing R packages since 2012. But sometimes I get caught on a machine where 
-*make* is not available and where I am not entitled to install it. 
-This is why I wrote *fakemake*: to build an R package conditionally on the 
-modification times of (file) dependencies without having to rely on external 
-software. 
+I have been using the
+[unix make utility](https://en.wikipedia.org/wiki/Make_(software)) when
+developing R packages since 2012. But sometimes I get caught on a machine where
+*make* is not available and where I am not entitled to install it.
+This is why I wrote *fakemake*: to build an R package conditionally on the
+modification times of (file) dependencies without having to rely on external
+software.
 If you have any proper build system at hand: stick to it, do not use *fakemake*.
 
 # Makelists
-A makelist is the *fakemake*`s representation of a Makefile. 
-It's just a list of lists. 
-Look at the minimal makelist provided with *fakemake*: 
+A makelist is the *fakemake*`s representation of a Makefile.
+It's just a list of lists.
+Look at the minimal makelist provided with *fakemake*:
 ```{r}
 str(fakemake::provide_make_list("minimal", clean_sink = TRUE))
 ```
-Each sublist represents a Makefile's target rule and has several items: 
-at least a *target* and either *code* or *prerequisites*, possibly both. 
+Each sublist represents a Makefile's target rule and has several items:
+at least a *target* and either *code* or *prerequisites*, possibly both.
 This makelist would still be a Makefile's valid representation if target rule #3
 with target "a1.Rout" had no (or an empty) *code* entry.
 
 Other possible target rule entries are:
 
 - *alias*: An alias to target that would be easier to remember and/or type.
-- *sink*: By default, all output of the *code* entry is dumped (well, with 
-                                                                **R**'s 
+- *sink*: By default, all output of the *code* entry is dumped (well, with
+                                                                **R**'s
                                                                 *sink* function)
-  into a file with the mame given by *target*. If *target* should be created by 
+  into a file with the mame given by *target*. If *target* should be created by
   the *code* you will want to redirect the output into *sink*.
-- *.PHONY*: If set to TRUE, the target is rebuilt unconditionally every time the 
+- *.PHONY*: If set to TRUE, the target is rebuilt unconditionally every time the
   target is hit (trying to mock GNU make's .PHONY-extension.
 
 
@@ -80,7 +80,7 @@ withr::with_dir(tempdir(), print(fakemake::make("all.Rout", ml)))
 ```
 We can see the files created:
 ```{r}
-show_file_mtime <- function(files = list.files(tempdir(), full.names = TRUE, 
+show_file_mtime <- function(files = list.files(tempdir(), full.names = TRUE,
                                                pattern = "^.*\\.Rout")) {
     return(file.info(files)["mtime"])
 }
@@ -118,15 +118,22 @@ withr::with_dir(tempdir(), print(fakemake::make("all.Rout", ml)))
 show_file_mtime()
 ```
 
+## Forcing The Build
+If you set the force option, you can force the target and all its prerequisites
+down the build chain to be built:
+``` {r}
+withr::with_dir(tempdir(), print(fakemake::make("all.Rout", ml, force = TRUE)))
+```
+
+
 ## Using aliases
 If you find a target rule's *target* too hard to type, you can use an alias:
 ``` {r}
 i <- which(sapply(ml, "[[", "target") == "all.Rout")
 ml[[i]]["alias"] <- "all"
-fakemake::touch(file.path(tempdir(), "b1.Rout"))
-withr::with_dir(tempdir(), print(fakemake::make("all", ml)))
+withr::with_dir(tempdir(), print(fakemake::make("all", ml, force = TRUE)))
 ```
-I'll give you that this is pointless here, but *target*s might be files down a 
+This is pointless here, but *target*s might be files down a
 directory tree like 'log/testthat.Rout' when building **R** packages.
 
 ## Diverting Output
@@ -137,19 +144,17 @@ file.show(file.path(tempdir(), "b1.Rout"), pager = "cat")
 Suppose it would programmatically create the target:
 ``` {r}
 i <- which(sapply(ml, "[[", "target") == "b1.Rout")
-ml[[i]]["code"]  <- paste(ml[[i]]["code"], 
-                      "cat('hello, world', file = \"b1.Rout\")", 
+ml[[i]]["code"]  <- paste(ml[[i]]["code"],
+                      "cat('hello, world', file = \"b1.Rout\")",
                       "print(\"foobar\")",
                       sep = ";")
-file.remove(file.path(tempdir(), "b1.Rout"))
-withr::with_dir(tempdir(), print(fakemake::make("all.Rout", ml)))
+withr::with_dir(tempdir(), print(fakemake::make("b1.Rout", ml, force = TRUE)))
 file.show(file.path(tempdir(), "b1.Rout"), pager = "cat")
 ```
 You end up with a broken target file, so you need to add a *sink*:
 ``` {r}
 ml[[i]]["sink"] <- "b1.txt"
-file.remove(file.path(tempdir(), "b1.Rout"))
-withr::with_dir(tempdir(), print(fakemake::make("all.Rout", ml)))
+withr::with_dir(tempdir(), print(fakemake::make("b1.Rout", ml, force = TRUE)))
 file.show(file.path(tempdir(), "b1.Rout"), pager = "cat")
 file.show(file.path(tempdir(), "b1.txt"), pager = "cat")
 ```
@@ -168,8 +173,7 @@ file.show(file.path(tempdir(), "a1.Rout"), pager = "cat")
 If we remove that code and its output file and rerun
 ``` {r}
 ml[[i]]["code"]  <- NULL
-file.remove(file.path(tempdir(), "a1.Rout"))
-withr::with_dir(tempdir(), print(fakemake::make("all.Rout", ml)))
+withr::with_dir(tempdir(), print(fakemake::make("a1.Rout", ml, force = TRUE)))
 ```
 the file is still created but empty:
 ``` {r}
@@ -177,11 +181,31 @@ file.size(file.path(tempdir(), "a1.Rout"))
 ```
 
 ## Phony Targets
+As you have seen, you can temporarily force a build.
+You may set a target to be .PHONY which forces it (but not its prerequisites) to
+be built:
+``` {r}
+ml[[i]][".PHONY"]  <- TRUE
+withr::with_dir(tempdir(), print(fakemake::make("a1.Rout", ml)))
+```
 
-XXX
+# Building **R** Packages
 
-# A More Complex Example
 
-XXX insert from devel.R
+``` {r}
+pkg_path <- file.path(tempdir(), "fakepack")
+unlink(pkg_path, force = TRUE, recursive = TRUE)
+devtools::create(pkg_path)
+file.copy(system.file("templates", "throw.R", package = "fakemake"),
+          file.path(pkg_path, "R"))
+str(ml <- fakemake::provide_make_list("package"))
+dir.create(file.path(pkg_path, "log"))
+withr::with_dir(pkg_path, print(fakemake::make("lint", ml)))
+withr::with_dir(pkg_path, print(fakemake::make("build", ml)))
+withr::with_dir(pkg_path, print(fakemake::make("check", ml)))
+suppressMessages(withr::with_dir(pkg_path, print(fakemake::make("check", ml))))
+withr::with_dir(pkg_path, fakemake::touch(file.path("R", "throw.R")))
+withr::with_dir(pkg_path, print(fakemake::make("check", ml)))
+```
 
 # References

@@ -11,6 +11,3 @@ test_check_makelist <- function() {
     ml1[[3]]["target"] <- NULL
     RUnit::checkException(fakemake:::check_makelist(ml1))
 }
-
-
-

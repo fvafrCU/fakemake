@@ -69,7 +69,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <h1 class="title toc-ignore">An Introduction to <em>fakemake</em></h1>
 <h4 class="author"><em>Andreas Dominik Cullmann</em></h4>
-<h4 class="date"><em>2017-11-03, 16:38:06</em></h4>
+<h4 class="date"><em>2017-11-03, 17:40:54</em></h4>
 
 
 
@@ -115,16 +115,16 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">withr::<span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span class="kw">print</span>(fakemake::<span class="kw">make</span>(<span class="st">&quot;all.Rout&quot;</span>, ml)))</code></pre></div>
 <pre><code>## [1] &quot;b1.Rout&quot;  &quot;a1.Rout&quot;  &quot;a2.Rout&quot;  &quot;all.Rout&quot;</code></pre>
 <p>We can see the files created:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">show_file_mtime &lt;-<span class="st"> </span>function(<span class="dt">files =</span> <span class="kw">list.files</span>(<span class="kw">tempdir</span>(), <span class="dt">full.names =</span> <span class="ot">TRUE</span>, 
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">show_file_mtime &lt;-<span class="st"> </span>function(<span class="dt">files =</span> <span class="kw">list.files</span>(<span class="kw">tempdir</span>(), <span class="dt">full.names =</span> <span class="ot">TRUE</span>,
                                                <span class="dt">pattern =</span> <span class="st">&quot;^.*</span><span class="ch">\\</span><span class="st">.Rout&quot;</span>)) {
     <span class="kw">return</span>(<span class="kw">file.info</span>(files)[<span class="st">&quot;mtime&quot;</span>])
 }
 <span class="kw">show_file_mtime</span>()</code></pre></div>
 <pre><code>##                                        mtime
-## /tmp/RtmpXEqIFp/a1.Rout  2017-11-03 16:51:37
-## /tmp/RtmpXEqIFp/a2.Rout  2017-11-03 16:51:37
-## /tmp/RtmpXEqIFp/all.Rout 2017-11-03 16:51:37
-## /tmp/RtmpXEqIFp/b1.Rout  2017-11-03 16:51:37</code></pre>
+## /tmp/RtmpfbtsJz/a1.Rout  2017-11-03 17:41:04
+## /tmp/RtmpfbtsJz/a2.Rout  2017-11-03 17:41:04
+## /tmp/RtmpfbtsJz/all.Rout 2017-11-03 17:41:04
+## /tmp/RtmpfbtsJz/b1.Rout  2017-11-03 17:41:04</code></pre>
 <p>If we wait for a second and rerun the build process, we get:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ensure the modification time would change if the files were recreated</span>
 <span class="kw">Sys.sleep</span>(<span class="dv">1</span>)
@@ -132,20 +132,20 @@ withr::<span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span
 <pre><code>## NULL</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">show_file_mtime</span>()</code></pre></div>
 <pre><code>##                                        mtime
-## /tmp/RtmpXEqIFp/a1.Rout  2017-11-03 16:51:37
-## /tmp/RtmpXEqIFp/a2.Rout  2017-11-03 16:51:37
-## /tmp/RtmpXEqIFp/all.Rout 2017-11-03 16:51:37
-## /tmp/RtmpXEqIFp/b1.Rout  2017-11-03 16:51:37</code></pre>
+## /tmp/RtmpfbtsJz/a1.Rout  2017-11-03 17:41:04
+## /tmp/RtmpfbtsJz/a2.Rout  2017-11-03 17:41:04
+## /tmp/RtmpfbtsJz/all.Rout 2017-11-03 17:41:04
+## /tmp/RtmpfbtsJz/b1.Rout  2017-11-03 17:41:04</code></pre>
 <p>Nothing changed. Good. Now, we change one file down the build chain:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fakemake::<span class="kw">touch</span>(<span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;b1.Rout&quot;</span>))
 withr::<span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span class="kw">print</span>(fakemake::<span class="kw">make</span>(<span class="st">&quot;all.Rout&quot;</span>, ml)))</code></pre></div>
 <pre><code>## [1] &quot;a1.Rout&quot;  &quot;all.Rout&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">show_file_mtime</span>()</code></pre></div>
 <pre><code>##                                        mtime
-## /tmp/RtmpXEqIFp/a1.Rout  2017-11-03 16:51:38
-## /tmp/RtmpXEqIFp/a2.Rout  2017-11-03 16:51:37
-## /tmp/RtmpXEqIFp/all.Rout 2017-11-03 16:51:38
-## /tmp/RtmpXEqIFp/b1.Rout  2017-11-03 16:51:38</code></pre>
+## /tmp/RtmpfbtsJz/a1.Rout  2017-11-03 17:41:05
+## /tmp/RtmpfbtsJz/a2.Rout  2017-11-03 17:41:04
+## /tmp/RtmpfbtsJz/all.Rout 2017-11-03 17:41:05
+## /tmp/RtmpfbtsJz/b1.Rout  2017-11-03 17:41:05</code></pre>
 <p>Since a1.Rout depends on b1.Rout and all.Rout depends on a1.Rout, these targets get rebuilt while a2.Rout stays untouched.</p>
 <p>Had we touched a1.Rout, b1.Rout would not have been rebuilt:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fakemake::<span class="kw">touch</span>(<span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;a1.Rout&quot;</span>))
@@ -153,20 +153,25 @@ withr::<span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span
 <pre><code>## [1] &quot;all.Rout&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">show_file_mtime</span>()</code></pre></div>
 <pre><code>##                                        mtime
-## /tmp/RtmpXEqIFp/a1.Rout  2017-11-03 16:51:39
-## /tmp/RtmpXEqIFp/a2.Rout  2017-11-03 16:51:37
-## /tmp/RtmpXEqIFp/all.Rout 2017-11-03 16:51:39
-## /tmp/RtmpXEqIFp/b1.Rout  2017-11-03 16:51:38</code></pre>
+## /tmp/RtmpfbtsJz/a1.Rout  2017-11-03 17:41:06
+## /tmp/RtmpfbtsJz/a2.Rout  2017-11-03 17:41:04
+## /tmp/RtmpfbtsJz/all.Rout 2017-11-03 17:41:06
+## /tmp/RtmpfbtsJz/b1.Rout  2017-11-03 17:41:05</code></pre>
+</div>
+<div id="forcing-the-build" class="section level2">
+<h2>Forcing The Build</h2>
+<p>If you set the force option, you can force the target and all its prerequisites down the build chain to be built:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">withr::<span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span class="kw">print</span>(fakemake::<span class="kw">make</span>(<span class="st">&quot;all.Rout&quot;</span>, ml, <span class="dt">force =</span> <span class="ot">TRUE</span>)))</code></pre></div>
+<pre><code>## [1] &quot;b1.Rout&quot;  &quot;a1.Rout&quot;  &quot;a2.Rout&quot;  &quot;all.Rout&quot;</code></pre>
 </div>
 <div id="using-aliases" class="section level2">
 <h2>Using aliases</h2>
 <p>If you find a target rule’s <em>target</em> too hard to type, you can use an alias:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">i &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="kw">sapply</span>(ml, <span class="st">&quot;[[&quot;</span>, <span class="st">&quot;target&quot;</span>) ==<span class="st"> &quot;all.Rout&quot;</span>)
 ml[[i]][<span class="st">&quot;alias&quot;</span>] &lt;-<span class="st"> &quot;all&quot;</span>
-fakemake::<span class="kw">touch</span>(<span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;b1.Rout&quot;</span>))
-withr::<span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span class="kw">print</span>(fakemake::<span class="kw">make</span>(<span class="st">&quot;all&quot;</span>, ml)))</code></pre></div>
-<pre><code>## [1] &quot;a1.Rout&quot;  &quot;all.Rout&quot;</code></pre>
-<p>I’ll give you that this is pointless here, but <em>target</em>s might be files down a directory tree like ‘log/testthat.Rout’ when building <strong>R</strong> packages.</p>
+withr::<span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span class="kw">print</span>(fakemake::<span class="kw">make</span>(<span class="st">&quot;all&quot;</span>, ml, <span class="dt">force =</span> <span class="ot">TRUE</span>)))</code></pre></div>
+<pre><code>## [1] &quot;b1.Rout&quot;  &quot;a1.Rout&quot;  &quot;a2.Rout&quot;  &quot;all.Rout&quot;</code></pre>
+<p>This is pointless here, but <em>target</em>s might be files down a directory tree like ‘log/testthat.Rout’ when building <strong>R</strong> packages.</p>
 </div>
 <div id="diverting-output" class="section level2">
 <h2>Diverting Output</h2>
@@ -174,21 +179,17 @@ withr::<span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">file.show</span>(<span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;b1.Rout&quot;</span>), <span class="dt">pager =</span> <span class="st">&quot;cat&quot;</span>)</code></pre></div>
 <p>Suppose it would programmatically create the target:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">i &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="kw">sapply</span>(ml, <span class="st">&quot;[[&quot;</span>, <span class="st">&quot;target&quot;</span>) ==<span class="st"> &quot;b1.Rout&quot;</span>)
-ml[[i]][<span class="st">&quot;code&quot;</span>]  &lt;-<span class="st"> </span><span class="kw">paste</span>(ml[[i]][<span class="st">&quot;code&quot;</span>], 
-                      <span class="st">&quot;cat('hello, world', file = </span><span class="ch">\&quot;</span><span class="st">b1.Rout</span><span class="ch">\&quot;</span><span class="st">)&quot;</span>, 
+ml[[i]][<span class="st">&quot;code&quot;</span>]  &lt;-<span class="st"> </span><span class="kw">paste</span>(ml[[i]][<span class="st">&quot;code&quot;</span>],
+                      <span class="st">&quot;cat('hello, world', file = </span><span class="ch">\&quot;</span><span class="st">b1.Rout</span><span class="ch">\&quot;</span><span class="st">)&quot;</span>,
                       <span class="st">&quot;print(</span><span class="ch">\&quot;</span><span class="st">foobar</span><span class="ch">\&quot;</span><span class="st">)&quot;</span>,
                       <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>)
-<span class="kw">file.remove</span>(<span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;b1.Rout&quot;</span>))</code></pre></div>
-<pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">withr::<span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span class="kw">print</span>(fakemake::<span class="kw">make</span>(<span class="st">&quot;all.Rout&quot;</span>, ml)))</code></pre></div>
-<pre><code>## [1] &quot;b1.Rout&quot;  &quot;a1.Rout&quot;  &quot;all.Rout&quot;</code></pre>
+withr::<span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span class="kw">print</span>(fakemake::<span class="kw">make</span>(<span class="st">&quot;b1.Rout&quot;</span>, ml, <span class="dt">force =</span> <span class="ot">TRUE</span>)))</code></pre></div>
+<pre><code>## [1] &quot;b1.Rout&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">file.show</span>(<span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;b1.Rout&quot;</span>), <span class="dt">pager =</span> <span class="st">&quot;cat&quot;</span>)</code></pre></div>
 <p>You end up with a broken target file, so you need to add a <em>sink</em>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ml[[i]][<span class="st">&quot;sink&quot;</span>] &lt;-<span class="st"> &quot;b1.txt&quot;</span>
-<span class="kw">file.remove</span>(<span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;b1.Rout&quot;</span>))</code></pre></div>
-<pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">withr::<span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span class="kw">print</span>(fakemake::<span class="kw">make</span>(<span class="st">&quot;all.Rout&quot;</span>, ml)))</code></pre></div>
-<pre><code>## [1] &quot;b1.Rout&quot;  &quot;a1.Rout&quot;  &quot;all.Rout&quot;</code></pre>
+withr::<span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span class="kw">print</span>(fakemake::<span class="kw">make</span>(<span class="st">&quot;b1.Rout&quot;</span>, ml, <span class="dt">force =</span> <span class="ot">TRUE</span>)))</code></pre></div>
+<pre><code>## [1] &quot;b1.Rout&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">file.show</span>(<span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;b1.Rout&quot;</span>), <span class="dt">pager =</span> <span class="st">&quot;cat&quot;</span>)
 <span class="kw">file.show</span>(<span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;b1.txt&quot;</span>), <span class="dt">pager =</span> <span class="st">&quot;cat&quot;</span>)</code></pre></div>
 </div>
@@ -203,22 +204,91 @@ ml[[i]][<span class="st">&quot;code&quot;</span>]</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">file.show</span>(<span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;a1.Rout&quot;</span>), <span class="dt">pager =</span> <span class="st">&quot;cat&quot;</span>)</code></pre></div>
 <p>If we remove that code and its output file and rerun</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ml[[i]][<span class="st">&quot;code&quot;</span>]  &lt;-<span class="st"> </span><span class="ot">NULL</span>
-<span class="kw">file.remove</span>(<span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;a1.Rout&quot;</span>))</code></pre></div>
-<pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">withr::<span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span class="kw">print</span>(fakemake::<span class="kw">make</span>(<span class="st">&quot;all.Rout&quot;</span>, ml)))</code></pre></div>
-<pre><code>## [1] &quot;a1.Rout&quot;  &quot;all.Rout&quot;</code></pre>
+withr::<span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span class="kw">print</span>(fakemake::<span class="kw">make</span>(<span class="st">&quot;a1.Rout&quot;</span>, ml, <span class="dt">force =</span> <span class="ot">TRUE</span>)))</code></pre></div>
+<pre><code>## [1] &quot;b1.Rout&quot; &quot;a1.Rout&quot;</code></pre>
 <p>the file is still created but empty:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">file.size</span>(<span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;a1.Rout&quot;</span>))</code></pre></div>
 <pre><code>## [1] 0</code></pre>
 </div>
 <div id="phony-targets" class="section level2">
 <h2>Phony Targets</h2>
-<p>XXX</p>
+<p>As you have seen, you can temporarily force a build. You may set a target to be .PHONY which forces it (but not its prerequisites) to be built:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ml[[i]][<span class="st">&quot;.PHONY&quot;</span>]  &lt;-<span class="st"> </span><span class="ot">TRUE</span>
+withr::<span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span class="kw">print</span>(fakemake::<span class="kw">make</span>(<span class="st">&quot;a1.Rout&quot;</span>, ml)))</code></pre></div>
+<pre><code>## [1] &quot;a1.Rout&quot;</code></pre>
 </div>
 </div>
-<div id="a-more-complex-example" class="section level1">
-<h1>A More Complex Example</h1>
-<p>XXX insert from devel.R</p>
+<div id="building-r-packages" class="section level1">
+<h1>Building <strong>R</strong> Packages</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pkg_path &lt;-<span class="st"> </span><span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;fakepack&quot;</span>)
+<span class="kw">unlink</span>(pkg_path, <span class="dt">force =</span> <span class="ot">TRUE</span>, <span class="dt">recursive =</span> <span class="ot">TRUE</span>)
+devtools::<span class="kw">create</span>(pkg_path)</code></pre></div>
+<pre><code>## Creating package 'fakepack' in '/tmp/RtmpfbtsJz'</code></pre>
+<pre><code>## No DESCRIPTION found. Creating with values:</code></pre>
+<pre><code>## Package: fakepack
+## Title: What the Package Does (one line, title case)
+## Version: 0.0.0.9000
+## Authors@R: person(&quot;First&quot;, &quot;Last&quot;, email = &quot;first.last@example.com&quot;, role = c(&quot;aut&quot;, &quot;cre&quot;))
+## Description: What the package does (one paragraph).
+## Depends: R (&gt;= 3.5.0)
+## License: What license is it under?
+## Encoding: UTF-8
+## LazyData: true</code></pre>
+<pre><code>## * Creating `fakepack.Rproj` from template.</code></pre>
+<pre><code>## * Adding `.Rproj.user`, `.Rhistory`, `.RData` to ./.gitignore</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">file.copy</span>(<span class="kw">system.file</span>(<span class="st">&quot;templates&quot;</span>, <span class="st">&quot;throw.R&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;fakemake&quot;</span>),
+          <span class="kw">file.path</span>(pkg_path, <span class="st">&quot;R&quot;</span>))</code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(ml &lt;-<span class="st"> </span>fakemake::<span class="kw">provide_make_list</span>(<span class="st">&quot;package&quot;</span>))</code></pre></div>
+<pre><code>## List of 3
+##  $ :List of 4
+##   ..$ alias        : chr &quot;lint&quot;
+##   ..$ target       : chr &quot;log/lintr.Rout&quot;
+##   ..$ code         : chr &quot;lintr::lint_package(path = \&quot;.\&quot;)&quot;
+##   ..$ prerequisites: chr &quot;list.files(\&quot;R\&quot;, full.names = TRUE)&quot;
+##  $ :List of 5
+##   ..$ alias        : chr &quot;build&quot;
+##   ..$ target       : chr &quot;get_pkg_archive_path()&quot;
+##   ..$ code         : chr &quot;devtools::build(pkg = \&quot;.\&quot;, path = \&quot;.\&quot;)&quot;
+##   ..$ sink         : chr &quot;log/build.Rout&quot;
+##   ..$ prerequisites: chr [1:4] &quot;list.files(\&quot;R\&quot;, full.names = TRUE)&quot; &quot;list.files(\&quot;man\&quot;, full.names = TRUE)&quot; &quot;DESCRIPTION&quot; &quot;file.path(\&quot;log\&quot;, \&quot;lintr.Rout\&quot;)&quot;
+##  $ :List of 4
+##   ..$ alias        : chr &quot;check&quot;
+##   ..$ target       : chr &quot;log/check.Rout&quot;
+##   ..$ code         : chr &quot;check_archive_as_cran(get_pkg_archive_path())&quot;
+##   ..$ prerequisites: chr &quot;get_pkg_archive_path()&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dir.create</span>(<span class="kw">file.path</span>(pkg_path, <span class="st">&quot;log&quot;</span>))
+withr::<span class="kw">with_dir</span>(pkg_path, <span class="kw">print</span>(fakemake::<span class="kw">make</span>(<span class="st">&quot;lint&quot;</span>, ml)))</code></pre></div>
+<pre><code>## Prerequisite R/throw.R found.</code></pre>
+<pre><code>## [1] &quot;log/lintr.Rout&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">withr::<span class="kw">with_dir</span>(pkg_path, <span class="kw">print</span>(fakemake::<span class="kw">make</span>(<span class="st">&quot;build&quot;</span>, ml)))</code></pre></div>
+<pre><code>## Prerequisite DESCRIPTION found.</code></pre>
+<pre><code>## Prerequisite R/throw.R found.
+## Prerequisite R/throw.R found.</code></pre>
+<pre><code>## '/home/nik/svn/R/r-devel/build/bin/R' --no-site-file --no-environ  \
+##   --no-save --no-restore --quiet CMD build '/tmp/RtmpfbtsJz/fakepack'  \
+##   --no-resave-data --no-manual</code></pre>
+<pre><code>## </code></pre>
+<pre><code>## [1] &quot;/tmp/RtmpfbtsJz/fakepack/fakepack_0.0.0.9000.tar.gz&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">withr::<span class="kw">with_dir</span>(pkg_path, <span class="kw">print</span>(fakemake::<span class="kw">make</span>(<span class="st">&quot;check&quot;</span>, ml)))</code></pre></div>
+<pre><code>## Prerequisite DESCRIPTION found.</code></pre>
+<pre><code>## Prerequisite R/throw.R found.
+## Prerequisite R/throw.R found.</code></pre>
+<pre><code>## [1] &quot;log/check.Rout&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">suppressMessages</span>(withr::<span class="kw">with_dir</span>(pkg_path, <span class="kw">print</span>(fakemake::<span class="kw">make</span>(<span class="st">&quot;check&quot;</span>, ml))))</code></pre></div>
+<pre><code>## NULL</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">withr::<span class="kw">with_dir</span>(pkg_path, fakemake::<span class="kw">touch</span>(<span class="kw">file.path</span>(<span class="st">&quot;R&quot;</span>, <span class="st">&quot;throw.R&quot;</span>)))
+withr::<span class="kw">with_dir</span>(pkg_path, <span class="kw">print</span>(fakemake::<span class="kw">make</span>(<span class="st">&quot;check&quot;</span>, ml)))</code></pre></div>
+<pre><code>## Prerequisite DESCRIPTION found.
+## Prerequisite R/throw.R found.
+## Prerequisite R/throw.R found.</code></pre>
+<pre><code>## '/home/nik/svn/R/r-devel/build/bin/R' --no-site-file --no-environ  \
+##   --no-save --no-restore --quiet CMD build '/tmp/RtmpfbtsJz/fakepack'  \
+##   --no-resave-data --no-manual</code></pre>
+<pre><code>## </code></pre>
+<pre><code>## [1] &quot;log/lintr.Rout&quot;                                     
+## [2] &quot;/tmp/RtmpfbtsJz/fakepack/fakepack_0.0.0.9000.tar.gz&quot;
+## [3] &quot;log/check.Rout&quot;</code></pre>
 </div>
 <div id="references" class="section level1 unnumbered">
 <h1>References</h1>
