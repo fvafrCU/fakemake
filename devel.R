@@ -8,24 +8,11 @@ packager::set_package_info(".", author_at_r = a,
 unlink(list.files(tempdir(), pattern = ".*\\.Rout", full.names = TRUE))
 devtools::load_all(".")
 
-
-#% This goes into vignette
-pkg_path <- file.path(tempdir(), "fakepack") 
-devtools::create(pkg_path)
-file.copy(system.file("templates", "throw.R", package = "fakemake"), 
-          file.path(pkg_path, "R"))
+#% code does not create target: infill
 str(ml <- provide_make_list("package"))
-dir.create(file.path(pkg_path, "log"))
-withr::with_dir(pkg_path, print(fakemake::make("build", ml)))
-withr::with_dir(pkg_path, print(fakemake::make("lint", ml)))
-withr::with_dir(pkg_path, print(fakemake::make("check", ml)))
-withr::with_dir(pkg_path, print(fakemake::make("check", ml)))
-touch("DESCRIPTION")
-withr::with_dir(pkg_path, print(fakemake::make("check", ml)))
-
-check_makelist(3)
-check_makelist(makelist)
-check_makelist(ml)
+ml[[1]]$sink <- "log/foo.Rout"
+print(fakemake::make("lint", ml, force = TRUE))
+print(fakemake::make("build", ml))
 
 #% This goes into packager
 dependencies <- "c(\"cleanr\", \"roxygen2\")"
