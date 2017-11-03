@@ -21,7 +21,7 @@ Executing test function test_write_makefile  ...  done successfully.
 
 
 
-Executing test function test_check_archive  ... Creating package 'fakepack' in '/tmp/RtmppQwcBw'
+Executing test function test_check_archive  ... Creating package 'fakepack' in '/tmp/Rtmpr87tFN'
 No DESCRIPTION found. Creating with values:
 
 
@@ -36,22 +36,22 @@ Encoding: UTF-8
 LazyData: true
 * Creating `fakepack.Rproj` from template.
 * Adding `.Rproj.user`, `.Rhistory`, `.RData` to ./.gitignore
-Updating roxygen version in /tmp/RtmppQwcBw/fakepack/DESCRIPTION
+Updating roxygen version in /tmp/Rtmpr87tFN/fakepack/DESCRIPTION
 Writing NAMESPACE
 Writing throw.Rd
-'/home/nik/svn/R/r-devel/build/bin/R' --no-site-file --no-environ --no-save  \
-  --no-restore --quiet CMD build '/tmp/RtmppQwcBw/fakepack' --no-resave-data  \
+'/home/qwer/svn/R/r-devel/build/bin/R' --no-site-file --no-environ --no-save  \
+  --no-restore --quiet CMD build '/tmp/Rtmpr87tFN/fakepack' --no-resave-data  \
   --no-manual 
 
-* checking for file ‘/tmp/RtmppQwcBw/fakepack/DESCRIPTION’ ... OK
+* checking for file ‘/tmp/Rtmpr87tFN/fakepack/DESCRIPTION’ ... OK
 * preparing ‘fakepack’:
 * checking DESCRIPTION meta-information ... OK
 * checking for LF line-endings in source and make files and shell scripts
 * checking for empty or unneeded directories
 * building ‘fakepack_0.0.0.9000.tar.gz’
 
-* using log directory ‘/tmp/RtmppQwcBw/fakepack/fakepack.Rcheck’
-* using R Under development (unstable) (2017-10-01 r73423)
+* using log directory ‘/tmp/Rtmpr87tFN/fakepack/fakepack.Rcheck’
+* using R Under development (unstable) (2017-11-02 r73652)
 * using platform: x86_64-pc-linux-gnu (64-bit)
 * using session charset: UTF-8
 * checking for file ‘fakepack/DESCRIPTION’ ... OK
@@ -102,8 +102,8 @@ Standardizable: FALSE
 * checking PDF version of manual ... OK
 * DONE
 Status: 1 WARNING
-* using log directory ‘/tmp/RtmppQwcBw/fakepack/fakepack.Rcheck’
-* using R Under development (unstable) (2017-10-01 r73423)
+* using log directory ‘/tmp/Rtmpr87tFN/fakepack/fakepack.Rcheck’
+* using R Under development (unstable) (2017-11-02 r73652)
 * using platform: x86_64-pc-linux-gnu (64-bit)
 * using session charset: UTF-8
 * using option ‘--as-cran’
@@ -113,7 +113,11 @@ Status: 1 WARNING
 * checking CRAN incoming feasibility ... NOTE
 Maintainer: ‘First Last <first.last@example.com>’
 
+New submission
+
 Version contains large components (0.0.0.9000)
+
+Non-FOSS package license (What license is it under?)
 
 The Title field should be in title case, current version then in title case:
 ‘What the Package Does (one line, title case)’
@@ -168,7 +172,7 @@ Status: 1 WARNING, 1 NOTE
 
 
 
-Executing test function test_package_path  ... Creating package 'anRpackage' in '/tmp/RtmppQwcBw'
+Executing test function test_package_path  ... Creating package 'anRpackage' in '/tmp/Rtmpr87tFN'
 No DESCRIPTION found. Creating with values:
 
 
@@ -212,9 +216,9 @@ Executing test function test_make_phony  ...  done successfully.
 
 
 
-Executing test function test_make_prerequisite  ... Error in make(name = p, make_list = make_list, force = force) : 
-  There is no rule to make /tmp/RtmppQwcBw/c1.Rout.
-Prerequisite /tmp/RtmppQwcBw/c1.Rout found.
+Executing test function test_make_prerequisite  ... Error in make(p, make_list) : 
+  There is no rule to make /tmp/Rtmpr87tFN/c1.Rout.
+Prerequisite /tmp/Rtmpr87tFN/c1.Rout found.
  done successfully.
 
 

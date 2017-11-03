@@ -1,9 +1,0 @@
-inst/runit_tests/runit-check_makelist.R:14:1: style: Trailing blank lines are superfluous.
-
-^
-inst/runit_tests/runit-check_makelist.R:15:1: style: Trailing blank lines are superfluous.
-
-^
-inst/runit_tests/runit-check_makelist.R:16:1: style: Trailing blank lines are superfluous.
-
-^

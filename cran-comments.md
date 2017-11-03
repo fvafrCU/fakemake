@@ -9,10 +9,10 @@ Best, Dominik
 
 # Package fakemake 0.2.0
 ## Test  environments 
-- R Under development (unstable) (2017-10-01 r73423)
+- R Under development (unstable) (2017-11-02 r73652)
   Platform: x86_64-pc-linux-gnu (64-bit)
-  Running under: Debian GNU/Linux 9 (stretch)
+  Running under: Devuan GNU/Linux 1 (jessie)
 - win-builder (devel)
 
 ## R CMD check results
-0 errors | 1 warning  | 1 note 
+0 errors | 0 warnings | 1 note 
