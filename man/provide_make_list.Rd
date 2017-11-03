@@ -4,12 +4,16 @@
 \alias{provide_make_list}
 \title{Load an Example \code{Makelist} Provided by \pkg{fakemake}.}
 \usage{
-provide_make_list(type = "minimal", prune = TRUE)
+provide_make_list(type = "minimal", prune = TRUE, clean_sink = FALSE)
 }
 \arguments{
 \item{type}{The type of \code{makelist}.}
 
 \item{prune}{Prune the \code{makelist} of \code{NULL} items?}
+
+\item{clean_sink}{Remove sinks identical to corresponding targets from the
+list? Since \code{makelists} are parsed, missing sinks are set to the
+corresponding targets, but this makes them harder to read.}
 }
 \value{
 A \code{makelist}.

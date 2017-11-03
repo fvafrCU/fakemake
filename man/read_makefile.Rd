@@ -4,10 +4,14 @@
 \alias{read_makefile}
 \title{Read a Makefile Into a \code{Makelist}}
 \usage{
-read_makefile(path)
+read_makefile(path, clean_sink = FALSE)
 }
 \arguments{
 \item{path}{The path to the file.}
+
+\item{clean_sink}{Remove sinks identical to corresponding targets from the
+list? Since \code{makelists} are parsed, missing sinks are set to the
+corresponding targets, but this makes them harder to read.}
 }
 \value{
 The \code{makelist}.
