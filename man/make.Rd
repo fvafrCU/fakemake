@@ -4,12 +4,14 @@
 \alias{make}
 \title{Mock the Unix Make Utility}
 \usage{
-make(name, make_list)
+make(name, make_list, force = FALSE)
 }
 \arguments{
 \item{name}{The name or alias of a make target.}
 
 \item{make_list}{The \code{makelist} (a listed version of a Makefile).}
+
+\item{force}{Force the target to be build?}
 }
 \value{
 A character vector containing the targets made during the current

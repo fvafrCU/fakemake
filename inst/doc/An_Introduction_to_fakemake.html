@@ -121,10 +121,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 }
 <span class="kw">show_file_mtime</span>()</code></pre></div>
 <pre><code>##                                        mtime
-## /tmp/RtmpcUtWis/a1.Rout  2017-11-03 16:38:13
-## /tmp/RtmpcUtWis/a2.Rout  2017-11-03 16:38:13
-## /tmp/RtmpcUtWis/all.Rout 2017-11-03 16:38:13
-## /tmp/RtmpcUtWis/b1.Rout  2017-11-03 16:38:13</code></pre>
+## /tmp/RtmpXEqIFp/a1.Rout  2017-11-03 16:51:37
+## /tmp/RtmpXEqIFp/a2.Rout  2017-11-03 16:51:37
+## /tmp/RtmpXEqIFp/all.Rout 2017-11-03 16:51:37
+## /tmp/RtmpXEqIFp/b1.Rout  2017-11-03 16:51:37</code></pre>
 <p>If we wait for a second and rerun the build process, we get:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ensure the modification time would change if the files were recreated</span>
 <span class="kw">Sys.sleep</span>(<span class="dv">1</span>)
@@ -132,20 +132,20 @@ withr::<span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span
 <pre><code>## NULL</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">show_file_mtime</span>()</code></pre></div>
 <pre><code>##                                        mtime
-## /tmp/RtmpcUtWis/a1.Rout  2017-11-03 16:38:13
-## /tmp/RtmpcUtWis/a2.Rout  2017-11-03 16:38:13
-## /tmp/RtmpcUtWis/all.Rout 2017-11-03 16:38:13
-## /tmp/RtmpcUtWis/b1.Rout  2017-11-03 16:38:13</code></pre>
+## /tmp/RtmpXEqIFp/a1.Rout  2017-11-03 16:51:37
+## /tmp/RtmpXEqIFp/a2.Rout  2017-11-03 16:51:37
+## /tmp/RtmpXEqIFp/all.Rout 2017-11-03 16:51:37
+## /tmp/RtmpXEqIFp/b1.Rout  2017-11-03 16:51:37</code></pre>
 <p>Nothing changed. Good. Now, we change one file down the build chain:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fakemake::<span class="kw">touch</span>(<span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;b1.Rout&quot;</span>))
 withr::<span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span class="kw">print</span>(fakemake::<span class="kw">make</span>(<span class="st">&quot;all.Rout&quot;</span>, ml)))</code></pre></div>
 <pre><code>## [1] &quot;a1.Rout&quot;  &quot;all.Rout&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">show_file_mtime</span>()</code></pre></div>
 <pre><code>##                                        mtime
-## /tmp/RtmpcUtWis/a1.Rout  2017-11-03 16:38:14
-## /tmp/RtmpcUtWis/a2.Rout  2017-11-03 16:38:13
-## /tmp/RtmpcUtWis/all.Rout 2017-11-03 16:38:14
-## /tmp/RtmpcUtWis/b1.Rout  2017-11-03 16:38:14</code></pre>
+## /tmp/RtmpXEqIFp/a1.Rout  2017-11-03 16:51:38
+## /tmp/RtmpXEqIFp/a2.Rout  2017-11-03 16:51:37
+## /tmp/RtmpXEqIFp/all.Rout 2017-11-03 16:51:38
+## /tmp/RtmpXEqIFp/b1.Rout  2017-11-03 16:51:38</code></pre>
 <p>Since a1.Rout depends on b1.Rout and all.Rout depends on a1.Rout, these targets get rebuilt while a2.Rout stays untouched.</p>
 <p>Had we touched a1.Rout, b1.Rout would not have been rebuilt:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fakemake::<span class="kw">touch</span>(<span class="kw">file.path</span>(<span class="kw">tempdir</span>(), <span class="st">&quot;a1.Rout&quot;</span>))
@@ -153,10 +153,10 @@ withr::<span class="kw">with_dir</span>(<span class="kw">tempdir</span>(), <span
 <pre><code>## [1] &quot;all.Rout&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">show_file_mtime</span>()</code></pre></div>
 <pre><code>##                                        mtime
-## /tmp/RtmpcUtWis/a1.Rout  2017-11-03 16:38:15
-## /tmp/RtmpcUtWis/a2.Rout  2017-11-03 16:38:13
-## /tmp/RtmpcUtWis/all.Rout 2017-11-03 16:38:15
-## /tmp/RtmpcUtWis/b1.Rout  2017-11-03 16:38:14</code></pre>
+## /tmp/RtmpXEqIFp/a1.Rout  2017-11-03 16:51:39
+## /tmp/RtmpXEqIFp/a2.Rout  2017-11-03 16:51:37
+## /tmp/RtmpXEqIFp/all.Rout 2017-11-03 16:51:39
+## /tmp/RtmpXEqIFp/b1.Rout  2017-11-03 16:51:38</code></pre>
 </div>
 <div id="using-aliases" class="section level2">
 <h2>Using aliases</h2>

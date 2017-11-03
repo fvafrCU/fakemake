@@ -143,6 +143,7 @@ read_makefile <- function(path, clean_sink = FALSE) {
 #'
 #' @param make_list The \code{makelist} (a listed version of a Makefile).
 #' @param name The name or alias of a make target.
+#' @param force Force the target to be build?
 #' @return A character vector containing the targets made during the current
 #' run.
 #' @export
@@ -185,7 +186,7 @@ read_makefile <- function(path, clean_sink = FALSE) {
 #' }
 #' )
 
-make <- function(name, make_list) {
+make <- function(name, make_list, force = FALSE) {
     check_makelist(make_list)
     res <- NULL
     make_list <- parse_make_list(make_list)
@@ -209,7 +210,7 @@ make <- function(name, make_list) {
                 res <- c(res, make(p, make_list))
             }
         }
-        is_phony <- isTRUE(make_list[[index]][[".PHONY"]])
+        is_phony <- isTRUE(make_list[[index]][[".PHONY"]]) || isTRUE(force)
         is_to_be_made <- is_to_be_made(target = target, is_phony = is_phony,
                                        prerequisites = prerequisites)
         if (is_to_be_made) {

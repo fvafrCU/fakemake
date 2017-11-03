@@ -1,6 +1,12 @@
 inst/doc/An_Introduction_to_fakemake.R:4:77: style: Trailing whitespace is superfluous.
 show_file_mtime <- function(files = list.files(tempdir(), full.names = TRUE, 
                                                                             ^
+inst/doc/An_Introduction_to_fakemake.R:27:43: style: Trailing whitespace is superfluous.
+ml[[i]]["code"]  <- paste(ml[[i]]["code"], 
+                                          ^
+inst/doc/An_Introduction_to_fakemake.R:28:65: style: Trailing whitespace is superfluous.
+                      "cat('hello, world', file = \"b1.Rout\")", 
+                                                                ^
 inst/runit_tests/runit-check_makelist.R:14:1: style: Trailing blank lines are superfluous.
 
 ^

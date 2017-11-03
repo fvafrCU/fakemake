@@ -21,5 +21,6 @@ Type 'q()' to quit R.
 Loading required package: MakefileR
 Loading required package: callr
 Loading required package: withr
+Writing make.Rd
 > 
 > 
