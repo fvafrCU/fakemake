@@ -1,5 +1,5 @@
-* using log directory ‘/home/qwer/git/cyclops/fvafrcu/fakemake/fakemake.Rcheck’
-* using R Under development (unstable) (2017-11-02 r73652)
+* using log directory ‘/home/nik/git/cs/fvafrcu/fakemake/fakemake.Rcheck’
+* using R Under development (unstable) (2017-10-01 r73423)
 * using platform: x86_64-pc-linux-gnu (64-bit)
 * using session charset: UTF-8
 * using options ‘--run-donttest --as-cran’
@@ -9,7 +9,22 @@
 * checking CRAN incoming feasibility ... NOTE
 Maintainer: ‘Andreas Dominik Cullmann <fvafrcu@arcor.de>’
 
-New submission
+Found the following (possibly) invalid URLs:
+  URL: https://en.wikipedia.org/wiki/Build_automation
+    From: inst/doc/An_Introduction_to_fakemake.html
+    Status: Error
+    Message: libcurl error code 35:
+      	gnutls_handshake() failed: An unexpected TLS packet was received.
+  URL: https://en.wikipedia.org/wiki/List_of_build_automation_software
+    From: inst/doc/An_Introduction_to_fakemake.html
+    Status: Error
+    Message: libcurl error code 35:
+      	gnutls_handshake() failed: An unexpected TLS packet was received.
+  URL: https://en.wikipedia.org/wiki/Make_(software
+    From: inst/doc/An_Introduction_to_fakemake.html
+    Status: Error
+    Message: libcurl error code 35:
+      	gnutls_handshake() failed: An unexpected TLS packet was received.
 * checking package namespace information ... OK
 * checking package dependencies ... OK
 * checking if this is a source package ... OK
@@ -23,7 +38,10 @@ New submission
 * checking package directory ... OK
 * checking ‘build’ directory ... OK
 * checking DESCRIPTION meta-information ... OK
-* checking top-level files ... OK
+* checking top-level files ... WARNING
+Conversion of ‘README.md’ failed:
+pandoc: Could not fetch https://travis-ci.org/fvafrCU/fakemake.svg?branch=master
+InvalidProxyEnvironmentVariable "https_proxy" "https://10.127.255.17:8080"
 * checking for left-over files ... OK
 * checking index information ... OK
 * checking package subdirectories ... OK
@@ -54,11 +72,11 @@ New submission
 * checking examples ... OK
 * checking for unstated dependencies in ‘tests’ ... OK
 * checking tests ... OK
-  Running ‘runit.R’ [19s/31s]
+  Running ‘runit.R’ [14s/23s]
   Running ‘testthat.R’
 * checking for unstated dependencies in vignettes ... OK
 * checking package vignettes in ‘inst/doc’ ... OK
 * checking re-building of vignette outputs ... OK
 * checking PDF version of manual ... OK
 * DONE
-Status: 1 NOTE
+Status: 1 WARNING, 1 NOTE
