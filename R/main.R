@@ -1,12 +1,14 @@
 #' Load an Example \code{Makelist} Provided by \pkg{fakemake}.
 #'
+#' @inheritParams read_makefile
 #' @param type The type of \code{makelist}.
 #' @param prune Prune the \code{makelist} of \code{NULL} items?
 #' @return A \code{makelist}.
 #' @export
 #' @examples
 #' str(provide_make_list("minimal"))
-provide_make_list <- function(type = "minimal", prune = TRUE) {
+provide_make_list <- function(type = "minimal", prune = TRUE,
+                              clean_sink = FALSE) {
     pl <- list(list(alias = "lint",
                     target = file.path("log", "lintr.Rout"),
                     code = "lintr::lint_package(path = \".\")",
@@ -26,7 +28,8 @@ provide_make_list <- function(type = "minimal", prune = TRUE) {
                      name <- "Makefile"
                      if (! is.null(type)) name <- paste0(name, "_", type)
                      read_makefile(system.file("templates", name,
-                                               package = "fakemake"))
+                                               package = "fakemake"),
+                                   clean_sink)
                  },
                  "package" = pl,
                  throw(paste0("type ", type, " not known!"))
@@ -81,6 +84,9 @@ write_makefile <- function(make_list, path,
 #' Read a Makefile Into a \code{Makelist}
 #'
 #' @param path The path to the file.
+#' @param clean_sink Remove sinks identical to corresponding targets from the
+#' list? Since \code{makelists} are parsed, missing sinks are set to the
+#' corresponding targets, but this makes them harder to read.
 #' @return The \code{makelist}.
 #' @note This function will not read arbitrary Makefiles, just those
 #' created via \code{\link{write_makefile}}! If you modify such a Makefile
@@ -90,7 +96,7 @@ write_makefile <- function(make_list, path,
 #' make_file <- file.path(tempdir(), "Makefile")
 #' write_makefile(provide_make_list(), path = make_file)
 #' str(make_list <- read_makefile(path = make_file))
-read_makefile <- function(path) {
+read_makefile <- function(path, clean_sink = FALSE) {
     lines <- readLines(path)
     lines <- grep("^$", lines, value = TRUE, invert = TRUE)
     lines <- grep("^#.*$", lines, value = TRUE, invert = TRUE)
@@ -113,10 +119,13 @@ read_makefile <- function(path) {
         if (identical(prerequisites, character(0))) prerequisites <- NULL
         # Sink needs to go last as is it may be added by parse_make_list. Unit
         # testing may fail otherwise...
-        res[[length(res) + 1]] <- list(target = parts[1],
-                                       prerequisites = prerequisites,
-                                       code = parts[4],
-                                       sink = gsub("\"", "", parts[3]))
+        tmp <- list(target = parts[1],
+                    prerequisites = prerequisites,
+                    code = parts[4],
+                    sink = gsub("\"", "", parts[3]))
+        if (isTRUE(clean_sink) && identical(tmp[["sink"]], tmp[["target"]]))
+            tmp[["sink"]] <- NULL
+        res[[length(res) + 1]] <- tmp
     }
     # add phonicity to .PHONY targets. This is quite a mess.
     phony_targets <- sapply(strsplit(phony_lines, split = ": "), "[[", 2)
