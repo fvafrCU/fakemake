@@ -18,10 +18,10 @@ touch <- function(path) {
                    file = path)
     } else {
         tmp <- tempfile()
+        on.exit(unlink(tmp))
         file.copy(path, tmp)
         if (file.mtime(tmp) <= file.mtime(path)) Sys.sleep(2)
         file.copy(tmp, path, overwrite = TRUE)
-        unlink(tmp)
         res <- NULL
     }
     return(invisible(res))
