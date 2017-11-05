@@ -1,7 +1,7 @@
 ---
 title: "An Introduction to *fakemake*"
 author: "Andreas Dominik Cullmann"
-date: 2017-11-03, 23:53:05
+date: 2017-11-05, 12:48:36
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{An Introduction to fakemake }
@@ -139,24 +139,27 @@ directory tree like 'log/testthat.Rout' when building **R** packages.
 ## Diverting Output
 Target rule b1 dumps its output to b1.Rout:
 ``` {r}
-file.show(file.path(tempdir(), "b1.Rout"), pager = "cat")
+readLines(file.path(tempdir(), "b1.Rout"))
 ```
 Suppose it would programmatically create the target:
 ``` {r}
 i <- which(sapply(ml, "[[", "target") == "b1.Rout")
 ml[[i]]["code"]  <- paste(ml[[i]]["code"],
-                      "cat('hello, world', file = \"b1.Rout\")",
+                      "cat('hello, world\n', file = \"b1.Rout\")",
                       "print(\"foobar\")",
                       sep = ";")
 withr::with_dir(tempdir(), print(fakemake::make("b1.Rout", ml, force = TRUE)))
-file.show(file.path(tempdir(), "b1.Rout"), pager = "cat")
+readLines(file.path(tempdir(), "b1.Rout"))
 ```
 You end up with a broken target file, so you need to add a *sink*:
 ``` {r}
 ml[[i]]["sink"] <- "b1.txt"
 withr::with_dir(tempdir(), print(fakemake::make("b1.Rout", ml, force = TRUE)))
-file.show(file.path(tempdir(), "b1.Rout"), pager = "cat")
-file.show(file.path(tempdir(), "b1.txt"), pager = "cat")
+```
+Now you get what you wanted:
+``` {r}
+readLines(file.path(tempdir(), "b1.Rout"))
+readLines(file.path(tempdir(), "b1.txt"))
 ```
 
 ## No Code Targets
@@ -167,7 +170,7 @@ ml[[i]]["code"]
 ```
 that prints "a1" into "a1.Rout":
 ``` {r}
-file.show(file.path(tempdir(), "a1.Rout"), pager = "cat")
+readLines(file.path(tempdir(), "a1.Rout"))
 ```
 
 If we remove that code and its output file and rerun
@@ -196,6 +199,9 @@ First, we create a package skeleton:
 pkg_path <- file.path(tempdir(), "fakepack")
 unlink(pkg_path, force = TRUE, recursive = TRUE)
 devtools::create(pkg_path)
+```
+We add a minimal R code file and a log directory:
+``` {r}
 file.copy(system.file("templates", "throw.R", package = "fakemake"),
           file.path(pkg_path, "R"))
 dir.create(file.path(pkg_path, "log"))
@@ -223,7 +229,7 @@ system.time(suppressMessages(withr::with_dir(pkg_path,
 ```
 Let us take a look at our testing coverage:
 ``` {r}
-file.show(file.path(pkg_path, "log", "covr.Rout"), pager = "cat")
+readLines(file.path(pkg_path, "log", "covr.Rout"))
 ```
 Well, poor. So now we add test files:
 ``` {r}
@@ -236,7 +242,7 @@ withr::with_dir(pkg_path, print(fakemake::make("covr", ml)))
 ```
 This looks better:
 ``` {r}
-file.show(file.path(pkg_path, "log", "covr.Rout"), pager = "cat")
+readLines(file.path(pkg_path, "log", "covr.Rout"))
 ```
 
 # References
