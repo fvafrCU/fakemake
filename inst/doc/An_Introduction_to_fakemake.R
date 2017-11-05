@@ -22,21 +22,21 @@ withr::with_dir(tempdir(), print(fakemake::make("all.Rout", ml, force = TRUE)))
 i <- which(sapply(ml, "[[", "target") == "all.Rout")
 ml[[i]]["alias"] <- "all"
 withr::with_dir(tempdir(), print(fakemake::make("all", ml, force = TRUE)))
-readLines(file.path(tempdir(), "b1.Rout"))
+cat(readLines(file.path(tempdir(), "b1.Rout")), sep = "\n")
 i <- which(sapply(ml, "[[", "target") == "b1.Rout")
 ml[[i]]["code"]  <- paste(ml[[i]]["code"],
                       "cat('hello, world\n', file = \"b1.Rout\")",
                       "print(\"foobar\")",
                       sep = ";")
 withr::with_dir(tempdir(), print(fakemake::make("b1.Rout", ml, force = TRUE)))
-readLines(file.path(tempdir(), "b1.Rout"))
+cat(readLines(file.path(tempdir(), "b1.Rout")), sep = "\n")
 ml[[i]]["sink"] <- "b1.txt"
 withr::with_dir(tempdir(), print(fakemake::make("b1.Rout", ml, force = TRUE)))
-readLines(file.path(tempdir(), "b1.Rout"))
-readLines(file.path(tempdir(), "b1.txt"))
+cat(readLines(file.path(tempdir(), "b1.Rout")), sep = "\n")
+cat(readLines(file.path(tempdir(), "b1.txt")), sep = "\n")
 i <- which(sapply(ml, "[[", "target") == "a1.Rout")
 ml[[i]]["code"]
-readLines(file.path(tempdir(), "a1.Rout"))
+cat(readLines(file.path(tempdir(), "a1.Rout")), sep = "\n")
 ml[[i]]["code"]  <- NULL
 withr::with_dir(tempdir(), print(fakemake::make("a1.Rout", ml, force = TRUE)))
 file.size(file.path(tempdir(), "a1.Rout"))
@@ -55,13 +55,11 @@ list.files(file.path(pkg_path, "log"))
 system.time(suppressMessages(withr::with_dir(pkg_path,
                                              print(fakemake::make("check",
                                                                   ml)))))
-readLines(file.path(pkg_path, "log", "covr.Rout"))
-{
-    dir.create(file.path(pkg_path, "tests", "testthat"), recursive = TRUE)
-    file.copy(system.file("templates", "testthat.R", package = "fakemake"),
-              file.path(pkg_path, "tests"))
-    file.copy(system.file("templates", "test-throw.R", package = "fakemake"),
-              file.path(pkg_path, "tests", "testthat"))
-    withr::with_dir(pkg_path, print(fakemake::make("covr", ml)))
-}
-readLines(file.path(pkg_path, "log", "covr.Rout"))
+cat(readLines(file.path(pkg_path, "log", "covr.Rout")), sep = "\n")
+dir.create(file.path(pkg_path, "tests", "testthat"), recursive = TRUE)
+file.copy(system.file("templates", "testthat.R", package = "fakemake"),
+          file.path(pkg_path, "tests"))
+file.copy(system.file("templates", "test-throw.R", package = "fakemake"),
+          file.path(pkg_path, "tests", "testthat"))
+withr::with_dir(pkg_path, print(fakemake::make("covr", ml)))
+cat(readLines(file.path(pkg_path, "log", "covr.Rout")), sep = "\n")

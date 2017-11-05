@@ -1,7 +1,7 @@
 ---
 title: "An Introduction to *fakemake*"
 author: "Andreas Dominik Cullmann"
-date: 2017-11-05, 12:47:39
+date: 2017-11-05, 15:11:58
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{An Introduction to fakemake }
@@ -139,7 +139,7 @@ directory tree like 'log/testthat.Rout' when building **R** packages.
 ## Diverting Output
 Target rule b1 dumps its output to b1.Rout:
 ``` {r}
-readLines(file.path(tempdir(), "b1.Rout"))
+cat(readLines(file.path(tempdir(), "b1.Rout")), sep = "\n")
 ```
 Suppose it would programmatically create the target:
 ``` {r}
@@ -149,7 +149,7 @@ ml[[i]]["code"]  <- paste(ml[[i]]["code"],
                       "print(\"foobar\")",
                       sep = ";")
 withr::with_dir(tempdir(), print(fakemake::make("b1.Rout", ml, force = TRUE)))
-readLines(file.path(tempdir(), "b1.Rout"))
+cat(readLines(file.path(tempdir(), "b1.Rout")), sep = "\n")
 ```
 You end up with a broken target file, so you need to add a *sink*:
 ``` {r}
@@ -158,8 +158,8 @@ withr::with_dir(tempdir(), print(fakemake::make("b1.Rout", ml, force = TRUE)))
 ```
 Now you get what you wanted:
 ``` {r}
-readLines(file.path(tempdir(), "b1.Rout"))
-readLines(file.path(tempdir(), "b1.txt"))
+cat(readLines(file.path(tempdir(), "b1.Rout")), sep = "\n")
+cat(readLines(file.path(tempdir(), "b1.txt")), sep = "\n")
 ```
 
 ## No Code Targets
@@ -170,7 +170,7 @@ ml[[i]]["code"]
 ```
 that prints "a1" into "a1.Rout":
 ``` {r}
-readLines(file.path(tempdir(), "a1.Rout"))
+cat(readLines(file.path(tempdir(), "a1.Rout")), sep = "\n")
 ```
 
 If we remove that code and its output file and rerun
@@ -217,7 +217,7 @@ withr::with_dir(pkg_path, plot(fakemake::makelist2igraph(ml)))
 
 Now we build and check the package in one go:
 
-``` {r}
+``` {r, warning = FALSE, message = FALSE}
 withr::with_dir(pkg_path, print(fakemake::make("check", ml)))
 list.files(file.path(pkg_path, "log"))
 ```
@@ -229,22 +229,20 @@ system.time(suppressMessages(withr::with_dir(pkg_path,
 ```
 Let us take a look at our testing coverage:
 ``` {r}
-readLines(file.path(pkg_path, "log", "covr.Rout"))
+cat(readLines(file.path(pkg_path, "log", "covr.Rout")), sep = "\n")
 ```
 Well, poor. So now we add test files:
-``` {r}
-{
-    dir.create(file.path(pkg_path, "tests", "testthat"), recursive = TRUE)
-    file.copy(system.file("templates", "testthat.R", package = "fakemake"),
-              file.path(pkg_path, "tests"))
-    file.copy(system.file("templates", "test-throw.R", package = "fakemake"),
-              file.path(pkg_path, "tests", "testthat"))
-    withr::with_dir(pkg_path, print(fakemake::make("covr", ml)))
-}
+``` {r, warning = FALSE, message = FALSE}
+dir.create(file.path(pkg_path, "tests", "testthat"), recursive = TRUE)
+file.copy(system.file("templates", "testthat.R", package = "fakemake"),
+          file.path(pkg_path, "tests"))
+file.copy(system.file("templates", "test-throw.R", package = "fakemake"),
+          file.path(pkg_path, "tests", "testthat"))
+withr::with_dir(pkg_path, print(fakemake::make("covr", ml)))
 ```
 This looks better:
 ``` {r}
-readLines(file.path(pkg_path, "log", "covr.Rout"))
+cat(readLines(file.path(pkg_path, "log", "covr.Rout")), sep = "\n")
 ```
 
 # References
