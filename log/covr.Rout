@@ -2,15 +2,15 @@
 39  R/internals.R  check_makelist   21     0
 43  R/internals.R  check_makelist   22     0
 47  R/internals.R  check_makelist   23     0
-286      R/main.R makelist2igraph  306     0
-287      R/main.R makelist2igraph  307     0
-288      R/main.R makelist2igraph  308     0
-289      R/main.R makelist2igraph  309     0
-290      R/main.R makelist2igraph  310     0
-291      R/main.R makelist2igraph  311     0
-fakemake Coverage: 96.91%
+294      R/main.R makelist2igraph  315     0
+295      R/main.R makelist2igraph  316     0
+296      R/main.R makelist2igraph  317     0
+297      R/main.R makelist2igraph  318     0
+298      R/main.R makelist2igraph  319     0
+299      R/main.R makelist2igraph  320     0
+fakemake Coverage: 96.99%
 R/internals.R: 94.74%
-R/main.R: 96.83%
+R/main.R: 96.95%
 R/sink_all.R: 100.00%
 R/throw.R: 100.00%
 R/tools.R: 100.00%

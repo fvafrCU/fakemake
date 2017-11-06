@@ -1,7 +1,7 @@
 ---
 title: "An Introduction to *fakemake*"
 author: "Andreas Dominik Cullmann"
-date: 2017-11-05, 17:56:55
+date: 2017-11-06, 14:59:42
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{An Introduction to fakemake }
@@ -211,7 +211,7 @@ Then we get a package makelist:
 str(ml <- fakemake::provide_make_list("package"))
 ```
 This is a more complex thing, we can take a glimpse:
-``` {r,fig.width = 6.8, fig.height = 6.8}
+``` {r,fig.width = 6.5, fig.height = 6.5}
 withr::with_dir(pkg_path, plot(fakemake::makelist2igraph(ml)))
 ```
 
@@ -244,8 +244,8 @@ Now we check the package again:
 ``` {r, warning = FALSE, message = FALSE}
 withr::with_dir(pkg_path, print(fakemake::make("check", ml)))
 ```
-We see that the test file is getting linted, but *cleanr* is not run as the files 
-under "tests/" are not prerequisites to *cleanr*. 
+We see that most of the build chain is rerun, except *roxygenising*, since the 
+files under "tests/" are not prerequisites to *log/royxgen2.Rout*. 
 Ah, and the test coverage is improved:
 ``` {r}
 cat(readLines(file.path(pkg_path, "log", "covr.Rout")), sep = "\n")
