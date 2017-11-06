@@ -9,69 +9,6 @@
 #' str(provide_make_list("minimal"))
 provide_make_list <- function(type = "minimal", prune = TRUE,
                               clean_sink = FALSE) {
-    cleanr_code <- paste("tryCatch(cleanr::check_directory(\"R/\",",
-                         "check_return = FALSE),",
-                         "cleanr = function(e) print(e))")
-    spell_code <- paste("spell <- devtools::spell_check();",
-                        "if (length(spell) > 0) {print(spell);",
-                        "warning(\"spell check failed\")}")
-    covr_code <- paste("co <- covr::package_coverage(path = \".\");",
-                       "print(covr::zero_coverage(co)); print(co)")
-    testthat_code <- paste("tryCatch(testthat::test_package(\".\"),",
-                           "error = function(e) print(e))")
-    list_of_r_files_code <- paste("grep(list.files(\".\",",
-                                  "pattern = \".*\\\\.[rR]$\",", 
-                                  "recursive = TRUE),",
-                                  "value = TRUE,",
-                                  "pattern = \"^R/|^inst/|^tests/\")")
-
-    pl <- list(list(target = file.path("log", "list_of_r_codes.txt"),
-                    prerequisites = list_of_r_files_code
-                    ),
-               list(alias = "roxygen2",
-                    target = file.path("log", "roxygen2.Rout"),
-                    code = "roxygen2::roxygenize(\".\")",
-                    prerequisites = "list.files(\"R\", full.names = TRUE)"),
-               list(alias = "spell",
-                    target = file.path("log", "spell.Rout"),
-                    code = spell_code,
-                    prerequisites = c("DESCRIPTION",
-                                      file.path("log", "roxygen2.Rout"))),
-               list(alias = "cleanr",
-                    target = file.path("log", "cleanr.Rout"),
-                    code = cleanr_code,
-                    prerequisites = file.path("log", "list_of_r_codes.txt")),
-               list(alias = "lint",
-                    target = file.path("log", "lintr.Rout"),
-                    code = "lintr::lint_package(path = \".\")",
-                    prerequisites = file.path("log", "list_of_r_codes.txt")),
-               list(alias = "testthat",
-                    target = file.path("log", "testthat.Rout"),
-                    code = testthat_code,
-                    prerequisites = c(file.path("log", "list_of_r_codes.txt"),
-                                      "list.files(\"tests\", full.names = T)",
-                                      "list.files(\"inst\", full.names = T)")),
-               list(alias = "covr",
-                    target = file.path("log", "covr.Rout"),
-                    code = covr_code,
-                    prerequisites = c(file.path("log", "list_of_r_codes.txt"),
-                                      "list.files(\"tests\", full.names = T)",
-                                      "list.files(\"inst\", full.names = T)")),
-               list(alias = "build", target = "get_pkg_archive_path()",
-                    code = "devtools::build(pkg = \".\", path = \".\")",
-                    sink = "log/build.Rout",
-                    prerequisites = c("list.files(\"R\", full.names = TRUE)",
-                                      "list.files(\"man\", full.names = TRUE)",
-                                      "DESCRIPTION",
-                                      "file.path(\"log\", \"lintr.Rout\")",
-                                      "file.path(\"log\", \"cleanr.Rout\")",
-                                      "file.path(\"log\", \"spell.Rout\")",
-                                      "file.path(\"log\", \"covr.Rout\")",
-                                      "file.path(\"log\", \"testthat.Rout\")",
-                                      "file.path(\"log\", \"roxygen2.Rout\")")),
-               list(alias = "check", target = "log/check.Rout",
-                    code = "check_archive_as_cran(get_pkg_archive_path())",
-                    prerequisites = "get_pkg_archive_path()"))
     ml <- switch(type,
                  "minimal" =  {
                      name <- "Makefile"
@@ -80,7 +17,7 @@ provide_make_list <- function(type = "minimal", prune = TRUE,
                                                package = "fakemake"),
                                    clean_sink)
                  },
-                 "package" = pl,
+                 "package" = package_makelist(),
                  throw(paste0("type ", type, " not known!"))
                  )
     if (isTRUE(prune)) ml <- prune_list(ml)
