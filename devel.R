@@ -7,6 +7,7 @@ packager::set_package_info(".", author_at_r = a,
        details = NULL)
 unlink(list.files(tempdir(), pattern = ".*\\.Rout", full.names = TRUE))
 devtools::load_all(".")
+str(ml <- provide_make_list("minimal"))
 
 
 #% code does not create target: infill

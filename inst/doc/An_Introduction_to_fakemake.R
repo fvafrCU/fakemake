@@ -48,10 +48,12 @@ devtools::create(pkg_path)
 file.copy(system.file("templates", "throw.R", package = "fakemake"),
           file.path(pkg_path, "R"))
 dir.create(file.path(pkg_path, "log"))
-str(ml <- fakemake::provide_make_list("package"))
-withr::with_dir(pkg_path, plot(fakemake::makelist2igraph(ml)))
+ml <- fakemake::provide_make_list("package")
+withr::with_dir(pkg_path, fakemake::visualize(ml))
+withr::with_dir(pkg_path, fakemake::visualize(ml, root = "log/check.Rout"))
 withr::with_dir(pkg_path, print(fakemake::make("check", ml)))
 list.files(file.path(pkg_path, "log"))
+cat(readLines(file.path(pkg_path, "log", "roxygen2.Rout")), sep = "\n")
 system.time(suppressMessages(withr::with_dir(pkg_path,
                                              print(fakemake::make("check",
                                                                   ml)))))

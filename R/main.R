@@ -239,20 +239,32 @@ is_to_be_made <- function(target, prerequisites, is_phony) {
     return(is_to_be_made)
 }
 
-#' Parse a \code{Makelist} and Convert it Into an \code{Igraph}
+#' Parse a \code{Makelist}, Convert it Into an \code{Igraph} and Plot it
 #'
 #' @param make_list The \code{makelist}.
-#' @return An \pkg{igraph} representation of the \code{makelist}.
-#' run.
+#' @param root The root of a tree.
+#' @return Invisibly an \pkg{igraph} representation of the \code{makelist}.
 #' @export
 #' @examples
 #' str(ml <- provide_make_list("package"))
-#' plot(makelist2igraph(ml))
-makelist2igraph <- function(make_list){
+#' visualize(ml)
+#' visualize(ml, root = NULL)
+visualize <- function(make_list, root = NULL) {
     ml <- parse_make_list(make_list)
     names(ml) <- sapply(ml, "[[", "target")
     ml  <-  lapply(ml, "[[", "prerequisites")
-    st <- utils::stack(ml)
+    st <- utils::stack(prune_list(ml))
+    if (! is.null(root)) {
+        st[["tmp"]] <- st[["values"]]
+        st[["values"]] <- st[["ind"]]
+        st[["ind"]] <- st[["tmp"]]
+    }
     g <- igraph::graph.data.frame(st)
-    return(g)
+    if (! is.null(root)) {
+        graphics::plot(g,
+                       layout = igraph::layout.reingold.tilford(g, root = root))
+    } else {
+        graphics::plot(g)
+    }
+    return(invisible(g))
 }

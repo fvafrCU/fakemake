@@ -1,6 +1,10 @@
+# fakemake 0.4.0
+
+* enhance visualisation.
+
 # fakemake 0.3.0
 
-* add visulaisation.
+* add visualisation.
 
 # fakemake 0.2.0
 
