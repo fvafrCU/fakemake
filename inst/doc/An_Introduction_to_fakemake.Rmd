@@ -1,7 +1,7 @@
 ---
 title: "An Introduction to *fakemake*"
 author: "Andreas Dominik Cullmann"
-date: 2017-11-06, 20:49:51
+date: 2017-11-06, 22:29:47
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{An Introduction to fakemake }
@@ -26,7 +26,7 @@ references:
     year: 2002
 ---
 
-# Mock the Unix Make Utility
+# Why Mock the Unix Make Utility?
 There are
 [many](https://en.wikipedia.org/wiki/List_of_build_automation_software)
 [build systems](https://en.wikipedia.org/wiki/Build_automation),
@@ -41,10 +41,20 @@ modification times of (file) dependencies without having to rely on external
 software.
 If you have any proper build system at hand: stick to it, do not use *fakemake*.
 
+# withr and knitr
+Throughout this vignette I use  **R**'s temporary directory, often by using 
+`withr::with_dir(tempdir(), ...)`. Because this is a vignette and the codes are
+examples. In real life, we would skip the temporary directory stuff.
+
+Vignettes are built using *knitr*, which itself uses `sink()`. As `sink()` is one
+central to *fakemake* for redirecting to output to files in the make chain, it
+will have to disable `knitr`'s here and there. Don't worry, it's just because 
+*knitr* and *fakemake* both want to use `sink()` exclusively.
+
 # Makelists
 A makelist is the *fakemake*`s representation of a Makefile.
 It's just a list of lists.
-Look at the minimal makelist provided with *fakemake*:
+Look at the minimal makelist provided by *fakemake*:
 ```{r}
 str(fakemake::provide_make_list("minimal", clean_sink = TRUE))
 ```
@@ -72,8 +82,7 @@ ml <- fakemake::provide_make_list("minimal", clean_sink = TRUE)
 ```
 
 ## Building and Rebuilding
-Now we would use **R**'s temporary directory to build the "all" *target* in this
-makelist:
+Now build the "all.Rout" *target*:
 
 ```{r}
 withr::with_dir(tempdir(), print(fakemake::make("all.Rout", ml)))
@@ -194,19 +203,31 @@ withr::with_dir(tempdir(), print(fakemake::make("a1.Rout", ml)))
 
 # Building **R** Packages Using *Fakemake*
 
+We will now look a *fakemake*'s main purpose: building packages.
+First, we need to create a sample package.
+
 ## Creating the Package
 First, we create a package skeleton:
-``` {r}
+``` {r, results = "hide", message = FALSE}
 pkg_path <- file.path(tempdir(), "fakepack")
 unlink(pkg_path, force = TRUE, recursive = TRUE)
 devtools::create(pkg_path)
 ```
+
 We add a minimal R code file and a log directory:
+
 ``` {r}
 file.copy(system.file("templates", "throw.R", package = "fakemake"),
           file.path(pkg_path, "R"))
 dir.create(file.path(pkg_path, "log"))
 ```
+
+This package does not make any sense. It is just a minimal working example 
+(in the sense that it passes `R CMD build` and a simple `R CMD check`). 
+It does not provide any functionality apart from a single internal function
+that is not exported via the package's NAMESPACE. 
+It is just there to exemplify the usage of *fakemake*.
+
 
 ## Setting up the Makelist
 Then we get a package makelist from *fakemake*:
