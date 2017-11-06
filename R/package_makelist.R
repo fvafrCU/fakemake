@@ -10,7 +10,7 @@ package_makelist <- function() {
     testthat_code <- paste("tryCatch(testthat::test_package(\".\"),",
                            "error = function(e) print(e))")
     list_of_r_files_code <- paste("grep(list.files(\".\",",
-                                  "pattern = \".*\\\\.[rR]$\",", 
+                                  "pattern = \".*\\\\.[rR]$\",",
                                   "recursive = TRUE),",
                                   "value = TRUE,",
                                   "pattern = \"^R/|^inst/|^tests/\")")

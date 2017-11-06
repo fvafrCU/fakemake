@@ -1,6 +1,0 @@
-R/main.R:23:65: style: Trailing whitespace is superfluous.
-                                  "pattern = \".*\\\\.[rR]$\",", 
-                                                                ^
-R/main.R:322:1: style: Trailing blank lines are superfluous.
-
-^

@@ -1,16 +1,17 @@
          filename       functions line value
-39  R/internals.R  check_makelist   21     0
-43  R/internals.R  check_makelist   22     0
-47  R/internals.R  check_makelist   23     0
-294      R/main.R makelist2igraph  315     0
-295      R/main.R makelist2igraph  316     0
-296      R/main.R makelist2igraph  317     0
-297      R/main.R makelist2igraph  318     0
-298      R/main.R makelist2igraph  319     0
-299      R/main.R makelist2igraph  320     0
-fakemake Coverage: 96.99%
+58  R/internals.R  check_makelist   21     0
+63  R/internals.R  check_makelist   22     0
+68  R/internals.R  check_makelist   23     0
+295      R/main.R makelist2igraph  252     0
+296      R/main.R makelist2igraph  253     0
+297      R/main.R makelist2igraph  254     0
+298      R/main.R makelist2igraph  255     0
+299      R/main.R makelist2igraph  256     0
+300      R/main.R makelist2igraph  257     0
+fakemake Coverage: 97.00%
 R/internals.R: 94.74%
-R/main.R: 96.95%
+R/main.R: 95.56%
+R/package_makelist.R: 100.00%
 R/sink_all.R: 100.00%
 R/throw.R: 100.00%
 R/tools.R: 100.00%

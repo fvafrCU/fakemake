@@ -256,4 +256,3 @@ makelist2igraph <- function(make_list){
     g <- igraph::graph.data.frame(st)
     return(g)
 }
-
