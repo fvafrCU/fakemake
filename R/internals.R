@@ -1,3 +1,16 @@
+makelist2igraph <- function(make_list, root = NULL) {
+    make_list <- parse_make_list(make_list)
+    names(make_list) <- sapply(make_list, "[[", "target")
+    make_list  <-  lapply(make_list, "[[", "prerequisites")
+    stack <- utils::stack(prune_list(make_list))
+    if (! is.null(root)) {
+        n <-  names(stack)
+        names(stack) <- c(n[2], n[1])
+    }
+    g <- igraph::graph.data.frame(stack)
+    return(invisible(g))
+}
+
 is_to_be_made <- function(target, prerequisites, is_phony) {
     # This is a nesting depth of 4. But the shorter
     # is_phony || !f(target) ||

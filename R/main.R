@@ -224,16 +224,7 @@ make <- function(name, make_list, force = FALSE) {
 #' visualize(ml)
 #' visualize(ml, root = NULL)
 visualize <- function(make_list, root = NULL) {
-    ml <- parse_make_list(make_list)
-    names(ml) <- sapply(ml, "[[", "target")
-    ml  <-  lapply(ml, "[[", "prerequisites")
-    st <- utils::stack(prune_list(ml))
-    if (! is.null(root)) {
-        st[["tmp"]] <- st[["values"]]
-        st[["values"]] <- st[["ind"]]
-        st[["ind"]] <- st[["tmp"]]
-    }
-    g <- igraph::graph.data.frame(st)
+    g <- makelist2igraph(make_list, root = root)
     if (! is.null(root)) {
         graphics::plot(g,
                        layout = igraph::layout.reingold.tilford(g, root = root))
