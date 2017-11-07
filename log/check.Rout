@@ -1,10 +1,10 @@
 * using log directory ‘/home/qwer/git/cyclops/fvafrcu/fakemake/fakemake.Rcheck’
-* using R Under development (unstable) (2017-11-02 r73652)
+* using R Under development (unstable) (2017-11-07 r73685)
 * using platform: x86_64-pc-linux-gnu (64-bit)
 * using session charset: UTF-8
 * using options ‘--run-donttest --as-cran’
 * checking for file ‘fakemake/DESCRIPTION’ ... OK
-* this is package ‘fakemake’ version ‘0.4.0’
+* this is package ‘fakemake’ version ‘0.5.0’
 * package encoding: UTF-8
 * checking CRAN incoming feasibility ... NOTE
 Maintainer: ‘Andreas Dominik Cullmann <fvafrcu@arcor.de>’

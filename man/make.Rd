@@ -37,7 +37,7 @@ withr::with_dir(tempdir(), print(make("all.Rout", make_list)))
 withr::with_dir(tempdir(), print(make("all.Rout", make_list, force = TRUE,
                                       recursive = FALSE)))
 # forcing all.Rout recursively
-withr::with_dir(tempdir(), print(make("all.Rout", make_list, force = TRUE))) 
+withr::with_dir(tempdir(), print(make("all.Rout", make_list, force = TRUE)))
 
 \dontshow{
 withr::with_dir(tempdir(), {

@@ -6,9 +6,9 @@ XXX: Describe what it does.
 Please consider uploading it to CRAN.
 Best, Dominik
 
-# Package fakemake 0.4.0
+# Package fakemake 0.5.0
 ## Test  environments 
-- R Under development (unstable) (2017-11-02 r73652)
+- R Under development (unstable) (2017-11-07 r73685)
   Platform: x86_64-pc-linux-gnu (64-bit)
   Running under: Devuan GNU/Linux 1 (jessie)
 - R version 3.4.2 (2017-01-27)

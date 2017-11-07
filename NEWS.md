@@ -1,3 +1,7 @@
+# fakemake 0.5.0
+
+* allow for [non-]recursive forcing.
+
 # fakemake 0.4.0
 
 * enhance visualisation.
