@@ -64,5 +64,5 @@ file.copy(system.file("templates", "testthat.R", package = "fakemake"),
 file.copy(system.file("templates", "test-throw.R", package = "fakemake"),
           file.path(pkg_path, "tests", "testthat"))
 
-withr::with_dir(pkg_path, print(fakemake::make("check", ml)))
+withr::with_dir(pkg_path, print(fakemake::make("build", ml)))
 cat(readLines(file.path(pkg_path, "log", "covr.Rout")), sep = "\n")

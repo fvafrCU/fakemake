@@ -1,27 +1,28 @@
-         filename      functions line value
-58  R/internals.R check_makelist   21     0
-63  R/internals.R check_makelist   22     0
-68  R/internals.R check_makelist   23     0
-295      R/main.R      visualize  253     0
-296      R/main.R      visualize  254     0
-297      R/main.R      visualize  255     0
-298      R/main.R      visualize  256     0
-299      R/main.R      visualize  257     0
-300      R/main.R      visualize  258     0
-301      R/main.R      visualize  259     0
-302      R/main.R      visualize  260     0
-303      R/main.R      visualize  261     0
-304      R/main.R      visualize  262     0
-305      R/main.R      visualize  263     0
-306      R/main.R      visualize  264     0
-307      R/main.R      visualize  265     0
-308      R/main.R      visualize  266     0
-309      R/main.R      visualize  267     0
-310      R/main.R      visualize  268     0
-311      R/main.R      visualize  269     0
-fakemake Coverage: 93.57%
-R/main.R: 88.36%
-R/internals.R: 94.74%
+         filename       functions line value
+2   R/internals.R makelist2igraph    2     0
+5   R/internals.R makelist2igraph    3     0
+7   R/internals.R makelist2igraph    4     0
+9   R/internals.R makelist2igraph    5     0
+11  R/internals.R makelist2igraph    6     0
+14  R/internals.R makelist2igraph    7     0
+17  R/internals.R makelist2igraph    8     0
+19  R/internals.R makelist2igraph    9     0
+21  R/internals.R makelist2igraph   10     0
+24  R/internals.R makelist2igraph   11     0
+162 R/internals.R  check_makelist   60     0
+165 R/internals.R  check_makelist   61     0
+168 R/internals.R  check_makelist   62     0
+305      R/main.R       visualize  227     0
+306      R/main.R       visualize  228     0
+307      R/main.R       visualize  229     0
+308      R/main.R       visualize  230     0
+309      R/main.R       visualize  231     0
+310      R/main.R       visualize  232     0
+311      R/main.R       visualize  233     0
+312      R/main.R       visualize  234     0
+fakemake Coverage: 93.27%
+R/internals.R: 84.71%
+R/main.R: 93.28%
 R/package_makelist.R: 100.00%
 R/sink_all.R: 100.00%
 R/throw.R: 100.00%
