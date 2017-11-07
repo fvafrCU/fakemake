@@ -31,6 +31,12 @@ help("fakemake-package", package = "fakemake")
 #> 
 #>      Use R as a minimal build system. This might come in handy if you
 #>      are developing R packages and can not use a proper build system.
+#> 
+#> Details:
+#> 
+#>      You will probably want to start reading about 'make' or reading
+#>      the 'vignette("An_Introduction_to_fakemake", package =
+#>      "fakemake")'.
 ```
 
 

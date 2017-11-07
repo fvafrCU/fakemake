@@ -13,7 +13,7 @@ make(name, make_list, force = FALSE, recursive = force)
 
 \item{force}{Force the target to be build?}
 
-\item{recursive}{Force the target to be build recursively (See \emph{Note}?}
+\item{recursive}{Force the target to be build recursively (see \emph{Note})?}
 }
 \value{
 A character vector containing the targets made during the current
@@ -23,7 +23,7 @@ run.
 Mock the Unix Make Utility
 }
 \note{
-Forcing a target is a bit like adding .PHONY to a GNU Makefile, if you
+Forcing a target mocks adding .PHONY to a GNU Makefile if you
 set recursive to FALSE. If recursive is TRUE, then the whole make chain will
 be forced.
 }

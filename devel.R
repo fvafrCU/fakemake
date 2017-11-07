@@ -1,30 +1,15 @@
-a  <- sub("(email)", "\n\t\\1",
-          packager::author_at_r("Andreas Dominik", "Cullmann", "fvafrcu@arcor.de"))
-
-packager::set_package_info(".", author_at_r = a,
-       title = "Mock the Unix Make Utility", 
-       description = "Use R as a minimal build system. This might come in handy if you are developing R packages and can not use a proper build system.",
-       details = NULL)
 unlink(list.files(tempdir(), pattern = ".*\\.Rout", full.names = TRUE))
 devtools::load_all(".")
-str(ml <- provide_make_list("minimal"))
+pkg_path <- file.path(tempdir(), "fakepack")
+unlink(pkg_path, force = TRUE, recursive = TRUE)
+devtools::create(pkg_path)
+file.copy(system.file("templates", "throw.R", package = "fakemake"),
+          file.path(pkg_path, "R"))
+dir.create(file.path(pkg_path, "log"))
+make_list <- fakemake::provide_make_list("package")
+withr::with_dir(pkg_path, bar <- fakemake::visualize(make_list))
+withr::with_dir(pkg_path, foo <- fakemake::visualize(make_list, root = "log/check.Rout"))
 
-str(make_list <- provide_make_list("minimal"))
-# build all
-withr::with_dir(tempdir(), print(make("all.Rout", make_list)))
-# nothing to be done
-withr::with_dir(tempdir(), print(make("all.Rout", make_list)))
-# forcing all.Rout
-withr::with_dir(tempdir(), print(make("all.Rout", make_list, force = TRUE, 
-                                      recursive = FALSE)))
-# forcing all.Rout recursively
-withr::with_dir(tempdir(), print(make("all.Rout", make_list, force = TRUE))) 
-
-#% code does not create target: infill
-str(ml <- provide_make_list("package"))
-ml[[1]]$sink <- "log/foo.Rout"
-print(fakemake::make("lint", ml, force = TRUE))
-print(fakemake::make("build", ml))
 
 #% This goes into packager
 dependencies <- "c(\"cleanr\", \"roxygen2\")"

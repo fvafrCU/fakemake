@@ -1,7 +1,7 @@
 ---
 title: "An Introduction to *fakemake*"
 author: "Andreas Dominik Cullmann"
-date: 2017-11-07, 21:11:37
+date: 2017-11-07, 23:17:38
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{An Introduction to fakemake }
@@ -261,6 +261,26 @@ withr::with_dir(pkg_path, fakemake::visualize(ml, root = "log/check.Rout"))
 But then you might be interested in
 [this python program](https://github.com/lindenb/makefile2graph),
 I regularly use it to visualize complex Makefiles.
+
+
+### More on Target Rules
+Let's take a look at the target rule that builds the list of R code files:
+``` {r}
+index <- which(sapply(ml, function(x) x["target"] == "log/list_of_r_codes.txt"))
+ml[[index]]
+```
+First, the target has no `code` item. Second, its `prerequisites` is a character
+string that parses as an R expression. Obiously, *fakemake* parses and evaluates 
+these character strings dynamically. 
+
+Let us take a look at the prerequisites for `testthat`:
+``` {r}
+index <- which(sapply(ml, function(x) x["alias"] == "testthat"))
+ml[[index]][["prerequisites"]]
+```
+It is a character vector, the first element being a file name, the other two 
+strings containing scripts to evaluate to file names: we can mix both types, 
+static and dynamic strings.
 
 
 ## Building the Package
