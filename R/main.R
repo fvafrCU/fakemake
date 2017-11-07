@@ -213,32 +213,6 @@ make <- function(name, make_list, force = FALSE) {
     return(invisible(res))
 }
 
-is_to_be_made <- function(target, prerequisites, is_phony) {
-    # This is a nesting depth of 4. But the shorter
-    # is_phony || !f(target) ||
-    # !null(prerequisites! & any(t(prerequisites) > t(target)
-    # will fail with testing coverage. covr doesn't test for all
-    # combinations of composite conditions. So I stick with it.
-    if (is_phony) {
-        is_to_be_made <- TRUE
-    } else {
-        if (! file.exists(target)) {
-            is_to_be_made <- TRUE
-        } else {
-            if (is.null(prerequisites)) {
-                is_to_be_made <- FALSE
-            } else {
-                if (any(file.mtime(prerequisites) > file.mtime(target))) {
-                    is_to_be_made <- TRUE
-                } else {
-                    is_to_be_made <- FALSE
-                }
-            }
-        }
-    }
-    return(is_to_be_made)
-}
-
 #' Parse a \code{Makelist}, Convert it Into an \code{Igraph} and Plot it
 #'
 #' @param make_list The \code{makelist}.
