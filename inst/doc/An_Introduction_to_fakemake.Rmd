@@ -1,7 +1,7 @@
 ---
 title: "An Introduction to *fakemake*"
 author: "Andreas Dominik Cullmann"
-date: 2017-11-07, 11:18:10
+date: 2017-11-07, 12:21:41
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{An Introduction to fakemake }
@@ -305,8 +305,9 @@ file.copy(system.file("templates", "test-throw.R", package = "fakemake"),
 
 ```
 
-Now we build the package's tarball again (of course we could `make("check", ml)`
-again, but for the sake of (CRAN's) CPU time, I skip the check):
+Now we re-build the package's tarball again (of course we could 
+`make("check", ml)` again, but for the sake of (CRAN's) CPU time, 
+                                                I skip the check):
 ``` {r, warning = FALSE, message = FALSE}
 withr::with_dir(pkg_path, print(fakemake::make("build", ml)))
 ```

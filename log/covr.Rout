@@ -1,28 +1,18 @@
-         filename       functions line value
-2   R/internals.R makelist2igraph    2     0
-5   R/internals.R makelist2igraph    3     0
-7   R/internals.R makelist2igraph    4     0
-9   R/internals.R makelist2igraph    5     0
-11  R/internals.R makelist2igraph    6     0
-14  R/internals.R makelist2igraph    7     0
-17  R/internals.R makelist2igraph    8     0
-19  R/internals.R makelist2igraph    9     0
-21  R/internals.R makelist2igraph   10     0
-24  R/internals.R makelist2igraph   11     0
-162 R/internals.R  check_makelist   60     0
-165 R/internals.R  check_makelist   61     0
-168 R/internals.R  check_makelist   62     0
-305      R/main.R       visualize  227     0
-306      R/main.R       visualize  228     0
-307      R/main.R       visualize  229     0
-308      R/main.R       visualize  230     0
-309      R/main.R       visualize  231     0
-310      R/main.R       visualize  232     0
-311      R/main.R       visualize  233     0
-312      R/main.R       visualize  234     0
-fakemake Coverage: 93.27%
-R/internals.R: 84.71%
+         filename      functions line value
+162 R/internals.R check_makelist   60     0
+165 R/internals.R check_makelist   61     0
+168 R/internals.R check_makelist   62     0
+305      R/main.R      visualize  227     0
+306      R/main.R      visualize  228     0
+307      R/main.R      visualize  229     0
+308      R/main.R      visualize  230     0
+309      R/main.R      visualize  231     0
+310      R/main.R      visualize  232     0
+311      R/main.R      visualize  233     0
+312      R/main.R      visualize  234     0
+fakemake Coverage: 96.47%
 R/main.R: 93.28%
+R/internals.R: 96.47%
 R/package_makelist.R: 100.00%
 R/sink_all.R: 100.00%
 R/throw.R: 100.00%
