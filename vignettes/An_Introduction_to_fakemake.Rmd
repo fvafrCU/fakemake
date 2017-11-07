@@ -1,7 +1,7 @@
 ---
 title: "An Introduction to *fakemake*"
 author: "Andreas Dominik Cullmann"
-date: 2017-11-06, 22:29:47
+date: 2017-11-07, 11:18:10
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{An Introduction to fakemake }
@@ -263,7 +263,8 @@ Now we build and check the package in one go:
 withr::with_dir(pkg_path, print(fakemake::make("check", ml)))
 ```
 
-We see the created in the log directory correspond to the names given by *make*:
+We see the files created in the log directory correspond to the names given by 
+*make*:
 
 ``` {r}
 list.files(file.path(pkg_path, "log"))
@@ -277,7 +278,8 @@ cat(readLines(file.path(pkg_path, "log", "roxygen2.Rout")), sep = "\n")
 
 Rebuilding the package does not do anything (NULL is returned instead of a the
                                              names of targets above), you save
-quite some CPU time:
+quite some CPU time compared to unconditionally reruning the codes in the 
+makelist:
 
 ``` {r}
 system.time(suppressMessages(withr::with_dir(pkg_path,
@@ -303,9 +305,10 @@ file.copy(system.file("templates", "test-throw.R", package = "fakemake"),
 
 ```
 
-Now we check the package again:
+Now we build the package's tarball again (of course we could `make("check", ml)`
+again, but for the sake of (CRAN's) CPU time, I skip the check):
 ``` {r, warning = FALSE, message = FALSE}
-withr::with_dir(pkg_path, print(fakemake::make("check", ml)))
+withr::with_dir(pkg_path, print(fakemake::make("build", ml)))
 ```
 
 We see that most of the build chain is rerun, except *roxygenising*, since the
