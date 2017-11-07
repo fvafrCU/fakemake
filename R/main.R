@@ -130,8 +130,8 @@ read_makefile <- function(path, clean_sink = FALSE) {
 #' @param make_list The \code{makelist} (a listed version of a Makefile).
 #' @param name The name or alias of a make target.
 #' @param force Force the target to be build?
-#' @param recursive Force the target to be build recursively (See \emph{Note}?
-#' @note Forcing a target is a bit like adding .PHONY to a GNU Makefile, if you
+#' @param recursive Force the target to be build recursively (see \emph{Note})?
+#' @note Forcing a target mocks adding .PHONY to a GNU Makefile if you
 #' set recursive to FALSE. If recursive is TRUE, then the whole make chain will
 #' be forced.
 #' @return A character vector containing the targets made during the current
