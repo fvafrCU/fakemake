@@ -130,12 +130,24 @@ read_makefile <- function(path, clean_sink = FALSE) {
 #' @param make_list The \code{makelist} (a listed version of a Makefile).
 #' @param name The name or alias of a make target.
 #' @param force Force the target to be build?
+#' @param recursive Force the target to be build recursively (See \emph{Note}?
+#' @note Forcing a target is a bit like adding .PHONY to a GNU Makefile, if you
+#' set recursive to FALSE. If recursive is TRUE, then the whole make chain will
+#' be forced.
 #' @return A character vector containing the targets made during the current
 #' run.
 #' @export
 #' @examples
-#' str(make_list <- provide_make_list(type = "minimal"))
-#' withr::with_dir(tempdir(), make(make_list[[1]][["target"]], make_list))
+#' str(make_list <- provide_make_list("minimal"))
+#' # build all
+#' withr::with_dir(tempdir(), print(make("all.Rout", make_list)))
+#' # nothing to be done
+#' withr::with_dir(tempdir(), print(make("all.Rout", make_list)))
+#' # forcing all.Rout
+#' withr::with_dir(tempdir(), print(make("all.Rout", make_list, force = TRUE,
+#'                                       recursive = FALSE)))
+#' # forcing all.Rout recursively
+#' withr::with_dir(tempdir(), print(make("all.Rout", make_list, force = TRUE)))
 #'
 #' \dontshow{
 #' withr::with_dir(tempdir(), {
@@ -171,8 +183,7 @@ read_makefile <- function(path, clean_sink = FALSE) {
 #' }
 #' }
 #' )
-
-make <- function(name, make_list, force = FALSE) {
+make <- function(name, make_list, force = FALSE, recursive = force) {
     check_makelist(make_list)
     res <- NULL
     make_list <- parse_make_list(make_list)
@@ -194,7 +205,8 @@ make <- function(name, make_list, force = FALSE) {
         if (! is.null(prerequisites)) {
             for (p in sort(prerequisites)) {
                 res <- c(res, make(name = p, make_list = make_list,
-                                   force = force))
+                                   force = force && isTRUE(recursive),
+                                   recursive = recursive))
             }
         }
         is_phony <- isTRUE(make_list[[index]][[".PHONY"]]) || isTRUE(force)

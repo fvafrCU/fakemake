@@ -10,6 +10,14 @@ test_make_full_tree <- function() {
     result <- make("all.Rout", ml)
     expectation <- NULL
     RUnit::checkIdentical(result, expectation)
+    #% rerun forced
+    result <- make("all.Rout", ml, force = TRUE, recursive = FALSE)
+    expectation <- c("all.Rout")
+    RUnit::checkIdentical(result, expectation)
+    #% rerun forced recursively
+    result <- make("all.Rout", ml, force = TRUE)
+    expectation <- c("b1.Rout", "a1.Rout", "a2.Rout", "all.Rout")
+    RUnit::checkIdentical(result, expectation)
 }
 
 test_make_missing <- function() {

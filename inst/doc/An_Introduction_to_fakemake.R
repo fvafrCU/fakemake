@@ -19,6 +19,8 @@ fakemake::touch(file.path(tempdir(), "a1.Rout"))
 withr::with_dir(tempdir(), print(fakemake::make("all.Rout", ml)))
 show_file_mtime()
 withr::with_dir(tempdir(), print(fakemake::make("all.Rout", ml, force = TRUE)))
+withr::with_dir(tempdir(), print(fakemake::make("all.Rout", ml, force = TRUE,
+                                                recursive = FALSE)))
 i <- which(sapply(ml, "[[", "target") == "all.Rout")
 ml[[i]]["alias"] <- "all"
 withr::with_dir(tempdir(), print(fakemake::make("all", ml, force = TRUE)))

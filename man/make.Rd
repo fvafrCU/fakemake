@@ -4,7 +4,7 @@
 \alias{make}
 \title{Mock the Unix Make Utility}
 \usage{
-make(name, make_list, force = FALSE)
+make(name, make_list, force = FALSE, recursive = force)
 }
 \arguments{
 \item{name}{The name or alias of a make target.}
@@ -12,6 +12,8 @@ make(name, make_list, force = FALSE)
 \item{make_list}{The \code{makelist} (a listed version of a Makefile).}
 
 \item{force}{Force the target to be build?}
+
+\item{recursive}{Force the target to be build recursively (See \emph{Note}?}
 }
 \value{
 A character vector containing the targets made during the current
@@ -20,9 +22,22 @@ run.
 \description{
 Mock the Unix Make Utility
 }
+\note{
+Forcing a target is a bit like adding .PHONY to a GNU Makefile, if you
+set recursive to FALSE. If recursive is TRUE, then the whole make chain will
+be forced.
+}
 \examples{
-str(make_list <- provide_make_list(type = "minimal"))
-withr::with_dir(tempdir(), make(make_list[[1]][["target"]], make_list))
+str(make_list <- provide_make_list("minimal"))
+# build all
+withr::with_dir(tempdir(), print(make("all.Rout", make_list)))
+# nothing to be done
+withr::with_dir(tempdir(), print(make("all.Rout", make_list)))
+# forcing all.Rout
+withr::with_dir(tempdir(), print(make("all.Rout", make_list, force = TRUE,
+                                      recursive = FALSE)))
+# forcing all.Rout recursively
+withr::with_dir(tempdir(), print(make("all.Rout", make_list, force = TRUE))) 
 
 \dontshow{
 withr::with_dir(tempdir(), {

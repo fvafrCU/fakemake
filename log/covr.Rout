@@ -2,16 +2,16 @@
 162 R/internals.R check_makelist   60     0
 165 R/internals.R check_makelist   61     0
 168 R/internals.R check_makelist   62     0
-305      R/main.R      visualize  227     0
-306      R/main.R      visualize  228     0
-307      R/main.R      visualize  229     0
-308      R/main.R      visualize  230     0
-309      R/main.R      visualize  231     0
-310      R/main.R      visualize  232     0
-311      R/main.R      visualize  233     0
-312      R/main.R      visualize  234     0
-fakemake Coverage: 96.47%
-R/main.R: 93.28%
+306      R/main.R      visualize  239     0
+307      R/main.R      visualize  240     0
+308      R/main.R      visualize  241     0
+309      R/main.R      visualize  242     0
+310      R/main.R      visualize  243     0
+311      R/main.R      visualize  244     0
+312      R/main.R      visualize  245     0
+313      R/main.R      visualize  246     0
+fakemake Coverage: 96.49%
+R/main.R: 93.33%
 R/internals.R: 96.47%
 R/package_makelist.R: 100.00%
 R/sink_all.R: 100.00%

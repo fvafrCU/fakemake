@@ -9,6 +9,16 @@ unlink(list.files(tempdir(), pattern = ".*\\.Rout", full.names = TRUE))
 devtools::load_all(".")
 str(ml <- provide_make_list("minimal"))
 
+str(make_list <- provide_make_list("minimal"))
+# build all
+withr::with_dir(tempdir(), print(make("all.Rout", make_list)))
+# nothing to be done
+withr::with_dir(tempdir(), print(make("all.Rout", make_list)))
+# forcing all.Rout
+withr::with_dir(tempdir(), print(make("all.Rout", make_list, force = TRUE, 
+                                      recursive = FALSE)))
+# forcing all.Rout recursively
+withr::with_dir(tempdir(), print(make("all.Rout", make_list, force = TRUE))) 
 
 #% code does not create target: infill
 str(ml <- provide_make_list("package"))
