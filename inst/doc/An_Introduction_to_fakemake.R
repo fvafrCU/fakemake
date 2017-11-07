@@ -53,6 +53,10 @@ dir.create(file.path(pkg_path, "log"))
 ml <- fakemake::provide_make_list("package")
 withr::with_dir(pkg_path, fakemake::visualize(ml))
 withr::with_dir(pkg_path, fakemake::visualize(ml, root = "log/check.Rout"))
+index <- which(sapply(ml, function(x) x["target"] == "log/list_of_r_codes.txt"))
+ml[[index]]
+index <- which(sapply(ml, function(x) x["alias"] == "testthat"))
+ml[[index]][["prerequisites"]]
 withr::with_dir(pkg_path, print(fakemake::make("check", ml)))
 list.files(file.path(pkg_path, "log"))
 cat(readLines(file.path(pkg_path, "log", "roxygen2.Rout")), sep = "\n")
@@ -66,5 +70,8 @@ file.copy(system.file("templates", "testthat.R", package = "fakemake"),
 file.copy(system.file("templates", "test-throw.R", package = "fakemake"),
           file.path(pkg_path, "tests", "testthat"))
 
+withr::with_dir(pkg_path, fakemake::visualize(ml))
+index <- which(sapply(ml, function(x) x["alias"] == "testthat"))
+ml[[index]][["prerequisites"]]
 withr::with_dir(pkg_path, print(fakemake::make("build", ml)))
 cat(readLines(file.path(pkg_path, "log", "covr.Rout")), sep = "\n")

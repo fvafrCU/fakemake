@@ -14,6 +14,10 @@ package_makelist <- function() {
                                   "recursive = TRUE),",
                                   "value = TRUE,",
                                   "pattern = \"^R/|^inst/|^tests/\")")
+    dir_r <- "list.files(\"R\", full.names = TRUE, recursive = TRUE)"
+    dir_man <- "list.files(\"man\", full.names = TRUE, recursive = TRUE)"
+    dir_inst <- "list.files(\"inst\", full.names = TRUE, recursive = TRUE)"
+    dir_tests <- "list.files(\"tests\", full.names = TRUE, recursive = TRUE)"
     pl <- list(list(target = file.path("log", "list_of_r_codes.txt"),
                     prerequisites = list_of_r_files_code
                     ),
@@ -38,19 +42,16 @@ package_makelist <- function() {
                     target = file.path("log", "testthat.Rout"),
                     code = testthat_code,
                     prerequisites = c(file.path("log", "list_of_r_codes.txt"),
-                                      "list.files(\"tests\", full.names = T)",
-                                      "list.files(\"inst\", full.names = T)")),
+                                      dir_tests, dir_inst)),
                list(alias = "covr",
                     target = file.path("log", "covr.Rout"),
                     code = covr_code,
                     prerequisites = c(file.path("log", "list_of_r_codes.txt"),
-                                      "list.files(\"tests\", full.names = T)",
-                                      "list.files(\"inst\", full.names = T)")),
+                                      dir_tests, dir_inst)),
                list(alias = "build", target = "get_pkg_archive_path()",
                     code = "devtools::build(pkg = \".\", path = \".\")",
                     sink = "log/build.Rout",
-                    prerequisites = c("list.files(\"R\", full.names = TRUE)",
-                                      "list.files(\"man\", full.names = TRUE)",
+                    prerequisites = c(dir_r, dir_man,
                                       "DESCRIPTION",
                                       "file.path(\"log\", \"lintr.Rout\")",
                                       "file.path(\"log\", \"cleanr.Rout\")",
