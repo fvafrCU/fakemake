@@ -54,7 +54,7 @@ $(LOG_DIR)/install.Rout: cran-comments.md
 	$(R) --vanilla CMD INSTALL  $(PKGNAME)_$(PKGVERS).tar.gz > $(LOG_DIR)/install.Rout 2>&1 
 
 cran-comments.md: $(LOG_DIR)/check.Rout
-	$(Rscript) --vanilla -e 'packager::provide_cran_comments(check_log = "log/check.Rout")' > $(LOG_DIR)/cran_comments.Rout 2>&1 
+	$(Rscript) --vanilla -e 'packager::provide_cran_comments(check_log = "log/check.Rout", travis_session_info = "travis-cli")' > $(LOG_DIR)/cran_comments.Rout 2>&1 
 
 .PHONY: check
 check: $(LOG_DIR)/check.Rout

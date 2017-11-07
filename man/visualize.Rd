@@ -20,5 +20,5 @@ Parse a \code{Makelist}, Convert it Into an \code{Igraph} and Plot it
 \examples{
 str(ml <- provide_make_list("package"))
 visualize(ml)
-visualize(ml, root = NULL)
+visualize(ml, root = "log/check.Rout")
 }

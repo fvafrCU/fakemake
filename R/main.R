@@ -222,7 +222,7 @@ make <- function(name, make_list, force = FALSE) {
 #' @examples
 #' str(ml <- provide_make_list("package"))
 #' visualize(ml)
-#' visualize(ml, root = NULL)
+#' visualize(ml, root = "log/check.Rout")
 visualize <- function(make_list, root = NULL) {
     g <- makelist2igraph(make_list, root = root)
     if (! is.null(root)) {

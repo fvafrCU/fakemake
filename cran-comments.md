@@ -1,9 +1,9 @@
 Dear CRAN Team,
-this is a resubmission of package 'fakemake'. I have added the following changes:
+this is the initial commit of package 'fakemake'.
 
-* enhance visualisation.
+XXX: Describe what it does.
 
-Please upload to CRAN.
+Please consider uploading it to CRAN.
 Best, Dominik
 
 # Package fakemake 0.4.0
@@ -11,6 +11,9 @@ Best, Dominik
 - R Under development (unstable) (2017-11-02 r73652)
   Platform: x86_64-pc-linux-gnu (64-bit)
   Running under: Devuan GNU/Linux 1 (jessie)
+- R version 3.4.2 (2017-01-27)
+  Platform: x86_64-pc-linux-gnu (64-bit)
+  Running under: Ubuntu 14.04.5 LTS
 - win-builder (devel)
 
 ## R CMD check results
