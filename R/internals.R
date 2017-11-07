@@ -3,10 +3,7 @@ makelist2igraph <- function(make_list, root = NULL) {
     names(make_list) <- sapply(make_list, "[[", "target")
     make_list  <-  lapply(make_list, "[[", "prerequisites")
     stack <- utils::stack(prune_list(make_list))
-    if (! is.null(root)) {
-        n <-  names(stack)
-        names(stack) <- c(n[2], n[1])
-    }
+    if (! is.null(root)) stack <- stack[TRUE, c(2, 1)]
     g <- igraph::graph.data.frame(stack)
     return(invisible(g))
 }
