@@ -1,3 +1,7 @@
+# fakemake 0.6.0
+
+* make get\_pkg\_archive\_path() optionally return a relative path.
+
 # fakemake 0.5.0
 
 * allow for [non-]recursive forcing.
