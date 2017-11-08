@@ -32,6 +32,7 @@ touch <- function(path) {
 #' @note The archive file does not have to exist. Use
 #' \code{file.exists(get_pkg_archive_path())} to test existence.
 #' @param path Path to the package.
+#' @param absolute Return the absolute path?
 #' @return Path to the package's archive file.
 #' @export
 #' @examples
@@ -39,10 +40,11 @@ touch <- function(path) {
 #' devtools::create(path = package_path)
 #' print(tarball <- get_pkg_archive_path(package_path))
 #' file.exists(tarball)
-get_pkg_archive_path <- function(path = ".") {
+get_pkg_archive_path <- function(path = ".", absolute = TRUE) {
     pkg <- devtools::as.package(path)
     tgz <- file.path(pkg$path,
                      paste0(pkg$package, "_", pkg$version, ".tar.gz"))
+    if (! isTRUE(absolute)) tgz <- sub(paste0(getwd(), "/"), "", tgz)
     return(tgz)
 }
 
