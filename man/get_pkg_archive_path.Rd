@@ -4,10 +4,12 @@
 \alias{get_pkg_archive_path}
 \title{Get a Package's Archive Path From the Package's DESCRIPTION}
 \usage{
-get_pkg_archive_path(path = ".")
+get_pkg_archive_path(path = ".", absolute = TRUE)
 }
 \arguments{
 \item{path}{Path to the package.}
+
+\item{absolute}{Return the absolute path?}
 }
 \value{
 Path to the package's archive file.
