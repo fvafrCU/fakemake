@@ -1,7 +1,7 @@
 ---
 title: "An Introduction to *fakemake*"
 author: "Andreas Dominik Cullmann"
-date: 2017-11-07, 23:51:37
+date: 2017-11-08, 13:10:12
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{An Introduction to fakemake }
@@ -35,11 +35,18 @@ and more uses for build systems [see @powers2002, sections 11.10 and 11.11].
 I have been using the
 [unix make utility](https://en.wikipedia.org/wiki/Make_(software)) when
 developing R packages since 2012. But sometimes I get caught on a machine where
-*make* is not available and where I am not entitled to install it.
+*make* is not available and where I am not entitled to install it[^1].
+
+[^1]: This is a nice example of restrictive software regulations: you end up 
+with buggy imitations like this instead of the well established original. 
+You should regulate software installations for programmers, unless you take 
+away their interpreters/compilers.
+
 This is why I wrote *fakemake*: to build an R package conditionally on the
 modification times of (file) dependencies without having to rely on external
 software.
-If you have any proper build system at hand: stick to it, do not use *fakemake*.
+**If you have any proper build system at hand: stick to it, do not use 
+*fakemake*.**
 
 # withr and knitr
 Throughout this vignette I use  **R**'s temporary directory, often by using 
@@ -264,26 +271,22 @@ I regularly use it to visualize complex Makefiles.
 
 
 ### More on Target Rules
-Let's take a look at the target rule that builds the list of R code files:
+Let's take a look at the target rule that builds the tarball:
 ``` {r}
-index <- which(sapply(ml, function(x) x["target"] == "log/list_of_r_codes.txt"))
+index <- which(sapply(ml, function(x) x["alias"] == "build"))
 ml[[index]]
 ```
-First, the target rule has no `code` item. Second, its `prerequisites` is a 
-character
-string that parses as an R expression. Obiously, *fakemake* parses and evaluates 
-these character strings dynamically. 
+Note that some of its items are strings giving file names, some are 
+strings that parse as R expressions, and `prerequisites` is a mix of both. 
+Obiously, *fakemake* parses and evaluates these character strings dynamically. 
 
 Let us take a look at the prerequisites for `testthat`:
 ``` {r}
 index <- which(sapply(ml, function(x) x["alias"] == "testthat"))
 ml[[index]][["prerequisites"]]
 ```
-It is a character vector, the first element being a file name, the other two 
-strings containing scripts to evaluate to file names: we can mix both types, 
-static and dynamic strings.
 If you wonder why the only prerequisite for `testthat` shown in the above graphs 
-is `log/list_of_r_codes.txt`: there are no files to be found under `tests/` 
+is `R/throw.R`: there are no files to be found under `tests/` 
 or `inst/` yet. We will come back to this later.
 
 

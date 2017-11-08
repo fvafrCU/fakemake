@@ -53,7 +53,7 @@ dir.create(file.path(pkg_path, "log"))
 ml <- fakemake::provide_make_list("package")
 withr::with_dir(pkg_path, fakemake::visualize(ml))
 withr::with_dir(pkg_path, fakemake::visualize(ml, root = "log/check.Rout"))
-index <- which(sapply(ml, function(x) x["target"] == "log/list_of_r_codes.txt"))
+index <- which(sapply(ml, function(x) x["alias"] == "build"))
 ml[[index]]
 index <- which(sapply(ml, function(x) x["alias"] == "testthat"))
 ml[[index]][["prerequisites"]]
