@@ -2,7 +2,7 @@
 
 Executing test function test_check_makelist  ... Error in fakemake:::check_makelist(3) : 3 is not a list.
 Error in fakemake:::check_makelist(ml1) : 
-“foo”, “bar” for make target log/roxygen2.Rout (item number 2  in list “ml1” ) are no valid names.
+“foo”, “bar” for make target log/spell.Rout (item number 2  in list “ml1” ) are no valid names.
 Error in fakemake:::check_makelist(ml1) : 
   Items 1, 3 of list “ml1” have no target entries.
  done successfully.
@@ -29,7 +29,7 @@ Error in adjacent_vertices(x, i, mode = if (directed) "out" else "all") :
 
 
 
-Executing test function test_check_archive  ... Creating package 'fakepack' in '/tmp/RtmpatA0sz'
+Executing test function test_check_archive  ... Creating package 'fakepack' in '/tmp/Rtmpy3raBi'
 No DESCRIPTION found. Creating with values:
 
 
@@ -44,21 +44,21 @@ Encoding: UTF-8
 LazyData: true
 * Creating `fakepack.Rproj` from template.
 * Adding `.Rproj.user`, `.Rhistory`, `.RData` to ./.gitignore
-Updating roxygen version in /tmp/RtmpatA0sz/fakepack/DESCRIPTION
+Updating roxygen version in /tmp/Rtmpy3raBi/fakepack/DESCRIPTION
 Writing NAMESPACE
 Writing throw.Rd
 '/home/qwer/svn/R/r-devel/build/bin/R' --no-site-file --no-environ --no-save  \
-  --no-restore --quiet CMD build '/tmp/RtmpatA0sz/fakepack' --no-resave-data  \
+  --no-restore --quiet CMD build '/tmp/Rtmpy3raBi/fakepack' --no-resave-data  \
   --no-manual 
 
-* checking for file ‘/tmp/RtmpatA0sz/fakepack/DESCRIPTION’ ... OK
+* checking for file ‘/tmp/Rtmpy3raBi/fakepack/DESCRIPTION’ ... OK
 * preparing ‘fakepack’:
 * checking DESCRIPTION meta-information ... OK
 * checking for LF line-endings in source and make files and shell scripts
 * checking for empty or unneeded directories
 * building ‘fakepack_0.0.0.9000.tar.gz’
 
-* using log directory ‘/tmp/RtmpatA0sz/fakepack/fakepack.Rcheck’
+* using log directory ‘/tmp/Rtmpy3raBi/fakepack/fakepack.Rcheck’
 * using R Under development (unstable) (2017-11-07 r73685)
 * using platform: x86_64-pc-linux-gnu (64-bit)
 * using session charset: UTF-8
@@ -110,7 +110,7 @@ Standardizable: FALSE
 * checking PDF version of manual ... OK
 * DONE
 Status: 1 WARNING
-* using log directory ‘/tmp/RtmpatA0sz/fakepack/fakepack.Rcheck’
+* using log directory ‘/tmp/Rtmpy3raBi/fakepack/fakepack.Rcheck’
 * using R Under development (unstable) (2017-11-07 r73685)
 * using platform: x86_64-pc-linux-gnu (64-bit)
 * using session charset: UTF-8
@@ -180,7 +180,7 @@ Status: 1 WARNING, 1 NOTE
 
 
 
-Executing test function test_package_path  ... Creating package 'anRpackage' in '/tmp/RtmpatA0sz'
+Executing test function test_package_path  ... Creating package 'anRpackage' in '/tmp/Rtmpy3raBi'
 No DESCRIPTION found. Creating with values:
 
 
@@ -225,8 +225,8 @@ Executing test function test_make_phony  ...  done successfully.
 
 
 Executing test function test_make_prerequisite  ... Error in make(name = p, make_list = make_list, force = force && isTRUE(recursive),  : 
-  There is no rule to make /tmp/RtmpatA0sz/c1.Rout.
-Prerequisite /tmp/RtmpatA0sz/c1.Rout found.
+  There is no rule to make /tmp/Rtmpy3raBi/c1.Rout.
+Prerequisite /tmp/Rtmpy3raBi/c1.Rout found.
  done successfully.
 
 
