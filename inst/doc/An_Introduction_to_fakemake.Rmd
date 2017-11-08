@@ -1,7 +1,7 @@
 ---
 title: "An Introduction to *fakemake*"
 author: "Andreas Dominik Cullmann"
-date: 2017-11-08, 13:10:12
+date: 2017-11-08, 13:18:20
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{An Introduction to fakemake }
@@ -345,14 +345,6 @@ Now we see - besides other things - that `testthat` has two new prerequisites:
 
 ``` {r,fig.width = 6.8, fig.height = 6.8}
 withr::with_dir(pkg_path, fakemake::visualize(ml))
-```
-
-Well, they both happen to be part of the list of R codes, so these dependencies 
-are redundant, but they are there because the second `prerequisites` for 
-`testthat` is "all files under 'tests', recursively":
-``` {r}
-index <- which(sapply(ml, function(x) x["alias"] == "testthat"))
-ml[[index]][["prerequisites"]]
 ```
 
 
