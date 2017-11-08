@@ -1,3 +1,10 @@
+a  <- sub("(email)", "\n\t\\1",
+          packager::author_at_r("Andreas Dominik", "Cullmann", "fvafrcu@arcor.de"))
+
+packager::set_package_info(".", author_at_r = a,
+       title = "Mock the Unix Make Utility", 
+       description = "Use R as a minimal build system. This might come in handy if you are developing R packages and can not use a proper build system.",
+       details = NA)
 unlink(list.files(tempdir(), pattern = ".*\\.Rout", full.names = TRUE))
 devtools::load_all(".")
 pkg_path <- file.path(tempdir(), "fakepack")

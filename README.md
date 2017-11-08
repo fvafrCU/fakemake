@@ -34,9 +34,8 @@ help("fakemake-package", package = "fakemake")
 #> 
 #> Details:
 #> 
-#>      You will probably want to start reading about 'make' or reading
-#>      the 'vignette("An_Introduction_to_fakemake", package =
-#>      "fakemake")'.
+#>      You will find the details in
+#>      'vignette("An_Introduction_to_fakemake", package = "fakemake")'.
 ```
 
 
