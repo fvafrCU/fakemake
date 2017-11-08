@@ -1,7 +1,8 @@
 #' Load an Example \code{Makelist} Provided by \pkg{fakemake}.
 #'
 #' @inheritParams read_makefile
-#' @param type The type of \code{makelist}.
+#' @param type The type of \code{makelist}. Possible values are "minimal" and
+#' "package".
 #' @param prune Prune the \code{makelist} of \code{NULL} items?
 #' @return A \code{makelist}.
 #' @export
