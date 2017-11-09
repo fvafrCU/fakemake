@@ -36,7 +36,7 @@ use_dev_version:
 release: 
 	echo "devtools::release(check = FALSE)" > ./rel.R
 	echo "source('./rel.R')" > ./.Rprofile
-	R
+	$(R)
 	rm ./rel.R ./.Rprofile
 
 .PHONY: build_win
