@@ -1,4 +1,4 @@
-RUNIT TEST PROTOCOL -- Wed Nov  8 14:39:54 2017 
+RUNIT TEST PROTOCOL -- Thu Nov  9 13:23:16 2017 
 *********************************************** 
 Number of test functions: 16 
 Number of errors: 0 
@@ -30,7 +30,7 @@ Test file: /home/qwer/git/cyclops/fvafrcu/fakemake/fakemake.Rcheck/fakemake/runi
 test_provide_makefile: (4 checks) ... OK (0.14 seconds)
 --------------------------- 
 Test file: /home/qwer/git/cyclops/fvafrcu/fakemake/fakemake.Rcheck/fakemake/runit_tests/runit-misc.R 
-test_check_archive: (2 checks) ... OK (23.45 seconds)
+test_check_archive: (2 checks) ... OK (23.21 seconds)
 test_package_path: (1 checks) ... OK (0.14 seconds)
 test_touch: (1 checks) ... OK (2 seconds)
 --------------------------- 
@@ -38,10 +38,10 @@ Test file: /home/qwer/git/cyclops/fvafrcu/fakemake/fakemake.Rcheck/fakemake/runi
 test_exception: (1 checks) ... OK (0 seconds)
 --------------------------- 
 Test file: /home/qwer/git/cyclops/fvafrcu/fakemake/fakemake.Rcheck/fakemake/runit_tests/runit-xmake.R 
-test_make_full_tree: (4 checks) ... OK (0.05 seconds)
+test_make_full_tree: (4 checks) ... OK (0.03 seconds)
 test_make_missing: (2 checks) ... OK (0.02 seconds)
 test_make_newer: (2 checks) ... OK (1.02 seconds)
-test_make_phony: (3 checks) ... OK (2.03 seconds)
+test_make_phony: (3 checks) ... OK (2.04 seconds)
 test_make_prerequisite: (3 checks) ... OK (1.03 seconds)
 test_make_sink: (2 checks) ... OK (0.01 seconds)
 test_make_source_files: (0 checks) ... OK (0 seconds)

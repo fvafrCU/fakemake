@@ -1,7 +1,9 @@
 Dear CRAN Team,
-this is the initial commit of package 'fakemake'.
-
-XXX: Describe what it does.
+I've written a package to use R as a minimal build system, because I sometimes
+do not have a proper build system at hand and am not entitled to install
+software due to restrictive software policies.
+I don't know if that is a common setup, but maybe there is someone else out
+there who might consider it helpful.
 
 Please consider uploading it to CRAN.
 Best, Dominik

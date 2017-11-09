@@ -7,7 +7,8 @@
 provide_make_list(type = "minimal", prune = TRUE, clean_sink = FALSE)
 }
 \arguments{
-\item{type}{The type of \code{makelist}.}
+\item{type}{The type of \code{makelist}. Possible values are "minimal" and
+"package".}
 
 \item{prune}{Prune the \code{makelist} of \code{NULL} items?}
 

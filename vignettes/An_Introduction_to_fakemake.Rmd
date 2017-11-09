@@ -1,7 +1,7 @@
 ---
 title: "An Introduction to *fakemake*"
 author: "Andreas Dominik Cullmann"
-date: 2017-11-09, 13:10:26
+date: 2017-11-09, 14:10:43
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{An Introduction to fakemake }
@@ -37,9 +37,10 @@ I have been using the
 developing R packages since 2012. But sometimes I get caught on a machine where
 *make* is not available and where I am not entitled to install it[^1].
 
-[^1]: This is a nice example of restrictive software regulations: you end up 
-with buggy imitations like this instead of the well established original. 
-You should regulate software installations for programmers, unless you take 
+[^1]: This is a nice example of what restrictive software policies are good for:
+you end up with a buggy imitation like *fakemake* instead of the 
+well established original. 
+You should not regulate software installations for programmers, unless you take 
 away their interpreters/compilers.
 
 This is why I wrote *fakemake*: to build an R package conditionally on the
