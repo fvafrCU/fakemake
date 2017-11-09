@@ -1,7 +1,7 @@
 ---
 title: "An Introduction to *fakemake*"
 author: "Andreas Dominik Cullmann"
-date: 2017-11-08, 13:18:20
+date: 2017-11-09, 13:10:26
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{An Introduction to fakemake }
@@ -48,15 +48,16 @@ software.
 **If you have any proper build system at hand: stick to it, do not use 
 *fakemake*.**
 
-# withr and knitr
+# *withr* and *knitr*
 Throughout this vignette I use  **R**'s temporary directory, often by using 
 `withr::with_dir(tempdir(), ...)`. Because this is a vignette and the codes are
 examples. In real life, we would skip the temporary directory stuff.
 
-Vignettes are built using *knitr*, which itself uses `sink()`. As `sink()` is one
-central to *fakemake* for redirecting to output to files in the make chain, it
-will have to disable `knitr`'s here and there. Don't worry, it's just because 
-*knitr* and *fakemake* both want to use `sink()` exclusively.
+Vignettes are built using *knitr*, which itself uses `sink()`. As `sink()` is 
+central to *fakemake* for redirecting output to files in the make chain,
+I have to disable some of *knitr*'s output here and there. 
+Don't worry, it's just because *knitr* and *fakemake* both want to use `sink()` 
+exclusively and it only affects vignettes build with *knitr*.
 
 # Makelists
 A makelist is the *fakemake*`s representation of a Makefile.
@@ -134,7 +135,7 @@ withr::with_dir(tempdir(), print(fakemake::make("all.Rout", ml)))
 show_file_mtime()
 ```
 
-## Forcing The Build
+## Forcing the Build
 If you set the force option, you can force the target and all its prerequisites
 down the build chain to be built:
 ``` {r}
@@ -149,7 +150,7 @@ withr::with_dir(tempdir(), print(fakemake::make("all.Rout", ml, force = TRUE,
 ```
 
 
-## Using aliases
+## Using Aliases
 If you find a target rule's *target* too hard to type, you can use an alias:
 ``` {r}
 i <- which(sapply(ml, "[[", "target") == "all.Rout")
@@ -159,7 +160,7 @@ withr::with_dir(tempdir(), print(fakemake::make("all", ml, force = TRUE)))
 This is pointless here, but *target*s might be files down a
 directory tree like 'log/testthat.Rout' when building **R** packages.
 
-## Diverting Output
+## Diverting Output / Programmatically Creating a Target Rule's Target
 Target rule b1 dumps its output to b1.Rout:
 ``` {r}
 cat(readLines(file.path(tempdir(), "b1.Rout")), sep = "\n")
@@ -174,7 +175,7 @@ ml[[i]]["code"]  <- paste(ml[[i]]["code"],
 withr::with_dir(tempdir(), print(fakemake::make("b1.Rout", ml, force = TRUE)))
 cat(readLines(file.path(tempdir(), "b1.Rout")), sep = "\n")
 ```
-You end up with a broken target file, so you need to add a *sink*:
+You end up with a broken target file, __so you need to add a *sink*__:
 ``` {r}
 ml[[i]]["sink"] <- "b1.txt"
 withr::with_dir(tempdir(), print(fakemake::make("b1.Rout", ml, force = TRUE)))
@@ -201,7 +202,8 @@ If we remove that code and its output file and rerun
 ml[[i]]["code"]  <- NULL
 withr::with_dir(tempdir(), print(fakemake::make("a1.Rout", ml, force = TRUE)))
 ```
-the file is still created but empty:
+the file is still created (note that target rule b1 down the make chain is run
+                           since we did not set `recursive = FALSE` ) but empty:
 ``` {r}
 file.size(file.path(tempdir(), "a1.Rout"))
 ```
@@ -243,7 +245,7 @@ that is not exported via the package's NAMESPACE.
 It is just there to exemplify the usage of *fakemake*.
 
 
-## Setting up the Makelist
+## Setting Up the Makelist
 Then we get a package makelist from *fakemake*:
 
 ``` {r}
@@ -267,6 +269,8 @@ withr::with_dir(pkg_path, fakemake::visualize(ml, root = "log/check.Rout"))
 
 But then you might be interested in
 [this python program](https://github.com/lindenb/makefile2graph),
+it would leave with this graph:
+![makefile2graph output](makefile2graph.png)
 I regularly use it to visualize complex Makefiles.
 
 
