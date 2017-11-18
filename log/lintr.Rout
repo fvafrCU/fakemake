@@ -1,0 +1,3 @@
+tests/runit.R:49:62: style: Trailing whitespace is superfluous.
+    RUnit::printTextProtocol(test_result, showDetails = TRUE, 
+                                                             ^

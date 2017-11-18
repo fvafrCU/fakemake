@@ -11,5 +11,4 @@
 [11] "./inst/runit_tests/runit-xmake.R:     # TODO: somehow RUnit::checkIdentical(result, expectation) fails?!"                                                                            
 [12] "./inst/runit_tests/runit-xmake.R:     # TODO: somehow RUnit::checkIdentical(result, expectation) fails?!"                                                                            
 [13] "./inst/runit_tests/runit-xmake.R:     warning(\"FIXME: The remaining code is in dontshow() in the examples \","                                                                      
-[14] "./log/runit.Rout:   FIXME: The remaining code is in dontshow() in the examples section of make()! I haven't understood yet why is does not work in formal testing."                  
 There were 50 or more warnings (use warnings() to see the first 50)
