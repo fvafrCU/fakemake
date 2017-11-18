@@ -1,14 +1,15 @@
 Dear CRAN Team,
-I've written a package to use R as a minimal build system, because I sometimes
-do not have a proper build system at hand and am not entitled to install
-software due to restrictive software policies.
-I don't know if that is a common setup, but maybe there is someone else out
-there who might consider it helpful.
+this is a resubmission of the inital commit of package 'fakemake'. 
+I have added the following changes:
+
+* replace file.show(x, pager = "cat") with cat(readLines(x), sep = "\"n) in
+  examples as they did not pass checks on windows.
 
 Please consider uploading it to CRAN.
+
 Best, Dominik
 
-# Package fakemake 0.5.0
+# Package fakemake 1.0.1
 ## Test  environments 
 - R Under development (unstable) (2017-11-07 r73685)
   Platform: x86_64-pc-linux-gnu (64-bit)
@@ -20,3 +21,27 @@ Best, Dominik
 
 ## R CMD check results
 0 errors | 0 warnings | 1 note 
+
+> Dear CRAN Team,
+> I've written a package to use R as a minimal build system, because I sometimes
+> do not have a proper build system at hand and am not entitled to install
+> software due to restrictive software policies.
+> I don't know if that is a common setup, but maybe there is someone else out
+> there who might consider it helpful.
+> 
+> Please consider uploading it to CRAN.
+> Best, Dominik
+> 
+> # Package fakemake 0.5.0
+> ## Test  environments
+> - R Under development (unstable) (2017-11-07 r73685)
+>   Platform: x86_64-pc-linux-gnu (64-bit)
+>   Running under: Devuan GNU/Linux 1 (jessie)
+> - R version 3.4.2 (2017-01-27)
+>   Platform: x86_64-pc-linux-gnu (64-bit)
+>   Running under: Ubuntu 14.04.5 LTS
+> - win-builder (devel)
+> 
+> ## R CMD check results
+> 0 errors | 0 warnings | 1 note
+

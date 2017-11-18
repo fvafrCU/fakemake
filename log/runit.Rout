@@ -29,7 +29,7 @@ Error in adjacent_vertices(x, i, mode = if (directed) "out" else "all") :
 
 
 
-Executing test function test_check_archive  ... Creating package 'fakepack' in '/tmp/RtmpNtv67P'
+Executing test function test_check_archive  ... Creating package 'fakepack' in '/tmp/RtmpQfmNJt'
 No DESCRIPTION found. Creating with values:
 
 
@@ -44,21 +44,21 @@ Encoding: UTF-8
 LazyData: true
 * Creating `fakepack.Rproj` from template.
 * Adding `.Rproj.user`, `.Rhistory`, `.RData` to ./.gitignore
-Updating roxygen version in /tmp/RtmpNtv67P/fakepack/DESCRIPTION
+Updating roxygen version in /tmp/RtmpQfmNJt/fakepack/DESCRIPTION
 Writing NAMESPACE
 Writing throw.Rd
 '/home/qwer/svn/R/r-devel/build/bin/R' --no-site-file --no-environ --no-save  \
-  --no-restore --quiet CMD build '/tmp/RtmpNtv67P/fakepack' --no-resave-data  \
+  --no-restore --quiet CMD build '/tmp/RtmpQfmNJt/fakepack' --no-resave-data  \
   --no-manual 
 
-* checking for file ‘/tmp/RtmpNtv67P/fakepack/DESCRIPTION’ ... OK
+* checking for file ‘/tmp/RtmpQfmNJt/fakepack/DESCRIPTION’ ... OK
 * preparing ‘fakepack’:
 * checking DESCRIPTION meta-information ... OK
 * checking for LF line-endings in source and make files and shell scripts
 * checking for empty or unneeded directories
 * building ‘fakepack_0.0.0.9000.tar.gz’
 
-* using log directory ‘/tmp/RtmpNtv67P/fakepack/fakepack.Rcheck’
+* using log directory ‘/tmp/RtmpQfmNJt/fakepack/fakepack.Rcheck’
 * using R Under development (unstable) (2017-11-07 r73685)
 * using platform: x86_64-pc-linux-gnu (64-bit)
 * using session charset: UTF-8
@@ -110,7 +110,7 @@ Standardizable: FALSE
 * checking PDF version of manual ... OK
 * DONE
 Status: 1 WARNING
-* using log directory ‘/tmp/RtmpNtv67P/fakepack/fakepack.Rcheck’
+* using log directory ‘/tmp/RtmpQfmNJt/fakepack/fakepack.Rcheck’
 * using R Under development (unstable) (2017-11-07 r73685)
 * using platform: x86_64-pc-linux-gnu (64-bit)
 * using session charset: UTF-8
@@ -180,7 +180,7 @@ Status: 1 WARNING, 1 NOTE
 
 
 
-Executing test function test_package_path  ... Creating package 'anRpackage' in '/tmp/RtmpNtv67P'
+Executing test function test_package_path  ... Creating package 'anRpackage' in '/tmp/RtmpQfmNJt'
 No DESCRIPTION found. Creating with values:
 
 
@@ -225,8 +225,8 @@ Executing test function test_make_phony  ...  done successfully.
 
 
 Executing test function test_make_prerequisite  ... Error in make(name = p, make_list = make_list, force = force && isTRUE(recursive),  : 
-  There is no rule to make /tmp/RtmpNtv67P/c1.Rout.
-Prerequisite /tmp/RtmpNtv67P/c1.Rout found.
+  There is no rule to make /tmp/RtmpQfmNJt/c1.Rout.
+Prerequisite /tmp/RtmpQfmNJt/c1.Rout found.
  done successfully.
 
 

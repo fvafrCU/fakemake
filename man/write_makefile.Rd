@@ -28,5 +28,5 @@ evaluated code, a list static list of files in the above case.
 \examples{
 make_file <- file.path(tempdir(), "my_Makefile")
 write_makefile(provide_make_list(), path = make_file)
-file.show(make_file, pager = "cat")
+cat(readLines(make_file), sep = "\\n")
 }
