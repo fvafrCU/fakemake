@@ -43,7 +43,7 @@ provide_make_list <- function(type = "minimal", prune = TRUE,
 #' @examples
 #' make_file <- file.path(tempdir(), "my_Makefile")
 #' write_makefile(provide_make_list(), path = make_file)
-#' file.show(make_file, pager = "cat")
+#' cat(readLines(make_file), sep = "\n")
 write_makefile <- function(make_list, path,
                            Rbin = "Rscript-devel") {
     check_makelist(make_list)

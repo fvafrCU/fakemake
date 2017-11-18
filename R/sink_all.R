@@ -15,7 +15,7 @@
 #'          message("a message")
 #'          print("some more output")
 #' })
-#' file.show(sink_path, pager = "cat")
+#' cat(readLines(sink_path), sep = "\n")
 sink_all <- function(path, code) {
     op <- options(warn = 1)
     on.exit(options(op))
