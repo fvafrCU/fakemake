@@ -46,7 +46,7 @@ if (identical(.Platform[["OS.type"]], "unix")) {
     } else {
         file_name <- ""
     }
-    RUnit::printTextProtocol(test_result, showDetails = TRUE, 
+    RUnit::printTextProtocol(test_result, showDetails = TRUE,
                              fileName = file_name)
 
     if (is_failure(test_result)) stop("RUnit failed. ", print(test_result))
