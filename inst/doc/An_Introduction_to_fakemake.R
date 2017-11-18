@@ -57,6 +57,10 @@ index <- which(sapply(ml, function(x) x["alias"] == "build"))
 ml[[index]]
 index <- which(sapply(ml, function(x) x["alias"] == "testthat"))
 ml[[index]][["prerequisites"]]
+# Vignette building fails on windows, maybe this is the fix?!
+if (! identical(.Platform[["OS.type"]], "unix")) {
+    setwd(pkg_path)
+}
 withr::with_dir(pkg_path, print(fakemake::make("check", ml)))
 list.files(file.path(pkg_path, "log"))
 cat(readLines(file.path(pkg_path, "log", "roxygen2.Rout")), sep = "\n")
