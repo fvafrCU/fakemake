@@ -1,7 +1,7 @@
 ---
 title: "An Introduction to *fakemake*"
 author: "Andreas Dominik Cullmann"
-date: 2017-11-19, 20:58:54
+date: 2017-11-19, 21:05:35
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{An Introduction to fakemake }
@@ -225,7 +225,7 @@ First, we need to create a sample package.
 
 ## Creating the Package
 First, we create a package skeleton:
-``` {r, results = "hide", message = FALSE}
+``` {r create_package, results = "hide", message = FALSE}
 pkg_path <- file.path(tempdir(), "fakepack")
 unlink(pkg_path, force = TRUE, recursive = TRUE)
 devtools::create(pkg_path)

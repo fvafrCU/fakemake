@@ -10,6 +10,8 @@
 Maintainer: ‘Andreas Dominik Cullmann <fvafrcu@arcor.de>’
 
 New submission
+
+Package has a VignetteBuilder field but no prebuilt vignette index.
 * checking package namespace information ... OK
 * checking package dependencies ... OK
 * checking if this is a source package ... OK
@@ -21,7 +23,6 @@ New submission
 * checking whether package ‘fakemake’ can be installed ... OK
 * checking installed package size ... OK
 * checking package directory ... OK
-* checking ‘build’ directory ... OK
 * checking DESCRIPTION meta-information ... OK
 * checking top-level files ... OK
 * checking for left-over files ... OK
@@ -56,9 +57,6 @@ New submission
 * checking tests ... OK
   Running ‘runit.R’ [20s/32s]
   Running ‘testthat.R’
-* checking for unstated dependencies in vignettes ... OK
-* checking package vignettes in ‘inst/doc’ ... OK
-* checking re-building of vignette outputs ... OK
 * checking PDF version of manual ... OK
 * DONE
 Status: 1 NOTE

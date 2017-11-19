@@ -33,5 +33,18 @@ The following object is masked from ‘package:base’:
 
     union
 
+Writing NAMESPACE
+Writing fakemake-package.Rd
+Writing provide_make_list.Rd
+Writing write_makefile.Rd
+Writing read_makefile.Rd
+Writing make.Rd
+Writing visualize.Rd
+Writing sink_all.Rd
+Writing throw.Rd
+Writing touch.Rd
+Writing get_pkg_archive_path.Rd
+Writing check_archive.Rd
+Writing check_archive_as_cran.Rd
 > 
 > 
