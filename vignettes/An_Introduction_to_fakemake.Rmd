@@ -1,7 +1,7 @@
 ---
 title: "An Introduction to *fakemake*"
 author: "Andreas Dominik Cullmann"
-date: 2017-11-18, 20:20:20
+date: 2017-11-19, 20:58:54
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{An Introduction to fakemake }
@@ -298,14 +298,6 @@ or `inst/` yet. We will come back to this later.
 
 ## Building the Package
 Now we build and check the package in one go:
-
-``` {r, echo = FALSE}
-# Vignette building fails on windows, maybe this is the fix?!
-if (! identical(.Platform[["OS.type"]], "unix")) {
-    setwd(pkg_path)
-}
-```
-
 
 ``` {r, warning = FALSE, message = FALSE}
 withr::with_dir(pkg_path, print(fakemake::make("check", ml)))

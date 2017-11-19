@@ -44,6 +44,9 @@ withr::with_dir(tempdir(), print(fakemake::make("a1.Rout", ml, force = TRUE)))
 file.size(file.path(tempdir(), "a1.Rout"))
 ml[[i]][".PHONY"]  <- TRUE
 withr::with_dir(tempdir(), print(fakemake::make("a1.Rout", ml)))
+
+##
+
 pkg_path <- file.path(tempdir(), "fakepack")
 unlink(pkg_path, force = TRUE, recursive = TRUE)
 devtools::create(pkg_path)
@@ -57,10 +60,9 @@ index <- which(sapply(ml, function(x) x["alias"] == "build"))
 ml[[index]]
 index <- which(sapply(ml, function(x) x["alias"] == "testthat"))
 ml[[index]][["prerequisites"]]
-# Vignette building fails on windows, maybe this is the fix?!
-if (! identical(.Platform[["OS.type"]], "unix")) {
-    setwd(pkg_path)
-}
+
+
+
 withr::with_dir(pkg_path, print(fakemake::make("check", ml)))
 list.files(file.path(pkg_path, "log"))
 cat(readLines(file.path(pkg_path, "log", "roxygen2.Rout")), sep = "\n")

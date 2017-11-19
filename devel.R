@@ -18,6 +18,9 @@ withr::with_dir(pkg_path, bar <- fakemake::visualize(make_list))
 withr::with_dir(pkg_path, foo <- fakemake::visualize(make_list, root = "log/check.Rout"))
 
 
+devtools::check(".")
+
+
 #% This goes into packager
 dependencies <- "c(\"cleanr\", \"roxygen2\")"
 ## # using packman unloads fakemake as well
