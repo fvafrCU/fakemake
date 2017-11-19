@@ -6,7 +6,7 @@ Authors@R: person(given = "Andreas Dominik", family = "Cullmann", email
 Description: Use R as a minimal build system. This might come in handy
         if you are developing R packages and can not use a proper build
         system. Stay away if you can (use a proper build system).
-Depends: R (>= 3.3.3)
+Depends: R (>= 3.3.1)
 License: BSD_2_clause + file LICENSE
 Encoding: UTF-8
 LazyData: true
