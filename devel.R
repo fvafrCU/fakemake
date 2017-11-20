@@ -27,16 +27,17 @@ file.copy(system.file("templates", "throw.R", package = "fakemake"),
           file.path(pkg_path, "R"))
 dir.create(file.path(pkg_path, "log"))
 ml <- fakemake::provide_make_list("package")
-withr::with_dir(pkg_path, devtools::spell_check())
-devtools::spell_check(pkg_path)
-devtools::spell_check()
+withr::with_dir(pkg_path, print(fakemake::make("spell", ml)))
 withr::with_dir(pkg_path, print(fakemake::make("roxygen2", ml)))
-withr::with_dir(pkg_path, print(fakemake::make("check", ml)))
+withr::with_dir(pkg_path, print(fakemake::make("cleanr", ml)))
+withr::with_dir(pkg_path, print(fakemake::make("lint", ml)))
+withr::with_dir(pkg_path, print(fakemake::make("testthat", ml)))
+withr::with_dir(pkg_path, print(fakemake::make("covr", ml)))
 
 withr::with_dir(pkg_path, list.files("log"))
+withr::with_dir(pkg_path, readLines("log/testthat.Rout"))
 withr::with_dir(pkg_path, list.files("man"))
-
-devtools::check(".")
+withr::with_dir(pkg_path, print(fakemake::make("build", ml)))
 
 
 #% This goes into packager
