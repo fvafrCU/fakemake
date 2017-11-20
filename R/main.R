@@ -132,6 +132,7 @@ read_makefile <- function(path, clean_sink = FALSE) {
 #' @param name The name or alias of a make target.
 #' @param force Force the target to be build?
 #' @param recursive Force the target to be build recursively (see \emph{Note})?
+#' @param verbose Be verbose?
 #' @note Forcing a target mocks adding .PHONY to a GNU Makefile if you
 #' set recursive to FALSE. If recursive is TRUE, then the whole make chain will
 #' be forced.
@@ -184,7 +185,8 @@ read_makefile <- function(path, clean_sink = FALSE) {
 #' }
 #' }
 #' )
-make <- function(name, make_list, force = FALSE, recursive = force) {
+make <- function(name, make_list, force = FALSE, recursive = force,
+                 verbose = TRUE) {
     check_makelist(make_list)
     res <- NULL
     make_list <- parse_make_list(make_list)
@@ -196,19 +198,24 @@ make <- function(name, make_list, force = FALSE, recursive = force) {
     }
     if (identical(index, integer(0))) {
         if (file.exists(name)) {
-            message("Prerequisite ", name, " found.")
+            if (isTRUE(verbose)) message("Prerequisite ", name, " found.")
         } else {
             throw(paste0("There is no rule to make ", name, "."))
         }
     } else {
         target <- targets[index]
+        if (isTRUE(verbose)) message("= Target is ", target) #TODO:
         prerequisites <- make_list[[index]][["prerequisites"]]
+        if (isTRUE(verbose)) message("== Prerequisites are ", prerequisites) #TODO:
         if (! is.null(prerequisites)) {
             for (p in sort(prerequisites)) {
+                if (isTRUE(verbose)) message("=== p is ", p) #TODO:
                 res <- c(res, make(name = p, make_list = make_list,
                                    force = force && isTRUE(recursive),
                                    recursive = recursive))
             }
+            if (isTRUE(verbose)) message("= Target is ", target) #TODO:
+            if (isTRUE(verbose)) message("== Prerequisites are ", prerequisites) #TODO:
         }
         is_phony <- isTRUE(make_list[[index]][[".PHONY"]]) || isTRUE(force)
         is_to_be_made <- is_to_be_made(target = target, is_phony = is_phony,

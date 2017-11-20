@@ -4,7 +4,7 @@
 \alias{make}
 \title{Mock the Unix Make Utility}
 \usage{
-make(name, make_list, force = FALSE, recursive = force)
+make(name, make_list, force = FALSE, recursive = force, verbose = TRUE)
 }
 \arguments{
 \item{name}{The name or alias of a make target.}
@@ -14,6 +14,8 @@ make(name, make_list, force = FALSE, recursive = force)
 \item{force}{Force the target to be build?}
 
 \item{recursive}{Force the target to be build recursively (see \emph{Note})?}
+
+\item{verbose}{Be verbose?}
 }
 \value{
 A character vector containing the targets made during the current

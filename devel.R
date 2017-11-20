@@ -6,6 +6,19 @@ packager::set_package_info(".", author_at_r = a,
        description = "Use R as a minimal build system. This might come in handy if you are developing R packages and can not use a proper build system. Stay away if you can (use a proper build system).",
        details = NA)
 unlink(list.files(tempdir(), pattern = ".*\\.Rout", full.names = TRUE))
+
+devtools::load_all(".")
+ml <- fakemake::provide_make_list("minimal", clean_sink = TRUE)
+ml[[2]]$prerequisites <- "bar"
+ml[[length(ml) + 1]] <- list(target = "bar", code = "print('bar')", prerequisites = "foo")
+ml[[length(ml) + 1]] <- list(target = "foo", code = "print('foo')")
+dir <- file.path(tempdir(), "ml")
+unlink(dir, force = TRUE, recursive = TRUE)
+dir.create(dir)
+withr::with_dir(dir, print(fakemake::make("all.Rout", ml)))
+
+
+
 devtools::load_all(".")
 pkg_path <- file.path(tempdir(), "fakepack")
 unlink(pkg_path, force = TRUE, recursive = TRUE)
@@ -13,10 +26,15 @@ devtools::create(pkg_path)
 file.copy(system.file("templates", "throw.R", package = "fakemake"),
           file.path(pkg_path, "R"))
 dir.create(file.path(pkg_path, "log"))
-make_list <- fakemake::provide_make_list("package")
-withr::with_dir(pkg_path, bar <- fakemake::visualize(make_list))
-withr::with_dir(pkg_path, foo <- fakemake::visualize(make_list, root = "log/check.Rout"))
+ml <- fakemake::provide_make_list("package")
+withr::with_dir(pkg_path, devtools::spell_check())
+devtools::spell_check(pkg_path)
+devtools::spell_check()
+withr::with_dir(pkg_path, print(fakemake::make("roxygen2", ml)))
+withr::with_dir(pkg_path, print(fakemake::make("check", ml)))
 
+withr::with_dir(pkg_path, list.files("log"))
+withr::with_dir(pkg_path, list.files("man"))
 
 devtools::check(".")
 
