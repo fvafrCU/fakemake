@@ -1,7 +1,8 @@
 # fakemake 1.0.1
 
-* replace file.show(x, pager = "cat") with cat(readLines(x), sep = "\"n) in
+* Replaced file.show(x, pager = "cat") with cat(readLines(x), sep = "\"n) in
   examples as they did not pass checks on windows.
+* Fixed example path for windows. 
 
 # fakemake 1.0.0
 

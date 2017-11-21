@@ -2,6 +2,8 @@ checking CRAN incoming feasibility ... NOTE
 Maintainer: ‘Andreas Dominik Cullmann <fvafrcu@arcor.de>’
 
 New submission
-
-Package has a VignetteBuilder field but no prebuilt vignette index.
-displaying logs for fvafrCU/fakemake#111.1
+displaying logs for fvafrCU/fakemake#116.1
+undefined method `receive' for nil:NilClass
+Warning message:
+In system2("sudo", paste("travis logs --repo", travis_repo), stdout = TRUE) :
+  running command ''sudo' travis logs --repo fvafrCU/fakemake' had status 1

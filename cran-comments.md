@@ -2,8 +2,9 @@ Dear CRAN Team,
 this is a resubmission of the inital commit of package 'fakemake'. 
 Thanks to Uwe Ligges' hints I have added the following changes:
 
-* replace file.show(x, pager = "cat") with cat(readLines(x), sep = "\"n) in
+* Replaced file.show(x, pager = "cat") with cat(readLines(x), sep = "\"n) in
   examples as they did not pass checks on windows.
+* Fixed example path for windows. 
 
 Please consider uploading it to CRAN.
 
