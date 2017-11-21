@@ -152,6 +152,7 @@ read_makefile <- function(path, clean_sink = FALSE) {
 #' withr::with_dir(tempdir(), print(make("all.Rout", make_list, force = TRUE)))
 #'
 #' \dontshow{
+#' if (identical(.Platform[["OS.type"]], "unix")) {
 #' withr::with_dir(tempdir(), {
 #'                 str(make_list <- provide_make_list(type = "minimal"))
 #'                 make(make_list[[1]][["target"]], make_list)
@@ -183,8 +184,9 @@ read_makefile <- function(path, clean_sink = FALSE) {
 #' result <- make(make_list[[4]][["target"]], make_list)
 #' RUnit::checkTrue(identical(result, expectation))
 #' }
-#' }
 #' )
+#' }
+#' }
 make <- function(name, make_list, force = FALSE, recursive = force,
                  verbose = TRUE) {
     check_makelist(make_list)
@@ -204,18 +206,13 @@ make <- function(name, make_list, force = FALSE, recursive = force,
         }
     } else {
         target <- targets[index]
-        if (isTRUE(verbose)) message("= Target is ", target) #TODO:
         prerequisites <- make_list[[index]][["prerequisites"]]
-        if (isTRUE(verbose)) message("== Prerequisites are ", prerequisites) #TODO:
         if (! is.null(prerequisites)) {
             for (p in sort(prerequisites)) {
-                if (isTRUE(verbose)) message("=== p is ", p) #TODO:
                 res <- c(res, make(name = p, make_list = make_list,
                                    force = force && isTRUE(recursive),
                                    recursive = recursive))
             }
-            if (isTRUE(verbose)) message("= Target is ", target) #TODO:
-            if (isTRUE(verbose)) message("== Prerequisites are ", prerequisites) #TODO:
         }
         is_phony <- isTRUE(make_list[[index]][[".PHONY"]]) || isTRUE(force)
         is_to_be_made <- is_to_be_made(target = target, is_phony = is_phony,
