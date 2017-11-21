@@ -1,9 +1,8 @@
 Dear CRAN Team,
-this is a resubmission of the resubmission of the inital commit of package 
+this is a re-re-resubmission of the inital commit of package 
 'fakemake'. 
 
-I accidentally did not delete a non-standard file at top level. 
-I have removed it and changed nothing else.
+I have replaced utils::person() by person() in file DESCRIPTION.
 
 Please consider uploading it to CRAN.
 
