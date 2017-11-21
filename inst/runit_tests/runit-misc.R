@@ -8,7 +8,12 @@ test_package_path <- function() {
     result <- get_pkg_archive_path(package_path)
     expectation <- file.path(tempdir(),
                              "anRpackage", "anRpackage_0.0.0.9000.tar.gz")
-    RUnit::checkIdentical(result, expectation)
+    if (identical(.Platform[["OS.type"]], "unix")) {
+        # on windows, tempdir() might be long and get abbreviated with a tilde,
+        # making this test fail. Works on unix though (where dirname(tempdir())
+        # is usually just "/tmp"
+        RUnit::checkIdentical(result, expectation)
+    }
 }
 
 test_check_archive <- function() {
