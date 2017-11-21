@@ -34,10 +34,10 @@ use_dev_version:
 
 .PHONY: release
 release: 
-	echo "devtools::release(check = FALSE)" > ./rel.R
-	echo "source('./rel.R')" > ./.Rprofile
+	echo "devtools::release(check = FALSE)" > /tmp/rel.R
+	echo "source('/tmp/rel.R')" > ./.Rprofile
 	$(R)
-	rm ./rel.R ./.Rprofile
+	rm /tmp/rel.R ./.Rprofile
 
 .PHONY: build_win
 build_win:
