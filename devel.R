@@ -6,6 +6,7 @@ packager::set_package_info(".", author_at_r = a,
        description = "Use R as a minimal build system. This might come in handy if you are developing R packages and can not use a proper build system. Stay away if you can (use a proper build system).",
        details = NA)
 unlink(list.files(tempdir(), pattern = ".*\\.Rout", full.names = TRUE))
+devtools::check(".")
 
 devtools::load_all(".")
 ml <- fakemake::provide_make_list("minimal", clean_sink = TRUE)
@@ -27,6 +28,11 @@ file.copy(system.file("templates", "throw.R", package = "fakemake"),
           file.path(pkg_path, "R"))
 dir.create(file.path(pkg_path, "log"))
 ml <- fakemake::provide_make_list("package")
+withr::with_dir(pkg_path, print(fakemake::make("build", ml)))
+withr::with_dir(pkg_path, list.files())
+withr::with_dir(pkg_path, list.files("log"))
+withr::with_dir(pkg_path, readLines("log/lintr.Rout"))
+
 withr::with_dir(pkg_path, print(fakemake::make("spell", ml)))
 withr::with_dir(pkg_path, print(fakemake::make("roxygen2", ml)))
 withr::with_dir(pkg_path, print(fakemake::make("cleanr", ml)))
@@ -34,8 +40,7 @@ withr::with_dir(pkg_path, print(fakemake::make("lint", ml)))
 withr::with_dir(pkg_path, print(fakemake::make("testthat", ml)))
 withr::with_dir(pkg_path, print(fakemake::make("covr", ml)))
 
-withr::with_dir(pkg_path, list.files("log"))
-withr::with_dir(pkg_path, readLines("log/testthat.Rout"))
+
 withr::with_dir(pkg_path, list.files("man"))
 withr::with_dir(pkg_path, print(fakemake::make("build", ml)))
 
