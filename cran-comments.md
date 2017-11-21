@@ -19,6 +19,9 @@ Best, Dominik
   Platform: x86_64-pc-linux-gnu (64-bit)
   Running under: Ubuntu 14.04.5 LTS
 - win-builder (devel)
+- R version 3.3.1 (2016-06-21)
+  Platform: x86_64-w64-mingw32/x64 (64-bit)
+  Running under: Windows 7 x64 (build 7601) Service Pack 1
 
 ## R CMD check results
 0 errors | 0 warnings | 1 note 
