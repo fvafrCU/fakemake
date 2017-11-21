@@ -34,7 +34,7 @@ use_dev_version:
 
 .PHONY: release
 release: 
-	echo "devtools::release(check = FALSE)" > /tmp/rel.R
+	echo "library('utils'); devtools::release(check = FALSE)" > /tmp/rel.R
 	echo "source('/tmp/rel.R')" > ./.Rprofile
 	$(R)
 	rm /tmp/rel.R ./.Rprofile
