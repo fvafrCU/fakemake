@@ -1,5 +1,5 @@
 package_makelist <- function() {
-    cleanr_code <- paste("tryCatch(cleanr::check_directory(\"R/\",",
+    cleanr_code <- paste("tryCatch(cleanr::check_directory(\"R\",",
                          "check_return = FALSE),",
                          "cleanr = function(e) print(e))")
     spell_code <- paste("spell <- devtools::spell_check();",
