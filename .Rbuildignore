@@ -10,4 +10,5 @@
 ^cran-comments\.md$
 ^TODO\.md$
 ^install\.cl$
+^rel\.R$
 ^install\.r$
