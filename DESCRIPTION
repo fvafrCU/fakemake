@@ -1,6 +1,6 @@
 Package: fakemake
 Title: Mock the Unix Make Utility
-Version: 1.0.1
+Version: 1.0.2
 Authors@R: person(given = "Andreas Dominik", family = "Cullmann", 
         email = "fvafrcu@arcor.de", role = c("aut", "cre"))
 Description: Use R as a minimal build system. This might come in handy
