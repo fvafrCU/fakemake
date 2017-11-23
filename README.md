@@ -1,7 +1,5 @@
 ---
-output:
-  md_document:
-    variant: markdown_github
+output: github_document
 ---
 [![Build Status](https://travis-ci.org/fvafrCU/fakemake.svg?branch=master)](https://travis-ci.org/fvafrCU/fakemake)
 [![Coverage Status](https://codecov.io/github/fvafrCU/fakemake/coverage.svg?branch=master)](https://codecov.io/github/fvafrCU/fakemake?branch=master)
@@ -14,7 +12,6 @@ output:
 
 
 # fakemake
-## Introduction
 Please read the
 [vignette](https://htmlpreview.github.io/?https://github.com/fvafrCU/fakemake/blob/master/inst/doc/An_Introduction_to_fakemake.html).
 
@@ -38,5 +35,4 @@ help("fakemake-package", package = "fakemake")
 #>      You will find the details in
 #>      'vignette("An_Introduction_to_fakemake", package = "fakemake")'.
 ```
-
 

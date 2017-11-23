@@ -4,12 +4,12 @@
 * using session charset: UTF-8
 * using options ‘--run-donttest --as-cran’
 * checking for file ‘fakemake/DESCRIPTION’ ... OK
-* this is package ‘fakemake’ version ‘1.0.1’
+* this is package ‘fakemake’ version ‘1.0.2’
 * package encoding: UTF-8
 * checking CRAN incoming feasibility ... NOTE
 Maintainer: ‘Andreas Dominik Cullmann <fvafrcu@arcor.de>’
 
-New submission
+Days since last update: 2
 * checking package namespace information ... OK
 * checking package dependencies ... OK
 * checking if this is a source package ... OK
@@ -54,7 +54,7 @@ New submission
 * checking examples ... OK
 * checking for unstated dependencies in ‘tests’ ... OK
 * checking tests ... OK
-  Running ‘runit.R’ [21s/33s]
+  Running ‘runit.R’ [19s/32s]
   Running ‘testthat.R’
 * checking for unstated dependencies in vignettes ... OK
 * checking package vignettes in ‘inst/doc’ ... OK

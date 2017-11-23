@@ -1,7 +1,7 @@
 #!/usr/bin/Rscript --vanilla
-is_wrong_os <- .Platform[["OS.type"]] == "windows" || grepl("^darwin", 
+is_wrong_os <- .Platform[["OS.type"]] == "windows" || grepl("^darwin",
                                                             R.version$os)
-is_current_version <- compareVersion(paste(getRversion(), sep = "."), 
+is_current_version <- compareVersion(paste(getRversion(), sep = "."),
                                      "3.3.1") >= 1
 if (is_current_version && ! is_wrong_os) {
     is_failure <- function(result) {

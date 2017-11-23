@@ -1,0 +1,6 @@
+tests/runit.R:2:71: style: Trailing whitespace is superfluous.
+is_wrong_os <- .Platform[["OS.type"]] == "windows" || grepl("^darwin", 
+                                                                      ^
+tests/runit.R:4:70: style: Trailing whitespace is superfluous.
+is_current_version <- compareVersion(paste(getRversion(), sep = "."), 
+                                                                     ^

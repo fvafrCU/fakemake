@@ -42,6 +42,11 @@ withr::with_dir(tempdir(), print(make("all.Rout", make_list, force = TRUE,
 withr::with_dir(tempdir(), print(make("all.Rout", make_list, force = TRUE)))
 
 \dontshow{
+is_wrong_os <- .Platform[["OS.type"]] == "windows" || grepl("^darwin", 
+                                                            R.version$os)
+is_current_version <- compareVersion(paste(getRversion(), sep = "."), 
+                                     "3.3.1") >= 1
+if (is_current_version && ! is_wrong_os) {
 withr::with_dir(tempdir(), {
                 str(make_list <- provide_make_list(type = "minimal"))
                 make(make_list[[1]][["target"]], make_list)
@@ -73,6 +78,7 @@ expectation <- make_list[[4]][["target"]]
 result <- make(make_list[[4]][["target"]], make_list)
 RUnit::checkTrue(identical(result, expectation))
 }
-}
 )
+}
+}
 }
