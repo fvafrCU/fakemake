@@ -54,7 +54,7 @@ Days since last update: 2
 * checking examples ... OK
 * checking for unstated dependencies in ‘tests’ ... OK
 * checking tests ... OK
-  Running ‘runit.R’ [19s/32s]
+  Running ‘runit.R’ [20s/30s]
   Running ‘testthat.R’
 * checking for unstated dependencies in vignettes ... OK
 * checking package vignettes in ‘inst/doc’ ... OK

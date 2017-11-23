@@ -42,9 +42,9 @@ withr::with_dir(tempdir(), print(make("all.Rout", make_list, force = TRUE,
 withr::with_dir(tempdir(), print(make("all.Rout", make_list, force = TRUE)))
 
 \dontshow{
-is_wrong_os <- .Platform[["OS.type"]] == "windows" || grepl("^darwin", 
+is_wrong_os <- .Platform[["OS.type"]] == "windows" || grepl("^darwin",
                                                             R.version$os)
-is_current_version <- compareVersion(paste(getRversion(), sep = "."), 
+is_current_version <- compareVersion(paste(getRversion(), sep = "."),
                                      "3.3.1") >= 1
 if (is_current_version && ! is_wrong_os) {
 withr::with_dir(tempdir(), {
