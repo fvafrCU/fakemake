@@ -1,6 +1,3 @@
----
-output: github_document
----
 [![Build Status](https://travis-ci.org/fvafrCU/fakemake.svg?branch=master)](https://travis-ci.org/fvafrCU/fakemake)
 [![Coverage Status](https://codecov.io/github/fvafrCU/fakemake/coverage.svg?branch=master)](https://codecov.io/github/fvafrCU/fakemake?branch=master)
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/fakemake)](https://cran.r-project.org/package=fakemake)
