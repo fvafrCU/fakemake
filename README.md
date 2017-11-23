@@ -32,21 +32,14 @@ help("fakemake-package", package = "fakemake")
 #>      You will find the details in
 #>      'vignette("An_Introduction_to_fakemake", package = "fakemake")'.
 ```
-{{#github}}
 ## Installation
 
-You can install {{{ Package }}} from github with:
+You can install fakemake from github with:
 
-{{#Rmd}}
 
 ```r
-{{/Rmd}}
-{{^Rmd}}
-``` r
-{{/Rmd}}
 if (! require("devtools")) install.packages("devtools")
-devtools::install_github("{{{username}}}/{{{repo}}}")
+devtools::install_github("fvafrcu/fakemake")
 ```
 
 Feel free to fork!
-{{/github}}
