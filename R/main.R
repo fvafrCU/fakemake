@@ -152,7 +152,11 @@ read_makefile <- function(path, clean_sink = FALSE) {
 #' withr::with_dir(tempdir(), print(make("all.Rout", make_list, force = TRUE)))
 #'
 #' \dontshow{
-#' if (identical(.Platform[["OS.type"]], "unix")) {
+#' is_wrong_os <- .Platform[["OS.type"]] == "windows" || grepl("^darwin", 
+#'                                                             R.version$os)
+#' is_current_version <- compareVersion(paste(getRversion(), sep = "."), 
+#'                                      "3.3.1") >= 1
+#' if (is_current_version && ! is_wrong_os) {
 #' withr::with_dir(tempdir(), {
 #'                 str(make_list <- provide_make_list(type = "minimal"))
 #'                 make(make_list[[1]][["target"]], make_list)
