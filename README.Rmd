@@ -28,4 +28,20 @@ help("fakemake-package", package = "fakemake")
   captured <- gsub('_\b', '',  capture.output(tools:::Rd2txt(help_file) ))
   cat(captured, sep = "\n")
 ```
+{{#github}}
+## Installation
 
+You can install {{{ Package }}} from github with:
+
+{{#Rmd}}
+```{r gh-installation, eval = FALSE}
+{{/Rmd}}
+{{^Rmd}}
+``` r
+{{/Rmd}}
+if (! require("devtools")) install.packages("devtools")
+devtools::install_github("{{{username}}}/{{{repo}}}")
+```
+
+Feel free to fork!
+{{/github}}
