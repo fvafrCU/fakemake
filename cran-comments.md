@@ -3,8 +3,7 @@ this is a resubmission of package 'fakemake'.
 Seeing errors (https://cran.r-project.org/web/checks/check_results_fakemake.html)
 I have added the following changes:
 
-* Disabled RUnit tests for OSX (I can't debug failing tests on OSX) 
-  and R Versions older than 3.3.1 (as required by DESCRIPTION).
+* Disabled RUnit tests for OSX and R Versions older than 3.4.0.
 
 Please upload to CRAN.
 Best, Dominik

@@ -1,8 +1,8 @@
 checking CRAN incoming feasibility ... NOTE
 Maintainer: ‘Andreas Dominik Cullmann <fvafrcu@arcor.de>’
 
-Days since last update: 2
-displaying logs for fvafrCU/fakemake#129.1
+Days since last update: 3
+displaying logs for fvafrCU/fakemake#131.1
 undefined method `receive' for nil:NilClass
 Warning message:
 In system2("sudo", paste("travis logs --repo", travis_repo), stdout = TRUE) :
