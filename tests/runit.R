@@ -2,7 +2,7 @@
 is_wrong_os <- .Platform[["OS.type"]] == "windows" || grepl("^darwin",
                                                             R.version$os)
 is_current_version <- compareVersion(paste(getRversion(), sep = "."),
-                                     "3.3.1") >= 1
+                                     "3.4.0") >= 1
 if (is_current_version && ! is_wrong_os) {
     is_failure <- function(result) {
         res <- RUnit::getErrors(result)

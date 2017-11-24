@@ -1,7 +1,6 @@
 # fakemake 1.0.2
 
-* Disabled RUnit tests for OSX (I can't debug failing tests on OSX) 
-  and R Versions older than 3.3.1 (as required by DESCRIPTION).
+* Disabled RUnit tests for OSX and R Versions older than 3.4.0.
 
 # fakemake 1.0.1
 
