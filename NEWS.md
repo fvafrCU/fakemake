@@ -2,6 +2,8 @@
 
 * Fixed recursive treatment of argument `verbose` to function `make`.
 * Fixed logging from package `lintr` in internal function `package\_makelist`.
+* Now using `devtools::test` instead of package `testthat` directly in internal 
+  function `package\_makelist`.
 
 # fakemake 1.0.2
 

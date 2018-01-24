@@ -7,7 +7,7 @@ package_makelist <- function() {
                         "warning(\"spell check failed\")}")
     covr_code <- paste("co <- covr::package_coverage(path = \".\");",
                        "print(covr::zero_coverage(co)); print(co)")
-    testthat_code <- paste("tryCatch(testthat::test_package(\".\"),",
+    testthat_code <- paste("tryCatch(devtools::test(\".\"),",
                            "error = function(e) print(e))")
     r_codes <- paste("grep(list.files(\".\",",
                                   "pattern = \".*\\\\.[rR]$\",",
