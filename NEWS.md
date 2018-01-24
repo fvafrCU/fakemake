@@ -4,6 +4,7 @@
 * Fixed logging from package `lintr` in internal function `package\_makelist`.
 * Now using `devtools::test` instead of package `testthat` directly in internal 
   function `package\_makelist`.
+* Now `package\_makelist` is printing output from roxygen2 to harmonize logs.
 
 # fakemake 1.0.2
 
