@@ -1,5 +1,6 @@
 package_makelist <- function() {
-    roxygen_code  <- "print(tryCatch(devtools::test(\".\"), error = identity))"
+    roxygen_code  <- paste("print(tryCatch(roxygen2::roxygenize(\".\"),",  
+                           "error = identity))")
     cleanr_code <- paste("tryCatch(cleanr::check_directory(\"R\",",
                          "check_return = FALSE),",
                          "cleanr = identity)")
