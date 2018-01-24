@@ -33,7 +33,7 @@ package_makelist <- function() {
                     prerequisites = r_codes),
                list(alias = "lint",
                     target = file.path("log", "lintr.Rout"),
-                    code = "lintr::lint_package(path = \".\")",
+                    code = "print(lintr::lint_package(path = \".\"))",
                     prerequisites = r_codes),
                list(alias = "testthat",
                     target = file.path("log", "testthat.Rout"),
