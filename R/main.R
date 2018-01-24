@@ -215,7 +215,7 @@ make <- function(name, make_list, force = FALSE, recursive = force,
             for (p in sort(prerequisites)) {
                 res <- c(res, make(name = p, make_list = make_list,
                                    force = force && isTRUE(recursive),
-                                   recursive = recursive))
+                                   recursive = recursive, verbose = verbose))
             }
         }
         is_phony <- isTRUE(make_list[[index]][[".PHONY"]]) || isTRUE(force)

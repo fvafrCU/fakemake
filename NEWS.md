@@ -1,3 +1,7 @@
+# fakemake 1.0.2.9000
+
+* Fixed recursive treatment of argument `verbose` to function `make`.
+
 # fakemake 1.0.2
 
 * Disabled RUnit tests for OSX and R Versions older than 3.4.0.
