@@ -1,10 +1,10 @@
 # fakemake 1.0.2.9000
 
 * Fixed recursive treatment of argument `verbose` to function `make`.
-* Fixed logging from package `lintr` in internal function `package\_makelist`.
-* Now using `devtools::test` instead of package `testthat` directly in internal 
-  function `package\_makelist`.
-* Now `package\_makelist` is printing output from roxygen2 to harmonize logs.
+* Fixed internal function `package\_makelist` to using `devtools::test` instead 
+  `testthat::test_package` directly (the former is a wrapper to the latter).
+* Now `package\_makelist` is printing output from roxygen2, testthat, cleanr and
+  devtools::build to harmonize logs.
 
 # fakemake 1.0.2
 

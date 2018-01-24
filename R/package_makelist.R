@@ -1,15 +1,14 @@
 package_makelist <- function() {
-    roxygen_code  <- paste("print(tryCatch(roxygen2::roxygenize(\".\"),",  
+    roxygen_code  <- paste("tryCatch(print(roxygen2::roxygenize(\".\"),",  
                            "error = identity))")
-    cleanr_code <- paste("tryCatch(cleanr::check_directory(\"R\",",
-                         "check_return = FALSE),",
-                         "cleanr = identity)")
+    cleanr_code <- paste("tryCatch(print(cleanr::check_directory(\"R\",",
+                         "cleanr = identity))")
     spell_code <- paste("spell <- devtools::spell_check();",
                         "if (length(spell) > 0) {print(spell);",
                         "warning(\"spell check failed\")}")
     covr_code <- paste("co <- covr::package_coverage(path = \".\");",
                        "print(covr::zero_coverage(co)); print(co)")
-    testthat_code <- "tryCatch(devtools::test(\".\"), error = identity)"
+    testthat_code <- "tryCatch(print(devtools::test(\".\"), error = identity))"
     r_codes <- paste("grep(list.files(\".\",",
                                   "pattern = \".*\\\\.[rR]$\",",
                                   "recursive = TRUE),",
@@ -46,7 +45,7 @@ package_makelist <- function() {
                     prerequisites = c(dir_r, dir_tests, dir_inst)),
                list(alias = "build",
                     target = "get_pkg_archive_path(absolute = FALSE)",
-                    code = "devtools::build(pkg = \".\", path = \".\")",
+                    code = "print(devtools::build(pkg = \".\", path = \".\"))",
                     sink = "log/build.Rout",
                     prerequisites = c(dir_r, dir_man,
                                       "DESCRIPTION",
