@@ -4,12 +4,10 @@
 * using session charset: UTF-8
 * using options ‘--run-donttest --as-cran’
 * checking for file ‘fakemake/DESCRIPTION’ ... OK
-* this is package ‘fakemake’ version ‘1.0.2.9000’
+* this is package ‘fakemake’ version ‘1.1.0’
 * package encoding: UTF-8
 * checking CRAN incoming feasibility ... NOTE
 Maintainer: ‘Andreas Dominik Cullmann <fvafrcu@arcor.de>’
-
-Version contains large components (1.0.2.9000)
 
 Found the following (possibly) invalid URLs:
   URL: https://en.wikipedia.org/wiki/Build_automation
