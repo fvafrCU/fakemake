@@ -3,7 +3,7 @@ package_makelist <- function() {
                            "error = identity)")
     cleanr_code <- paste("tryCatch(print(cleanr::check_directory(\"R\",",
                          "check_return = FALSE)),",
-                         "cleanr = identity)")
+                         "cleanr = function(e) print(e))")
     spell_code <- paste("spell <- devtools::spell_check();",
                         "if (length(spell) > 0) {print(spell);",
                         "warning(\"spell check failed\")}")
