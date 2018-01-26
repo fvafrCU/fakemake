@@ -1,7 +1,8 @@
 package_makelist <- function() {
     roxygen_code  <- paste("tryCatch(print(roxygen2::roxygenize(\".\")),",  
                            "error = identity)")
-    cleanr_code <- paste("tryCatch(print(cleanr::check_directory(\"R\")),",
+    cleanr_code <- paste("tryCatch(print(cleanr::check_directory(\"R\",",
+                         "check_return = FALSE)),",
                          "cleanr = identity)")
     spell_code <- paste("spell <- devtools::spell_check();",
                         "if (length(spell) > 0) {print(spell);",

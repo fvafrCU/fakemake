@@ -1,5 +1,0 @@
-  WORD        FOUND IN
-Makefile    make.Rd:12,28, read_makefile.Rd:5,20,24, write_makefile.Rd:14,25
-Makefiles   read_makefile.Rd:23
-Warning message:
-spell check failed 

@@ -1,4 +1,4 @@
-RUNIT TEST PROTOCOL -- Fri Nov 24 20:19:42 2017 
+RUNIT TEST PROTOCOL -- Fri Jan 26 12:52:16 2018 
 *********************************************** 
 Number of test functions: 16 
 Number of errors: 0 
@@ -16,32 +16,32 @@ Test Suite: fakemake_unit_test
 Test function regexp: ^test_+ 
 Test file regexp: ^.*\.[rR] 
 Involved directory: 
-/home/qwer/git/cyclops/fvafrcu/fakemake/fakemake.Rcheck/fakemake/runit_tests 
+/home/nik/git/cs/fvafrcu/fakemake/fakemake.Rcheck/fakemake/runit_tests 
 --------------------------- 
-Test file: /home/qwer/git/cyclops/fvafrcu/fakemake/fakemake.Rcheck/fakemake/runit_tests/runit-check_makelist.R 
-test_check_makelist: (4 checks) ... OK (0.05 seconds)
+Test file: /home/nik/git/cs/fvafrcu/fakemake/fakemake.Rcheck/fakemake/runit_tests/runit-check_makelist.R 
+test_check_makelist: (4 checks) ... OK (0.02 seconds)
 --------------------------- 
-Test file: /home/qwer/git/cyclops/fvafrcu/fakemake/fakemake.Rcheck/fakemake/runit_tests/runit-makefile.R 
+Test file: /home/nik/git/cs/fvafrcu/fakemake/fakemake.Rcheck/fakemake/runit_tests/runit-makefile.R 
 test_provide_makefile: (1 checks) ... OK (0 seconds)
-test_read_makefile: (2 checks) ... OK (0.12 seconds)
-test_write_makefile: (1 checks) ... OK (0.01 seconds)
+test_read_makefile: (2 checks) ... OK (0.05 seconds)
+test_write_makefile: (1 checks) ... OK (0 seconds)
 --------------------------- 
-Test file: /home/qwer/git/cyclops/fvafrcu/fakemake/fakemake.Rcheck/fakemake/runit_tests/runit-makelist2igraph.R 
-test_provide_makefile: (4 checks) ... OK (0.14 seconds)
+Test file: /home/nik/git/cs/fvafrcu/fakemake/fakemake.Rcheck/fakemake/runit_tests/runit-makelist2igraph.R 
+test_provide_makefile: (4 checks) ... OK (0.1 seconds)
 --------------------------- 
-Test file: /home/qwer/git/cyclops/fvafrcu/fakemake/fakemake.Rcheck/fakemake/runit_tests/runit-misc.R 
-test_check_archive: (2 checks) ... OK (24.07 seconds)
-test_package_path: (1 checks) ... OK (0.14 seconds)
-test_touch: (1 checks) ... OK (2.01 seconds)
+Test file: /home/nik/git/cs/fvafrcu/fakemake/fakemake.Rcheck/fakemake/runit_tests/runit-misc.R 
+test_check_archive: (2 checks) ... OK (15.32 seconds)
+test_package_path: (1 checks) ... OK (0.09 seconds)
+test_touch: (1 checks) ... OK (2 seconds)
 --------------------------- 
-Test file: /home/qwer/git/cyclops/fvafrcu/fakemake/fakemake.Rcheck/fakemake/runit_tests/runit-throw.R 
+Test file: /home/nik/git/cs/fvafrcu/fakemake/fakemake.Rcheck/fakemake/runit_tests/runit-throw.R 
 test_exception: (1 checks) ... OK (0 seconds)
 --------------------------- 
-Test file: /home/qwer/git/cyclops/fvafrcu/fakemake/fakemake.Rcheck/fakemake/runit_tests/runit-xmake.R 
-test_make_full_tree: (4 checks) ... OK (0.03 seconds)
-test_make_missing: (2 checks) ... OK (0.02 seconds)
+Test file: /home/nik/git/cs/fvafrcu/fakemake/fakemake.Rcheck/fakemake/runit_tests/runit-xmake.R 
+test_make_full_tree: (4 checks) ... OK (0.02 seconds)
+test_make_missing: (2 checks) ... OK (0.01 seconds)
 test_make_newer: (2 checks) ... OK (1.02 seconds)
-test_make_phony: (3 checks) ... OK (2.04 seconds)
-test_make_prerequisite: (3 checks) ... OK (1.05 seconds)
+test_make_phony: (3 checks) ... OK (2.02 seconds)
+test_make_prerequisite: (3 checks) ... OK (1.02 seconds)
 test_make_sink: (2 checks) ... OK (0.01 seconds)
 test_make_source_files: (0 checks) ... OK (0 seconds)
