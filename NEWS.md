@@ -1,4 +1,4 @@
-# fakemake 1.0.2.9000
+# fakemake 1.1.0
 
 * Fixed recursive treatment of argument `verbose` to function `make`.
 * Fixed internal function `package\_makelist` to using `devtools::test` instead 
