@@ -1,6 +1,5 @@
 Loading required package: cleanr
 Loading required package: covr
-Loading required package: methods
 Loading required package: devtools
 Loading required package: knitr
 Loading required package: lintr
@@ -15,8 +14,8 @@ Loading required package: packager
 
 Attaching package: ‘packager’
 
-The following object is masked from ‘package:devtools’:
+The following objects are masked from ‘package:devtools’:
 
-    create
+    create, release
 
 Loading required package: roxygen2

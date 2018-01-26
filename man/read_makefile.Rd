@@ -2,7 +2,7 @@
 % Please edit documentation in R/main.R
 \name{read_makefile}
 \alias{read_makefile}
-\title{Read a Makefile Into a \code{Makelist}}
+\title{Read a \command{Makefile} Into a \code{Makelist}}
 \usage{
 read_makefile(path, clean_sink = FALSE)
 }
@@ -17,11 +17,12 @@ corresponding targets, but this makes them harder to read.}
 The \code{makelist}.
 }
 \description{
-Read a Makefile Into a \code{Makelist}
+Read a \command{Makefile} Into a \code{Makelist}
 }
 \note{
-This function will not read arbitrary Makefiles, just those
-created via \code{\link{write_makefile}}! If you modify such a Makefile
+This function will not read arbitrary \command{Makefiles}, just those
+created via \code{\link{write_makefile}}! If you modify such a
+\command{Makefile}
 make sure you only add simple rules like the ones you see in that file.
 }
 \examples{

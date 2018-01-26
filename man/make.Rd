@@ -9,7 +9,8 @@ make(name, make_list, force = FALSE, recursive = force, verbose = TRUE)
 \arguments{
 \item{name}{The name or alias of a make target.}
 
-\item{make_list}{The \code{makelist} (a listed version of a Makefile).}
+\item{make_list}{The \code{makelist} (a listed version of a
+\command{Makefile}).}
 
 \item{force}{Force the target to be build?}
 
@@ -25,7 +26,8 @@ run.
 Mock the Unix Make Utility
 }
 \note{
-Forcing a target mocks adding .PHONY to a GNU Makefile if you
+Forcing a target mocks adding .PHONY to a GNU \command{Makefile} if
+you
 set recursive to FALSE. If recursive is TRUE, then the whole make chain will
 be forced.
 }

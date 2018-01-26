@@ -1,40 +1,13 @@
-* using log directory ‘/home/nik/git/cs/fvafrcu/fakemake/fakemake.Rcheck’
-* using R Under development (unstable) (2017-10-01 r73423)
+* using log directory ‘/home/qwer/git/cyclops/fvafrcu/fakemake/fakemake.Rcheck’
+* using R Under development (unstable) (2018-01-12 r74112)
 * using platform: x86_64-pc-linux-gnu (64-bit)
 * using session charset: UTF-8
 * using options ‘--run-donttest --as-cran’
 * checking for file ‘fakemake/DESCRIPTION’ ... OK
 * this is package ‘fakemake’ version ‘1.1.0’
 * package encoding: UTF-8
-* checking CRAN incoming feasibility ... NOTE
+* checking CRAN incoming feasibility ... Note_to_CRAN_maintainers
 Maintainer: ‘Andreas Dominik Cullmann <fvafrcu@arcor.de>’
-
-Found the following (possibly) invalid URLs:
-  URL: https://en.wikipedia.org/wiki/Build_automation
-    From: inst/doc/An_Introduction_to_fakemake.html
-    Status: Error
-    Message: libcurl error code 35:
-      	gnutls_handshake() failed: An unexpected TLS packet was received.
-  URL: https://en.wikipedia.org/wiki/List_of_build_automation_software
-    From: inst/doc/An_Introduction_to_fakemake.html
-    Status: Error
-    Message: libcurl error code 35:
-      	gnutls_handshake() failed: An unexpected TLS packet was received.
-  URL: https://en.wikipedia.org/wiki/Make_(software)
-    From: inst/doc/An_Introduction_to_fakemake.html
-    Status: Error
-    Message: libcurl error code 35:
-      	gnutls_handshake() failed: An unexpected TLS packet was received.
-  URL: https://github.com/fvafrCU/fakemake
-    From: DESCRIPTION
-    Status: Error
-    Message: libcurl error code 35:
-      	gnutls_handshake() failed: An unexpected TLS packet was received.
-  URL: https://github.com/lindenb/makefile2graph
-    From: inst/doc/An_Introduction_to_fakemake.html
-    Status: Error
-    Message: libcurl error code 35:
-      	gnutls_handshake() failed: An unexpected TLS packet was received.
 * checking package namespace information ... OK
 * checking package dependencies ... OK
 * checking if this is a source package ... OK
@@ -43,15 +16,13 @@ Found the following (possibly) invalid URLs:
 * checking for hidden files and directories ... OK
 * checking for portable file names ... OK
 * checking for sufficient/correct file permissions ... OK
+* checking serialized R objects in the sources ... OK
 * checking whether package ‘fakemake’ can be installed ... OK
 * checking installed package size ... OK
 * checking package directory ... OK
 * checking ‘build’ directory ... OK
 * checking DESCRIPTION meta-information ... OK
-* checking top-level files ... WARNING
-Conversion of ‘README.md’ failed:
-pandoc: Could not fetch https://travis-ci.org/fvafrCU/fakemake.svg?branch=master
-InvalidProxyEnvironmentVariable "https_proxy" "https://10.127.255.17:8080"
+* checking top-level files ... OK
 * checking for left-over files ... OK
 * checking index information ... OK
 * checking package subdirectories ... OK
@@ -82,11 +53,11 @@ InvalidProxyEnvironmentVariable "https_proxy" "https://10.127.255.17:8080"
 * checking examples ... OK
 * checking for unstated dependencies in ‘tests’ ... OK
 * checking tests ... OK
-  Running ‘runit.R’ [13s/23s]
+  Running ‘runit.R’ [26s/41s]
   Running ‘testthat.R’
 * checking for unstated dependencies in vignettes ... OK
 * checking package vignettes in ‘inst/doc’ ... OK
 * checking re-building of vignette outputs ... OK
 * checking PDF version of manual ... OK
 * DONE
-Status: 1 WARNING, 1 NOTE
+Status: OK

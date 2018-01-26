@@ -1,1 +1,1 @@
-<cleanr in cleanr::check_directory("R/", check_return = FALSE): R/   /home/nik/git/cs/fvafrcu/fakemake/R/package_makelist.R  package_makelist  found 61 lines of code, max_lines_of_code was 50>
+<cleanr in cleanr::check_directory("R/", check_return = FALSE): R/   /home/qwer/git/cyclops/fvafrcu/fakemake/R/package_makelist.R  package_makelist  found 61 lines of code, max_lines_of_code was 50>

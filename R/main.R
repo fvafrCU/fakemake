@@ -32,11 +32,12 @@ provide_make_list <- function(type = "minimal", prune = TRUE,
 #' a "code" item will be evaluated.
 #' So if any other item's string contains code allowing for a dynamic rule,
 #' for example with some "dependencies" reading
-#' \code{"list.files(\"R\", full.names = TRUE)"}, the Makefile will have the
+#' \code{"list.files(\"R\", full.names = TRUE)"}, the \command{Makefile} will
+#' have the
 #' evaluated code, a list static list of files in the above case.
 #' @param make_list The list to write to file.
 #' @param path The path to the file.
-#' @param Rbin The R binary to use in the Makefile.
+#' @param Rbin The R binary to use in the \command{Makefile}.
 #' @return See
 #' \code{\link[MakefileR:write_makefile]{MakefileR::write_makefile}}.
 #' @export
@@ -69,15 +70,16 @@ write_makefile <- function(make_list, path,
     return(MakefileR::write_makefile(m, path))
 }
 
-#' Read a Makefile Into a \code{Makelist}
+#' Read a \command{Makefile} Into a \code{Makelist}
 #'
 #' @param path The path to the file.
 #' @param clean_sink Remove sinks identical to corresponding targets from the
 #' list? Since \code{makelists} are parsed, missing sinks are set to the
 #' corresponding targets, but this makes them harder to read.
 #' @return The \code{makelist}.
-#' @note This function will not read arbitrary Makefiles, just those
-#' created via \code{\link{write_makefile}}! If you modify such a Makefile
+#' @note This function will not read arbitrary \command{Makefiles}, just those
+#' created via \code{\link{write_makefile}}! If you modify such a
+#' \command{Makefile}
 #' make sure you only add simple rules like the ones you see in that file.
 #' @export
 #' @examples
@@ -128,12 +130,14 @@ read_makefile <- function(path, clean_sink = FALSE) {
 
 #' Mock the Unix Make Utility
 #'
-#' @param make_list The \code{makelist} (a listed version of a Makefile).
+#' @param make_list The \code{makelist} (a listed version of a
+#' \command{Makefile}).
 #' @param name The name or alias of a make target.
 #' @param force Force the target to be build?
 #' @param recursive Force the target to be build recursively (see \emph{Note})?
 #' @param verbose Be verbose?
-#' @note Forcing a target mocks adding .PHONY to a GNU Makefile if you
+#' @note Forcing a target mocks adding .PHONY to a GNU \command{Makefile} if
+#' you
 #' set recursive to FALSE. If recursive is TRUE, then the whole make chain will
 #' be forced.
 #' @return A character vector containing the targets made during the current
