@@ -7,7 +7,7 @@ this is a resubmission of package 'fakemake'. I have added the following changes
 Please upload to CRAN.
 Best, Andreas Dominik
 
-# Package fakemake 1.1.0.9000
+# Package fakemake 1.2.0
 ## Test  environments 
 - R Under development (unstable) (2018-01-12 r74112)
   Platform: x86_64-pc-linux-gnu (64-bit)
@@ -18,4 +18,4 @@ Best, Andreas Dominik
 - win-builder (devel)
 
 ## R CMD check results
-0 errors | 1 warning  | 1 note 
+0 errors | 1 warning  | 0 notes

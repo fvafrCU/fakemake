@@ -2,9 +2,4 @@ checking top-level files ... WARNING
 Conversion of ‘README.md’ failed:
 pandoc: Failed to retrieve https://www.r-pkg.org/badges/version/fakemake
 TlsException (HandshakeFailed (Error_Protocol ("expecting server hello, got alert : [(AlertLevel_Fatal,HandshakeFailure)]",True,HandshakeFailure)))
-
-checking CRAN incoming feasibility ... NOTE
-Maintainer: ‘Andreas Dominik Cullmann <fvafrcu@arcor.de>’
-
-Version contains large components (1.1.0.9000)
-displaying logs for fvafrCU/fakemake#145.1
+displaying logs for fvafrCU/fakemake#147.1

@@ -1,4 +1,4 @@
-# fakemake 1.1.0.9000
+# fakemake 1.2.0
 
 * add make\_list "standard", enhancing "package" by adding the creation of the
   log directory and using it as prerequisite.

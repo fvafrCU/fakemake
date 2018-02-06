@@ -29,7 +29,7 @@ Error in adjacent_vertices(x, i, mode = if (directed) "out" else "all") :
 
 
 
-Executing test function test_check_archive  ... Creating package 'fakepack' in '/tmp/RtmpNUS32Z'
+Executing test function test_check_archive  ... Creating package 'fakepack' in '/tmp/RtmpQl9lMk'
 No DESCRIPTION found. Creating with values:
 
 
@@ -44,21 +44,21 @@ Encoding: UTF-8
 LazyData: true
 * Creating `fakepack.Rproj` from template.
 * Adding `.Rproj.user`, `.Rhistory`, `.RData` to ./.gitignore
-Updating roxygen version in /tmp/RtmpNUS32Z/fakepack/DESCRIPTION
+Updating roxygen version in /tmp/RtmpQl9lMk/fakepack/DESCRIPTION
 Writing NAMESPACE
 Writing throw.Rd
 '/home/qwer/svn/R/r-devel/build/bin/R' --no-site-file --no-environ --no-save  \
-  --no-restore --quiet CMD build '/tmp/RtmpNUS32Z/fakepack' --no-resave-data  \
+  --no-restore --quiet CMD build '/tmp/RtmpQl9lMk/fakepack' --no-resave-data  \
   --no-manual 
 
-* checking for file ‘/tmp/RtmpNUS32Z/fakepack/DESCRIPTION’ ... OK
+* checking for file ‘/tmp/RtmpQl9lMk/fakepack/DESCRIPTION’ ... OK
 * preparing ‘fakepack’:
 * checking DESCRIPTION meta-information ... OK
 * checking for LF line-endings in source and make files and shell scripts
 * checking for empty or unneeded directories
 * building ‘fakepack_0.0.0.9000.tar.gz’
 
-* using log directory ‘/tmp/RtmpNUS32Z/fakepack/fakepack.Rcheck’
+* using log directory ‘/tmp/RtmpQl9lMk/fakepack/fakepack.Rcheck’
 * using R Under development (unstable) (2018-01-12 r74112)
 * using platform: x86_64-pc-linux-gnu (64-bit)
 * using session charset: UTF-8
@@ -112,11 +112,11 @@ Standardizable: FALSE
 
 Status: 1 WARNING
 See
-  ‘/tmp/RtmpNUS32Z/fakepack/fakepack.Rcheck/00check.log’
+  ‘/tmp/RtmpQl9lMk/fakepack/fakepack.Rcheck/00check.log’
 for details.
 
 
-* using log directory ‘/tmp/RtmpNUS32Z/fakepack/fakepack.Rcheck’
+* using log directory ‘/tmp/RtmpQl9lMk/fakepack/fakepack.Rcheck’
 * using R Under development (unstable) (2018-01-12 r74112)
 * using platform: x86_64-pc-linux-gnu (64-bit)
 * using session charset: UTF-8
@@ -184,7 +184,7 @@ Standardizable: FALSE
 
 Status: 1 WARNING, 1 NOTE
 See
-  ‘/tmp/RtmpNUS32Z/fakepack/fakepack.Rcheck/00check.log’
+  ‘/tmp/RtmpQl9lMk/fakepack/fakepack.Rcheck/00check.log’
 for details.
 
 
@@ -192,7 +192,7 @@ for details.
 
 
 
-Executing test function test_package_path  ... Creating package 'anRpackage' in '/tmp/RtmpNUS32Z'
+Executing test function test_package_path  ... Creating package 'anRpackage' in '/tmp/RtmpQl9lMk'
 No DESCRIPTION found. Creating with values:
 
 
@@ -237,8 +237,8 @@ Executing test function test_make_phony  ...  done successfully.
 
 
 Executing test function test_make_prerequisite  ... Error in make(name = p, make_list = make_list, force = force && isTRUE(recursive),  : 
-  There is no rule to make /tmp/RtmpNUS32Z/c1.Rout.
-Prerequisite /tmp/RtmpNUS32Z/c1.Rout found.
+  There is no rule to make /tmp/RtmpQl9lMk/c1.Rout.
+Prerequisite /tmp/RtmpQl9lMk/c1.Rout found.
  done successfully.
 
 
