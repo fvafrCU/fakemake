@@ -19,6 +19,7 @@ provide_make_list <- function(type = "minimal", prune = TRUE,
                                    clean_sink)
                  },
                  "package" = package_makelist(),
+                 "standard" = log_makelist(),
                  throw(paste0("type ", type, " not known!"))
                  )
     if (isTRUE(prune)) ml <- prune_list(ml)

@@ -61,3 +61,20 @@ package_makelist <- function() {
                     prerequisites = "get_pkg_archive_path(absolute = FALSE)"))
     return(pl)
 }
+
+log_makelist <- function() {
+    fml <- provide_make_list("package")
+    # add the log directory as prerequisite to all targets
+    fml <- lapply(fml, function(x) {
+                      x[["prerequisites"]] <- 
+                          c(".log.Rout", x[["prerequisites"]])
+                      return(x)})
+    # add the log directory
+    log_dir_code <- c("devtools::use_directory(\"log\", ignore = TRUE)")
+    a <- list(
+              list(target = ".log.Rout",
+                   code = log_dir_code
+                   )
+              )
+    return(c(a, fml))
+}
