@@ -4,10 +4,12 @@
 * using session charset: UTF-8
 * using options ‘--run-donttest --as-cran’
 * checking for file ‘fakemake/DESCRIPTION’ ... OK
-* this is package ‘fakemake’ version ‘1.1.0’
+* this is package ‘fakemake’ version ‘1.1.0.9000’
 * package encoding: UTF-8
-* checking CRAN incoming feasibility ... Note_to_CRAN_maintainers
+* checking CRAN incoming feasibility ... NOTE
 Maintainer: ‘Andreas Dominik Cullmann <fvafrcu@arcor.de>’
+
+Version contains large components (1.1.0.9000)
 * checking package namespace information ... OK
 * checking package dependencies ... OK
 * checking if this is a source package ... OK
@@ -22,7 +24,10 @@ Maintainer: ‘Andreas Dominik Cullmann <fvafrcu@arcor.de>’
 * checking package directory ... OK
 * checking ‘build’ directory ... OK
 * checking DESCRIPTION meta-information ... OK
-* checking top-level files ... OK
+* checking top-level files ... WARNING
+Conversion of ‘README.md’ failed:
+pandoc: Failed to retrieve https://www.r-pkg.org/badges/version/fakemake
+TlsException (HandshakeFailed (Error_Protocol ("expecting server hello, got alert : [(AlertLevel_Fatal,HandshakeFailure)]",True,HandshakeFailure)))
 * checking for left-over files ... OK
 * checking index information ... OK
 * checking package subdirectories ... OK
@@ -53,11 +58,11 @@ Maintainer: ‘Andreas Dominik Cullmann <fvafrcu@arcor.de>’
 * checking examples ... OK
 * checking for unstated dependencies in ‘tests’ ... OK
 * checking tests ... OK
-  Running ‘runit.R’ [26s/41s]
+  Running ‘runit.R’ [27s/39s]
   Running ‘testthat.R’
 * checking for unstated dependencies in vignettes ... OK
 * checking package vignettes in ‘inst/doc’ ... OK
 * checking re-building of vignette outputs ... OK
 * checking PDF version of manual ... OK
 * DONE
-Status: OK
+Status: 1 WARNING, 1 NOTE

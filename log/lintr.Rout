@@ -1,3 +1,0 @@
-R/package_makelist.R:2:75: style: Trailing whitespace is superfluous.
-    roxygen_code  <- paste("tryCatch(print(roxygen2::roxygenize(\".\")),",  
-                                                                          ^~

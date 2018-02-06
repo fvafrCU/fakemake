@@ -1,16 +1,13 @@
 Dear CRAN Team,
 this is a resubmission of package 'fakemake'. I have added the following changes:
 
-* Fixed recursive treatment of argument `verbose` to function `make`.
-* Fixed internal function `package\_makelist` to using `devtools::test` instead 
-  `testthat::test_package` directly (the former is a wrapper to the latter).
-* Now `package\_makelist` is printing output from roxygen2, testthat, cleanr and
-  devtools::build to harmonize logs.
+* add make\_list "standard", enhancing "package" by adding the creation of the
+  log directory and using it as prerequisite.
 
 Please upload to CRAN.
 Best, Andreas Dominik
 
-# Package fakemake 1.1.0
+# Package fakemake 1.1.0.9000
 ## Test  environments 
 - R Under development (unstable) (2018-01-12 r74112)
   Platform: x86_64-pc-linux-gnu (64-bit)
@@ -21,4 +18,4 @@ Best, Andreas Dominik
 - win-builder (devel)
 
 ## R CMD check results
-0 errors | 0 warnings | 0 notes
+0 errors | 1 warning  | 1 note 

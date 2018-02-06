@@ -1,6 +1,13 @@
 Loading fakemake
 Loading required package: testthat
 Testing fakemake
-Testing fakemake:::throw(): .
+✔ | OK F W S | Context
+⠏ |  0       | Testing fakemake:::throw()⠋ |  1       | Testing fakemake:::throw()✔ |  1       | Testing fakemake:::throw() [0.1 s]
 
-DONE ===========================================================================
+══ Results ═════════════════════════════════════════════════════════════════════
+Duration: 0.2 s
+
+OK:       1
+Failed:   0
+Warnings: 0
+Skipped:  0

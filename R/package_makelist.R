@@ -1,5 +1,5 @@
 package_makelist <- function() {
-    roxygen_code  <- paste("tryCatch(print(roxygen2::roxygenize(\".\")),",  
+    roxygen_code  <- paste("tryCatch(print(roxygen2::roxygenize(\".\")),",
                            "error = identity)")
     cleanr_code <- paste("tryCatch(print(cleanr::check_directory(\"R\",",
                          "check_return = FALSE)),",
@@ -65,10 +65,11 @@ package_makelist <- function() {
 log_makelist <- function() {
     fml <- provide_make_list("package")
     # add the log directory as prerequisite to all targets
-    fml <- lapply(fml, function(x) {
-                      x[["prerequisites"]] <- 
-                          c(".log.Rout", x[["prerequisites"]])
-                      return(x)})
+    add_log <- function(x) {
+        x[["prerequisites"]] <- c(".log.Rout", x[["prerequisites"]])
+        return(x)
+    }
+    fml <- lapply(fml, add_log)
     # add the log directory
     log_dir_code <- c("devtools::use_directory(\"log\", ignore = TRUE)")
     a <- list(

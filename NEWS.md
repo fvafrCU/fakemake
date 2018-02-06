@@ -1,3 +1,8 @@
+# fakemake 1.1.0.9000
+
+* add make\_list "standard", enhancing "package" by adding the creation of the
+  log directory and using it as prerequisite.
+
 # fakemake 1.1.0
 
 * Fixed recursive treatment of argument `verbose` to function `make`.

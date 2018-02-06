@@ -1,30 +1,3 @@
-Installing 1 packages: irlba
-trying URL 'http://cloud.r-project.org/src/contrib/irlba_2.3.2.tar.gz'
-Content type 'application/x-gzip' length 234721 bytes (229 KB)
-==================================================
-downloaded 229 KB
-
-* installing *source* package ‘irlba’ ...
-** package ‘irlba’ successfully unpacked and MD5 sums checked
-** libs
-make[1]: Entering directory '/tmp/Rtmp66S9HJ/R.INSTALL45ea6d173618/irlba/src'
-gcc -std=gnu99 -I"/home/qwer/svn/R/r-devel/build/include" -DNDEBUG  -I"/home/qwer/svn/R/r-devel/build/library/Matrix/include" -I/usr/local/include   -fpic  -g -O2  -c irlb.c -o irlb.o
-gcc -std=gnu99 -I"/home/qwer/svn/R/r-devel/build/include" -DNDEBUG  -I"/home/qwer/svn/R/r-devel/build/library/Matrix/include" -I/usr/local/include   -fpic  -g -O2  -c utility.c -o utility.o
-gcc -std=gnu99 -shared -L/usr/local/lib -o irlba.so irlb.o utility.o -L/home/qwer/svn/R/r-devel/build/lib -lRlapack -L/home/qwer/svn/R/r-devel/build/lib -lRblas -lgfortran -lm -lquadmath
-make[1]: Leaving directory '/tmp/Rtmp66S9HJ/R.INSTALL45ea6d173618/irlba/src'
-installing to /tmp/RtmpqvX2ry/file40ec586c4c97/irlba/libs
-** R
-** inst
-** preparing package for lazy loading
-** help
-*** installing help indices
-** building package indices
-** installing vignettes
-** testing if installed package can be loaded
-* DONE (irlba)
-
-The downloaded source packages are in
-	‘/tmp/RtmpqvX2ry/downloaded_packages’
 * installing *source* package ‘fakemake’ ...
 ** R
 ** inst

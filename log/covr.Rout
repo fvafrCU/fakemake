@@ -1,19 +1,32 @@
-         filename      functions line value
-152 R/internals.R check_makelist   57     0
-155 R/internals.R check_makelist   58     0
-158 R/internals.R check_makelist   59     0
-302      R/main.R      visualize  252     0
-303      R/main.R      visualize  253     0
-304      R/main.R      visualize  254     0
-305      R/main.R      visualize  255     0
-306      R/main.R      visualize  256     0
-307      R/main.R      visualize  257     0
-308      R/main.R      visualize  258     0
-309      R/main.R      visualize  259     0
-fakemake Coverage: 96.44%
-R/main.R: 93.33%
+                filename      functions line value
+152        R/internals.R check_makelist   57     0
+155        R/internals.R check_makelist   58     0
+158        R/internals.R check_makelist   59     0
+316             R/main.R      visualize  253     0
+317             R/main.R      visualize  254     0
+318             R/main.R      visualize  255     0
+319             R/main.R      visualize  256     0
+320             R/main.R      visualize  257     0
+321             R/main.R      visualize  258     0
+322             R/main.R      visualize  259     0
+323             R/main.R      visualize  260     0
+175 R/package_makelist.R   log_makelist   66     0
+180 R/package_makelist.R   log_makelist   68     0
+183 R/package_makelist.R   log_makelist   69     0
+186 R/package_makelist.R   log_makelist   70     0
+189 R/package_makelist.R   log_makelist   71     0
+192 R/package_makelist.R   log_makelist   72     0
+195 R/package_makelist.R   log_makelist   74     0
+197 R/package_makelist.R   log_makelist   75     0
+199 R/package_makelist.R   log_makelist   76     0
+201 R/package_makelist.R   log_makelist   77     0
+203 R/package_makelist.R   log_makelist   78     0
+205 R/package_makelist.R   log_makelist   79     0
+207 R/package_makelist.R   log_makelist   80     0
+fakemake Coverage: 92.57%
+R/package_makelist.R: 82.43%
+R/main.R: 93.39%
 R/internals.R: 96.34%
-R/package_makelist.R: 100.00%
 R/sink_all.R: 100.00%
 R/throw.R: 100.00%
 R/tools.R: 100.00%
