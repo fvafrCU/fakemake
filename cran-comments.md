@@ -1,7 +1,7 @@
 Dear CRAN Team,
 this is a resubmission of package 'fakemake'. I have added the following changes:
 
-* add make\_list "standard", enhancing "package" by adding the creation of the
+* Added make\_list "standard", enhancing "package" by adding the creation of the
   log directory and using it as prerequisite.
 
 Please upload to CRAN.
@@ -18,4 +18,4 @@ Best, Andreas Dominik
 - win-builder (devel)
 
 ## R CMD check results
-0 errors | 1 warning  | 0 notes
+0 errors | 0 warning  | 0 notes

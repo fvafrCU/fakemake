@@ -1,6 +1,6 @@
 # fakemake 1.2.0
 
-* add make\_list "standard", enhancing "package" by adding the creation of the
+* Added make\_list "standard", enhancing "package" by adding the creation of the
   log directory and using it as prerequisite.
 
 # fakemake 1.1.0
