@@ -1,3 +1,17 @@
+# stolen from packager
+check_cyclomatic_complexity <- function(path = ".", max_complexity = 10) {
+    res <- NULL
+    cyclocomp <- cyclocomp::cyclocomp_package_dir(path)
+    too_complex <- cyclocomp[["cyclocomp"]] > max_complexity
+    if (any(too_complex)) {
+        hits <- cyclocomp[too_complex, "name"]
+        diff <- cyclocomp[too_complex, "cyclocomp"] - max_complexity
+        res <- paste0("Exceeding maximum cyclomatic complexity of ",
+            max_complexity, " for ", hits, " by ", diff, ".")
+    }
+    return(res)
+}
+
 package_makelist <- function() {
     roxygen_code  <- paste("tryCatch(print(roxygen2::roxygenize(\".\")),",
                            "error = identity)")
@@ -10,6 +24,7 @@ package_makelist <- function() {
     covr_code <- paste("co <- covr::package_coverage(path = \".\");",
                        "print(covr::zero_coverage(co)); print(co)")
     testthat_code <- "tryCatch(print(devtools::test(\".\")), error = identity)"
+    cyclocomp_code <- "check_cyclomatic_complexity(\".\")"
     r_codes <- paste("grep(list.files(\".\",",
                                   "pattern = \".*\\\\.[rR]$\",",
                                   "recursive = TRUE),",
@@ -28,6 +43,10 @@ package_makelist <- function() {
                     code = spell_code,
                     prerequisites = c("DESCRIPTION",
                                       file.path("log", "roxygen2.Rout"))),
+               list(alias = "cyclocomp",
+                    target = file.path("log", "cyclocomp.Rout"),
+                    code = cyclocomp_code,
+                    prerequisites = dir_r),
                list(alias = "cleanr",
                     target = file.path("log", "cleanr.Rout"),
                     code = cleanr_code,
@@ -53,6 +72,7 @@ package_makelist <- function() {
                                       "file.path(\"log\", \"lintr.Rout\")",
                                       "file.path(\"log\", \"cleanr.Rout\")",
                                       "file.path(\"log\", \"spell.Rout\")",
+                                      "file.path(\"log\", \"cyclocomp.Rout\")",
                                       "file.path(\"log\", \"covr.Rout\")",
                                       "file.path(\"log\", \"testthat.Rout\")",
                                       "file.path(\"log\", \"roxygen2.Rout\")")),
@@ -71,7 +91,7 @@ log_makelist <- function() {
     }
     fml <- lapply(fml, add_log)
     # add the log directory
-    log_dir_code <- c("devtools::use_directory(\"log\", ignore = TRUE)")
+    log_dir_code <- c("usethis::use_directory(\"log\", ignore = TRUE)")
     a <- list(
               list(target = ".log.Rout",
                    code = log_dir_code
