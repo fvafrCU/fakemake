@@ -1,3 +1,7 @@
+# fakemake 1.3.0
+
+* Added cyclocomp to the "package" makelist.
+
 # fakemake 1.2.0
 
 * Added make\_list "standard", enhancing "package" by adding the creation of the
