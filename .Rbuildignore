@@ -12,3 +12,4 @@
 ^install\.cl$
 ^rel\.R$
 ^install\.r$
+^\.log\.Rout$
