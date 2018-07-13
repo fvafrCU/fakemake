@@ -1,15 +1,16 @@
 #' Load an Example \code{Makelist} Provided by \pkg{fakemake}.
 #'
 #' @inheritParams read_makefile
-#' @param type The type of \code{makelist}. Possible values are "minimal" and
-#' "package".
+#' @param type The type of \code{makelist}. Use "standard" for a standard
+#' package makelist.
 #' @param prune Prune the \code{makelist} of \code{NULL} items?
 #' @return A \code{makelist}.
 #' @export
 #' @examples
 #' str(provide_make_list("minimal"))
-provide_make_list <- function(type = "minimal", prune = TRUE,
+provide_make_list <- function(type = c("minimal", "package", "standard"), prune = TRUE,
                               clean_sink = FALSE) {
+    type <- match.arg(type)
     ml <- switch(type,
                  "minimal" =  {
                      name <- "Makefile"
