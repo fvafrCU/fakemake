@@ -1,7 +1,7 @@
 * installing *source* package ‘fakemake’ ...
 ** R
 ** inst
-** preparing package for lazy loading
+** byte-compile and prepare package for lazy loading
 ** help
 *** installing help indices
 ** building package indices

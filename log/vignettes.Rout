@@ -1,5 +1,5 @@
 Building fakemake vignettes
-Creating package 'fakepack' in '/tmp/RtmpbR5hpV'
+Creating package 'fakepack' in '/tmp/RtmpMmOcya'
 No DESCRIPTION found. Creating with values:
 
 
@@ -24,7 +24,7 @@ Prerequisite DESCRIPTION found.
 Prerequisite R/throw.R found.
 Prerequisite R/throw.R found.
 Prerequisite R/throw.R found.
-* checking for file ‘/tmp/RtmpbR5hpV/fakepack/DESCRIPTION’ ... OK
+* checking for file ‘/tmp/RtmpMmOcya/fakepack/DESCRIPTION’ ... OK
 * preparing ‘fakepack’:
 * checking DESCRIPTION meta-information ... OK
 * checking for LF line-endings in source and make files and shell scripts
@@ -50,7 +50,7 @@ Prerequisite tests/testthat.R found.
 Prerequisite tests/testthat/test-throw.R found.
 Prerequisite man/throw.Rd found.
 Prerequisite R/throw.R found.
-* checking for file ‘/tmp/RtmpbR5hpV/fakepack/DESCRIPTION’ ... OK
+* checking for file ‘/tmp/RtmpMmOcya/fakepack/DESCRIPTION’ ... OK
 * preparing ‘fakepack’:
 * checking DESCRIPTION meta-information ... OK
 * checking for LF line-endings in source and make files and shell scripts

@@ -1,5 +1,14 @@
 checking top-level files ... WARNING
 Conversion of ‘README.md’ failed:
-pandoc: Failed to retrieve https://www.r-pkg.org/badges/version/fakemake
-TlsException (HandshakeFailed (Error_Protocol ("expecting server hello, got alert : [(AlertLevel_Fatal,HandshakeFailure)]",True,HandshakeFailure)))
-displaying logs for fvafrCU/fakemake#147.1
+pandoc: Could not fetch https://www.r-pkg.org/badges/version/fakemake
+TlsExceptionHostPort (HandshakeFailed Error_EOF) "www.r-pkg.org" 443
+displaying logs for fvafrCU/fakemake#149.1
+undefined method `each_pair' for #<String:0x005615865f1620>
+Did you mean?  each_char
+Error in if (file.exists(file.path(path, travis_session_info))) { : 
+  argument is of length zero
+Calls: <Anonymous>
+In addition: Warning message:
+In system2("sudo", paste("travis logs --repo", travis_repo), stdout = TRUE) :
+  running command ''sudo' travis logs --repo fvafrCU/fakemake' had status 1
+Execution halted

@@ -29,7 +29,7 @@ Error in adjacent_vertices(x, i, mode = if (directed) "out" else "all") :
 
 
 
-Executing test function test_check_archive  ... Creating package 'fakepack' in '/tmp/RtmpQl9lMk'
+Executing test function test_check_archive  ... Creating package 'fakepack' in '/tmp/Rtmp2DYUy6'
 No DESCRIPTION found. Creating with values:
 
 
@@ -38,28 +38,28 @@ Title: What the Package Does (one line, title case)
 Version: 0.0.0.9000
 Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
 Description: What the package does (one paragraph).
-Depends: R (>= 3.5.0)
+Depends: R (>= 3.6.0)
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
 * Creating `fakepack.Rproj` from template.
 * Adding `.Rproj.user`, `.Rhistory`, `.RData` to ./.gitignore
-Updating roxygen version in /tmp/RtmpQl9lMk/fakepack/DESCRIPTION
+Updating roxygen version in /tmp/Rtmp2DYUy6/fakepack/DESCRIPTION
 Writing NAMESPACE
 Writing throw.Rd
 '/home/qwer/svn/R/r-devel/build/bin/R' --no-site-file --no-environ --no-save  \
-  --no-restore --quiet CMD build '/tmp/RtmpQl9lMk/fakepack' --no-resave-data  \
+  --no-restore --quiet CMD build '/tmp/Rtmp2DYUy6/fakepack' --no-resave-data  \
   --no-manual 
 
-* checking for file ‘/tmp/RtmpQl9lMk/fakepack/DESCRIPTION’ ... OK
+* checking for file ‘/tmp/Rtmp2DYUy6/fakepack/DESCRIPTION’ ... OK
 * preparing ‘fakepack’:
 * checking DESCRIPTION meta-information ... OK
 * checking for LF line-endings in source and make files and shell scripts
 * checking for empty or unneeded directories
 * building ‘fakepack_0.0.0.9000.tar.gz’
 
-* using log directory ‘/tmp/RtmpQl9lMk/fakepack/fakepack.Rcheck’
-* using R Under development (unstable) (2018-01-12 r74112)
+* using log directory ‘/tmp/Rtmp2DYUy6/fakepack/fakepack.Rcheck’
+* using R Under development (unstable) (2018-07-01 r74950)
 * using platform: x86_64-pc-linux-gnu (64-bit)
 * using session charset: UTF-8
 * checking for file ‘fakepack/DESCRIPTION’ ... OK
@@ -112,12 +112,12 @@ Standardizable: FALSE
 
 Status: 1 WARNING
 See
-  ‘/tmp/RtmpQl9lMk/fakepack/fakepack.Rcheck/00check.log’
+  ‘/tmp/Rtmp2DYUy6/fakepack/fakepack.Rcheck/00check.log’
 for details.
 
 
-* using log directory ‘/tmp/RtmpQl9lMk/fakepack/fakepack.Rcheck’
-* using R Under development (unstable) (2018-01-12 r74112)
+* using log directory ‘/tmp/Rtmp2DYUy6/fakepack/fakepack.Rcheck’
+* using R Under development (unstable) (2018-07-01 r74950)
 * using platform: x86_64-pc-linux-gnu (64-bit)
 * using session charset: UTF-8
 * using option ‘--as-cran’
@@ -133,8 +133,9 @@ Version contains large components (0.0.0.9000)
 
 Non-FOSS package license (What license is it under?)
 
-The Title field should be in title case, current version then in title case:
+The Title field should be in title case. Current version is:
 ‘What the Package Does (one line, title case)’
+In title case that is:
 ‘What the Package Does (One Line, Title Case)’
 * checking package namespace information ... OK
 * checking package dependencies ... OK
@@ -184,7 +185,7 @@ Standardizable: FALSE
 
 Status: 1 WARNING, 1 NOTE
 See
-  ‘/tmp/RtmpQl9lMk/fakepack/fakepack.Rcheck/00check.log’
+  ‘/tmp/Rtmp2DYUy6/fakepack/fakepack.Rcheck/00check.log’
 for details.
 
 
@@ -192,7 +193,7 @@ for details.
 
 
 
-Executing test function test_package_path  ... Creating package 'anRpackage' in '/tmp/RtmpQl9lMk'
+Executing test function test_package_path  ... Creating package 'anRpackage' in '/tmp/Rtmp2DYUy6'
 No DESCRIPTION found. Creating with values:
 
 
@@ -201,7 +202,7 @@ Title: What the Package Does (one line, title case)
 Version: 0.0.0.9000
 Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
 Description: What the package does (one paragraph).
-Depends: R (>= 3.5.0)
+Depends: R (>= 3.6.0)
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
@@ -237,8 +238,8 @@ Executing test function test_make_phony  ...  done successfully.
 
 
 Executing test function test_make_prerequisite  ... Error in make(name = p, make_list = make_list, force = force && isTRUE(recursive),  : 
-  There is no rule to make /tmp/RtmpQl9lMk/c1.Rout.
-Prerequisite /tmp/RtmpQl9lMk/c1.Rout found.
+  There is no rule to make /tmp/Rtmp2DYUy6/c1.Rout.
+Prerequisite /tmp/Rtmp2DYUy6/c1.Rout found.
  done successfully.
 
 

@@ -1,10 +1,10 @@
 * using log directory ‘/home/qwer/git/cyclops/fvafrcu/fakemake/fakemake.Rcheck’
-* using R Under development (unstable) (2018-01-12 r74112)
+* using R Under development (unstable) (2018-07-01 r74950)
 * using platform: x86_64-pc-linux-gnu (64-bit)
 * using session charset: UTF-8
 * using options ‘--run-donttest --as-cran’
 * checking for file ‘fakemake/DESCRIPTION’ ... OK
-* this is package ‘fakemake’ version ‘1.2.0’
+* this is package ‘fakemake’ version ‘1.3.0’
 * package encoding: UTF-8
 * checking CRAN incoming feasibility ... Note_to_CRAN_maintainers
 Maintainer: ‘Andreas Dominik Cullmann <fvafrcu@arcor.de>’
@@ -16,7 +16,7 @@ Maintainer: ‘Andreas Dominik Cullmann <fvafrcu@arcor.de>’
 * checking for hidden files and directories ... OK
 * checking for portable file names ... OK
 * checking for sufficient/correct file permissions ... OK
-* checking serialized R objects in the sources ... OK
+* checking serialization versions ... OK
 * checking whether package ‘fakemake’ can be installed ... OK
 * checking installed package size ... OK
 * checking package directory ... OK
@@ -24,8 +24,8 @@ Maintainer: ‘Andreas Dominik Cullmann <fvafrcu@arcor.de>’
 * checking DESCRIPTION meta-information ... OK
 * checking top-level files ... WARNING
 Conversion of ‘README.md’ failed:
-pandoc: Failed to retrieve https://www.r-pkg.org/badges/version/fakemake
-TlsException (HandshakeFailed (Error_Protocol ("expecting server hello, got alert : [(AlertLevel_Fatal,HandshakeFailure)]",True,HandshakeFailure)))
+pandoc: Could not fetch https://www.r-pkg.org/badges/version/fakemake
+TlsExceptionHostPort (HandshakeFailed Error_EOF) "www.r-pkg.org" 443
 * checking for left-over files ... OK
 * checking index information ... OK
 * checking package subdirectories ... OK
@@ -56,7 +56,7 @@ TlsException (HandshakeFailed (Error_Protocol ("expecting server hello, got aler
 * checking examples ... OK
 * checking for unstated dependencies in ‘tests’ ... OK
 * checking tests ... OK
-  Running ‘runit.R’ [21s/33s]
+  Running ‘runit.R’ [21s/32s]
   Running ‘testthat.R’
 * checking for unstated dependencies in vignettes ... OK
 * checking package vignettes in ‘inst/doc’ ... OK

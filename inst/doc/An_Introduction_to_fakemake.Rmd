@@ -1,7 +1,7 @@
 ---
 title: "An Introduction to *fakemake*"
 author: "Andreas Dominik Cullmann"
-date: 2017-11-19, 21:05:35
+date: 2018-07-13, 13:34:44
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{An Introduction to fakemake }
@@ -231,12 +231,11 @@ unlink(pkg_path, force = TRUE, recursive = TRUE)
 devtools::create(pkg_path)
 ```
 
-We add a minimal R code file and a log directory:
+We add a minimal R code file:
 
 ``` {r}
 file.copy(system.file("templates", "throw.R", package = "fakemake"),
           file.path(pkg_path, "R"))
-dir.create(file.path(pkg_path, "log"))
 ```
 
 This package does not make any sense. It is just a minimal working example 
@@ -250,7 +249,7 @@ It is just there to exemplify the usage of *fakemake*.
 Then we get a package makelist from *fakemake*:
 
 ``` {r}
-ml <- fakemake::provide_make_list("package")
+ml <- fakemake::provide_make_list("standard")
 ```
 
 This list is a bit more complex than the minimal example above, so we visualize
