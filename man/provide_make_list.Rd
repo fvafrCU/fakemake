@@ -9,7 +9,7 @@ provide_make_list(type = c("minimal", "package", "standard"), prune = TRUE,
 }
 \arguments{
 \item{type}{The type of \code{makelist}. Use "standard" for a standard
-package makelist.}
+package \code{makelist}.}
 
 \item{prune}{Prune the \code{makelist} of \code{NULL} items?}
 
