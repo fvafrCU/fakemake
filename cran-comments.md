@@ -14,6 +14,9 @@ Best, Andreas Dominik
 - R version 3.3.3 (2017-03-06)
   Platform: x86_64-pc-linux-gnu (64-bit)
   Running under: Devuan GNU/Linux 2 (ascii)
+- R version 3.5.0 (2017-01-27)
+  Platform: x86_64-pc-linux-gnu (64-bit)
+  Running under: Ubuntu 14.04.5 LTS
 - win-builder (devel)
 
 ## R CMD check results
