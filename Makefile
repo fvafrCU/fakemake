@@ -87,7 +87,7 @@ $(PKGNAME)_$(PKGVERS).tar.gz: NEWS.md README.md DESCRIPTION LICENSE \
 	$(R_release) --vanilla CMD build $(PKGSRC)
 
 .PHONY: vignettes
-vignettes: $(LOG_DIR)/vignettes.Rout
+vignettes: $(LOG_DIR)/vignettes.Rout vignettes/makefile2graph.png
 $(LOG_DIR)/vignettes.Rout:	$(R_FILES) $(MAN_FILES) $(VIGNETTES_FILES)
 	$(Rscript) --vanilla -e 'devtools::build_vignettes(); lapply(tools::pkgVignettes(dir = ".")[["docs"]], function(x) knitr::purl(x, output = file.path(".", "inst", "doc", sub("\\.Rmd$$", ".R", basename(x))), documentation = 0))' > $(LOG_DIR)/vignettes.Rout 2>&1 
 
@@ -173,3 +173,26 @@ $(LOG_DIR)/spell.Rout: .log.Rout DESCRIPTION $(LOG_DIR)/roxygen2.Rout $(MAN_FILE
 cyclocomp: $(LOG_DIR)/cyclocomp.Rout
 $(LOG_DIR)/cyclocomp.Rout: .log.Rout $(LOG_DIR)/dependencies.Rout $(R_FILES)
 	$(Rscript) --vanilla -e 'tryCatch(print(packager::check_cyclomatic_complexity()), error = identity)' > $(LOG_DIR)/cyclocomp.Rout 2>&1 
+
+.PHONY: vignettes/makefile2graph.png
+	echo ${makefile.R} > /tmp/tmp.R
+
+.PHONY: /tmp/tmp.R
+vignettes/makefile2graph.png: /tmp/tmp.R
+	$(R) --vanilla < /tmp/tmp.R
+
+/tmp/tmp.R:
+	echo "pkg_path <- file.path(tempdir(), 'fakepack') " > /tmp/tmp.R; \
+	echo "unlink(pkg_path, force = TRUE, recursive = TRUE)" >> /tmp/tmp.R; \
+	echo "devtools::create(pkg_path)" >> /tmp/tmp.R; \
+	echo "file.copy(system.file('templates', 'throw.R', package = 'fakemake')," >> /tmp/tmp.R; \
+	echo "file.path(pkg_path, 'R'))" >> /tmp/tmp.R; \
+	echo "ml <- fakemake::provide_make_list('standard')" >> /tmp/tmp.R; \
+	echo "withr::with_dir(pkg_path, " >> /tmp/tmp.R; \
+	echo "                {" >> /tmp/tmp.R; \
+    echo "                 fakemake::write_makefile(ml, file.path('Makefile')); " >> /tmp/tmp.R; \
+	echo "                 system('make -Bnd log/check.Rout| make2graph | dot -Tpng -o /tmp/makefile2graph.png')" >> /tmp/tmp.R; \
+	echo "				   }" >> /tmp/tmp.R; \
+	echo "				  )" >> /tmp/tmp.R; \
+	echo "file.copy(file.path('', 'tmp', 'makefile2graph.png'), 'vignettes', overwrite = TRUE)" >> /tmp/tmp.R
+
