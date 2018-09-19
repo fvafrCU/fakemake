@@ -1,7 +1,0 @@
-.Rprofile
-rel.R
-*.swp
-*.tar.gz
-fakemake.Rcheck
-tmp_*
-log/make.png
